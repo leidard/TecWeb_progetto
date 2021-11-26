@@ -1,2 +1,1 @@
-# scissorhands
-💈Barber Scissorhands
+# 💈Barber Scissorhands
