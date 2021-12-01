@@ -1,0 +1,144 @@
+<html>
+
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            width: 768px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section {
+            width: 100%;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            padding: 24px;
+            border-radius: 24px;
+            box-shadow: 0 0 8px #0004;
+            margin: 12px 0;
+            transition: .2s ease-in-out;
+        }
+
+        section:hover {
+            cursor: pointer;
+            box-shadow: 0 0 12px #0006;
+        }
+
+        section h2 {
+            margin: 0;
+        }
+
+        section.hidden {}
+
+        section .options {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: .3s ease-in-out;
+            max-height: 300px;
+            overflow-y: scroll;
+        }
+
+        section.hidden .options {
+            max-height: 0;
+        }
+
+        .options div {
+            width: 300px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 0 8px #0004;
+            margin: 12px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Prenotazione</h1>
+    <form>
+        <section id="barbiere">
+            <header><h2>Barbiere</h2></header>
+            <div class="options">
+                <div>Opt1</div>
+                <div>Opt1</div>
+                <div>Opt1</div>
+                <div>Opt1</div>
+            </div>
+        </section>
+        <section id="taglio" class="hidden">
+            <h2>Taglio</h2>
+            <div class="options">
+                <div>Opt1</div>
+                <div>Opt1</div>
+                <div>Opt1</div>
+                <div>Opt1</div>
+            </div>
+        </section>
+        <section id="giorno" class="hidden">
+            <h2>Giorno</h2>
+            <div class="options">
+                <div>Opt1</div>
+                <div>Opt1</div>
+                <div>Opt1</div>
+                <div>Opt1</div>
+            </div>
+        </section>
+        <section id="ora" class="hidden">
+            <h2>Ora</h2>
+            <div class="options">
+                <div>Opt1</div>
+                <div>Opt1</div>
+                <div>Opt1</div>
+                <div>Opt1</div>
+            </div>
+        </section>
+    </form>
+    <script>
+        let b = document.getElementById('barbiere');
+        let t = document.getElementById('taglio');
+        let g = document.getElementById('giorno');
+        let o = document.getElementById('ora');
+
+        b.onclick = function() {
+            b.classList.add('hidden');
+            t.classList.add('hidden');
+            g.classList.add('hidden');
+            o.classList.add('hidden');
+            this.classList.remove('hidden');
+        }
+        t.onclick = function() {
+            b.classList.add('hidden');
+            t.classList.add('hidden');
+            g.classList.add('hidden');
+            o.classList.add('hidden');
+            this.classList.toggle('hidden');
+        }
+        g.onclick = function() {
+            b.classList.add('hidden');
+            t.classList.add('hidden');
+            g.classList.add('hidden');
+            o.classList.add('hidden');
+            this.classList.toggle('hidden');
+        }
+        o.onclick = function() {
+            b.classList.add('hidden');
+            t.classList.add('hidden');
+            g.classList.add('hidden');
+            o.classList.add('hidden');
+            this.classList.toggle('hidden');
+        }
+
+    </script>
+</body>
+
+</html>
