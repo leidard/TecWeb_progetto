@@ -1,12 +1,26 @@
 # 💈Barber Scissorhands
 
-```typescript
-{
-    start: 12000,
-    durata: 0,
-    end: 12000,
-}
+## Dev Server
 
+per fare girare un dev server
+```bash
+php -S localhost:8000 -t controller/
+```
+
+
+###
+
+```php
+# controllers/index.php
+$template_pagina = file_get_contents('../view/index.html');
+$pagina = str_replace('%TITOLO%', "Home" , $template_pagina);
+
+```
+
+###
+
+
+```typescript
 
 function getOrariFrom(timeUT: number, deltaTaglio: number, parrucchiere: idparruchiere) {
     const { 
@@ -45,11 +59,6 @@ function getOrariFrom(timeUT: number, deltaTaglio: number, parrucchiere: idparru
 }
 
 ```
-
-
-
-
-
 
 
 ```javascript
