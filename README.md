@@ -4,9 +4,8 @@
 
 per fare girare un dev server
 ```bash
-php -S localhost:8000 -t controller/
+php -S localhost:8000 -t controllers/
 ```
-
 
 ###
 
