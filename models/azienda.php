@@ -1,7 +1,6 @@
 <?php
 
 class Azienda {
-
     public static function get() {
         return array(
             "open_at" => 28800,
