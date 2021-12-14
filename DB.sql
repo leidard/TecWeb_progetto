@@ -79,56 +79,31 @@ CREATE TABLE IF NOT EXISTS `prenotazione` (
   `confirmed` enum('S','N') NOT NULL DEFAULT 'N',
   `price` decimal(7,2) NOT NULL,
   `note` text NOT NULL,
-  `Azienda` mediumint(8) unsigned NOT NULL DEFAULT 0,
   `Staff` char(16) NOT NULL DEFAULT '0',
   `Customer` char(16) NOT NULL DEFAULT '',
+  `Servizio` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `FK__azienda_prenotazione` (`Azienda`),
   KEY `FK__staff_prenotazione` (`Staff`),
   KEY `FK__customer_prenotazione` (`Customer`),
-  CONSTRAINT `FK__azienda_prenotazione` FOREIGN KEY (`Azienda`) REFERENCES `azienda` (`ID`) ON UPDATE CASCADE,
+  KEY `FK_prenotazione_servizio` (`Servizio`),
   CONSTRAINT `FK__customer_prenotazione` FOREIGN KEY (`Customer`) REFERENCES `customer` (`ID`) ON UPDATE CASCADE,
-  CONSTRAINT `FK__staff_prenotazione` FOREIGN KEY (`Staff`) REFERENCES `staff` (`ID`) ON UPDATE CASCADE
+  CONSTRAINT `FK__staff_prenotazione` FOREIGN KEY (`Staff`) REFERENCES `staff` (`ID`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_prenotazione_servizio` FOREIGN KEY (`Servizio`) REFERENCES `servizio` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for table scissorhands.servizio
 CREATE TABLE IF NOT EXISTS `servizio` (
-  `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `ID` int(10) unsigned NOT NULL DEFAULT 0,
   `duration` time NOT NULL,
   `name` varchar(100) NOT NULL,
   `descrizione` text NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Data exporting was unselected.
-
--- Dumping structure for table scissorhands.servizi_azienda
-CREATE TABLE IF NOT EXISTS `servizi_azienda` (
-  `ID` int(10) unsigned NOT NULL,
   `Azienda` mediumint(8) unsigned NOT NULL,
-  `Servizio` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `FK__azienda_servizio` (`Azienda`),
-  KEY `FK__servizio_azienda` (`Servizio`),
-  CONSTRAINT `FK__azienda_servizio` FOREIGN KEY (`Azienda`) REFERENCES `azienda` (`ID`) ON UPDATE CASCADE,
-  CONSTRAINT `FK__servizio_azienda` FOREIGN KEY (`Servizio`) REFERENCES `servizio` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Che servizi offre l''azienda';
-
--- Data exporting was unselected.
-
--- Dumping structure for table scissorhands.servizi_prenotazione
-CREATE TABLE IF NOT EXISTS `servizi_prenotazione` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `Prenotazione` bigint(20) unsigned NOT NULL DEFAULT 0,
-  `Servizio` smallint(5) unsigned NOT NULL DEFAULT 0,
-  PRIMARY KEY (`ID`),
-  KEY `FK__prenotazione` (`Prenotazione`),
-  KEY `FK__servizio` (`Servizio`),
-  CONSTRAINT `FK__prenotazione` FOREIGN KEY (`Prenotazione`) REFERENCES `prenotazione` (`ID`) ON UPDATE CASCADE,
-  CONSTRAINT `FK__servizio` FOREIGN KEY (`Servizio`) REFERENCES `servizio` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Servizi in una prenotazione.\r\nUna pk sola per semplificare query.';
+  KEY `FK_servizio_azienda` (`Azienda`),
+  CONSTRAINT `FK_servizio_azienda` FOREIGN KEY (`Azienda`) REFERENCES `azienda` (`ID`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
