@@ -17,19 +17,19 @@
 CREATE DATABASE IF NOT EXISTS `scissorhands` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `scissorhands`;
 
--- Dumping structure for table scissorhands.azienda
-CREATE TABLE IF NOT EXISTS `azienda` (
+-- Dumping structure for table scissorhands.company
+CREATE TABLE IF NOT EXISTS `company` (
   `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `Name` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `open_at` time NOT NULL,
   `close_at` time NOT NULL,
   `days` set('Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica') NOT NULL,
   `book_before` time NOT NULL,
   `book_after` time NOT NULL,
-  `Owner` char(16) NOT NULL,
+  `owner` char(16) NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `FK__owner_azienda` (`Owner`),
-  CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`Owner`) REFERENCES `owner` (`ID`) ON UPDATE CASCADE
+  KEY `FK__owner_azienda` (`owner`) USING BTREE,
+  CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
@@ -49,10 +49,10 @@ CREATE TABLE IF NOT EXISTS `credential` (
 -- Dumping structure for table scissorhands.customer
 CREATE TABLE IF NOT EXISTS `customer` (
   `ID` char(16) NOT NULL,
-  `Surname` varchar(100) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `Date_of_birth` date NOT NULL,
-  `Sex` enum('M','F') NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `sex` enum('M','F') NOT NULL,
   PRIMARY KEY (`ID`),
   CONSTRAINT `FK__credential` FOREIGN KEY (`ID`) REFERENCES `credential` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -62,47 +62,47 @@ CREATE TABLE IF NOT EXISTS `customer` (
 -- Dumping structure for table scissorhands.owner
 CREATE TABLE IF NOT EXISTS `owner` (
   `ID` char(16) NOT NULL,
-  `Surname` varchar(100) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `Date_of_birth` date NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `date_of_birth` date NOT NULL,
   PRIMARY KEY (`ID`),
   CONSTRAINT `FK__credential_owner` FOREIGN KEY (`ID`) REFERENCES `credential` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
--- Dumping structure for table scissorhands.prenotazione
-CREATE TABLE IF NOT EXISTS `prenotazione` (
+-- Dumping structure for table scissorhands.reservation
+CREATE TABLE IF NOT EXISTS `reservation` (
   `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Int *probably* would''ve been fine. Bigint is definitely fine.',
   `start_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `end_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `confirmed` enum('S','N') NOT NULL DEFAULT 'N',
   `price` decimal(7,2) NOT NULL,
-  `note` text NOT NULL,
-  `Staff` char(16) NOT NULL DEFAULT '0',
-  `Customer` char(16) NOT NULL DEFAULT '',
-  `Servizio` int(10) unsigned NOT NULL,
+  `notes` text NOT NULL,
+  `staff` char(16) NOT NULL DEFAULT '0',
+  `customer` char(16) NOT NULL DEFAULT '',
+  `service` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `FK__staff_prenotazione` (`Staff`),
-  KEY `FK__customer_prenotazione` (`Customer`),
-  KEY `FK_prenotazione_servizio` (`Servizio`),
-  CONSTRAINT `FK__customer_prenotazione` FOREIGN KEY (`Customer`) REFERENCES `customer` (`ID`) ON UPDATE CASCADE,
-  CONSTRAINT `FK__staff_prenotazione` FOREIGN KEY (`Staff`) REFERENCES `staff` (`ID`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_prenotazione_servizio` FOREIGN KEY (`Servizio`) REFERENCES `servizio` (`ID`) ON UPDATE CASCADE
+  KEY `FK_prenotazione_servizio` (`service`) USING BTREE,
+  KEY `FK__customer_reservation` (`customer`) USING BTREE,
+  KEY `FK__staff_reservation` (`staff`) USING BTREE,
+  CONSTRAINT `FK__customer_reservation` FOREIGN KEY (`customer`) REFERENCES `customer` (`ID`) ON UPDATE CASCADE,
+  CONSTRAINT `FK__staff_reservation` FOREIGN KEY (`staff`) REFERENCES `staff` (`ID`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 
--- Dumping structure for table scissorhands.servizio
-CREATE TABLE IF NOT EXISTS `servizio` (
+-- Dumping structure for table scissorhands.service
+CREATE TABLE IF NOT EXISTS `service` (
   `ID` int(10) unsigned NOT NULL DEFAULT 0,
   `duration` time NOT NULL,
   `name` varchar(100) NOT NULL,
-  `descrizione` text NOT NULL,
-  `Azienda` mediumint(8) unsigned NOT NULL,
+  `description` text NOT NULL,
+  `company` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `FK_servizio_azienda` (`Azienda`),
-  CONSTRAINT `FK_servizio_azienda` FOREIGN KEY (`Azienda`) REFERENCES `azienda` (`ID`) ON UPDATE CASCADE
+  KEY `FK_servizio_azienda` (`company`) USING BTREE,
+  CONSTRAINT `FK_service_company` FOREIGN KEY (`company`) REFERENCES `company` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
@@ -110,14 +110,14 @@ CREATE TABLE IF NOT EXISTS `servizio` (
 -- Dumping structure for table scissorhands.staff
 CREATE TABLE IF NOT EXISTS `staff` (
   `ID` char(16) NOT NULL,
-  `Surname` varchar(100) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `Date_of_birth` date NOT NULL,
-  `Sex` enum('M','F') NOT NULL,
-  `Azienda` mediumint(8) unsigned NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `sex` enum('M','F') NOT NULL,
+  `company` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `FK__azienda` (`Azienda`),
-  CONSTRAINT `FK__azienda` FOREIGN KEY (`Azienda`) REFERENCES `azienda` (`ID`) ON UPDATE CASCADE
+  KEY `FK__azienda` (`company`) USING BTREE,
+  CONSTRAINT `FK__company` FOREIGN KEY (`company`) REFERENCES `company` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
