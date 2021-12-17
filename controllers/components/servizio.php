@@ -1,7 +1,7 @@
 <?php
 
 function servizio($nome, $durata = '', $prezzo = '') {
-    $out = file_get_contents('../views/components/servizio.html');
+    $out = file_get_contents(__DIR__.'/../../views/components/servizio.html');
 
     $out = str_replace('%NOME_SERVIZIO%', $nome, $out);
     $out = str_replace('%DURATA_SERVIZIO%', $durata, $out);
