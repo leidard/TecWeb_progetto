@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `end_at` INT UNSIGNED NOT NULL,
   `confirmed` BOOLEAN NOT NULL DEFAULT FALSE,
   `price` decimal(7, 2) NOT NULL,
-  `notes` text NOT NULL DEFAULT '',
+  `notes` text,
   `staff` char(16) NOT NULL,
   `customer` char(16) NOT NULL,
   `service` int(10) unsigned NOT NULL,
@@ -114,16 +114,53 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 INSERT INTO
   owner(ID, name, surname)
 VALUES
-  ('0123456789123456', 'Test', 'Test');
+  ('0123456789123456', 'Test', 'Test'),
+  ('PLARVN00S55H234X', 'Paola', 'Rivanetti'),
+  ('BRNRNT22S53H251H', 'Bruno', 'Ornato');
 
 INSERT INTO 
   company(ID,name,open_at,close_at,days,book_before,book_after,owner)
 VALUES
-  (1, 'Scissorhands', 28800, 75600, 'Tue', 1209600, 3600, '0123456789123456');
+  (1, 'Scissorhands', 28800, 75600, 'Tue', 1209600, 3600, '0123456789123456'),
+  (2, 'Rivanetti Parrucchiere', 32400, 75600, 'Mon,Tue', 1209600, 3600, 'PLARVN00S55H234X'),
+  (3, 'Forbici di diamante', 28800, 79200, 'Tue,Wed,Sat,Sun', 1209600, 3600, 'BRNRNT22S53H251H');
 
 INSERT INTO
   service(ID, duration, price, name, description, company)
 VALUES 
   (1, 2400, 19.00, "Lavaggio + Taglio", "", 1),
   (2, 1800, 19.00, "Taglio", "", 1),
-  (3, 3600, 19.00, "Lavaggio + Taglio + Barba", "", 1);
+  (3, 3600, 19.00, "Lavaggio + Taglio + Barba", "", 1),
+  (4, 2400, 19.00, "Lavaggio + Taglio", "", 2),
+  (5, 1800, 19.00, "Taglio", "", 2),
+  (6, 3600, 19.00, "Lavaggio + Taglio + Colore", "", 2),
+  (7, 1800, 19.00, "Trattamento ricrescita", "Trattamento specializzato con prodotti appositi per inibire la caduta dei capelli e favorirne la ricrescita", 2), 
+  (8, 1800, 19.00, "Lavaggio + Taglio", "", 3),
+  (9, 1200, 19.00, "Taglio", "", 3),
+  (10, 3600, 19.00, "Lavaggio + Taglio + Barba", "", 3);
+  
+INSERT INTO
+  customer(ID, surname, name, date_of_birth, sex) 
+VALUES 
+  ('CCC1CCC1CCC1CCC1', 'Fake1', 'Customer1', '1111-11-11', 'M'),
+  ('CCC2CCC2CCC2CCC2', 'Fake2', 'Customer2', '1212-12-12', 'F'),
+  ('PEPCNK97I22T699H', 'Timmi', 'Burrus', '1970-10-31', 'F'),
+  ('OTTQSD53P80T988H', 'Giffy', 'Feild', '1966-03-26', 'M'),
+  ('LRNNZO44L12T680H', 'Oliviero', 'Sarre', '1969-03-23', 'M'),
+  ('HZXTJB22S82F294H', 'Cindy', 'Reignould', '1997-10-22', 'F'),
+  ('OOURSO29U02V674H', 'Frederica', 'Fereday', '1972-11-21', 'F'),
+  ('SDVHUK36F76R573H', 'Barton', 'Blest', '1983-09-13', 'M'),
+  ('KXCVBT43F37C291H', 'Ripley', 'Krauss', '1989-09-20', 'M'),
+  ('EDCIEO66R23F467H', 'Valentijn', 'Haldon', '1979-07-20', 'M'),
+  ('LXZOZK28V43V867H', 'Tammy', 'Gooders', '1975-03-22', 'M'),
+  ('UWAIYG87F63L810H', 'Nicola', 'Rosenstein', '1978-08-18', 'M');
+  
+
+INSERT INTO 
+  staff(ID, surname, name, date_of_birth, sex, company)
+VALUES
+  ('AAAAAAAAAAAAAAAA','Rivazzi','Gaetana','1994-05-12','F',1),
+  ('BBBBBBBBBBBBBBBB','Ginnati','Roberto','1998-11-22','M',1),
+  ('CCCCCCCCCCCCCCCC','Jillett','Ramirez','1993-01-14','M',2),
+  ('DDDDDDDDDDDDDDDD','Ginnati','Alberta','1988-04-17','F',2),
+  ('EEEEEEEEEEEEEEEE','Prateschi','Monico','1978-11-29','M',3);
