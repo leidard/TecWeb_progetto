@@ -1,40 +1,36 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.6.5-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             11.3.0.6295
--- --------------------------------------------------------
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
--- Dumping database structure for scissorhands
-CREATE DATABASE IF NOT EXISTS `scissorhands` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE IF NOT EXISTS `scissorhands`;
 USE `scissorhands`;
 
--- Dumping structure for table scissorhands.company
-CREATE TABLE IF NOT EXISTS `company` (
-  `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+-- DROP TABLES
+DROP TABLE IF EXISTS credential CASCADE;
+DROP TABLE IF EXISTS reservation CASCADE;
+DROP TABLE IF EXISTS service CASCADE;
+DROP TABLE IF EXISTS staff CASCADE;
+DROP TABLE IF EXISTS company CASCADE;
+DROP TABLE IF EXISTS owner CASCADE;
+DROP TABLE IF EXISTS customer CASCADE;
+
+
+-- CREATE TABLES
+CREATE TABLE IF NOT EXISTS `owner` (
+  `ID` char(16) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `open_at` time NOT NULL,
-  `close_at` time NOT NULL,
-  `days` set('Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica') NOT NULL,
-  `book_before` time NOT NULL,
-  `book_after` time NOT NULL,
-  `owner` char(16) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK__owner_azienda` (`owner`) USING BTREE,
-  CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `surname` varchar(100) NOT NULL,
+  `date_of_birth` date,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
--- Data exporting was unselected.
 
--- Dumping structure for table scissorhands.credential
+CREATE TABLE IF NOT EXISTS `customer` (
+  `ID` char(16) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `sex` enum('M', 'F') NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+
 CREATE TABLE IF NOT EXISTS `credential` (
   `ID` char(16) NOT NULL,
   `email` varchar(100) NOT NULL DEFAULT '0',
@@ -42,45 +38,65 @@ CREATE TABLE IF NOT EXISTS `credential` (
   PRIMARY KEY (`ID`),
   CONSTRAINT `FK_credential_customer` FOREIGN KEY (`ID`) REFERENCES `customer` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_credential_owner` FOREIGN KEY (`ID`) REFERENCES `owner` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
--- Data exporting was unselected.
 
--- Dumping structure for table scissorhands.customer
-CREATE TABLE IF NOT EXISTS `customer` (
+CREATE TABLE IF NOT EXISTS `company` (
+  `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `open_at` INT UNSIGNED NOT NULL,
+  `close_at` INT UNSIGNED NOT NULL,
+  `days`
+  set(
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat',
+      'Sun'
+    ) NOT NULL,
+    `book_before` INT UNSIGNED NOT NULL,
+    `book_after` INT UNSIGNED NOT NULL,
+    `owner` char(16) NOT NULL,
+    PRIMARY KEY (`ID`),
+    KEY `FK__owner_azienda` (`owner`) USING BTREE,
+    CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`ID`) ON UPDATE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+CREATE TABLE IF NOT EXISTS `service` (
+  `ID` int(10) unsigned NOT NULL DEFAULT 0,
+  `duration` INT UNSIGNED NOT NULL,
+  `price` DECIMAL(7,2) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `company` mediumint(8) unsigned NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_servizio_azienda` (`company`) USING BTREE,
+  CONSTRAINT `FK_service_company` FOREIGN KEY (`company`) REFERENCES `company` (`ID`) ON UPDATE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+CREATE TABLE IF NOT EXISTS `staff` (
   `ID` char(16) NOT NULL,
   `surname` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `date_of_birth` date NOT NULL,
-  `sex` enum('M','F') NOT NULL,
+  `sex` enum('M', 'F') NOT NULL,
+  `company` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT `FK__credential` FOREIGN KEY (`ID`) REFERENCES `credential` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `FK__azienda` (`company`) USING BTREE,
+  CONSTRAINT `FK__company` FOREIGN KEY (`company`) REFERENCES `company` (`ID`) ON UPDATE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
--- Data exporting was unselected.
-
--- Dumping structure for table scissorhands.owner
-CREATE TABLE IF NOT EXISTS `owner` (
-  `ID` char(16) NOT NULL,
-  `surname` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `date_of_birth` date NOT NULL,
-  PRIMARY KEY (`ID`),
-  CONSTRAINT `FK__credential_owner` FOREIGN KEY (`ID`) REFERENCES `credential` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Data exporting was unselected.
-
--- Dumping structure for table scissorhands.reservation
 CREATE TABLE IF NOT EXISTS `reservation` (
   `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Int *probably* would''ve been fine. Bigint is definitely fine.',
-  `start_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `end_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `confirmed` enum('S','N') NOT NULL DEFAULT 'N',
-  `price` decimal(7,2) NOT NULL,
-  `notes` text NOT NULL,
-  `staff` char(16) NOT NULL DEFAULT '0',
-  `customer` char(16) NOT NULL DEFAULT '',
+  `start_at` INT UNSIGNED NOT NULL,
+  `end_at` INT UNSIGNED NOT NULL,
+  `confirmed` BOOLEAN NOT NULL DEFAULT FALSE,
+  `price` decimal(7, 2) NOT NULL,
+  `notes` text NOT NULL DEFAULT '',
+  `staff` char(16) NOT NULL,
+  `customer` char(16) NOT NULL,
   `service` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_prenotazione_servizio` (`service`) USING BTREE,
@@ -89,40 +105,25 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   CONSTRAINT `FK__customer_reservation` FOREIGN KEY (`customer`) REFERENCES `customer` (`ID`) ON UPDATE CASCADE,
   CONSTRAINT `FK__staff_reservation` FOREIGN KEY (`staff`) REFERENCES `staff` (`ID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
--- Data exporting was unselected.
 
--- Dumping structure for table scissorhands.service
-CREATE TABLE IF NOT EXISTS `service` (
-  `ID` int(10) unsigned NOT NULL DEFAULT 0,
-  `duration` time NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `company` mediumint(8) unsigned NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_servizio_azienda` (`company`) USING BTREE,
-  CONSTRAINT `FK_service_company` FOREIGN KEY (`company`) REFERENCES `company` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Data exporting was unselected.
+-- Popolazione database
 
--- Dumping structure for table scissorhands.staff
-CREATE TABLE IF NOT EXISTS `staff` (
-  `ID` char(16) NOT NULL,
-  `surname` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `date_of_birth` date NOT NULL,
-  `sex` enum('M','F') NOT NULL,
-  `company` mediumint(8) unsigned NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK__azienda` (`company`) USING BTREE,
-  CONSTRAINT `FK__company` FOREIGN KEY (`company`) REFERENCES `company` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO
+  owner(ID, name, surname)
+VALUES
+  ('0123456789123456', 'Test', 'Test');
 
--- Data exporting was unselected.
+INSERT INTO 
+  company(ID,name,open_at,close_at,days,book_before,book_after,owner)
+VALUES
+  (1, 'Scissorhands', 28800, 75600, 'Tue', 1209600, 3600, '0123456789123456');
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+INSERT INTO
+  service(ID, duration, price, name, description, company)
+VALUES 
+  (1, 2400, 19.00, "Lavaggio + Taglio", "", 1),
+  (2, 1800, 19.00, "Taglio", "", 1),
+  (3, 3600, 19.00, "Lavaggio + Taglio + Barba", "", 1);
