@@ -51,13 +51,13 @@ CREATE TABLE IF NOT EXISTS `company` (
   `close_at` INT UNSIGNED NOT NULL,
   `days`
   set(
-      'Mon',
-      'Tue',
-      'Wed',
-      'Thu',
-      'Fri',
-      'Sat',
-      'Sun'
+      'MON',
+      'TUE',
+      'WED',
+      'THU',
+      'FRI',
+      'SAT',
+      'SUN'
     ) NOT NULL,
     `book_before` INT UNSIGNED NOT NULL,
     `book_after` INT UNSIGNED NOT NULL,
@@ -95,9 +95,9 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `start_at` INT UNSIGNED NOT NULL,
   `end_at` INT UNSIGNED NOT NULL,
-  `confirmed` BOOLEAN NOT NULL DEFAULT FALSE,
+  `confirmed` BOOLEAN DEFAULT NULL,
   `price` decimal(7, 2) NOT NULL,
-  `notes` text,
+  `notes` text NOT NULL DEFAULT '',
   `staff` INT UNSIGNED NOT NULL,
   `customer` char(16) NOT NULL,
   `service` INT UNSIGNED NOT NULL,
