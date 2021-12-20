@@ -13,36 +13,39 @@ DROP TABLE IF EXISTS customer CASCADE;
 
 -- CREATE TABLES
 CREATE TABLE IF NOT EXISTS `owner` (
-  `ID` char(16) NOT NULL,
+  `cf` char(16) NOT NULL,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
   `date_of_birth` date,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`cf`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 
 CREATE TABLE IF NOT EXISTS `customer` (
-  `ID` char(16) NOT NULL,
-  `surname` varchar(100) NOT NULL,
+  `cf` char(16) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
   `date_of_birth` date NOT NULL,
-  `sex` enum('M', 'F') NOT NULL,
-  PRIMARY KEY (`ID`)
+  `sex` ENUM('M', 'F') NOT NULL,
+  PRIMARY KEY (`cf`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 
 CREATE TABLE IF NOT EXISTS `credential` (
-  `ID` char(16) NOT NULL,
-  `email` varchar(100) NOT NULL DEFAULT '0',
-  `pass` varchar(100) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_credential_customer` FOREIGN KEY (`ID`) REFERENCES `customer` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_credential_owner` FOREIGN KEY (`ID`) REFERENCES `owner` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `type` ENUM('USER', 'OWNER') NOT NULL,
+  `customer_ref` char(16) DEFAULT NULL,
+  `owner_ref` char(16) DEFAULT NULL,
+  PRIMARY KEY (`_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+ALTER TABLE `credential` ADD CONSTRAINT `FK_credential_customer` FOREIGN KEY (`customer_ref`) REFERENCES `customer` (`cf`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `credential` ADD CONSTRAINT `FK_credential_owner` FOREIGN KEY (`owner_ref`) REFERENCES `owner` (`cf`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE IF NOT EXISTS `company` (
-  `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `open_at` INT UNSIGNED NOT NULL,
   `close_at` INT UNSIGNED NOT NULL,
@@ -59,52 +62,52 @@ CREATE TABLE IF NOT EXISTS `company` (
     `book_before` INT UNSIGNED NOT NULL,
     `book_after` INT UNSIGNED NOT NULL,
     `owner` char(16) NOT NULL,
-    PRIMARY KEY (`ID`),
+    PRIMARY KEY (`_id`),
     KEY `FK__owner_azienda` (`owner`) USING BTREE,
-    CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`ID`) ON UPDATE CASCADE
+    CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`cf`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE IF NOT EXISTS `service` (
-  `ID` int(10) unsigned NOT NULL DEFAULT 0,
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `duration` INT UNSIGNED NOT NULL,
   `price` DECIMAL(7,2) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `company` mediumint(8) unsigned NOT NULL,
-  PRIMARY KEY (`ID`),
+  `company` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`_id`),
   KEY `FK_servizio_azienda` (`company`) USING BTREE,
-  CONSTRAINT `FK_service_company` FOREIGN KEY (`company`) REFERENCES `company` (`ID`) ON UPDATE CASCADE
+  CONSTRAINT `FK_service_company` FOREIGN KEY (`company`) REFERENCES `company` (`_id`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE IF NOT EXISTS `staff` (
-  `ID` char(16) NOT NULL,
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `surname` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `date_of_birth` date NOT NULL,
   `sex` enum('M', 'F') NOT NULL,
-  `company` mediumint(8) unsigned NOT NULL,
-  PRIMARY KEY (`ID`),
+  `company` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`_id`),
   KEY `FK__azienda` (`company`) USING BTREE,
-  CONSTRAINT `FK__company` FOREIGN KEY (`company`) REFERENCES `company` (`ID`) ON UPDATE CASCADE
+  CONSTRAINT `FK__company` FOREIGN KEY (`company`) REFERENCES `company` (`_id`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE IF NOT EXISTS `reservation` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Int *probably* would''ve been fine. Bigint is definitely fine.',
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `start_at` INT UNSIGNED NOT NULL,
   `end_at` INT UNSIGNED NOT NULL,
   `confirmed` BOOLEAN NOT NULL DEFAULT FALSE,
   `price` decimal(7, 2) NOT NULL,
   `notes` text,
-  `staff` char(16) NOT NULL,
+  `staff` INT UNSIGNED NOT NULL,
   `customer` char(16) NOT NULL,
-  `service` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_prenotazione_servizio` (`service`) USING BTREE,
+  `service` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`_id`),
+  KEY `FK_reservation_service` (`service`) USING BTREE,
   KEY `FK__customer_reservation` (`customer`) USING BTREE,
   KEY `FK__staff_reservation` (`staff`) USING BTREE,
-  CONSTRAINT `FK__customer_reservation` FOREIGN KEY (`customer`) REFERENCES `customer` (`ID`) ON UPDATE CASCADE,
-  CONSTRAINT `FK__staff_reservation` FOREIGN KEY (`staff`) REFERENCES `staff` (`ID`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`ID`) ON UPDATE CASCADE
+  CONSTRAINT `FK__customer_reservation` FOREIGN KEY (`customer`) REFERENCES `customer` (`cf`) ON UPDATE CASCADE,
+  CONSTRAINT `FK__staff_reservation` FOREIGN KEY (`staff`) REFERENCES `staff` (`_id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`_id`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 
@@ -112,35 +115,31 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- Popolazione database
 
 INSERT INTO
-  owner(ID, name, surname)
+  owner(cf, name, surname)
 VALUES
-  ('0123456789123456', 'Test', 'Test'),
-  ('PLARVN00S55H234X', 'Paola', 'Rivanetti'),
-  ('BRNRNT22S53H251H', 'Bruno', 'Ornato');
-
-INSERT INTO 
-  company(ID,name,open_at,close_at,days,book_before,book_after,owner)
-VALUES
-  (1, 'Scissorhands', 28800, 75600, 'Tue', 1209600, 3600, '0123456789123456'),
-  (2, 'Rivanetti Parrucchiere', 32400, 75600, 'Mon,Tue', 1209600, 3600, 'PLARVN00S55H234X'),
-  (3, 'Forbici di diamante', 28800, 79200, 'Tue,Wed,Sat,Sun', 1209600, 3600, 'BRNRNT22S53H251H');
+  ('0123456789123456', 'Test', 'Test');
 
 INSERT INTO
-  service(ID, duration, price, name, description, company)
+  credential(_id, owner_ref, email, password, type)
+VALUES 
+  (1,'0123456789123456', 'mariorossi@email.com', 'supersecure123', 'OWNER');
+
+INSERT INTO 
+  company(_id,name,open_at,close_at,days,book_before,book_after,owner)
+VALUES
+  (1, 'Scissorhands', 28800, 75600, "Tue,Wed,Thu,Fri,Sat", 1209600, 3600, '0123456789123456');
+
+INSERT INTO
+  service(_id, duration, price, name, description, company)
 VALUES 
   (1, 2400, 19.00, "Lavaggio + Taglio", "", 1),
   (2, 1800, 19.00, "Taglio", "", 1),
   (3, 3600, 19.00, "Lavaggio + Taglio + Barba", "", 1),
-  (4, 2400, 19.00, "Lavaggio + Taglio", "", 2),
-  (5, 1800, 19.00, "Taglio", "", 2),
-  (6, 3600, 19.00, "Lavaggio + Taglio + Colore", "", 2),
-  (7, 1800, 19.00, "Trattamento ricrescita", "Trattamento specializzato con prodotti appositi per inibire la caduta dei capelli e favorirne la ricrescita", 2), 
-  (8, 1800, 19.00, "Lavaggio + Taglio", "", 3),
-  (9, 1200, 19.00, "Taglio", "", 3),
-  (10, 3600, 19.00, "Lavaggio + Taglio + Barba", "", 3);
+  (4, 1800, 19.00, "Trattamento ricrescita", "Trattamento specializzato con prodotti appositi per inibire la caduta dei capelli e favorirne la ricrescita", 1);
+
   
 INSERT INTO
-  customer(ID, surname, name, date_of_birth, sex) 
+  customer(cf, surname, name, date_of_birth, sex) 
 VALUES 
   ('CCC1CCC1CCC1CCC1', 'Fake1', 'Customer1', '1111-11-11', 'M'),
   ('CCC2CCC2CCC2CCC2', 'Fake2', 'Customer2', '1212-12-12', 'F'),
@@ -157,10 +156,7 @@ VALUES
   
 
 INSERT INTO 
-  staff(ID, surname, name, date_of_birth, sex, company)
+  staff(_id, surname, name, date_of_birth, sex, company)
 VALUES
-  ('AAAAAAAAAAAAAAAA','Rivazzi','Gaetana','1994-05-12','F',1),
-  ('BBBBBBBBBBBBBBBB','Ginnati','Roberto','1998-11-22','M',1),
-  ('CCCCCCCCCCCCCCCC','Jillett','Ramirez','1993-01-14','M',2),
-  ('DDDDDDDDDDDDDDDD','Ginnati','Alberta','1988-04-17','F',2),
-  ('EEEEEEEEEEEEEEEE','Prateschi','Monico','1978-11-29','M',3);
+  (1, 'Rivazzi','Gaetana','1994-05-12','F',1),
+  (2, 'Ginnati','Roberto','1998-11-22','M',1);
