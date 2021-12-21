@@ -12,7 +12,7 @@ $main = file_get_contents('../views/index.html');
 /**
  * Vari str_replace nella vista main
  */
-$main = str_replace('%TITOLO%', "223", $main);
+$main = str_replace('%TITOLO%', "123", $main);
 
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
