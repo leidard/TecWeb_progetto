@@ -49,7 +49,7 @@ class Reservation extends DBHelper {
     }
 
     public function getAllOfStaff($staff) {
-        $stmt = $this->prepare("SELECT * FROM reservation WHERE company = 1 AND staff = ?");
+        $stmt = $this->prepare("SELECT * FROM reservation WHERE company = 1 AND staff = ? AND end_at >= UNIX_TIMESTAMP()");
         $stmt->bind_param("i", $staff);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
