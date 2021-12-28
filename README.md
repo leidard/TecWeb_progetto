@@ -42,7 +42,7 @@ function getOrariFrom(timeUT: number, deltaTaglio: number, parrucchiere: idparru
     const prenotazioni = getPrenotazioniFrom(time, parrucchiere);
 
     const fasce = [];
-    let lastTime = start_at;
+    let lastTime = open_at;
     foreach(prenotazione in prenotazioni) {
         let nP = Math.floor((prenotazione.start - lastTime) / deltaTaglio)
 
