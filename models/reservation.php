@@ -55,6 +55,15 @@ class Reservation extends DBHelper {
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getRangeOfStaff($staff, $from, $to) {
+        $stmt = $this->prepare("SELECT * FROM reservation WHERE company = 1 AND staff = ? AND start_at >= ? end_at <= ? AND confirmed IS TRUE");
+        $stmt->bind_param("i", $staff);
+        $stmt->bind_param("i", $from);
+        $stmt->bind_param("i", $to);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getOfCustomer($customer, $id) {
         $stmt = $this->prepare("SELECT * FROM reservation WHERE company = 1 AND customer = ? AND _id = ? LIMIT 1");
         $stmt->bind_param('si', $customer, $id);

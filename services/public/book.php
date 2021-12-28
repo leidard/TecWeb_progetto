@@ -4,61 +4,55 @@ require_once __DIR__ . '/reservation.php';
 require_once __DIR__ . '/service.php';
 require_once __DIR__ . '/company.php';
 
-
 class PublicBookService {
     public const DAY = 86400;
     public const WEEK = 604800;
 
     /**
+     * Get Available spots for the given day
      * @param int $service: Service _id
      * @param int $staff: Staff _id
-     * @param null|int $time: Service _id
+     * @param null|int $time: The time corresponding to begin of day
      */
-    public static function getAvailable(int $service, int $staff, ?int $time) {
+    public static function getAvailableOfDay(int $service, int $staff, int $time) {
         $now = time();
-        if (!$time || $time < $now) $time = time();
+        $time = $time - ($time % 86400);
 
-        // fetch dei vari valori necessari per calcoli
         $s = PublicServiceService::get($service);
-        $prenotazioni = PublicReservationService::getPlannedOfStaff($staff);
+        if (!$s) return [];
+        $prenotazioni = PublicReservationService::getPlannedFor24hFrom($staff, $time);
+        if (is_null($prenotazioni)) return [];
         $company = PublicCompanyService::get();
+        if (!$company) return [];
 
         // in variabili per comodita
         $open_at  = $company["open_at"];
         $close_at = $company["close_at"];
-        $start_at = $service["start_at"];
         $duration = $service["duration"];
         $window_start = $now + $company['book_after'];
         $window_end = $now + $company['book_before'];
         $days = static::parseDaysSet($company["days"]);
 
-        $lastT = $window_start;
+        // if it's not open this day reject
+        if (!$days[static::getDayOfWeek($time)]) return [];
+
+        // if it's not inside the window reject
+
+        $lastT = $open_at;
         $slots = [];
-        foreach ($prenotazioni as $p) {
-            // la prenotazione risiede prima del periodo prenotabile, ignora, prosegui
-            if ($p["start_at"] < $window_start) {
-                $lastT = $p["end_at"];
-                continue;
+        for ($i = $open_at; $i < count($prenotazioni) && $lastT < $close_at; $i++) {
+            $p = $prenotazioni[$i];
+            $nSlots = floor(($p["start_at"] - $lastT) / $duration);
+
+            for ($j = 0; $j < $nSlots; $j++, $lastT += $duration) {
+                $slots.= array(
+                    "start" => $lastT,
+                    "duration" => $duration,
+                    "end" => $lastT + $duration,
+                );
             }
 
-            // la prenotazione risiede dopo del periodo prenotabile, termina;
-            if ($p["close_at"] > $window_end) {
-                break;
-            }
-
-            // $lastT non e' in un giorno di apertura, procediamo
-            $day_of_week = static::getDayOfWeek($lastT);
-            if (!$days[$day_of_week]) {
-                $lastT = static::nextDay($lastT);
-                continue;
-            }
-        }
-
-
-        for ($t = $window_start; $t <= $window_end - $duration;) {
-            $day_of_week = (floor($time / PublicBookService::DAY) + 4) % 7;
-            if (!$days[$day_of_week]) {
-            }
+            $lastT = $p["end_at"];
         }
     }
 
@@ -67,11 +61,7 @@ class PublicBookService {
     }
 
     private static function floorDay(int $time) {
-        return $time - $time % PublicBookService::DAY;
-    }
-
-    private static function nextDay(int $time) {
-        return static::floorDay($time) + PublicBookService::DAY;
+        return $time - ($time % PublicBookService::DAY);
     }
 
     private static function parseDaysSet(string $days) {

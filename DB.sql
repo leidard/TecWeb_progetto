@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `surname` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `date_of_birth` date NOT NULL,
   `sex` enum('M', 'F') NOT NULL,
   `company` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`_id`),
