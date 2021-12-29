@@ -1,0 +1,33 @@
+<?php
+function menu($currentPage, $logged = false){
+    $tagPagine = array (
+        'Home' => '<a class="menu_link" xml:lang="en" href="index.php">Home</a>',
+        'Servizi' => '<a class="menu_link" href="servizi.php">Servizi</a>',
+        'Staff' => '<a class="menu_link" href="lo_staff.php">Staff</a>',
+        'Galleria' => '<a class="menu_link" href="galleria.php">Galleria</a>',
+        'Contatti' => '<a class="menu_link" href="contatti.php">Contatti</a>',
+        'Prenota' => '<a class="menu_link" href="prenota.php">Prenota</a>',
+        'Login' => '<a class="menu_link" xml:lang="en" href="login.php">Login</a>'
+    );
+
+    $str = "";
+    foreach ($urlPagine as $name => $ref) {
+        if ($currentPage === $name){
+            if($name === 'Home')
+                $str.= "<li><a class=\"pag_corrente\" xml:lang=\"en\">$name</a></li>";
+            else
+                $str.= "<li><a class=\"pag_corrente\">$name</a></li>";
+        }else{
+            $str.= "<li>$ref</li>";
+        }
+    }
+
+    if($logged){ //TODO: bisogna gestire che se è loggato la barra è diversa
+    }
+    
+    $out=str_replace("%MENU_ELEMENTS%",$str,$out);
+
+    return $out;
+}
+
+?>
