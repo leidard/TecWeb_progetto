@@ -8,7 +8,7 @@ function page($title) {
     
     // set title
     $out = str_replace('%TITLE%', $title, $out);
-
+    
     $footer = footer();
     // set footer
     $out = str_replace('%FOOTER%', $footer, $out);

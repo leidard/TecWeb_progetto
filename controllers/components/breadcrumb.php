@@ -18,9 +18,9 @@ function breacrumb($els) {
     return $out;
 }
 
-
+/*
 echo breacrumb(array(
     "Home" => "/",
     "Prenotazioni" => "/prenotazioni.php",
     "Prenotazioni" => "/components/breadcrumb.php"
-));
+));*/

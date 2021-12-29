@@ -155,7 +155,7 @@ VALUES
   
 
 INSERT INTO 
-  staff(_id, surname, name, date_of_birth, sex, company)
+  staff(_id, surname, name, sex, company)
 VALUES
-  (1, 'Rivazzi','Gaetana','1994-05-12','F',1),
-  (2, 'Ginnati','Roberto','1998-11-22','M',1);
+  (1, 'Rivazzi','Gaetana','F',1),
+  (2, 'Ginnati','Roberto','M',1);
