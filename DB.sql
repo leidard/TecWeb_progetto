@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `service` (
   `duration` INT UNSIGNED NOT NULL,
   `price` DECIMAL(7,2) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `type` ENUM('capelli','barba'),
   `description` text NOT NULL,
   `company` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`_id`),
@@ -116,12 +117,12 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 INSERT INTO
   owner(cf, name, surname)
 VALUES
-  ('0123456789123456', 'Test', 'Test');
+  ('0123456789123456', 'Edoardo', 'Coppola');
 
 INSERT INTO
   credential(_id, owner_ref, email, password, type)
 VALUES 
-  (1,'0123456789123456', 'mariorossi@email.com', 'supersecure123', 'OWNER');
+  (1,'0123456789123456', 'edoardocoppola@email.com', 'supersecure123', 'OWNER');
 
 INSERT INTO 
   company(_id,name,open_at,close_at,days,book_before,book_after,owner)
@@ -131,27 +132,31 @@ VALUES
 INSERT INTO
   service(_id, duration, price, name, description, company)
 VALUES 
-  (1, 2400, 19.00, "Lavaggio + Taglio", "", 1),
-  (2, 1800, 19.00, "Taglio", "", 1),
-  (3, 3600, 19.00, "Lavaggio + Taglio + Barba", "", 1),
-  (4, 1800, 19.00, "Trattamento ricrescita", "Trattamento specializzato con prodotti appositi per inibire la caduta dei capelli e favorirne la ricrescita", 1);
-
+  (1, 1800, 30.00, "Taglio", "capelli", "Eseguito a macchinetta e forbice, comprende il lavaggio e la piega.", 1),
+  (2, 900, 25.00, "Rasatura con lama", "capelli", "Rasatura totale della testa eseguita con rasoio a mano libera.", 1),
+  (3, 900, 20.00, "Rasatura con macchinetta", "capelli", "Rasatura della testa eseguita con la macchinetta.", 1),
+  (4, 1200, 15.00, "Lavaggio e piega", "capelli", " Lavaggio dei capelli e messa in piega, con applicazione di lozione finale.", 1),
+  (5, 2400, 40.00, "Tinta", "capelli", "Utilizziamo solo tinte senza ammoniaca ed ecosostenibili.", 1),
+  (6, 600, 10.00, "Trattamento anticaduta", "capelli", "Applicazione di lozione anticaduta.", 1),
+  (7, 1800, 25.00, "Rasatura completa", "barba", "Rasatura tradizionale con applicazione di prodotti specifici e massaggio viso finale con balsamo.", 1),
+  (8, 1200, 20.00, "Modellatura completa", "barba", "Rimodellatura di barba e baffi con forbice e tosatrice, seguita dall'applicazione di un balsamo.", 1),
+  (9, 1200, 15.00, "Modellatura veloce", "barba", "Riassetto di barba e baffi con forbice e tosatrice, seguito dall'applicazione di un balsamo.", 1);
   
 INSERT INTO
   customer(cf, surname, name, date_of_birth, sex) 
 VALUES 
-  ('CCC1CCC1CCC1CCC1', 'Fake1', 'Customer1', '1111-11-11', 'M'),
-  ('CCC2CCC2CCC2CCC2', 'Fake2', 'Customer2', '1212-12-12', 'F'),
-  ('PEPCNK97I22T699H', 'Timmi', 'Burrus', '1970-10-31', 'F'),
-  ('OTTQSD53P80T988H', 'Giffy', 'Feild', '1966-03-26', 'M'),
-  ('LRNNZO44L12T680H', 'Oliviero', 'Sarre', '1969-03-23', 'M'),
-  ('HZXTJB22S82F294H', 'Cindy', 'Reignould', '1997-10-22', 'F'),
-  ('OOURSO29U02V674H', 'Frederica', 'Fereday', '1972-11-21', 'F'),
-  ('SDVHUK36F76R573H', 'Barton', 'Blest', '1983-09-13', 'M'),
-  ('KXCVBT43F37C291H', 'Ripley', 'Krauss', '1989-09-20', 'M'),
-  ('EDCIEO66R23F467H', 'Valentijn', 'Haldon', '1979-07-20', 'M'),
-  ('LXZOZK28V43V867H', 'Tammy', 'Gooders', '1975-03-22', 'M'),
-  ('UWAIYG87F63L810H', 'Nicola', 'Rosenstein', '1978-08-18', 'M');
+  ('CCC1CCC1CCC1CCC1', 'Varese', 'Andrea', '1999-11-11', 'M'),
+  ('CCC2CCC2CCC2CCC2', 'Ferro', 'Pietro', '2000-12-12', 'M'),
+  ('PEPCNK97I22T699H', 'Turon', 'Paolo', '1970-10-31', 'M'),
+  ('OTTQSD53P80T988H', 'Guida', 'Francesco', '1966-03-26', 'M'),
+  ('LRNNZO44L12T680H', 'Oliviero', 'Simone', '1969-03-23', 'M'),
+  ('HZXTJB22S82F294H', 'Palma', 'Riccardo', '1997-10-22', 'M'),
+  ('OOURSO29U02V674H', 'Bassi', 'Federico', '1972-11-21', 'M'),
+  ('SDVHUK36F76R573H', 'Rossi', 'Giacomo', '1983-09-13', 'M'),
+  ('KXCVBT43F37C291H', 'Renzini', 'Mattia', '1989-09-20', 'M'),
+  ('EDCIEO66R23F467H', 'Rizzo', 'Luca', '1979-07-20', 'M'),
+  ('LXZOZK28V43V867H', 'Veronese', 'Romeo', '1975-03-22', 'M'),
+  ('UWAIYG87F63L810H', 'Polese', 'Davide', '1978-08-18', 'M');
   
 
 INSERT INTO 
