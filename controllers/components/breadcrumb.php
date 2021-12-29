@@ -7,7 +7,7 @@ function breacrumb($els) {
 
     $str = "";
     foreach ($els as $name => $ref) {
-        if ($ref === $_SERVER['REQUEST_URI'])
+        if ($ref === strtok($_SERVER["REQUEST_URI"], '?'))
             $str.= "<span>$name</span>";
         else
             $str.= "<a href=\"$ref\">$name</a>";
