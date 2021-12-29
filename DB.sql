@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
 
 CREATE TABLE IF NOT EXISTS `reservation` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `company` INT UNSIGNED NOT NULL,
   `start_at` INT UNSIGNED NOT NULL,
   `end_at` INT UNSIGNED NOT NULL,
   `confirmed` BOOLEAN DEFAULT NULL,
@@ -104,9 +105,11 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   KEY `FK_reservation_service` (`service`) USING BTREE,
   KEY `FK__customer_reservation` (`customer`) USING BTREE,
   KEY `FK__staff_reservation` (`staff`) USING BTREE,
+  KEY `FK__azienda_reservation` (`company`) USING BTREE,
   CONSTRAINT `FK__customer_reservation` FOREIGN KEY (`customer`) REFERENCES `customer` (`cf`) ON UPDATE CASCADE,
   CONSTRAINT `FK__staff_reservation` FOREIGN KEY (`staff`) REFERENCES `staff` (`_id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`_id`) ON UPDATE CASCADE
+  CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`_id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK__azienda_reservation` FOREIGN KEY (`company`) REFERENCES `company` (`_id`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 
@@ -138,20 +141,20 @@ VALUES
 
   
 INSERT INTO
-  customer(cf, surname, name, date_of_birth, sex) 
+  customer(cf, surname, name, sex) 
 VALUES 
-  ('CCC1CCC1CCC1CCC1', 'Fake1', 'Customer1', '1111-11-11', 'M'),
-  ('CCC2CCC2CCC2CCC2', 'Fake2', 'Customer2', '1212-12-12', 'F'),
-  ('PEPCNK97I22T699H', 'Timmi', 'Burrus', '1970-10-31', 'F'),
-  ('OTTQSD53P80T988H', 'Giffy', 'Feild', '1966-03-26', 'M'),
-  ('LRNNZO44L12T680H', 'Oliviero', 'Sarre', '1969-03-23', 'M'),
-  ('HZXTJB22S82F294H', 'Cindy', 'Reignould', '1997-10-22', 'F'),
-  ('OOURSO29U02V674H', 'Frederica', 'Fereday', '1972-11-21', 'F'),
-  ('SDVHUK36F76R573H', 'Barton', 'Blest', '1983-09-13', 'M'),
-  ('KXCVBT43F37C291H', 'Ripley', 'Krauss', '1989-09-20', 'M'),
-  ('EDCIEO66R23F467H', 'Valentijn', 'Haldon', '1979-07-20', 'M'),
-  ('LXZOZK28V43V867H', 'Tammy', 'Gooders', '1975-03-22', 'M'),
-  ('UWAIYG87F63L810H', 'Nicola', 'Rosenstein', '1978-08-18', 'M');
+  ('CCC1CCC1CCC1CCC1', 'Fake1', 'Customer1', 'M'),
+  ('CCC2CCC2CCC2CCC2', 'Fake2', 'Customer2', 'F'),
+  ('PEPCNK97I22T699H', 'Timmi', 'Burrus', 'F'),
+  ('OTTQSD53P80T988H', 'Giffy', 'Feild', 'M'),
+  ('LRNNZO44L12T680H', 'Oliviero', 'Sarre', 'M'),
+  ('HZXTJB22S82F294H', 'Cindy', 'Reignould', 'F'),
+  ('OOURSO29U02V674H', 'Frederica', 'Fereday', 'F'),
+  ('SDVHUK36F76R573H', 'Barton', 'Blest', 'M'),
+  ('KXCVBT43F37C291H', 'Ripley', 'Krauss', 'M'),
+  ('EDCIEO66R23F467H', 'Valentijn', 'Haldon', 'M'),
+  ('LXZOZK28V43V867H', 'Tammy', 'Gooders', 'M'),
+  ('UWAIYG87F63L810H', 'Nicola', 'Rosenstein', 'M');
   
 
 INSERT INTO 

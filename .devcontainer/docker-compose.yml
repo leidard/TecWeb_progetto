@@ -13,13 +13,11 @@ services:
       - ..:/workspace:cached
     
     command: sleep infinity
-    network_mode: service:db
 
   php:
     build:
       context: .
       dockerfile: Dockerfile.php
-
     restart: unless-stopped
     ports:
       - 8000:80

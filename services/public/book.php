@@ -16,32 +16,48 @@ class PublicBookService {
      */
     public static function getAvailableOfDay(int $service, int $staff, int $time) {
         $now = time();
-        $time = $time - ($time % 86400);
+        $time = static::floorDay($time);
 
         $s = PublicServiceService::get($service);
         if (!$s) return [];
-        $prenotazioni = PublicReservationService::getPlannedFor24hFrom($staff, $time);
-        if (is_null($prenotazioni)) return [];
         $company = PublicCompanyService::get();
         if (!$company) return [];
+        $prenotazioni = PublicReservationService::getPlannedFor24hFrom($staff, $time);
+        if (is_null($prenotazioni)) return [];
+        
 
         // in variabili per comodita
-        $open_at  = $company["open_at"];
-        $close_at = $company["close_at"];
+        $open_at  = $time + $company["open_at"];
+        $close_at = $time + $company["close_at"];
         $duration = $service["duration"];
         $window_start = $now + $company['book_after'];
         $window_end = $now + $company['book_before'];
-        $days = static::parseDaysSet($company["days"]);
+        $days = static::parseDaysSet($company["days"]);        
 
         // if it's not open this day reject
         if (!$days[static::getDayOfWeek($time)]) return [];
 
         // if it's not inside the window reject
+        if ($close_at < $window_start || $open_at > $window_end) {
+            // se orario chiusura di quel giorno e' prima della inizio della finiestra di prenotazione
+            // se orario apertura di quel giorno e' dopo della fine delle finestra di prenotazione
+            return [];
+        }
+
+        // aggiusta orario inizio
+        $open_at = max($window_start, $open_at);
+
+        // aggiusta orario fine
+        $close_at = min($window_end, $close_at);
 
         $lastT = $open_at;
         $slots = [];
         for ($i = $open_at; $i < count($prenotazioni) && $lastT < $close_at; $i++) {
             $p = $prenotazioni[$i];
+
+            // if the prenotation starts before the open_hour
+            if ($p["start_at"] < $open_at || $p["close_at"] > $close_at) continue;
+            
             $nSlots = floor(($p["start_at"] - $lastT) / $duration);
 
             for ($j = 0; $j < $nSlots; $j++, $lastT += $duration) {
@@ -54,6 +70,7 @@ class PublicBookService {
 
             $lastT = $p["end_at"];
         }
+        return $slots;
     }
 
     private static function getDayOfWeek(int $time) {

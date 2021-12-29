@@ -1,0 +1,21 @@
+%CONTENT%
+
+<form method="GET" action="book.php">
+    <fieldset>
+        <legend>Scelta Servizio</legend>
+        %RADIOS_SERVICE%
+        <button onclick="(el) => document.getElementsByName('service').forEach(el => el.checked = false);">RESET</button>
+    </fieldset>
+    <fieldset>
+        <legend>Scelta Barbiere</legend>
+        %RADIOS_STAFF%
+        <button onclick="(el) => document.getElementsByName('staff').forEach(el => el.checked = false);">RESET</button>
+    </fieldset>
+    <input type="submit" value="Check Availability">
+</form>
+
+<form method="POST" action="book.php">
+    <input type="number" name="barber" value="%SELECTED_STAFF%" >
+    <input type="number" name="service" value="%SELECTED_SERVICE%" >
+    
+</form>

@@ -1,12 +1,12 @@
 <?php
 
 class DBHelper {
-    const HOST_DB = "127.0.0.1";
+    const HOST_DB = "db";
     const USERNAME = "root";
     const PASSWORD = "mariadb";
     const DATABASE_NAME = "scissorhands";
 
-    private mysqli $conn;
+    private $conn;
 
     public function __construct() {
         $this->conn = new mysqli(static::HOST_DB, static::USERNAME, static::PASSWORD, static::DATABASE_NAME);
@@ -22,7 +22,9 @@ class DBHelper {
     }
 
     public function prepare($query): mysqli_stmt {
-        return $this->conn->prepare($query);
+        $ret = $this->conn->prepare($query);
+        if (!$ret) die("prepare() failed: ". htmlspecialchars($this->conn->error));
+        return $ret;
     }
 }
 
