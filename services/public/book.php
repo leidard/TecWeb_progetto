@@ -6,8 +6,6 @@ require_once __DIR__ . '/company.php';
 
 class PublicBookService
 {
-    public const DAY = 86400;
-    public const WEEK = 604800;
 
     /**
      * Get Available spots for the given day
@@ -19,7 +17,7 @@ class PublicBookService
     {
         $now = time();
         $now = $now - ($now % 1800) + 1800;
-        $time = static::floorDay($time);
+        $time = PublicCompanyService::floorDay($time);
 
         $s = PublicServiceService::get($service);
         if (!$s) return [];
@@ -35,10 +33,10 @@ class PublicBookService
         $duration = $s["duration"];
         $window_start = $now + $company['book_after'];
         $window_end = $now + $company['book_before'];
-        $days = static::parseDaysSet($company["days"]);
+        $days = PublicCompanyService::parseDaysSet($company["days"]);
 
         // if it's not open this day reject
-        if (!$days[static::getDayOfWeek($time)]) return [];
+        if (!$days[PublicCompanyService::getDayOfWeek($time)]) return [];
 
         // if it's not inside the window reject
         if ($close_at < $window_start || $open_at > $window_end) {
@@ -87,40 +85,5 @@ class PublicBookService
         }
 
         return $slots;
-    }
-
-    public static function getDayOfWeek(int $time) {
-        return (floor($time / PublicBookService::DAY) + 3) % 7;
-    }
-
-    public static function getDayOfWeekSTR(int $time) {
-        switch (static::getDayOfWeek($time)) {
-            case 0: return "Lunedì";
-            case 1: return "Martedì";
-            case 2: return "Mercoledì";
-            case 3: return "Giovedì";
-            case 4: return "Venerdì";
-            case 5: return "Sabato";
-            case 6: return "Domenica";
-        }
-    }
-
-    public static function floorDay(int $time)
-    {
-        return $time - ($time % PublicBookService::DAY);
-    }
-
-    private static function parseDaysSet(string $days)
-    {
-        $arr = explode(',', $days);
-        return [
-            in_array('MON', $arr),
-            in_array('TUE', $arr),
-            in_array('WED', $arr),
-            in_array('THU', $arr),
-            in_array('FRI', $arr),
-            in_array('SAT', $arr),
-            in_array('SUN', $arr),
-        ];
     }
 }

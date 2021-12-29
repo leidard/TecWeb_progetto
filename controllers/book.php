@@ -40,20 +40,20 @@ foreach ($staff as $member) {
 }
 
 $radios_giorno = "";
-$today = PublicBookService::floorDay(time())/86400;
+$today = PublicCompanyService::floorDay(time()) / 86400;
 for ($i = $today; $i < $today + 7; $i++) {
-    $name = PublicBookService::getDayOfWeekSTR($i*86400);
+    $name = PublicCompanyService::getDayOfWeekSTR($i * 86400);
     if ($i == $today) $name = "Oggi";
-    elseif ($i == $today+1) $name = "Domani";
-    $radios_giorno .= radio_book($name, "day", $i, "day-".$i, boolval($selected_day == $i));
+    elseif ($i == $today + 1) $name = "Domani";
+    $radios_giorno .= radio_book($name, "day", $i, "day-" . $i, boolval($selected_day == $i));
 }
 
 $radios_slot = "";
 if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day)) {
-    $slots = PublicBookService::getAvailableOfDay($selected_service, $selected_staff, $selected_day*86400);
+    $slots = PublicBookService::getAvailableOfDay($selected_service, $selected_staff, $selected_day * 86400);
     foreach ($slots as $slot) {
         $s = $slot["start"];
-        $radios_slot.= radio_book(date("H:i", $s) ."-". date("H:i", $slot["end"]), "slot", $s, $s, false);
+        $radios_slot .= radio_book(date("H:i", $s) . "-" . date("H:i", $slot["end"]), "slot", $s, $s, false);
     }
 }
 
