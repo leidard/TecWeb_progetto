@@ -9,7 +9,7 @@ function radio_book($label, $name, $value, $id, bool $checked) {
     $out = str_replace('%RADIO_BOOK_NAME%', $name, $out);
     $out = str_replace('%RADIO_BOOK_LABEL%', $label, $out);
     $out = str_replace('%RADIO_BOOK_VALUE%', $value, $out);
-    $out = str_replace("%RADIO_BOOK_CHECKED%", $checked, $out);
+    $out = str_replace("%RADIO_BOOK_CHECKED%", $checked?"checked":"", $out);
     
     return $out;
 }

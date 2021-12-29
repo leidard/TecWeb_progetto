@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `cf` char(16) NOT NULL,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `date_of_birth` date NOT NULL,
   `sex` ENUM('M', 'F') NOT NULL,
   PRIMARY KEY (`cf`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
@@ -158,7 +157,7 @@ VALUES
   
 
 INSERT INTO 
-  staff(_id, surname, name, date_of_birth, sex, company)
+  staff(_id, surname, name, sex, company)
 VALUES
-  (1, 'Rivazzi','Gaetana','1994-05-12','F',1),
-  (2, 'Ginnati','Roberto','1998-11-22','M',1);
+  (1, 'Rivazzi','Gaetana','F',1),
+  (2, 'Ginnati','Roberto','M',1);
