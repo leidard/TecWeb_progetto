@@ -4,6 +4,15 @@ require_once __DIR__ . '/../../models/company.php';
 class PublicCompanyService {
     public const DAY = 86400;
     public const WEEK = 604800;
+    public const ARRDAY = array(
+        0 => "MON",
+        1 => "TUE",
+        2 => "WED",
+        3 => "THU",
+        4 => "FRI",
+        5 => "SAT",
+        6 => "SUN"
+    );
 
     public static function get() {
         return (new Company())->get();
@@ -24,8 +33,6 @@ class PublicCompanyService {
             in_array('SAT', $arr),
             in_array('SUN', $arr),
         ];
-
-        date("H:i", time());
     }
 
     public static function getDayOfWeekSTR(int $time) {
