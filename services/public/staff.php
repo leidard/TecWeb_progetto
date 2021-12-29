@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/../../models/staff.php';
 
-class StaffStaffService {
+class PublicStaffService {
     public static function getAll() {
         return (new Staff())->getAll();
     }
