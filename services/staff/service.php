@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../models/service.php';
+require_once __DIR__.'/../../models/service.php';
 
 class StaffServiceService {
     public static function create($name, $price, $duration, $desc) {
