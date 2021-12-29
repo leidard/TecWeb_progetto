@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `service` (
   `duration` INT UNSIGNED NOT NULL,
   `price` DECIMAL(7,2) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `type` ENUM('hair','beard'),
+  `type` ENUM('capelli','barba'),
   `description` text NOT NULL,
   `company` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`_id`),
