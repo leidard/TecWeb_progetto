@@ -2,13 +2,13 @@
 require_once 'components/page.php';
 require_once 'components/header.php';
 require_once 'components/breadcrumb.php';
-require_once 'components/orariApertura.php';
+require_once 'components/orari_apertura.php';
 
 $pagina = page('Home Page');
 
 $header = _header('Home');
 
-$breadcrumb = breacrumb(array(
+$breadcrumb = _breadcrumb(array(
     "Home" => "/",
     "Gallery" => "/gallery.php"
 ));

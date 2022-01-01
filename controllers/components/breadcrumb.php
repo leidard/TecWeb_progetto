@@ -1,6 +1,6 @@
 <?php
 
-function breacrumb($els) {
+function _breadcrumb($els) {
     $template = file_get_contents(__DIR__.'/../../views/components/breadcrumb.html');
 
     $out = $template;

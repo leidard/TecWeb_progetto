@@ -14,7 +14,7 @@ function orariApertura(){
         $close_at = $company["close_at"];
         $orarioChiusura = gmdate('H:i', $close_at);
         $days = PublicCompanyService::parseDaysSet($company["days"]);
-        $out=file_get_contents(__DIR__.'/../../views/components/orariApertura.html');
+        $out=file_get_contents(__DIR__.'/../../views/components/orari_apertura.html');
         $giorni = PublicCompanyService::ARRDAY;
         foreach($days as $key => $day)
         {            

@@ -9,7 +9,7 @@ $pagina = page('Gallery - Scissorhands');
 
 $header = _header();
 
-$breadcrumb = breacrumb(array(
+$breadcrumb = _breadcrumb(array(
     "Home" => "/index.php",
     "Gallery" => "/"
 ));
