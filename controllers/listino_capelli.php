@@ -2,10 +2,10 @@
 require_once 'components/page.php';
 require_once 'components/header.php';
 
-$pagina = page('Contatti - Scissorhands');
-$header = _header('Contatti');
+$pagina = page('Listino barba - Scissorhands');
+$header = _header('Listino capelli');
 
-$main = file_get_contents('../views/contatti.html');
+$main = file_get_contents('../views/listino_capelli.html');
 
 
 $pagina = str_replace('%HEADER%', $header, $pagina);

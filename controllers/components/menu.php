@@ -1,5 +1,7 @@
 <?php
-function menu($currentPage, $logged = false){
+function _menu($currentPage, $logged = false){
+    $template = file_get_contents(__DIR__.'/../../views/components/menu.html');
+    $out = $template;
     $tagPagine = array (
         'Home' => '<a class="menu_link" xml:lang="en" href="index.php">Home</a>',
         'Servizi' => '<a class="menu_link" href="servizi.php">Servizi</a>',
@@ -11,12 +13,12 @@ function menu($currentPage, $logged = false){
     );
 
     $str = "";
-    foreach ($urlPagine as $name => $ref) {
+    foreach ($tagPagine as $name => $ref) {
         if ($currentPage === $name){
             if($name === 'Home')
-                $str.= "<li><a class=\"pag_corrente\" xml:lang=\"en\">$name</a></li>";
+                $str.= "<li><span class=\"pag_corrente\" xml:lang=\"en\">$name</span></li>";
             else
-                $str.= "<li><a class=\"pag_corrente\">$name</a></li>";
+                $str.= "<li><span class=\"pag_corrente\">$name</span></li>";
         }else{
             $str.= "<li>$ref</li>";
         }

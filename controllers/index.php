@@ -1,11 +1,10 @@
 <?php
 require_once 'components/page.php';
 require_once 'components/header.php';
-require_once 'components/footer.php';
 
 $pagina = page('Home Page');
 
-$header = _header();
+$header = _header('Home');
 
 $main = file_get_contents('../views/index.html');
 
