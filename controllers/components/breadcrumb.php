@@ -7,20 +7,17 @@ function _breadcrumb($els) {
 
     $str = "";
     foreach ($els as $name => $ref) {
-        if ($ref === strtok($_SERVER["REQUEST_URI"], '?'))
-            $str.= "<span>$name</span>";
-        else
+        if ($ref === strtok($_SERVER["REQUEST_URI"], '?')){ //non funzia yeye
+            if($name === "Home" || $name === "Login") 
+                $str.= "<span lang=\"en\">$name</span>";
+            else
+                $str.= "<span>$name</span>";
+        }else{
             $str.= "<a href=\"$ref\">$name</a> > ";
+        }
     }
 
-    $out = str_replace("%BREADCRUMB_ELEMENTS%", $str, $out);
+    //$out = str_replace("%BREADCRUMB_ELEMENTS%", $str, $out); inutile, da eliminare anche breadcrumb.html probabilmente. oppure va riorganizzato
     
-    return $out;
+    return $str;
 }
-
-/*
-echo breadcrumb(array(
-    "Home" => "/",
-    "Prenotazioni" => "/prenotazioni.php",
-    "Prenotazioni" => "/components/breadcrumb.php"
-));*/

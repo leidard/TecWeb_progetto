@@ -5,7 +5,12 @@ require_once 'components/servizio.php';
 require_once '../services/public/service.php';
 
 $pagina = page('Listino barba - Scissorhands');
-$header = _header('Listino barba');
+$path = array(
+    "Home" => "/",
+    "Servizi" => "../servizi.php",
+    "Listino per la barba" => "../listino_barba.php",
+);
+$header = _header('Listino per la barba', $path);
 
 $main = file_get_contents('../views/listino_barba.html');
 

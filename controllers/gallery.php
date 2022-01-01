@@ -19,8 +19,6 @@ $main = file_get_contents('../views/gallery.html');
 /**
  * Vari str_replace nella vista main
  */
-$header = str_replace('%TITOLO%', 'Gallery', $header);
-
 
 
 $pagina = str_replace('%HEADER%', $header, $pagina);

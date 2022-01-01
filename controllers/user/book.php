@@ -6,14 +6,12 @@ require_once '../components/footer.php';
 $pagina = page('Home Page');
 
 $header = _header();
-$footer = footer();
+$footer = _footer();
 $main = file_get_contents('../../views/index.html');
 
 /**
  * Vari str_replace nella vista main
  */
-$main = str_replace('%TITOLO%', "123", $main);
-
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%FOOTER%', $footer, $pagina);

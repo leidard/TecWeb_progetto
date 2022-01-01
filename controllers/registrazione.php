@@ -5,7 +5,7 @@ require_once 'components/footer.php';
 
 $pagina = page('Registrazione');
 $header = _header();
-$footer = footer();
+$footer = _footer();
 $main = file_get_contents('../views/user/registrazione.html');
 
 #CF, cognome, nome, data nascita
