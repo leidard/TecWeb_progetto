@@ -132,7 +132,7 @@ VALUES
   (1, 'Scissorhands', 28800, 75600, "Tue,Wed,Thu,Fri,Sat", 1209600, 3600, '0123456789123456');
 
 INSERT INTO
-  service(_id, duration, price, name, description, company)
+  service(_id, duration, price, name, type, description, company)
 VALUES 
   (1, 1800, 30.00, "Taglio", "capelli", "Eseguito a macchinetta e forbice, comprende il lavaggio e la piega.", 1),
   (2, 900, 25.00, "Rasatura con lama", "capelli", "Rasatura totale della testa eseguita con rasoio a mano libera.", 1),
