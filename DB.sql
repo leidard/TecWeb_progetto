@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `cf` char(16) NOT NULL,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `date_of_birth` date NOT NULL,
   `sex` ENUM('M', 'F') NOT NULL,
   PRIMARY KEY (`cf`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
@@ -93,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
 
 CREATE TABLE IF NOT EXISTS `reservation` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `company` INT UNSIGNED NOT NULL,
   `start_at` INT UNSIGNED NOT NULL,
   `end_at` INT UNSIGNED NOT NULL,
   `confirmed` BOOLEAN DEFAULT NULL,
@@ -105,9 +105,11 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   KEY `FK_reservation_service` (`service`) USING BTREE,
   KEY `FK__customer_reservation` (`customer`) USING BTREE,
   KEY `FK__staff_reservation` (`staff`) USING BTREE,
+  KEY `FK__azienda_reservation` (`company`) USING BTREE,
   CONSTRAINT `FK__customer_reservation` FOREIGN KEY (`customer`) REFERENCES `customer` (`cf`) ON UPDATE CASCADE,
   CONSTRAINT `FK__staff_reservation` FOREIGN KEY (`staff`) REFERENCES `staff` (`_id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`_id`) ON UPDATE CASCADE
+  CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`_id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK__azienda_reservation` FOREIGN KEY (`company`) REFERENCES `company` (`_id`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 
@@ -143,24 +145,24 @@ VALUES
   (9, 1200, 15.00, "Modellatura veloce", "barba", "Riassetto di barba e baffi con forbice e tosatrice, seguito dall'applicazione di un balsamo.", 1);
   
 INSERT INTO
-  customer(cf, surname, name, date_of_birth, sex) 
+  customer(cf, surname, name, sex) 
 VALUES 
-  ('CCC1CCC1CCC1CCC1', 'Varese', 'Andrea', '1999-11-11', 'M'),
-  ('CCC2CCC2CCC2CCC2', 'Ferro', 'Pietro', '2000-12-12', 'M'),
-  ('PEPCNK97I22T699H', 'Turon', 'Paolo', '1970-10-31', 'M'),
-  ('OTTQSD53P80T988H', 'Guida', 'Francesco', '1966-03-26', 'M'),
-  ('LRNNZO44L12T680H', 'Oliviero', 'Simone', '1969-03-23', 'M'),
-  ('HZXTJB22S82F294H', 'Palma', 'Riccardo', '1997-10-22', 'M'),
-  ('OOURSO29U02V674H', 'Bassi', 'Federico', '1972-11-21', 'M'),
-  ('SDVHUK36F76R573H', 'Rossi', 'Giacomo', '1983-09-13', 'M'),
-  ('KXCVBT43F37C291H', 'Renzini', 'Mattia', '1989-09-20', 'M'),
-  ('EDCIEO66R23F467H', 'Rizzo', 'Luca', '1979-07-20', 'M'),
-  ('LXZOZK28V43V867H', 'Veronese', 'Romeo', '1975-03-22', 'M'),
-  ('UWAIYG87F63L810H', 'Polese', 'Davide', '1978-08-18', 'M');
+  ('CCC1CCC1CCC1CCC1', 'Fake1', 'Customer1', 'M'),
+  ('CCC2CCC2CCC2CCC2', 'Fake2', 'Customer2', 'F'),
+  ('PEPCNK97I22T699H', 'Timmi', 'Burrus', 'F'),
+  ('OTTQSD53P80T988H', 'Giffy', 'Feild', 'M'),
+  ('LRNNZO44L12T680H', 'Oliviero', 'Sarre', 'M'),
+  ('HZXTJB22S82F294H', 'Cindy', 'Reignould', 'F'),
+  ('OOURSO29U02V674H', 'Frederica', 'Fereday', 'F'),
+  ('SDVHUK36F76R573H', 'Barton', 'Blest', 'M'),
+  ('KXCVBT43F37C291H', 'Ripley', 'Krauss', 'M'),
+  ('EDCIEO66R23F467H', 'Valentijn', 'Haldon', 'M'),
+  ('LXZOZK28V43V867H', 'Tammy', 'Gooders', 'M'),
+  ('UWAIYG87F63L810H', 'Nicola', 'Rosenstein', 'M');
   
 
 INSERT INTO 
-  staff(_id, surname, name, date_of_birth, sex, company)
+  staff(_id, surname, name, sex, company)
 VALUES
-  (1, 'Rizzo','Marco','1985-05-16','F',1),
-  (2, 'Valli','Alice','1990-11-22','M',1);
+  (1, 'Rivazzi','Gaetana','F',1),
+  (2, 'Ginnati','Roberto','M',1);
