@@ -10,7 +10,7 @@ function breacrumb($els) {
         if ($ref === strtok($_SERVER["REQUEST_URI"], '?'))
             $str.= "<span>$name</span>";
         else
-            $str.= "<a href=\"$ref\">$name</a>";
+            $str.= "<a href=\"$ref\">$name</a> > ";
     }
 
     $out = str_replace("%BREADCRUMB_ELEMENTS%", $str, $out);

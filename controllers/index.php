@@ -11,7 +11,8 @@ $pagina = page('Home Page');
 $header = _header();
 
 $breadcrumb = breacrumb(array(
-    "Home" => "/"
+    "Home" => "/",
+    "Gallery" => "/gallery.php"
 ));
 
 $main = file_get_contents('../views/index.html');
@@ -26,10 +27,9 @@ $main = str_replace('%ORARIAPERTURA%' , $orariApertura, $main);
 
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
-$pagina = str_replace('%BREADCRUMB%', $breadcrumb, $pagina);
+//$pagina = str_replace('%BREADCRUMB%', $breadcrumb, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
 
-
-
 echo $pagina;
+?>
