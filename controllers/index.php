@@ -18,7 +18,8 @@ $main = file_get_contents('../views/index.html');
 $orariApertura = orariApertura();
 $main = str_replace('%ORARIAPERTURA%' , $orariApertura, $main);
 
-
+$pagina = str_replace('%DESCRIPTION%', "Barbieria a Padova e servizi di taglio per curare il proprio look e rilassarsi" ,$pagina);
+$pagina = str_replace('%KEYWORDS%', 'scissorhands, barbiere, parrucchiere, barba, capelli, barbieria',$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
