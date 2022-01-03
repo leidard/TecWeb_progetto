@@ -9,7 +9,8 @@ function _menu($currentPage, $logged = false){
         'Galleria' => '<a class="menu_link" href="galleria.php">Galleria</a>',
         'Contatti' => '<a class="menu_link" href="contatti.php">Contatti</a>',
         'Prenota' => '<a class="menu_link" href="prenota.php">Prenota</a>',
-        'Accedi' => '<a class="menu_link" lang="en" href="accedi.php">Accedi</a>'
+        'Accedi' => '<a class="menu_link" href="accedi.php">Accedi</a>',
+        'Registrazione' => '<a class="menu_link" href="registrazione.php">Registrazione</a>'
     );
 
     $str = "";
