@@ -1,21 +1,24 @@
 <div>
-	<form>
+	<form action="registrazione.php" method="get">
 		<fieldset>
-			<label for="codicefiscale">Codice Fiscale:</label>
-			<input name="codicefiscale" id="codicefiscale" maxlength="16" minlength="16">
 
-			<label for="nome">Nome</label>
-			<input name="nome" id="nome" minlength="2" maxlength="50">
+			<label for="name">Nome</label>
+			<input name="name" id="name" minlength="1" maxlength="50" required>
 
-			<label for="cognome">Cognome</label>
-			<input name="cognome" id="cognome" minlength="2" maxlength="50">
+			<label for="surname">Cognome</label>
+			<input name="surname" id="surname" minlength="1" maxlength="50" required>
 
-			<label for="datanascita">Data di nascita</label>
-			<input name="datanascita" id="datanascita" type="date"> 
-			<!-- controllare con JS che sia maggiorenne -->
+			<label for="sex">Sesso</label>
+			<select name="sex" id="sex">
+				<option>Uomo</option>
+				<option>Donna</option>
+			</select>
+
+			<label for="mail">Mail</label>
+			<input name="mail" id="mail" type="email"> 
 
 			<label for="password">Password</label>
-			<input name="password" id="password" type="password">
+			<input name="password" id="password" type="password" required>
 
 			<input type="submit" value="Registrati"  id="Registrati">
 		</fieldset>
