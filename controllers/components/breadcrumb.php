@@ -8,7 +8,7 @@ function _breadcrumb($els) {
     $str = "";
     foreach ($els as $name => $ref) {
         if ($ref === strtok($_SERVER["REQUEST_URI"], '?')){ //non funzia yeye
-            if($name === "Home" || $name === "Login") 
+            if($name === "Home") 
                 $str.= "<span lang=\"en\">$name</span>";
             else
                 $str.= "<span>$name</span>";
