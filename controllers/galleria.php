@@ -6,7 +6,7 @@ $pagina = page('Galleria - Scissorhands');
 
 $path = array(
     "Home" => "/",
-    "Galleria" => "../galleria.php"
+    "Galleria" => "/galleria.php"
 );
 $header = _header('Galleria', $path);
 

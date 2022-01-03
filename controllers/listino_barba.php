@@ -7,8 +7,8 @@ require_once '../services/public/service.php';
 $pagina = page('Listino barba - Scissorhands');
 $path = array(
     "Home" => "/",
-    "Servizi" => "../servizi.php",
-    "Listino per la barba" => "../listino_barba.php",
+    "Servizi" => "/servizi.php",
+    "Listino per la barba" => "/listino_barba.php",
 );
 $header = _header('Listino per la barba', $path);
 
