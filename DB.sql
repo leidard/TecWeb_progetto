@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
 
 CREATE TABLE IF NOT EXISTS `credential` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL UNIQUE,
   `password` varchar(100) NOT NULL,
   `type` ENUM('USER', 'OWNER') NOT NULL,
   `customer_ref` INT UNSIGNED DEFAULT NULL,
