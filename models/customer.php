@@ -3,10 +3,10 @@ require_once __DIR__ . "/helper.php";
 
 class Customer extends DBHelper {
 	
-	public function get($cf)
+	public function get($_id)
 	{
-		$stmt = $this->prepare("SELECT * FROM customer where cf = $cf LIMIT 1");
-		$stmt->bind_param('s', $cf);
+		$stmt = $this->prepare("SELECT * FROM customer where _id = $_id LIMIT 1");
+		$stmt->bind_param('s', $_id);
 		$stmt->execute();
 		$res = $stmt->get_result();
 		return $res->fetch_assoc();
@@ -20,10 +20,27 @@ class Customer extends DBHelper {
 		return $res->fetch_assoc();
 	}
 
-	public function create($cf, $name, $surname, $date_of_birth, $sex)
+	public function create($name, $surname, $sex)
 	{
-		$stmt = $this->prepare("INSERT INTO customer(cf, name, surname, date_of_birth, sex) VALUES (?,?,?,?,?)");
-		$stmt->bind_param('sssss', $cf); #CONTROLLARE che la data sia inserita correttamente, non è menzionato nei doc se deve essere considerata 's' o altro
+		$stmt = $this->prepare("INSERT INTO customer(name, surname, sex) VALUES (?,?,?)");
+		if($sex == "Uomo")
+			$sex = "M";
+		else
+			$sex = "F";
+		
+		$stmt->bind_param('sss', $name, $surname, $sex);
+		if(!$stmt->execute())
+		{
+			throw($stmt->error);
+		}	
+
+		$stmt = $this->prepare("SELECT LAST_INSERT_ID()");
 		$stmt->execute();
+		$res = $stmt->get_result();
+		return $res->fetch_array();
+		
+		#$lastid = mysqli_insert_id($this>$conn);
+		#return $lastid;
+
 	}
 }

@@ -10,29 +10,38 @@ class Credential extends DBHelper {
 #        );
 #    }
 
-	public function get($cf)
+	public function get($mail)
 	{
-		$stmt = $this->prepare("SELECT * FROM credentials where customer_ref = ? OR owner_ref = ? LIMIT 1");
-		$stmt->bind_param('ss', $cf, $cf);
+		$stmt = $this->prepare("SELECT * FROM credential where email=? LIMIT 1");
+		$stmt->bind_param('s', $mail);
 		$stmt->execute();
 		$res = $stmt->get_result();
 		return $res->fetch_assoc();
 	}
 
-	public function create($cf, $email, $password, $type)  
+	public function getUserPassword($mail)
+	{
+		$stmt = $this->prepare("SELECT password FROM credential where  email=? LIMIT 1");
+		$stmt->bind_param('s', $mail);
+		$stmt->execute();
+		$res = $stmt->get_result();
+		return $res->fetch_assoc();
+	}
+
+	public function create($email, $password, $type, $_id)  
 	{
 		if(strcmp($type, "USER" ))
 		{	
-			$stmt = $this->prepare("INSERT INTO credential(email, password, type, customer_ref, owner_ref) VALUES (?,?,?,?,NULL)");
-			$stmt->bind_param("ssss",$email, $password, $type, $cf);
+			$stmt = $this->prepare("INSERT INTO credential(email, password, type, customer_ref) VALUES (?,?,?,?)");
+			$stmt->bind_param("ssss",$email, $password, $type, $_id);
 		}
 		else #type == admin
 		{	
-			$stmt = $this->prepare("INSERT INTO credential(email, password, type, customer_ref, owner_ref) VALUES (?,?,?,NULL,?)");
-			$stmt->bind_param("ssss",$email, $password, $type, $cf);
+			$stmt = $this->prepare("INSERT INTO credential(email, password, type, owner_ref) VALUES (?,?,?,?)");
+			$stmt->bind_param("ssss",$email, $password, $type, $_id);
 		}
 		$stmt->execute();
-	}	
+	}
 }
 
  
