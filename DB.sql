@@ -13,20 +13,20 @@ DROP TABLE IF EXISTS customer CASCADE;
 
 -- CREATE TABLES
 CREATE TABLE IF NOT EXISTS `owner` (
-  `cf` char(16) NOT NULL,
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
   `date_of_birth` date,
-  PRIMARY KEY (`cf`)
+  PRIMARY KEY (`_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 
 CREATE TABLE IF NOT EXISTS `customer` (
-  `cf` char(16) NOT NULL,
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
   `sex` ENUM('M', 'F') NOT NULL,
-  PRIMARY KEY (`cf`)
+  PRIMARY KEY (`_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 
@@ -35,13 +35,13 @@ CREATE TABLE IF NOT EXISTS `credential` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `type` ENUM('USER', 'OWNER') NOT NULL,
-  `customer_ref` char(16) DEFAULT NULL,
-  `owner_ref` char(16) DEFAULT NULL,
+  `customer_ref` INT UNSIGNED DEFAULT NULL,
+  `owner_ref` INT UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-ALTER TABLE `credential` ADD CONSTRAINT `FK_credential_customer` FOREIGN KEY (`customer_ref`) REFERENCES `customer` (`cf`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `credential` ADD CONSTRAINT `FK_credential_owner` FOREIGN KEY (`owner_ref`) REFERENCES `owner` (`cf`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `credential` ADD CONSTRAINT `FK_credential_customer` FOREIGN KEY (`customer_ref`) REFERENCES `customer` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `credential` ADD CONSTRAINT `FK_credential_owner` FOREIGN KEY (`owner_ref`) REFERENCES `owner` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE IF NOT EXISTS `company` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -60,10 +60,10 @@ CREATE TABLE IF NOT EXISTS `company` (
     ) NOT NULL,
     `book_before` INT UNSIGNED NOT NULL,
     `book_after` INT UNSIGNED NOT NULL,
-    `owner` char(16) NOT NULL,
+    `owner` INT UNSIGNED NOT NULL,
     PRIMARY KEY (`_id`),
     KEY `FK__owner_azienda` (`owner`) USING BTREE,
-    CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`cf`) ON UPDATE CASCADE
+    CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`_id`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE IF NOT EXISTS `service` (
@@ -97,16 +97,16 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `end_at` INT UNSIGNED NOT NULL,
   `confirmed` BOOLEAN DEFAULT NULL,
   `price` decimal(7, 2) NOT NULL,
-  `notes` text NOT NULL DEFAULT '',
+  `notes` text NOT NULL default '',
   `staff` INT UNSIGNED NOT NULL,
-  `customer` char(16) NOT NULL,
+  `customer` INT UNSIGNED NOT NULL,
   `service` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`_id`),
   KEY `FK_reservation_service` (`service`) USING BTREE,
   KEY `FK__customer_reservation` (`customer`) USING BTREE,
   KEY `FK__staff_reservation` (`staff`) USING BTREE,
   KEY `FK__azienda_reservation` (`company`) USING BTREE,
-  CONSTRAINT `FK__customer_reservation` FOREIGN KEY (`customer`) REFERENCES `customer` (`cf`) ON UPDATE CASCADE,
+  CONSTRAINT `FK__customer_reservation` FOREIGN KEY (`customer`) REFERENCES `customer` (`_id`) ON UPDATE CASCADE,
   CONSTRAINT `FK__staff_reservation` FOREIGN KEY (`staff`) REFERENCES `staff` (`_id`) ON UPDATE CASCADE,
   CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`_id`) ON UPDATE CASCADE,
   CONSTRAINT `FK__azienda_reservation` FOREIGN KEY (`company`) REFERENCES `company` (`_id`) ON UPDATE CASCADE
@@ -117,19 +117,19 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- Popolazione database
 
 INSERT INTO
-  owner(cf, name, surname)
+  owner(_id, name, surname)
 VALUES
-  ('0123456789123456', 'Edoardo', 'Coppola');
+  (1, 'Edoardo', 'Coppola');
 
 INSERT INTO
   credential(_id, owner_ref, email, password, type)
 VALUES 
-  (1,'0123456789123456', 'edoardocoppola@email.com', 'supersecure123', 'OWNER');
+  (1, 1, 'edoardocoppola@email.com', 'supersecure123', 'OWNER');
 
 INSERT INTO 
   company(_id,name,open_at,close_at,days,book_before,book_after,owner)
 VALUES
-  (1, 'Scissorhands', 28800, 75600, "Tue,Wed,Thu,Fri,Sat", 1209600, 3600, '0123456789123456');
+  (1, 'Scissorhands', 28800, 75600, "Tue,Wed,Thu,Fri,Sat", 1209600, 3600, 1);
 
 INSERT INTO
   service(_id, duration, price, name, type, description, company)
@@ -145,20 +145,20 @@ VALUES
   (9, 1200, 15.00, "Modellatura veloce", "barba", "Riassetto di barba e baffi con forbice e tosatrice, seguito dall'applicazione di un balsamo.", 1);
   
 INSERT INTO
-  customer(cf, surname, name, sex) 
+  customer(_id, surname, name, sex) 
 VALUES 
-  ('CCC1CCC1CCC1CCC1', 'Fake1', 'Customer1', 'M'),
-  ('CCC2CCC2CCC2CCC2', 'Fake2', 'Customer2', 'F'),
-  ('PEPCNK97I22T699H', 'Timmi', 'Burrus', 'F'),
-  ('OTTQSD53P80T988H', 'Giffy', 'Feild', 'M'),
-  ('LRNNZO44L12T680H', 'Oliviero', 'Sarre', 'M'),
-  ('HZXTJB22S82F294H', 'Cindy', 'Reignould', 'F'),
-  ('OOURSO29U02V674H', 'Frederica', 'Fereday', 'F'),
-  ('SDVHUK36F76R573H', 'Barton', 'Blest', 'M'),
-  ('KXCVBT43F37C291H', 'Ripley', 'Krauss', 'M'),
-  ('EDCIEO66R23F467H', 'Valentijn', 'Haldon', 'M'),
-  ('LXZOZK28V43V867H', 'Tammy', 'Gooders', 'M'),
-  ('UWAIYG87F63L810H', 'Nicola', 'Rosenstein', 'M');
+  ('1', 'Fake1', 'Customer1', 'M'),
+  ('2', 'Fake2', 'Customer2', 'F'),
+  ('3', 'Timmi', 'Burrus', 'F'),
+  ('4', 'Giffy', 'Feild', 'M'),
+  ('5', 'Oliviero', 'Sarre', 'M'),
+  ('6', 'Cindy', 'Reignould', 'F'),
+  ('7', 'Frederica', 'Fereday', 'F'),
+  ('8', 'Barton', 'Blest', 'M'),
+  ('9', 'Ripley', 'Krauss', 'M'),
+  ('10', 'Valentijn', 'Haldon', 'M'),
+  ('11', 'Tammy', 'Gooders', 'M'),
+  ('12', 'Nicola', 'Rosenstein', 'M');
   
 
 INSERT INTO 
