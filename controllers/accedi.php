@@ -48,9 +48,9 @@ else
 	}
 }
 
-
+$pagina = str_replace('%DESCRIPTION%', "Pagina di accesso a Scissorhands" ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "accedi, accesso, login, scissorhands, capelli, barba, barbiere",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
-$pagina = str_replace('%FOOTER%', $footer, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
 
