@@ -8,7 +8,7 @@ $pagina = page('Registrazione - Scissorhands');
 
 $path = array(
     "Home" => "/",
-    "Registrazione" => "registrazione.php"
+    "Registrazione" => "/registrazione.php"
 );
 
 $header = _header('Registrazione',$path);
@@ -35,7 +35,8 @@ if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && iss
 	}
 }
 
-
+$pagina = str_replace('%DESCRIPTION%', "Pagina di registrazione a Scissorhands" ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "registrazione, iscrizione, scissorhands, barbiere, parrucchiere, barba, capelli, barbieria",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

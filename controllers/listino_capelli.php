@@ -33,6 +33,8 @@ function listaServizi() {
 $listaServizi = listaServizi();
 $main = str_replace('%LISTA_SERVIZI%' , $listaServizi, $main);
 
+$pagina = str_replace('%DESCRIPTION%', "Listino prezzi dei servizi per i capelli di Scissorhands" ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "listino, prezzi, servizi, capelli, tagli, trattamenti, barbiere, parrucchiere, scissorhands",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
