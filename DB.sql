@@ -147,22 +147,22 @@ VALUES
 INSERT INTO
   customer(_id, surname, name, sex) 
 VALUES 
-  ('1', 'Fake1', 'Customer1', 'M'),
-  ('2', 'Fake2', 'Customer2', 'F'),
-  ('3', 'Timmi', 'Burrus', 'F'),
-  ('4', 'Giffy', 'Feild', 'M'),
-  ('5', 'Oliviero', 'Sarre', 'M'),
-  ('6', 'Cindy', 'Reignould', 'F'),
-  ('7', 'Frederica', 'Fereday', 'F'),
-  ('8', 'Barton', 'Blest', 'M'),
-  ('9', 'Ripley', 'Krauss', 'M'),
-  ('10', 'Valentijn', 'Haldon', 'M'),
-  ('11', 'Tammy', 'Gooders', 'M'),
-  ('12', 'Nicola', 'Rosenstein', 'M');
+  ('1', 'Mori', 'Mario', 'M'),
+  ('2', 'Bianchi', 'Giovanni', 'M'),
+  ('3', 'Fiume', 'Andrea', 'M'),
+  ('4', 'Zoppin', 'Marco', 'M'),
+  ('5', 'Ferri', 'Pietro', 'M'),
+  ('6', 'Galli', 'Davide', 'M'),
+  ('7', 'Trevi', 'Valerio', 'M'),
+  ('8', 'Rizzo', 'Giacomo', 'M'),
+  ('9', 'Muri', 'Tommaso', 'M'),
+  ('10', 'Padovan', 'Luca', 'M'),
+  ('11', 'Nave', 'Paolo', 'M'),
+  ('12', 'Saveri', 'Matteo', 'M');
   
 
 INSERT INTO 
   staff(_id, surname, name, sex, company)
 VALUES
-  (1, 'Rivazzi','Gaetana','F',1),
-  (2, 'Ginnati','Roberto','M',1);
+  (1, 'Fortuna','Roberto','M',1),
+  (2, 'Valli','Alice','F',1);
