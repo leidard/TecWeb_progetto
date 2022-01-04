@@ -5,12 +5,12 @@ require_once 'components/footer.php';
 
 require_once __DIR__ . '/../services/public/login.php';
 
-$pagina = page('Accedi - scissorhands');
+$pagina = page('Accedi - Scissorhands');
 
 
 $path = array(
     "Home" => "/",
-    "accedi" => "accedi.php"
+    "accedi" => "/accedi.php"
 );
 
 $header = _header('Accedi',$path);

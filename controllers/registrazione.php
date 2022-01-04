@@ -8,7 +8,7 @@ $pagina = page('Registrazione - Scissorhands');
 
 $path = array(
     "Home" => "/",
-    "Registrazione" => "registrazione.php"
+    "Registrazione" => "/registrazione.php"
 );
 
 $header = _header('Registrazione',$path);

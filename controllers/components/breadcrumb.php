@@ -4,7 +4,6 @@ function _breadcrumb($els) {
     //$template = file_get_contents(__DIR__.'/../../views/components/breadcrumb.html');
 
    //$out = $template;
-    echo $_SERVER["REQUEST_URI"];
     $str = "";
     foreach ($els as $name => $ref) {
         if ($ref === strtok($_SERVER["REQUEST_URI"], '?')){ 
