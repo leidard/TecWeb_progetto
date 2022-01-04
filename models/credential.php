@@ -42,6 +42,17 @@ class Credential extends DBHelper {
 		}
 		$stmt->execute();
 	}
+
+	public function isUser($mail)
+	{
+		$stmt = $this->prepare("SELECT type FROM credential where email=? LIMIT 1");
+		$stmt->bind_param('s', $mail);
+		$stmt->execute();
+		$res = $stmt->get_result();
+		if($res->fetch_array()[0] == "USER")
+			return true;
+		return false;
+	}
 }
 
  

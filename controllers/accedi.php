@@ -4,6 +4,7 @@ require_once 'components/header.php';
 require_once 'components/footer.php';
 
 require_once __DIR__ . '/../services/public/login.php';
+require_once __DIR__ . '/../services/public/session.php';
 
 $pagina = page('Accedi - scissorhands');
 
@@ -27,7 +28,6 @@ if(isset($_SESSION["sessionid"]))
 	{
 		session_destroy();
 	}
-	
 }
 else
 {

@@ -2,6 +2,10 @@
 /*
  * La classe contiene alcune funzioni utili per la gestione delle veriabili di sessione
  */
+
+require_once __DIR__.'/../../models/credential.php';
+
+
 class Session {
     /* Il metodo inizializza la sessione */
     public static function init_session() {
@@ -30,4 +34,14 @@ class Session {
         ini_set('session.gc_maxlifetime', $lifetime);
         session_set_cookie_params($lifetime);
     }
+
+	public static function isUser($mail)
+	{
+		return ((new Credential())->isUser($mail));
+	}
+
+	public static function isOwner($mail)
+	{
+		return !((new Credential())->isUser($mail));	
+	}
 }
