@@ -19,7 +19,7 @@ function orariApertura(){
         foreach($days as $key => $day)
         {            
             if($day)
-                $out = str_replace('%'. $giorni[$key] .'%', $orarioApertura."/ ".$orarioChiusura, $out);
+                $out = str_replace('%'. $giorni[$key] .'%', $orarioApertura."-".$orarioChiusura, $out);
             else
                 $out = str_replace('%'. $giorni[$key] .'%', "CHIUSO", $out);
         }    

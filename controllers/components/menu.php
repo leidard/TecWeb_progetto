@@ -1,7 +1,17 @@
 <?php
+
+function menulink($name, $ref, $current) {
+    if ($ref === $current) return $name;
+    return '<a class="menu_link" lang="en" href="index.php">'.$name.'</a>';
+}
+
 function _menu($currentPage, $logged = false){
     $template = file_get_contents(__DIR__.'/../../views/components/menu.html');
     $out = $template;
+    
+    $path = strtok($_SERVER["REQUEST_URI"], '?');
+    $path = str_replace("index.php", '', $path);
+    
     $tagPagine = array (
         'Home' => '<a class="menu_link" lang="en" href="index.php">Home</a>',
         'Servizi' => '<a class="menu_link" href="servizi.php">Servizi</a>',
@@ -10,7 +20,7 @@ function _menu($currentPage, $logged = false){
         'Contatti' => '<a class="menu_link" href="contatti.php">Contatti</a>',
         'Prenota' => '<a class="menu_link" href="prenota.php">Prenota</a>',
         'Accedi' => '<a class="menu_link" href="accedi.php">Accedi</a>',
-        'Registrazione' => '<a class="menu_link" href="registrazione.php">Registrazione</a>'
+        'Registrati' => '<a class="menu_link" href="registrazione.php">Registrati</a>'
     );
 
     $str = "";

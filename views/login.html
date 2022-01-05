@@ -1,16 +1,35 @@
 <div>
-	<form action="accedi.php" method="get">
-		<label for="mail">Mail: </label>
-			<input type="email" placeholder="Inserire mail" name="mail" id="mail" required >
+	<script>
 
-		<label for= "password">Password: </label>
-			<input type="password" placeholder="Inserire password" name="password" id="password" required>
+		function onEmail(evt) {
+			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value)) 
+				evt.target.parentElement.classList.add("error") 
+			else 
+				evt.target.parentElement.classList.remove("error")
+		}
 
+		function onPw(evt){
+			// Minimum eight characters, at least one letter and one number:
+			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+				evt.target.parentElement.classList.add("error") 
+			else 
+				evt.target.parentElement.classList.remove("error")
+		}
+
+	</script>
+	<form id="login-form" action="accedi.php" method="GET">
+		<fieldset class="dati-login">
+			<span>
+				<label for="mail">Mail</label>
+				<input oninput="onEmail(event);" type="email" placeholder="Inserire mail" name="mail" id="mail" required>
+			</span>
+			<span>
+				<label for="password">Password 
+					<span class="input-hint">(Minimo 8 caratteri, tra cui almeno una lettera e un numero)</span>
+				</label>
+				<input oninput="onPw(event);" type="password" placeholder="Inserire password" name="password" id="password" required>
+			</span>
+		</fieldset>
 		<input type="submit" value="Entra!">
-
-		<label>
-			<input type="checkbox" name="rememberme">
-			Ricordami
-		</label>	
 	</form>
 </div>

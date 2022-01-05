@@ -13,7 +13,7 @@ $path = array(
 
 $header = _header('Registrazione',$path);
 $footer = _footer();
-$main = file_get_contents('../views/user/registrazione.html');
+$main = file_get_contents('../views/registrazione.html');
 
 
 

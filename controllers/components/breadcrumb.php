@@ -1,17 +1,29 @@
 <?php
 
 function _breadcrumb($els) {
+    // if(empty($path))
+    //     return "";
     //$template = file_get_contents(__DIR__.'/../../views/components/breadcrumb.html');
 
-   //$out = $template;
+    //$out = $template;
+    
+    
+    // $out = file_get_contents(__DIR__.'/../../views/components/nav_breadcrumb.html');
+    // $out = str_replace('%NAVBREADCRUMB%', $template, $out);
+    // $breadcrumb = _breadcrumb($path);
+    // $out = str_replace("%BREADCRUMB%",$breadcrumb,$out);
+
+
     $str = "";
     foreach ($els as $name => $ref) {
-        if ($ref === strtok($_SERVER["REQUEST_URI"], '?')){ 
+        $path = strtok($_SERVER["REQUEST_URI"], '?');
+        $path = str_replace("index.php", '', $path);
+        if ($ref === $path) { 
             if($name === "Home") 
                 $str.= "<span lang=\"en\">$name</span>";
             else
                 $str.= "<span>$name</span>";
-        }else {
+        } else {
             $str.= "<a href=\"$ref\">$name</a> > ";
         }
     }
