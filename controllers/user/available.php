@@ -1,15 +1,17 @@
 <?php
-require_once 'components/page.php';
-require_once 'components/header.php';
-require_once 'components/radio_book.php';
+require_once '../components/page.php';
+require_once '../components/header.php';
+require_once '../components/radio_book.php';
+require_once '../components/breadcrumb.php';
 
 $pagina = page('Prenota');
 $header = _header();
-$main = file_get_contents('../views/book.html');
+$main = file_get_contents('../../views/user/available.html');
 
-require_once __DIR__ . '/../services/public/book.php';
-require_once __DIR__ . '/../services/public/service.php';
-require_once __DIR__ . '/../services/public/staff.php';
+require_once __DIR__ . '/../../services/public/company.php';
+require_once __DIR__ . '/../../services/public/service.php';
+require_once __DIR__ . '/../../services/public/staff.php';
+require_once __DIR__ . '/../../services/helpers.php';
 
 $services = PublicServiceService::getAll();
 $staff = PublicStaffService::getAll();
@@ -40,27 +42,19 @@ foreach ($staff as $member) {
 }
 
 $radios_giorno = "";
-$today = PublicCompanyService::floorDay(time()) / 86400;
+$today = floorDay(time()) / 86400;
+$opendays = parseDaysSet(PublicCompanyService::get()["days"]);
 for ($i = $today; $i < $today + 7; $i++) {
-    $name = PublicCompanyService::getDayOfWeekSTR($i * 86400);
-    if ($i == $today) $name = "Oggi";
-    elseif ($i == $today + 1) $name = "Domani";
-    $radios_giorno .= radio_book($name, "day", $i, "day-" . $i, boolval($selected_day == $i));
-}
-
-$radios_slot = "";
-if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day)) {
-    $slots = PublicBookService::getAvailableOfDay($selected_service, $selected_staff, $selected_day * 86400);
-    foreach ($slots as $slot) {
-        $s = $slot["start"];
-        $radios_slot .= radio_book(date("H:i", $s) . "-" . date("H:i", $slot["end"]), "slot", $s, $s, false);
-    }
+    $name = getDayOfWeekSTR($i * 86400);
+    $dow = getDayOfWeek($i * 86400);
+    if ($i == $today) $name = "Oggi ($name)";
+    elseif ($i == $today + 1) $name = "Domani ($name)";
+    $radios_giorno .= radio_book($name, "day", $i, "day-" . $i, boolval($selected_day == $i), !$opendays[$dow]);
 }
 
 $main = str_replace("%RADIOS_SERVICE%", $radios_services, $main);
 $main = str_replace("%RADIOS_STAFF%", $radios_staff, $main);
 $main = str_replace("%RADIOS_GIORNO%", $radios_giorno, $main);
-$main = str_replace("%RADIOS_SLOT%", $radios_slot, $main);
 
 $main = str_replace("%SELECTED_SERVICE%", $selected_service, $main);
 $main = str_replace("%SELECTED_STAFF%", $selected_staff, $main);

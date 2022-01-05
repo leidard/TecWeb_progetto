@@ -22,4 +22,8 @@ class StaffReservationService {
     public static function get($id) {
         return (new Reservation())->get($id);
     }
+
+    public static function getPlannedFor24hFrom($staff,  $time) {
+        return (new Reservation())->getRangeOfStaff($staff, $time, $time + 86400);
+    }
 }

@@ -1,11 +1,11 @@
 <?php
 
 require_once __DIR__ . '/reservation.php';
-require_once __DIR__ . '/service.php';
-require_once __DIR__ . '/company.php';
+require_once __DIR__ . '/../public/service.php';
+require_once __DIR__ . '/../public/company.php';
+require_once __DIR__ . '/../helpers.php';
 
-class PublicBookService
-{
+class UserBookingService {
 
     /**
      * Get Available spots for the given day
@@ -13,17 +13,16 @@ class PublicBookService
      * @param int $staff: Staff _id
      * @param null|int $time: The time corresponding to begin of day
      */
-    public static function getAvailableOfDay(int $service, int $staff, int $time)
-    {
+    public static function getAvailableOfDay(int $service, int $staff, int $time) {
         $now = time();
         $now = $now - ($now % 1800) + 1800;
-        $time = PublicCompanyService::floorDay($time);
+        $time = floorDay($time);
 
         $s = PublicServiceService::get($service);
         if (!$s) return [];
         $company = PublicCompanyService::get();
         if (!$company) return [];
-        $prenotazioni = PublicReservationService::getPlannedFor24hFrom($staff, $time);
+        $prenotazioni = UserReservationService::getPlannedFor24hFrom($staff, $time);
         if (is_null($prenotazioni)) return [];
 
 
@@ -33,10 +32,10 @@ class PublicBookService
         $duration = $s["duration"];
         $window_start = $now + $company['book_after'];
         $window_end = $now + $company['book_before'];
-        $days = PublicCompanyService::parseDaysSet($company["days"]);
+        $days = parseDaysSet($company["days"]);
 
         // if it's not open this day reject
-        if (!$days[PublicCompanyService::getDayOfWeek($time)]) return [];
+        if (!$days[getDayOfWeek($time)]) return [];
 
         // if it's not inside the window reject
         if ($close_at < $window_start || $open_at > $window_end) {
@@ -85,5 +84,26 @@ class PublicBookService
         }
 
         return $slots;
+    }
+
+    private static function isValidSlot(int $service,int $staff,int $time) {
+        $slots = static::getAvailableOfDay($service, $staff, $time);
+        foreach($slots as $slot) {
+            if ($slot["start"] === $time) return true;
+            elseif ($slot["start"] > $time) return false;
+        }
+        return false;
+    }
+
+    public static function createReservation(string $user, int $service, int $staff, int $time) {
+        $svcDoc = PublicServiceService::get($service);
+        $duration = $svcDoc["duration"];
+        $price = $svcDoc["price"];
+
+        if (!static::isValidSlot($service, $staff, $time)) {
+            throw new Error("Slots Invalid / Already Taken");
+        }
+        
+        return (new Reservation())->create($time, $time + $duration, $price, $staff, $user, $service);
     }
 }
