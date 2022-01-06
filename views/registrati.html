@@ -1,0 +1,40 @@
+<div>
+	<form action="registrati.php" method="get">
+		<fieldset>
+
+			<label for="name">Nome</label>
+			<input name="name" id="name" minlength="1" maxlength="50" required>
+
+			<label for="surname">Cognome</label>
+			<input name="surname" id="surname" minlength="1" maxlength="50" required>
+
+			<label for="sex">Sesso</label>
+			<select name="sex" id="sex">
+				<option>Uomo</option>
+				<option>Donna</option>
+			</select>
+		</fieldset>
+		<fieldset class="dati-login ">
+			<span>
+				<label for="mail">Mail</label>
+				<input name="mail" id="mail" type="email">
+			</span>
+			<span>
+				<label for="password">Password
+					<span class="input-hint">(Minimo 8 caratteri, tra cui almeno una lettera e un numero)</span>
+				</label>
+				<input name="password" id="password" type="password" required>
+			</span>
+			<span>
+				<label for="password_rep">
+					Ripeti la password
+					<span class="input-hint">Password Non Corrisponde</span>
+				</label>
+				<input name="password_rep" id="password" type="password" required>
+			</span>
+		</fieldset>
+		<input type="submit" value="Registrati" id="Registrati">
+
+	</form>
+
+</div>

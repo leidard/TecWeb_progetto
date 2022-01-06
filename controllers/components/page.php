@@ -6,11 +6,9 @@ function page($title) {
 
     $out = $template;
     
-    // set title
     $out = str_replace('%TITLE%', $title, $out);
-
-    $footer = footer();
-    // set footer
+    
+    $footer = _footer();
     $out = str_replace('%FOOTER%', $footer, $out);
     
     return $out;

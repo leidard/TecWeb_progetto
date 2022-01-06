@@ -1,0 +1,183 @@
+body {
+    margin: 0;
+    position: relative;
+}
+
+header#page-header {
+    display: block;
+}
+
+header#page-header > nav {
+    display: block;
+}
+
+/*         MENU            */
+
+nav#menu {
+    padding: 8px 16px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+nav#menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+nav#menu ul li {
+    flex: 1 1; 
+}
+
+
+/*        BREADCRUMB      */
+
+nav#breadcrumb {
+    padding: 8px 16px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+nav#breadcrumb p {
+    margin: 4px 0;
+}
+
+/*         FOOTER         */
+
+footer#page-footer {
+    border-top: 1px solid #000;
+}
+
+/*     FLOATING BUTTON    */
+
+div#floating-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 8px;
+}
+
+div#floating-btn a {
+    display: block;
+    border-radius: 8px;
+    background-color: #fff6;
+    text-decoration: none;
+    padding: 8px;
+}
+
+
+/*       MAIN              */
+
+main {
+    padding: 8px;
+    margin: 0 auto;
+    width: 1200px;
+}
+
+@media only screen and (max-width: 1200px) {
+    main {
+        width: 768px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    main {
+        width: 100%;
+    }
+}
+
+ 
+
+/*       BENVENUTO        */
+
+section#benvenuto div.img-wrap {
+    background: url('img/tavolo.jpg');
+    background-position: center;
+    background-repeat:no-repeat ;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 8px;
+    border-radius: 12px;
+}
+
+section#benvenuto div.img-wrap div.content {
+    background-color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+}
+
+table#orari-apertura th, table#orari-apertura td {
+    border-right: 1px solid #000;
+    padding: 4px 6px;
+    text-align: center;
+}
+
+table#orari-apertura th:last-child, table#orari-apertura td:last-child {
+    border-right: none;
+}
+
+section#benvenuto div.content >  * {
+    margin:24px 0;
+    box-sizing: border-box;
+}
+
+section#benvenuto a#link-prenota {
+    display: block;
+}
+
+
+/*          FORM LOGIN           */
+
+fieldset.dati-login {
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset.dati-login > span {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+}
+
+fieldset.dati-login > span > label {
+    font-weight: bold;
+}
+
+fieldset.dati-login > span > label > span.input-hint {
+    display: none;
+    font-size: .9em;
+    font-weight: normal;
+}
+
+fieldset.dati-login > span > label::after {
+    content: ":";
+}
+
+fieldset.dati-login > span > input {
+    max-width: 300px;
+    margin-left: 8px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 2px solid #ccc;
+    padding: 6px 8px;
+    font-size: 16px;
+}
+
+fieldset.dati-login > span.error > input {
+    border-color: #f00;
+}
+
+fieldset.dati-login > span.error > label > span.input-hint {
+    display: block;
+}

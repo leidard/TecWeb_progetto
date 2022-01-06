@@ -71,7 +71,7 @@ $query = array(
 );
 $backlink = "/user/available.php?".http_build_query($query);
 
-$main = breadcrumb(array("Home" => "/", "Indietro" => $backlink)) . str_replace("%RADIOS_SLOT%", $radios_slot, $main);
+$main = breadcrumb(array("Disponibilita" => $backlink)) . str_replace("%RADIOS_SLOT%", $radios_slot, $main);
 
 $main = str_replace("%SELECTED_SERVICE%", $selected_service, $main);
 $main = str_replace("%SELECTED_STAFF%", $selected_staff, $main);

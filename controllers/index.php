@@ -1,22 +1,25 @@
 <?php
 require_once 'components/page.php';
 require_once 'components/header.php';
-require_once 'components/footer.php';
+require_once 'components/orari_apertura.php';
 
-$pagina = page('Home Page');
+$pagina = page('Home - Scissorhands');
 
 $header = _header();
 
-$main = file_get_contents('../views/index.html');
+$main = file_get_contents('../views/home.html');
 
 /**
  * Vari str_replace nella vista main
  */
-$main = str_replace('%TITOLO%', "<a href=\"servizi.php\">aaaa</a>", $main);
+$orariApertura = orariApertura();
+$main = str_replace('%ORARIAPERTURA%' , $orariApertura, $main);
 
-
+$pagina = str_replace('%DESCRIPTION%', "Barbieria a Padova e servizi di taglio per curare il proprio look e rilassarsi" ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "scissorhands, barbiere, parrucchiere, barba, capelli, barbieria, orari",$pagina); // norme covid?
 $pagina = str_replace('%HEADER%', $header, $pagina);
-
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
+
 echo $pagina;
+?>
