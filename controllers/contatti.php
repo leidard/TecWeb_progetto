@@ -6,10 +6,9 @@ require_once 'components/orari_apertura.php';
 $pagina = page('Contatti - Scissorhands');
 
 $path = array(
-    "Home" => "/home.php",
     "Contatti" => "/contatti.php"
 );
-$header = _header('Contatti', $path);
+$header = _header($path);
 
 $main = file_get_contents('../views/contatti.html');
 

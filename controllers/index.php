@@ -5,10 +5,7 @@ require_once 'components/orari_apertura.php';
 
 $pagina = page('Home - Scissorhands');
 
-$path = array(
-    "Home" => "/home.php"
-    );
-$header = _header('Home', $path);
+$header = _header();
 
 $main = file_get_contents('../views/home.html');
 

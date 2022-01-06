@@ -6,11 +6,10 @@ require_once '../services/public/service.php';
 
 $pagina = page('Listino barba - Scissorhands');
 $path = array(
-    "Home" => "/home.php",
     "Servizi" => "/servizi.php",
     "Listino per la barba" => "/listino_barba.php",
 );
-$header = _header('Listino per la barba', $path);
+$header = _header($path);
 
 $main = file_get_contents('../views/listino_barba.html');
 

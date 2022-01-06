@@ -4,11 +4,10 @@ require_once 'components/header.php';
 
 $pagina = page('Staff - Scissorhands');
 $path = array(
-    "Home" => "/home.php",
     "Staff" => "/staff.php"
 );
 
-$header = _header('Staff', $path);
+$header = _header($path);
 
 $main = file_get_contents('../views/staff.html');
 

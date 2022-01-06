@@ -9,7 +9,6 @@ require_once __DIR__ . '/../services/public/session.php';
 $pagina = page('Accedi - Scissorhands');
 
 $path = array(
-    "Home" => "/home.php",
     "Accedi" => "/accedi.php"
 );
 
@@ -44,7 +43,7 @@ else
 }
 
 
-$header = _header('Accedi',$path);
+$header = _header($path);
 $footer = _footer();
 $main = file_get_contents('../views/accedi.html');
 

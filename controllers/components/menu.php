@@ -1,27 +1,42 @@
 <?php
 
-function menulink($list, $current) {
-    
+function menulink($name, $ref, $current, $lang) {
+    if (!$lang) $lang="";
+    else $lang = 'lang="el"';
+    if ($current)
+        $current = 'class="current" aria-current="page"';
+    return "<li><a $current $lang href=\"$ref\">$name</a></li>";
 }
 
-function _menu($current, $list, $logged = false){
-    $template = file_get_contents(__DIR__.'/../../views/components/menu.html');
-    $out = $template;
-    
-    $str = "";
-    foreach($list as $page){
-        if ($page === $current){
-            if($page === 'Home')
-                $str .= "<li><span class=\"pag_corrente\" lang=\"en\">$page</span></li>";
-            else
-                $str .= "<li><span class=\"pag_corrente\">$page</span></li>";
-        }else{
-            $ref = strtolower($page).".php";
-            $str .= "<li><a class=\"menu_link\" href=\"$ref\">$page</a></li>";
-        }
-    }
 
-    if($logged){} //TODO: bisogna gestire che se è loggato la barra è diversa
+
+function _menu(){
+    $template = file_get_contents(__DIR__.'/../../views/components/nav_menu.html');
+    $out = $template;
+
+    $pagine = array (
+        'Home' => '/',
+        'Servizi' => '/servizi.php',
+        'Staff' => '/staff.php',
+        'Galleria' => '/galleria.php',
+        'Contatti' => '/contatti.php',
+        'Prenota' => '/prenota.php',
+        'Accedi' => '/accedi.php',
+        'Registrati' => '/registrazione.php'
+    );
+    
+    $langs = array(
+        "Home" => "en",
+    );
+
+    $current = strtok($_SERVER["REQUEST_URI"], '?');
+    $current = str_replace("index.php", "", $current);
+
+    $str = "";
+    foreach($pagine as $name => $ref){  
+        echo $current ."=".$ref."\n";
+        $str .= menulink($name, $ref, $current == $ref, $langs[$name]);
+    }
     
     $out=str_replace("%MENU_ELEMENTS%",$str,$out);
 

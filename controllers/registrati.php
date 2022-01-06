@@ -7,11 +7,10 @@ require_once __DIR__ . '/../services/public/registration.php';
 $pagina = page('Registrati - Scissorhands');
 
 $path = array(
-    "Home" => "/home.php",
     "Registrati" => "/registrati.php"
 );
 
-$header = _header('Registrati',$path);
+$header = _header($path);
 $footer = _footer();
 $main = file_get_contents('../views/registrati.html');
 

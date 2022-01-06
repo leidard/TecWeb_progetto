@@ -1,32 +1,21 @@
 <?php
 
-function _breadcrumb($els) {
-    // if(empty($path))
-    //     return "";
-    //$template = file_get_contents(__DIR__.'/../../views/components/breadcrumb.html');
-
-    //$out = $template;
+function _breadcrumb(array $paths) {
+    $out = file_get_contents(__DIR__ . '/../../views/components/nav_breadcrumb.html');
     
+    if (empty($paths))
+        return str_replace("%BREADCRUMBS%", '<li><a class="current" href="/" lang="en" aria-current="location">Home</a></li>', $out);
     
-    // $out = file_get_contents(__DIR__.'/../../views/components/nav_breadcrumb.html');
-    // $out = str_replace('%NAVBREADCRUMB%', $template, $out);
-    // $breadcrumb = _breadcrumb($path);
-    // $out = str_replace("%BREADCRUMB%",$breadcrumb,$out);
-
-    $str = "";
-    foreach ($els as $name => $ref) {
-        $path = strtok($_SERVER["REQUEST_URI"], '?');
-        if ($ref === $path) { 
-            if($name === "Home") 
-                $str .= "<span lang=\"en\">$name</span>";
-            else
-                $str .= "<span>$name</span>";
+    $str = '<li><a href="/" lang="en">Home</a></li>';
+    $current = strtok($_SERVER["REQUEST_URI"], '?');
+    foreach ($paths as $name => $ref) {
+        if ($ref === $current) {
+            $str .= "<li><a class=\"current\" aria-current=\"location\" href=\"$ref\">$name</a></li>";
         } else {
-            $str .= "<a href=\"$ref\">$name</a> > ";
+            $str .= "<li><a href=\"$ref\">$name</a></li>";
         }
     }
 
-    //$out = str_replace("%BREADCRUMB_ELEMENTS%", $str, $out); inutile, da eliminare anche breadcrumb.html probabilmente. oppure va riorganizzato
-    
-    return $str;
+    $out = str_replace("%BREADCRUMBS%", $str, $out);
+    return $out;
 }

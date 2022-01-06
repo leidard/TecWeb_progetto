@@ -5,10 +5,9 @@ require_once 'components/header.php';
 $pagina = page('Galleria - Scissorhands');
 
 $path = array(
-    "Home" => "/home.php",
     "Galleria" => "/galleria.php"
 );
-$header = _header('Galleria', $path);
+$header = _header($path);
 
 $main = file_get_contents('../views/galleria.html');
 
