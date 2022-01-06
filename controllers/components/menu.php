@@ -21,8 +21,7 @@ function _menu($current, $list, $logged = false){
         }
     }
 
-    if($logged){ //TODO: bisogna gestire che se è loggato la barra è diversa
-    }
+    if($logged){} //TODO: bisogna gestire che se è loggato la barra è diversa
     
     $out=str_replace("%MENU_ELEMENTS%",$str,$out);
 

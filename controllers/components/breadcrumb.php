@@ -15,9 +15,7 @@ function _breadcrumb($els) {
 
     $str = "";
     foreach ($els as $name => $ref) {
-        echo $ref;
         $path = strtok($_SERVER["REQUEST_URI"], '?');
-        echo $path;
         if ($ref === $path) { 
             if($name === "Home") 
                 $str .= "<span lang=\"en\">$name</span>";
