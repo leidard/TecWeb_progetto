@@ -34,7 +34,6 @@ function _menu(){
 
     $str = "";
     foreach($pagine as $name => $ref){  
-        echo $current ."=".$ref."\n";
         $str .= menulink($name, $ref, $current == $ref, $langs[$name]);
     }
     
