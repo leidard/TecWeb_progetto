@@ -38,6 +38,6 @@ function parseDaysSet(string $days) {
     }
 }
 
- function floorDay(int $time) {
+function floorDay(int $time) {
     return $time - ($time % PublicCompanyService::DAY);
 }

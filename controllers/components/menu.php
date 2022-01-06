@@ -34,7 +34,7 @@ function _menu(){
 
     $str = "";
     foreach($pagine as $name => $ref){  
-        $str .= menulink($name, $ref, $current == $ref, $langs[$name]);
+        $str .= menulink($name, $ref, $current == $ref, $langs[$name] ?? false);
     }
     
     $out=str_replace("%MENU_ELEMENTS%",$str,$out);
