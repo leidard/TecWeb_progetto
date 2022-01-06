@@ -4,16 +4,16 @@ require_once 'components/header.php';
 
 require_once __DIR__ . '/../services/public/registration.php';
 
-$pagina = page('Registrazione - Scissorhands');
+$pagina = page('Registrati - Scissorhands');
 
 $path = array(
-    "Home" => "/",
-    "Registrazione" => "/registrazione.php"
+    "Home" => "/home.php",
+    "Registrati" => "/registrati.php"
 );
 
-$header = _header('Registrazione',$path);
+$header = _header('Registrati',$path);
 $footer = _footer();
-$main = file_get_contents('../views/registrazione.html');
+$main = file_get_contents('../views/registrati.html');
 
 
 
@@ -26,7 +26,7 @@ if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && iss
 			RegistrationService::RegisterUser($_GET["name"], $_GET["surname"], $_GET["sex"], $_GET["mail"], $_GET["password"]);
 		else
 		{
-			$main.="Le password non corrispondo.";
+			$main.="Le password non corrispondono.";
 		}	
 	}
 	else
@@ -36,7 +36,7 @@ if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && iss
 }
 
 $pagina = str_replace('%DESCRIPTION%', "Pagina di registrazione a Scissorhands" ,$pagina);
-$pagina = str_replace('%KEYWORDS%', "registrazione, iscrizione, scissorhands, barbiere, parrucchiere, barba, capelli, barbieria",$pagina);
+$pagina = str_replace('%KEYWORDS%', "registrati, registrazione, iscrizione, scissorhands, barbiere, parrucchiere, barba, capelli, barbieria",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

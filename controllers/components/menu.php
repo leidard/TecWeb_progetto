@@ -1,37 +1,23 @@
 <?php
 
-function menulink($name, $ref, $current) {
-    if ($ref === $current) return $name;
-    return '<a class="menu_link" lang="en" href="index.php">'.$name.'</a>';
+function menulink($list, $current) {
+    
 }
 
-function _menu($currentPage, $logged = false){
+function _menu($current, $list, $logged = false){
     $template = file_get_contents(__DIR__.'/../../views/components/menu.html');
     $out = $template;
     
-    $path = strtok($_SERVER["REQUEST_URI"], '?');
-    $path = str_replace("index.php", '', $path);
-    
-    $tagPagine = array (
-        'Home' => '<a class="menu_link" lang="en" href="index.php">Home</a>',
-        'Servizi' => '<a class="menu_link" href="servizi.php">Servizi</a>',
-        'Staff' => '<a class="menu_link" href="lo_staff.php">Staff</a>',
-        'Galleria' => '<a class="menu_link" href="galleria.php">Galleria</a>',
-        'Contatti' => '<a class="menu_link" href="contatti.php">Contatti</a>',
-        'Prenota' => '<a class="menu_link" href="prenota.php">Prenota</a>',
-        'Accedi' => '<a class="menu_link" href="accedi.php">Accedi</a>',
-        'Registrati' => '<a class="menu_link" href="registrazione.php">Registrati</a>'
-    );
-
     $str = "";
-    foreach ($tagPagine as $name => $ref) {
-        if ($currentPage === $name){
-            if($name === 'Home')
-                $str.= "<li><span class=\"pag_corrente\" lang=\"en\">$name</span></li>";
+    foreach($list as $page){
+        if ($page === $current){
+            if($page === 'Home')
+                $str .= "<li><span class=\"pag_corrente\" lang=\"en\">$page</span></li>";
             else
-                $str.= "<li><span class=\"pag_corrente\">$name</span></li>";
+                $str .= "<li><span class=\"pag_corrente\">$page</span></li>";
         }else{
-            $str.= "<li>$ref</li>";
+            $ref = strtolower($page).".php";
+            $str .= "<li><a class=\"menu_link\" href=\"$ref\">$page</a></li>";
         }
     }
 

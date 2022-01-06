@@ -13,18 +13,18 @@ function _breadcrumb($els) {
     // $breadcrumb = _breadcrumb($path);
     // $out = str_replace("%BREADCRUMB%",$breadcrumb,$out);
 
-
     $str = "";
     foreach ($els as $name => $ref) {
+        echo $ref;
         $path = strtok($_SERVER["REQUEST_URI"], '?');
-        $path = str_replace("index.php", '', $path);
+        echo $path;
         if ($ref === $path) { 
             if($name === "Home") 
-                $str.= "<span lang=\"en\">$name</span>";
+                $str .= "<span lang=\"en\">$name</span>";
             else
-                $str.= "<span>$name</span>";
+                $str .= "<span>$name</span>";
         } else {
-            $str.= "<a href=\"$ref\">$name</a> > ";
+            $str .= "<a href=\"$ref\">$name</a> > ";
         }
     }
 

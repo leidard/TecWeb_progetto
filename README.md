@@ -10,8 +10,8 @@ php -S localhost:8000 -t controllers/
 ###
 
 ```php
-# controllers/index.php
-$template_pagina = file_get_contents('../view/index.html');
+# controllers/home.php
+$template_pagina = file_get_contents('../view/home.html');
 $pagina = str_replace('%TITOLO%', "Home" , $template_pagina);
 
 ```

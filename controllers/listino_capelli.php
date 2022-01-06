@@ -6,7 +6,7 @@ require_once '../services/public/service.php';
 
 $pagina = page('Listino capelli - Scissorhands');
 $path = array(
-    "Home" => "/",
+    "Home" => "/home.php",
     "Servizi" => "/servizi.php",
     "Listino per i capelli" => "/listino_capelli.php",
 );

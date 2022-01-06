@@ -5,7 +5,7 @@ require_once 'components/header.php';
 $pagina = page('Servizi - Scissorhands');
 
 $path = array(
-    "Home" => "/",
+    "Home" => "/home.php",
     "Servizi" => "/servizi.php"
 );
 $header = _header('Servizi', $path);

@@ -7,7 +7,7 @@ $pagina = page('Home Page');
 
 $header = _header();
 $footer = _footer();
-$main = file_get_contents('../../views/index.html');
+$main = file_get_contents('../../views/home.html');
 
 /**
  * Vari str_replace nella vista main

@@ -6,12 +6,11 @@ require_once 'components/orari_apertura.php';
 $pagina = page('Home - Scissorhands');
 
 $path = array(
-    "Home" => "/index.php",
-    "Home" => "/"
+    "Home" => "/home.php"
     );
 $header = _header('Home', $path);
 
-$main = file_get_contents('../views/index.html');
+$main = file_get_contents('../views/home.html');
 
 /**
  * Vari str_replace nella vista main
