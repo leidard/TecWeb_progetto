@@ -10,7 +10,7 @@ php -S localhost:8000 -t controllers/
 ###
 
 ```php
-$template_pagina = file_get_contents('../view/home.html');
+$template_pagina = file_get_contents('../view/index.html');
 $pagina = str_replace('%TITOLO%', "Home" , $template_pagina);
 
 ```
