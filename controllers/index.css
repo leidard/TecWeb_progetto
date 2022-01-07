@@ -233,6 +233,50 @@ fieldset.dati-login > span.error > label > span.input-hint {
     display: block;
 }
 
+/*          GALLERY           */
+section#Gallery{
+    background-color: white;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+section#Gallery div#img-container>img{
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+section#Gallery h1{
+    text-align: center;
+    font-size: 3em;
+    border-bottom: 2px black solid;
+} 
+
+section#Gallery div#img-container{
+    column-count: 3;
+    margin: 0 auto;
+    background: #5B0B0B;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .25);
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 1600px) {
+    section#Gallery div#img-container{
+        column-count: 2;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    section#Gallery div#img-container{
+        column-count: 1;
+    }
+}
 
 /*              STAFF             */
 .staff-container{

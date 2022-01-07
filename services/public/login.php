@@ -11,6 +11,6 @@ class PublicLoginService
 
 	public static function getUserPassword($mail)
 	{
-		return (new Credential())->getUserPassword($mail);
+		return (new Credential())->getUserPassword($mail)[0];
 	}
 }

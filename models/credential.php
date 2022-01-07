@@ -25,7 +25,14 @@ class Credential extends DBHelper {
 		$stmt->bind_param('s', $mail);
 		$stmt->execute();
 		$res = $stmt->get_result();
-		return $res->fetch_assoc();
+		return $res->fetch_array();
+	}
+
+	public function changeUserPassword($mail, $password)
+	{
+		$stmt = $this->prepare("UPDATE credential SET password=? where email=?");
+		$stmt->bind_param('ss', $password, $mail);
+		$stmt->execute();
 	}
 
 	public function create($email, $password, $type, $_id)  
