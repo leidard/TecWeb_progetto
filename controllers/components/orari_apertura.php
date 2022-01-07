@@ -1,28 +1,18 @@
 <?php
 require_once '../services/public/company.php';
+require_once '../services/helpers.php';
 
 function orariApertura(){
-    $orarioApertura = 0;
-    $orarioChiusura = 0;
-    $out = "";
+    $out = file_get_contents(__DIR__.'/../../views/components/orari_apertura.html');
     $company = PublicCompanyService::get();
-    if (!$company)
-        $out = "<p>PROBLEMA CON DATABASE!!</p>"; //Sistemare
-    else{
-        $open_at  = $company["open_at"];
-        $orarioApertura = gmdate('H:i', $open_at);
-        $close_at = $company["close_at"];
-        $orarioChiusura = gmdate('H:i', $close_at);
-        $days = PublicCompanyService::parseDaysSet($company["days"]);
-        $out=file_get_contents(__DIR__.'/../../views/components/orari_apertura.html');
-        $giorni = PublicCompanyService::ARRDAY;
-        foreach($days as $key => $day)
-        {            
-            if($day)
-                $out = str_replace('%'. $giorni[$key] .'%', $orarioApertura."-".$orarioChiusura, $out);
-            else
-                $out = str_replace('%'. $giorni[$key] .'%', "CHIUSO", $out);
-        }    
-    }
+    $orarioApertura = gmdate('H:i', $company["open_at"]);
+    $orarioChiusura = gmdate('H:i', $company["close_at"]);
+    $days = parseDaysSet($company["days"]);
+    foreach($days as $day => $isopen)  {            
+        if($isopen)
+            $out = str_replace("%DAY_$day%", "$orarioApertura-$orarioChiusura", $out);
+        else
+            $out = str_replace("%DAY_$day%", "CHIUSO", $out);
+    }    
     return $out;
 }

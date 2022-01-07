@@ -6,10 +6,12 @@ class Reservation extends DBHelper {
     public function create($star_at, $end_at, $price, $staff, $customer, $service) {
         if (!!$this->getUnconfirmed($customer))
             throw new Error("Order Already Present");
-        $stmt = $this->prepare("INSERT INTO reservation(start_at, end_at, price, staff, customer, service) VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("iid", $star_at, $end_at, $price);
-        $stmt->bind_param("isi", $staff, $customer, $service);
-        $stmt->execute();
+        $stmt = $this->prepare("INSERT INTO reservation(company, start_at, end_at, price, staff, customer, service) VALUES (1, ?,?,?,?,?,?)");
+        $stmt->bind_param("iidisi", $star_at, $end_at, $price, $staff, $customer, $service);
+         
+        if (!$stmt->execute()){
+            echo "Error: ". $stmt->error;
+        } 
     }
 
     /**

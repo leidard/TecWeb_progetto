@@ -17,4 +17,8 @@ class UserReservationService {
     public static function delete($customer, $id) {
         return (new Reservation())->deleteOfCustomer($customer, $id);
     }
+
+    public static function getPlannedFor24hFrom($staff,  $time) {
+        return (new Reservation())->getRangeOfStaff($staff, $time, $time + 86400);
+    }
 }
