@@ -21,7 +21,7 @@ function listaServizi() {
         $out = "";
     
         foreach($services as $service){      
-            if ($service["type"] === 'capelli')
+            if ($service["type"] === 'capelli') 
                 $out .= _servizio($service["name"],$service["price"],$service["duration"],$service["description"]);  
         }    
     }    
