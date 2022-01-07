@@ -19,7 +19,7 @@ $main = file_get_contents('../views/registrati.html');
 
 if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && isset($_GET["mail"]) && isset($_GET["password"]) && isset($_GET["password_rep"]))
 {
-	if(filter_var($_GET["mail"], FILTER_VALIDATE_EMAIL)) # Da considerare i falsi positivi/negativi
+	if(filter_var($_GET["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice 
 	{
 		if($_GET["password_rep"] == $_GET["password"])
 			RegistrationService::RegisterUser($_GET["name"], $_GET["surname"], $_GET["sex"], $_GET["mail"], $_GET["password"]);

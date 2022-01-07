@@ -22,7 +22,7 @@ function _menu(){
         'Contatti' => '/contatti.php',
         'Prenota' => '/prenota.php',
         'Accedi' => '/accedi.php',
-        'Registrati' => '/registrazione.php'
+        'Registrati' => '/registrati.php'
     );
     
     $langs = array(
