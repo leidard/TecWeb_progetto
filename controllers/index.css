@@ -20,7 +20,7 @@ header h1{
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    text-indent: -9999999em; /*per far sparire il titolo h1*/
+    text-indent: -9999999em; 
     font-size: 128px;
     margin: 0;
 }
@@ -67,17 +67,35 @@ nav#menu a.current {
 nav#breadcrumb {
     padding: 8px 16px;
     border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #898988;
+    background:#f3f3f3;
 }
 
-nav#breadcrumb p {
-    margin: 4px 0;
+nav#breadcrumb ol{
+    display: inline;
+    list-style: none;
+    padding: 0;
+}
+
+nav#breadcrumb li, a{
+    display: inline;
+}
+
+nav#breadcrumb span {
+    margin: 0;
 }
 
 /*         FOOTER         */
 
 footer#page-footer {
     border-top: 1px solid #000;
+    background-color: #f3f3f3;
+    width: 100%;
+    display: inline-block;
+}
+
+footer#page-footer p{
+    text-align: center;
 }
 
 /*     FLOATING BUTTON    */
@@ -92,7 +110,6 @@ div#floating-btn {
 div#floating-btn a {
     display: block;
     border-radius: 8px;
-    background-color: #fff6;
     text-decoration: none;
     padding: 8px;
 }
@@ -120,7 +137,7 @@ main {
 
  
 
-/*       BENVENUTO        */
+/*       HOME        */
 
 section#benvenuto div.img-wrap {
     background: url('img/table.jpg');
@@ -141,6 +158,11 @@ section#benvenuto div.img-wrap div.content {
     border-radius: 12px;
 }
 
+section#misureSicurezza, ul {
+    text-align: center;
+    list-style-position: inside;
+}
+
 table {
     border: none;
     border-collapse: collapse;
@@ -154,6 +176,11 @@ table#orari-apertura th, table#orari-apertura td {
 
 table#orari-apertura th:last-child, table#orari-apertura td:last-child {
     border-right: none;
+}
+
+table#orari-apertura caption{
+    font-weight: bold;
+    font-size: 20px;
 }
 
 section#benvenuto div.content >  * {
@@ -212,6 +239,50 @@ fieldset.dati-login > span.error > label > span.input-hint {
     display: block;
 }
 
+/*          GALLERY           */
+section#Gallery{
+    background-color: white;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+section#Gallery div#img-container>img{
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+section#Gallery h2{
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 10px;
+} 
+
+section#Gallery div#img-container{
+    column-count: 3;
+    margin: 0 auto;
+    background: #800F0F;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .25);
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 1200px) {
+    section#Gallery div#img-container{
+        column-count: 2;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    section#Gallery div#img-container{
+        column-count: 1;
+    }
+}
 
 /*              STAFF             */
 .staff-container{
@@ -375,3 +446,15 @@ div.forbici {
         flex: 1 0 100%; /* 1 per riga */
     }
 }
+
+/*              404 ERROR               */
+div.error{
+    display: flex;
+    align-items: center;
+}
+
+div.error img{
+    height: auto;
+    max-width: 100%;
+}
+
