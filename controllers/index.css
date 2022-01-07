@@ -20,7 +20,7 @@ header h1{
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    text-indent: -9999999em; /*per far sparire il titolo h1*/
+    text-indent: -9999999em; 
     font-size: 128px;
     margin: 0;
 }
@@ -108,7 +108,6 @@ div#floating-btn {
 div#floating-btn a {
     display: block;
     border-radius: 8px;
-    background-color: #fff6;
     text-decoration: none;
     padding: 8px;
 }
@@ -175,6 +174,11 @@ table#orari-apertura th, table#orari-apertura td {
 
 table#orari-apertura th:last-child, table#orari-apertura td:last-child {
     border-right: none;
+}
+
+table#orari-apertura caption{
+    font-weight: bold;
+    font-size: 20px;
 }
 
 section#benvenuto div.content >  * {
