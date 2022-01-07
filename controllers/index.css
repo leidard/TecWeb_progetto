@@ -89,7 +89,9 @@ nav#breadcrumb span {
 
 footer#page-footer {
     border-top: 1px solid #000;
-    background-color: #f3f3f3
+    background-color: #f3f3f3;
+    width: 100%;
+    display: inline-block;
 }
 
 footer#page-footer p{
@@ -444,3 +446,15 @@ div.forbici {
         flex: 1 0 100%; /* 1 per riga */
     }
 }
+
+/*              404 ERROR               */
+div.error{
+    display: flex;
+    align-items: center;
+}
+
+div.error img{
+    height: auto;
+    max-width: 100%;
+}
+
