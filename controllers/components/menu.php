@@ -8,8 +8,6 @@ function menulink($name, $ref, $current, $lang) {
     return "<li><a $current $lang href=\"$ref\">$name</a></li>";
 }
 
-
-
 function _menu(){
     $template = file_get_contents(__DIR__.'/../../views/components/nav_menu.html');
     $out = $template;

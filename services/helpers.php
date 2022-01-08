@@ -39,5 +39,5 @@ function parseDaysSet(string $days) {
 }
 
 function floorDay(int $time) {
-    return $time - ($time % PublicCompanyService::DAY);
+    return $time - ($time % 86400);
 }

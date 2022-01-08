@@ -2,16 +2,22 @@
 require_once '../components/page.php';
 require_once '../components/header.php';
 require_once '../components/radio_book.php';
-require_once '../components/breadcrumb.php';
 
 $pagina = page('Prenota');
-$header = _header();
-$main = file_get_contents('../../views/user/available.html');
+$header = _header(array("Utente" => "/user/", "Prenotazioni" => "/user/prenotazioni.php", "Nuova Prenotazione" => "/user/book_available.php"));
 
+$main = file_get_contents('../../views/user/book_available.html');
+
+require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/public/company.php';
 require_once __DIR__ . '/../../services/public/service.php';
 require_once __DIR__ . '/../../services/public/staff.php';
 require_once __DIR__ . '/../../services/helpers.php';
+
+$user_id = 'CCC1CCC1CCC1CCC1';
+if (!UserBookingService::canBook($user_id)) {
+    header("Location: /user/prenotazioni.php");
+}
 
 $services = PublicServiceService::getAll();
 $staff = PublicStaffService::getAll();
