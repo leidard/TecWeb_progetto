@@ -16,7 +16,7 @@ header#page-header > nav {
 }
 
 header h1{
-    background-image: url('img/logo.png');
+    background-image: url('img/logo_bscissorhands.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -51,7 +51,7 @@ nav#menu ul li {
 }
 
 nav#menu a{
-    padding: 8px 16px;
+    padding: 8px 16px 10px;
     color:white;
     text-transform:uppercase;
 } 
@@ -59,6 +59,11 @@ nav#menu a{
 nav#menu a.current {
     color: black;
     background-color: white;
+} 
+
+nav#menu a:hover{
+    color:white;
+    background-color: black;
 } 
 
 
@@ -294,6 +299,9 @@ section#Gallery div#img-container{
 
 article.staff {
     display: flex;
+    background-color: #E1E4E4;
+    border-radius: 6px;
+    margin: 8px;
 }
 
 article.staff > img{
@@ -301,12 +309,15 @@ article.staff > img{
     display: block;
     width: 250px;
     align-self: center;
+    border-radius: 6px;
+ 
 }
 
 article > div{
     margin: 0;
     display: block;
     text-align: left;
+  
 }
 
 article.staff.dx > div{
@@ -319,28 +330,31 @@ article.staff.dx > img{
 }
 
 @media only screen and (max-width: 600px) {
+    
+    
     article.staff > div{
-        width: 100%;
+        flex: 1 0 100%;
+
     }
 
     article.staff > img{
-        width: 100%;
+        flex: 1 0 100%;;
     }
 }
 
 /*              SERVIZI             */
-div.forbici {
+div.capelli {
     width:150px; 
     height:150px; 
-    background-image:url('img/scissors_icon.png');
+    background-image:url('img/hair_icon.png');
     margin:6px; 
     padding:0; 
  }
 
- div.lametta {
+ div.barba {
     width:150px; 
     height:150px;
-    background-image:url('img/razor_icon.png');
+    background-image:url('img/beard_icon.png');
     margin:6px; 
     padding:0;
  }
@@ -364,14 +378,14 @@ div.forbici {
 }
 
 @media only screen and (max-width: 1200px) {
-    div.lametta {
+    div.barba {
         background-image: none;
         width:1px; 
         height:150px;
-        border-left: thick solid #800F0F;
+        border-left: thick solid #124773;
     }
 
-    div.forbici {
+    div.capelli {
         width:0px; 
         height:0px;
         background-image: none;
@@ -379,14 +393,14 @@ div.forbici {
 }
 
 @media only screen and (max-width: 768px) {
-    div.lametta {
+    div.barba {
         width:0px; 
         height:0px;
     }
 
     div.box-capelli{
         flex: 1 0 50%;
-        border-bottom: thick solid #800F0F;
+        border-bottom: thick solid #124773;
     }
 
     div.box-barba{
