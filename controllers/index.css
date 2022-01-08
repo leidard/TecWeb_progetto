@@ -188,6 +188,11 @@ table#orari-apertura caption{
     font-size: 20px;
 }
 
+table#orari-apertura{
+    margin-left: auto;
+    margin-right: auto;;
+}
+
 section#benvenuto div.content >  * {
     margin:24px 0;
     box-sizing: border-box;
