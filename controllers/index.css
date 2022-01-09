@@ -163,6 +163,7 @@ section#misureSicurezza, ul {
     list-style-position: inside;
 }
 
+
 table {
     border: none;
     border-collapse: collapse;
@@ -458,3 +459,20 @@ div.error img{
     max-width: 100%;
 }
 
+/*              505 errore_connessione               */
+div#ErroreConnessione > div.ErrConnImg{
+    width:400px; 
+    height:400px; 
+    background-image: url(img/network-error-icon.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin:auto;
+    padding:0; 
+}
+
+
+div#ErroreConnessione > p > span{
+    text-align: center;
+    display: block;
+}
