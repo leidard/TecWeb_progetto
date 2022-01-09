@@ -1,12 +1,7 @@
-*{
-    font-family: Helvetica, sans-serif;
-}
-
 body {
     margin: 0;
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 header#page-header {
@@ -18,7 +13,7 @@ header#page-header > nav {
 }
 
 header h1{
-    background-image: url('img/logo_bscissorhands.png');
+    background-image: url('/static/img/logo_bscissorhands.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -38,6 +33,9 @@ nav#menu {
     border-top: 1px solid #000;
     border-bottom: 1px solid #000; 
     background-color: #800F0F; 
+    position: relative;
+    min-height: 37px;
+    box-sizing: border-box;
 }
 
 nav#menu ul {
@@ -46,6 +44,14 @@ nav#menu ul {
     list-style: none;
     display: flex;
     flex-flow: row nowrap;
+}
+
+@media only screen and (max-width: 768px) {
+    nav#menu ul {
+        position: absolute;
+        z-index: 0;
+        flex-flow: column;
+    }
 }
 
 nav#menu ul li {
@@ -164,7 +170,7 @@ main {
 /*       HOME        */
 
 section#benvenuto div.img-wrap {
-    background: url('img/table.jpg');
+    background: url('/static/img/table.jpg');
     background-position: center;
     background-repeat:no-repeat ;
     background-size: cover;
@@ -537,7 +543,7 @@ article.staff > div{
 div.capelli {
     width:150px; 
     height:150px; 
-    background-image:url('img/hair_icon.png');
+    background-image:url('/static/img/hair_icon.png');
     margin:6px; 
     padding:0; 
  }
@@ -545,7 +551,7 @@ div.capelli {
  div.barba {
     width:150px; 
     height:150px;
-    background-image:url('img/beard_icon.png');
+    background-image:url('/static/img/beard_icon.png');
     margin:6px; 
     padding:0;
  }
@@ -671,7 +677,7 @@ div.error img{
 div#ErroreConnessione > div.ErrConnImg{
     width:400px; 
     height:400px; 
-    background-image: url(img/network-error-icon.jpg);
+    background-image: url('/static/img/network-error-icon.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -4,9 +4,9 @@ require_once '../components/header.php';
 require_once '../components/radio_book.php';
 
 $pagina = page('Prenota');
-$header = _header(array("Utente" => "/user/", "Prenotazioni" => "/user/prenotazioni.php", "Nuova Prenotazione" => "/user/book_available.php"));
+$header = _header(array("Utente" => "/user/", "Prenotazioni" => "/user/prenotazioni.php", "Nuova Prenotazione" => "/user/prenota.php"));
 
-$main = file_get_contents('../../views/user/book_available.html');
+$main = file_get_contents('../../views/user/prenota.html');
 
 require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/public/company.php';
