@@ -34,9 +34,9 @@ if (isset($_GET["staff"]) && preg_match('/^[0-9]+$/', $_GET["staff"])) {
     $selected_staff_name = $barber["name"]." ".$barber["surname"];
 }
 
-$selected_day = "";
+$selected_day = floor(time()/86400);
 if (isset($_GET["day"]) && preg_match('/^[0-9]+$/', $_GET["day"])) {
-    $selected_day = $_GET["day"];
+    $selected_day = (int) $_GET["day"];
     $selected_day_ext = gmdate("M d", $selected_day*86400);
 }
 $query = array(
@@ -65,11 +65,12 @@ $main = str_replace("%NEXT_DAY%", $next_day, $main);
 $main = str_replace("%TODAY_DAY%", $today_day, $main);
 
 
-$backlink = "/user/book_available.php?" . http_build_query(array(
+$backlink = "/user/prenota.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => $selected_day
 ));
+
 
 $radios_slot = "";
 if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day)) {
