@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/errors.php';
 
 // TODO CHANGE USER_ID
-$user_id = "CCC1CCC1CCC1CCC1";
+$user_id = 1;
 
 
 // RICEZIONE DI NUOVA PRENOTAZIONE

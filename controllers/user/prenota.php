@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../services/public/service.php';
 require_once __DIR__ . '/../../services/public/staff.php';
 require_once __DIR__ . '/../../services/helpers.php';
 
-$user_id = 'CCC1CCC1CCC1CCC1';
+$user_id = 1;
 if (!UserBookingService::canBook($user_id)) {
     header("Location: /user/prenotazioni.php");
 }

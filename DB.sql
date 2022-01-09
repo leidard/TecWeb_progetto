@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `company` INT UNSIGNED NOT NULL,
   `start_at` INT UNSIGNED NOT NULL,
   `end_at` INT UNSIGNED NOT NULL,
-  `confirmed` BOOLEAN DEFAULT FALSE,
+  `confirmed` BOOLEAN DEFAULT NULL,
   `price` decimal(7, 2) NOT NULL,
   `notes` text NOT NULL default '',
   `staff` INT UNSIGNED NOT NULL,
