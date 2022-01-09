@@ -1,4 +1,34 @@
 <div>
+
+	<script>
+
+		function onEmail(evt) {
+			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value)) 
+				evt.target.parentElement.classList.add("error") 
+			else 
+				evt.target.parentElement.classList.remove("error")
+		}
+
+		function onPw(evt){
+			// Minimum eight characters, at least one letter and one number:
+			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+				evt.target.parentElement.classList.add("error") 
+			else 
+				evt.target.parentElement.classList.remove("error")
+		}
+
+		function pwCheck()
+		{
+			const password = document.getElementById('password').value;
+			const password_rep = document.getElementById('password_rep').value;
+
+			if(password_rep.value === password.value)
+				document.getElementById("Registrati").disabled = false;
+			else
+				document.getElementById("Registrati").disabled = true;
+		} 
+	</script>
+
 	<h2>Registrati</h2>
 	<form action="registrati.php" method="get">
 		<fieldset>
@@ -18,23 +48,23 @@
 		<fieldset class="dati-login ">
 			<span>
 				<label for="mail">Mail</label>
-				<input name="mail" id="mail" type="email">
+				<input oninput="onEmail(event);" name="mail" id="mail" type="email">
 			</span>
 			<span>
 				<label for="password">Password
 					<span class="input-hint">(Minimo 8 caratteri, tra cui almeno una lettera e un numero)</span>
 				</label>
-				<input name="password" id="password" type="password" required>
+				<input name="password" id="password" type="password" required oninput="onPw(event);" onchange="pwCheck();">
 			</span>
 			<span>
 				<label for="password_rep">
 					Ripeti la password
 					<span class="input-hint">Password Non Corrisponde</span>
 				</label>
-				<input name="password_rep" id="password" type="password" required>
+				<input name="password_rep" id="password_rep" type="password" onchange="pwCheck();" required>
 			</span>
 		</fieldset>
-		<input type="submit" value="Registrati" id="Registrati">
+		<input type="submit" value="Registrati" id="Registrati" disabled>
 
 	</form>
 
