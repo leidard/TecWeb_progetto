@@ -23,7 +23,15 @@ class StaffReservationService {
         return (new Reservation())->get($id);
     }
 
-    public static function getPlannedFor24hFrom($staff,  $time) {
-        return (new Reservation())->getRangeOfStaff($staff, $time, $time + 86400);
+    public static function getPlannedForDay($day) {
+        return (new Reservation())->getRange($day*86400, ($day+1)* 86400) ?? array();
+    }
+
+    public static function unconfirmedCount() {
+        return (new Reservation())->unconfirmedCount()["count"];
+    }
+
+    public static function getAllUnconfirmed() {
+        return (new Reservation())->getAllUnconfirmed();
     }
 }

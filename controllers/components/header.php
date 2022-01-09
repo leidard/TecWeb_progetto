@@ -1,6 +1,6 @@
 <?php
-require_once 'components/menu.php';
-require_once 'components/breadcrumb.php';
+require_once __DIR__.'/menu.php';
+require_once __DIR__.'/breadcrumb.php';
 
 function _header(array $paths = []) {
     $template = file_get_contents(__DIR__.'/../../views/components/header.html');

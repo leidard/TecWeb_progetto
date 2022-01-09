@@ -5,6 +5,8 @@
 body {
     margin: 0;
     position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 header#page-header {
@@ -16,7 +18,7 @@ header#page-header > nav {
 }
 
 header h1{
-    background-image: url('img/logo.png');
+    background-image: url('img/logo_bscissorhands.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -51,7 +53,7 @@ nav#menu ul li {
 }
 
 nav#menu a{
-    padding: 8px 16px;
+    padding: 8px 16px 10px;
     color:white;
     text-transform:uppercase;
 } 
@@ -59,6 +61,11 @@ nav#menu a{
 nav#menu a.current {
     color: black;
     background-color: white;
+} 
+
+nav#menu a:hover{
+    color:white;
+    background-color: black;
 } 
 
 
@@ -83,6 +90,23 @@ nav#breadcrumb li, a{
 
 nav#breadcrumb span {
     margin: 0;
+}
+
+nav#breadcrumb ol {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+nav#breadcrumb ol li {
+    display: inline-block;
+}
+
+nav#breadcrumb ol li:not(:first-child) a::before {
+    display: inline-block;
+    margin: 0 8px; 
+    content: ">";
 }
 
 /*         FOOTER         */
@@ -163,6 +187,7 @@ section#misureSicurezza, ul {
     list-style-position: inside;
 }
 
+/*              ORARI               */
 
 table {
     border: none;
@@ -182,15 +207,61 @@ table#orari-apertura th:last-child, table#orari-apertura td:last-child {
 table#orari-apertura caption{
     font-weight: bold;
     font-size: 20px;
+    text-align: center;
+
 }
 
 section#benvenuto div.content >  * {
-    margin:24px 0;
     box-sizing: border-box;
 }
 
+table#orari-apertura{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 section#benvenuto a#link-prenota {
+    margin: 16px 0 8px;
     display: block;
+}
+
+
+@media 
+only screen and (max-width: 760px) {
+
+	table#orari-apertura th, td, tr { 
+		display: block; 
+        padding:0;
+        white-space: normal;
+	}
+	
+	table#orari-apertura thead { 
+		display: none;
+	}
+	
+	table#orari-apertura tr { 
+        border-top: 1px solid black; 
+    }
+	
+	table#orari-apertura td { 
+        border-right: none;
+		border-bottom: 1px solid black; 
+		position: relative;
+	}
+	
+	table#orari-apertura td:before { 
+		display: inline;
+        font-weight: bold;
+	}
+
+    table#orari-apertura td:nth-child(1):before { content: "Lunedì: "; }
+    table#orari-apertura td:nth-child(2):before { content: "Martedì: "; }
+    table#orari-apertura td:nth-child(3):before { content: "Mercoledì: "; }
+    table#orari-apertura td:nth-child(4):before { content: "Giovedì: "; }
+    table#orari-apertura td:nth-child(5):before { content: "Venerdì: "; }
+    table#orari-apertura td:nth-child(6):before { content: "Sabato: "; }
+    table#orari-apertura td:nth-child(7):before { content: "Domenica: "; }
+
 }
 
 
@@ -240,6 +311,143 @@ fieldset.dati-login > span.error > label > span.input-hint {
     display: block;
 }
 
+
+/*      PRENOTAZIONI    */
+
+.reservations {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    align-items: center;
+}
+
+.resrv {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin: 8px 0;
+    min-width: 400px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+}
+
+.resrv .resrv-name {
+    font-weight: bolder;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.resrv .resrv-desc {
+    margin-left: 16px;
+    margin-top: 8px;
+    font-size: 1em;
+}
+
+.resrv .resrv-desc p {
+    flex-grow: 1;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.resrv .resrv-price {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.resrv .resrv-desc .resrv-conf {
+    display: flex;
+    margin-top: 4px;
+    align-content: center;
+}
+
+/*          FIELDSET               */
+
+form.booking-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form.booking-form fieldset {
+    display: flex;
+    flex-flow: column ;
+    align-items: center;
+    flex: 1 1;
+    border: 1px solid black;
+    min-width: 260px;
+    margin: 8px 0;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+form.booking-form fieldset legend {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 8px;
+}
+
+.booking-radio {
+    display: flex;
+    justify-content: center;
+    flex: 1 1;
+    width: 100%;
+    padding: 1px 0;
+    cursor: pointer;
+}
+
+.booking-radio input + label {
+    padding: 0;
+    transition: .15s ease-in-out;
+    font-size: .95em;
+    font-weight: 400;
+}
+
+.booking-radio input + label:hover {
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: bold;
+    border: 1px solid #ccc;
+}
+
+.booking-radio input:checked + label {
+    padding: 6px 0;
+    font-size: 1.05em;
+    font-weight: bold;
+    border: 1px solid #888;
+}
+
+
+.booking-radio input:disabled + label {
+    color: #555;
+    border: 1px solid #ccc0;
+}
+
+.booking-radio input:disabled + label:hover {
+    color: #555;
+    padding: 0;
+    font-size: .95em;
+    font-weight: normal;
+    border: 1px solid #ccc0;
+    cursor: not-allowed;
+}
+
+.booking-radio label {
+    flex-grow: 1;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid #ccc0;
+}
+
+form.booking-form input[type="submit"] {
+    margin: 8px 0;
+}
 /*          GALLERY           */
 section#Gallery{
     background-color: white;
@@ -259,8 +467,6 @@ section#Gallery div#img-container>img{
 }
 
 section#Gallery h2{
-    text-align: center;
-    font-size: 3em;
     margin-bottom: 10px;
 } 
 
@@ -287,61 +493,59 @@ section#Gallery div#img-container{
 
 /*              STAFF             */
 .staff-container{
-    display: flex;
-    flex-direction: column;
-    flex-flow: row nowrap;
+    display: grid;
+    grid-template-rows: auto auto auto;
     margin: 0 auto;
 }
 
 article.staff {
-    display: flex;
+    background-color: #E1E4E4;
+    display: grid;
+    grid-template-columns: auto auto;
+    border-radius: 6px;
+    margin: 8px;
 }
 
 article.staff > img{
     margin: 10px;
-    display: block;
-    width: 250px;
-    align-self: center;
+    border-radius: 6px;
+    column-count: 1;
+    max-width: 300px;
 }
 
-article > div{
+article.staff > div{
     margin: 0;
-    display: block;
-    text-align: left;
-}
-
-article.staff.dx > div{
-    text-align: right;
-    order: 1;
-}
-
-article.staff.dx > img{
-    order: 2;
+    column-count: 1;
 }
 
 @media only screen and (max-width: 600px) {
-    article.staff > div{
-        width: 100%;
+    article.staff {
+        grid-template-columns: auto;
     }
 
     article.staff > img{
         width: 100%;
     }
+
+    article.staff > div{
+        grid-column-start: 1;
+        margin: 0 4px 0;
+    }
 }
 
 /*              SERVIZI             */
-div.forbici {
+div.capelli {
     width:150px; 
     height:150px; 
-    background-image:url('img/scissors_icon.png');
+    background-image:url('img/hair_icon.png');
     margin:6px; 
     padding:0; 
  }
 
- div.lametta {
+ div.barba {
     width:150px; 
     height:150px;
-    background-image:url('img/razor_icon.png');
+    background-image:url('img/beard_icon.png');
     margin:6px; 
     padding:0;
  }
@@ -364,15 +568,19 @@ div.forbici {
     flex: 1 0 20%;
 }
 
+div.spiegazione-servizi p a{
+    display: block;
+}
+
 @media only screen and (max-width: 1200px) {
-    div.lametta {
+    div.barba {
         background-image: none;
         width:1px; 
         height:150px;
-        border-left: thick solid #800F0F;
+        border-left: thick solid #124773;
     }
 
-    div.forbici {
+    div.capelli {
         width:0px; 
         height:0px;
         background-image: none;
@@ -380,14 +588,14 @@ div.forbici {
 }
 
 @media only screen and (max-width: 768px) {
-    div.lametta {
+    div.barba {
         width:0px; 
         height:0px;
     }
 
     div.box-capelli{
         flex: 1 0 50%;
-        border-bottom: thick solid #800F0F;
+        border-bottom: thick solid #124773;
     }
 
     div.box-barba{
@@ -475,4 +683,8 @@ div#ErroreConnessione > div.ErrConnImg{
 div#ErroreConnessione > p > span{
     text-align: center;
     display: block;
+}
+/*              CONTATTI                */
+iframe{
+    margin:8px;
 }
