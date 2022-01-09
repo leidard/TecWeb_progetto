@@ -168,6 +168,8 @@ section#misureSicurezza, ul {
     list-style-position: inside;
 }
 
+/*              ORARI               */
+
 table {
     border: none;
     border-collapse: collapse;
@@ -186,6 +188,7 @@ table#orari-apertura th:last-child, table#orari-apertura td:last-child {
 table#orari-apertura caption{
     font-weight: bold;
     font-size: 20px;
+
 }
 
 table#orari-apertura{
@@ -200,6 +203,53 @@ section#benvenuto div.content >  * {
 
 section#benvenuto a#link-prenota {
     display: block;
+}
+
+
+@media 
+only screen and (max-width: 760px) {
+
+	/* Force table to not be like tables anymore */
+	table#orari-apertura, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	table#orari-apertura thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	table#orari-apertura tr { border-top: 1px solid black; }
+	
+	table#orari-apertura td { 
+		border: none;
+		border-bottom: 1px solid black; 
+		position: relative;
+	}
+	
+	table#orari-apertura td:before { 
+		display: inline;
+        font-weight: bold;
+	}
+
+    table#orari-apertura caption{
+        display: inline;
+    } /*perché in home la capition è centrata e in contatti no?????????????????????????????????*/
+
+    table#orari-apertura td:nth-child(1):before { content: "Lunedì: "; }
+    table#orari-apertura td:nth-child(2):before { content: "Martedì: "; }
+    table#orari-apertura td:nth-child(3):before { content: "Mercoledì: "; }
+    table#orari-apertura td:nth-child(4):before { content: "Giovedì: "; }
+    table#orari-apertura td:nth-child(5):before { content: "Venerdì: "; }
+    table#orari-apertura td:nth-child(6):before { content: "Sabato: "; }
+    table#orari-apertura td:nth-child(7):before { content: "Domenica: "; }
+
+      /*
+      tr:nth-child(odd) {
+        background-color: black;
+      } perchè sembano tutti dispari? */
 }
 
 
@@ -296,54 +346,43 @@ section#Gallery div#img-container{
 
 /*              STAFF             */
 .staff-container{
-    display: flex;
-    flex-direction: column;
-    flex-flow: row nowrap;
+    display: grid;
+    grid-template-rows: auto auto auto;
     margin: 0 auto;
 }
 
 article.staff {
-    display: flex;
     background-color: #E1E4E4;
+    display: grid;
+    grid-template-columns: auto auto;
     border-radius: 6px;
     margin: 8px;
 }
 
 article.staff > img{
     margin: 10px;
-    display: block;
-    width: 250px;
-    align-self: center;
     border-radius: 6px;
- 
+    column-count: 1;
+    max-width: 300px;
 }
 
-article > div{
+article.staff > div{
     margin: 0;
-    display: block;
-    text-align: left;
-  
-}
-
-article.staff.dx > div{
-    text-align: right;
-    order: 1;
-}
-
-article.staff.dx > img{
-    order: 2;
+    column-count: 1;
 }
 
 @media only screen and (max-width: 600px) {
-    
-    
-    article.staff > div{
-        flex: 1 0 100%;
-
+    article.staff {
+        grid-template-columns: auto;
     }
 
     article.staff > img{
-        flex: 1 0 100%;;
+        width: 100%;
+    }
+
+    article.staff > div{
+        grid-column-start: 1;
+        margin: 0 4px 0;
     }
 }
 
@@ -477,3 +516,7 @@ div.error img{
     max-width: 100%;
 }
 
+/*              CONTATTI                */
+iframe{
+    margin:8px;
+}
