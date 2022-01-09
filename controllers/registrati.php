@@ -31,7 +31,7 @@ if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && iss
 	}
 	else
 	{
-		$main.="Email non valida."; # Da riempire meglio ofc.
+		$main.="Email non valida."; #TODO Da riempire meglio ofc.
 	}
 }
 
