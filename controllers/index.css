@@ -36,8 +36,22 @@ nav#menu {
     background-color: #800F0F;
     position: relative;
     min-height: 37px;
+    text-align: center;
     box-sizing: border-box;
 }
+
+nav#menu.visible {}
+
+nav#menu button#burgher {
+    display: none;
+    visibility: hidden;
+    background: url("static/vector/burgher.svg") no-repeat center center;
+    color: white;
+    height: 40px;
+    width: 40px;
+}
+
+nav#menu.visible button#burgher {}
 
 nav#menu ul {
     padding: 0;
@@ -48,26 +62,39 @@ nav#menu ul {
 }
 
 @media only screen and (max-width: 768px) {
+    nav#menu button#burgher {
+        display: block;
+        visibility: visible;
+    }
     nav#menu ul {
-        position: absolute;
-        z-index: 0;
-        flex-flow: column;
+        display: none;
+        flex-direction: column;
+        visibility: hidden;
+    }
+    nav#menu.visible ul {
+        display: flex;
+        visibility: visible;
     }
 }
 
 nav#menu ul li {
     flex: 1 1;
+    padding: 8px 16px;
+    box-sizing: border-box;
+}
+
+nav#menu ul li.current {
+    background-color: white;
 }
 
 nav#menu a {
-    padding: 8px 16px 10px;
+    box-sizing: border-box;
     color: white;
     text-transform: uppercase;
 }
 
-nav#menu a.current {
+nav#menu li.current a {
     color: black;
-    background-color: white;
 }
 
 nav#menu a:hover {

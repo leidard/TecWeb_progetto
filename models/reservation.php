@@ -75,7 +75,7 @@ class Reservation extends DBHelper {
         INNER JOIN service as SVC 
             ON SVC._id = R.service 
         INNER JOIN customer as C
-            ON C.cf = R.customer
+            ON C._id = R.customer
         WHERE R.company = 1 AND start_at >= ? AND end_at <= ? AND confirmed IS TRUE ORDER BY start_at DESC");
         $stmt->bind_param("ii", $from, $to);
         $stmt->execute();

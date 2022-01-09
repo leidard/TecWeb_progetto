@@ -3,9 +3,13 @@
 function menulink($name, $ref, $current, $lang) {
     if (!$lang) $lang="";
     else $lang = 'lang="el"';
-    if ($current)
-        $current = 'class="current" aria-current="page"';
-    return "<li><a $current $lang href=\"$ref\">$name</a></li>";
+    $current_li = 'class=""';
+    if ($current) {
+        $current = 'aria-current="page"';
+        $current_li = 'class="current"';
+    }
+        
+    return "<li $current_li><a $current $lang href=\"$ref\">$name</a></li>";
 }
 
 function _menu(){
