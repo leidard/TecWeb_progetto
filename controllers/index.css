@@ -207,20 +207,21 @@ table#orari-apertura th:last-child, table#orari-apertura td:last-child {
 table#orari-apertura caption{
     font-weight: bold;
     font-size: 20px;
+    text-align: center;
 
+}
+
+section#benvenuto div.content >  * {
+    box-sizing: border-box;
 }
 
 table#orari-apertura{
     margin-left: auto;
-    margin-right: auto;;
-}
-
-section#benvenuto div.content >  * {
-    margin:24px 0;
-    box-sizing: border-box;
+    margin-right: auto;
 }
 
 section#benvenuto a#link-prenota {
+    margin: 16px 0 8px;
     display: block;
 }
 
@@ -228,22 +229,22 @@ section#benvenuto a#link-prenota {
 @media 
 only screen and (max-width: 760px) {
 
-	/* Force table to not be like tables anymore */
-	table#orari-apertura, thead, tbody, th, td, tr { 
+	table#orari-apertura th, td, tr { 
 		display: block; 
+        padding:0;
+        white-space: normal;
 	}
 	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	table#orari-apertura thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
+	table#orari-apertura thead { 
+		display: none;
 	}
 	
-	table#orari-apertura tr { border-top: 1px solid black; }
+	table#orari-apertura tr { 
+        border-top: 1px solid black; 
+    }
 	
 	table#orari-apertura td { 
-		border: none;
+        border-right: none;
 		border-bottom: 1px solid black; 
 		position: relative;
 	}
@@ -253,10 +254,6 @@ only screen and (max-width: 760px) {
         font-weight: bold;
 	}
 
-    table#orari-apertura caption{
-        display: inline;
-    } /*perché in home la capition è centrata e in contatti no?????????????????????????????????*/
-
     table#orari-apertura td:nth-child(1):before { content: "Lunedì: "; }
     table#orari-apertura td:nth-child(2):before { content: "Martedì: "; }
     table#orari-apertura td:nth-child(3):before { content: "Mercoledì: "; }
@@ -265,10 +262,6 @@ only screen and (max-width: 760px) {
     table#orari-apertura td:nth-child(6):before { content: "Sabato: "; }
     table#orari-apertura td:nth-child(7):before { content: "Domenica: "; }
 
-      /*
-      tr:nth-child(odd) {
-        background-color: black;
-      } perchè sembano tutti dispari? */
 }
 
 
@@ -573,6 +566,10 @@ div.capelli {
  div.box-barba{
     display: block;
     flex: 1 0 20%;
+}
+
+div.spiegazione-servizi p a{
+    display: block;
 }
 
 @media only screen and (max-width: 1200px) {
