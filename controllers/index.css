@@ -103,10 +103,10 @@ nav#breadcrumb ol li {
     display: inline-block;
 }
 
-nav#breadcrumb ol li::before {
+nav#breadcrumb ol li:not(:first-child) a::before {
     display: inline-block;
     margin: 0 8px; 
-    content: "/";
+    content: ">";
 }
 
 /*         FOOTER         */
