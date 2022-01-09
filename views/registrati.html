@@ -17,16 +17,20 @@
 				evt.target.parentElement.classList.remove("error")
 		}
 
-		function pwCheck()
+		function pwCheck(evt)
 		{
-			const password = document.getElementById('password').value;
-			const password_rep = document.getElementById('password_rep').value;
-
-			if(password_rep.value === password.value)
-				document.getElementById("Registrati").disabled = false;
+			if(document.getElementById("password").value !== document.getElementById("password_rep").value)
+			{	
+				evt.target.parentElement.classList.add("error");
+				document.getElementById('Registrati').disabled = true;
+			}
 			else
-				document.getElementById("Registrati").disabled = true;
-		} 
+			{
+				evt.target.parentElement.classList.remove("error");
+				document.getElementById('Registrati').disabled = false;
+			}
+		}
+	 
 	</script>
 
 	<h2>Registrati</h2>
@@ -54,14 +58,14 @@
 				<label for="password">Password
 					<span class="input-hint">(Minimo 8 caratteri, tra cui almeno una lettera e un numero)</span>
 				</label>
-				<input name="password" id="password" type="password" required oninput="onPw(event);" onchange="pwCheck();">
+				<input name="password" id="password" type="password" oninput="onPw(event);" required>
 			</span>
 			<span>
 				<label for="password_rep">
 					Ripeti la password
 					<span class="input-hint">Password Non Corrisponde</span>
 				</label>
-				<input name="password_rep" id="password_rep" type="password" onchange="pwCheck();" required>
+				<input name="password_rep" id="password_rep" type="password" required oninput="pwCheck(event);">
 			</span>
 		</fieldset>
 		<input type="submit" value="Registrati" id="Registrati" disabled>
