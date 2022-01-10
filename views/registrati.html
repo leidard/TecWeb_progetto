@@ -37,10 +37,14 @@
 			}
 		}
 	 
-		function sanitizeNames()
+		function sanitizeField(fieldname)
 		{
-			document.getElementById("name").value = document.getElementById("name").value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()]/g, "");
+			document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()1234567890\[\]\\|\{\}\/?]/g, "");
+			
 		}
+
+		
+
 	</script>
 
 	<h2>Registrati</h2>
@@ -48,10 +52,10 @@
 		<fieldset>
 
 			<label for="name">Nome</label>
-			<input name="name" id="name" minlength="1" maxlength="50" onblur="sanitizeNames();" required>
+			<input name="name" id="name" minlength="1" maxlength="50" onblur="sanitizeField('name');" required>
 
 			<label for="surname">Cognome</label>
-			<input name="surname" id="surname" minlength="1" maxlength="50" onblur="sanitizeNames();" required>
+			<input name="surname" id="surname" minlength="1" maxlength="50" onblur="sanitizeField('surname');" required>
 
 			<label for="sex">Sesso</label>
 			<select name="sex" id="sex">
@@ -59,7 +63,7 @@
 				<option>Donna</option>
 			</select>
 		</fieldset>
-		<fieldset class="dati-login ">
+		<fieldset class="dati-login">
 			<span>
 				<label for="mail">Mail</label>
 				<input oninput="onEmail(event);" name="mail" id="mail" type="email">
