@@ -83,6 +83,10 @@ nav#menu ul li {
     box-sizing: border-box;
 }
 
+nav#menu ul li a {
+    display:block;
+}
+
 nav#menu ul li.current {
     background-color: white;
 }
@@ -97,7 +101,7 @@ nav#menu li.current a {
     color: black;
 }
 
-nav#menu a:hover {
+nav#menu li a:hover {
     color: white;
     background-color: black;
 }
