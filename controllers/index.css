@@ -298,25 +298,37 @@ section#benvenuto a#link-prenota {
 }
 
 
-/*          FORM LOGIN           */
-
-fieldset.dati-login {
-    display: flex;
-    flex-direction: column;
+/*              FORM                */
+div.form{
+    display: block;
+    text-align: center;
 }
 
-fieldset.dati-login>span {
+form{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+}
+
+fieldset > span{
     flex: 1 1;
     display: flex;
     flex-direction: column;
     margin: 8px 0;
 }
 
-fieldset.dati-login>span>label {
+fieldset > span > label {
     font-weight: bold;
 }
 
-fieldset.dati-login>span>label>span.input-hint {
+fieldset.dati-login > span > label > span.input-hint {
     display: none;
     font-size: .9em;
     font-weight: normal;
@@ -326,7 +338,7 @@ fieldset.dati-login>span>label::after {
     content: ":";
 }
 
-fieldset.dati-login>span>input {
+fieldset>span>input, fieldset>span>select {
     max-width: 300px;
     margin-left: 8px;
     margin-top: 4px;
@@ -343,6 +355,23 @@ fieldset.dati-login>span.error>input {
 fieldset.dati-login>span.error>label>span.input-hint {
     display: block;
 }
+
+input[type=submit]{
+    background-color: #000;
+    color:white;
+    font-weight: bold;
+    padding: 12px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+    float: right;
+  }
+
+  a.registrati{
+      display: block;
+      text-align: center;
+  }
 
 
 /*      PRENOTAZIONI    */

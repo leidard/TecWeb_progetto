@@ -4,7 +4,7 @@ require_once '../components/page.php';
 require_once '../components/header.php';
 require_once '../components/radio_book.php';
 
-$pagina = page('Disponibilita - Scissorhands');
+$pagina = page('Disponibilità - Scissorhands');
 
 $main = file_get_contents('../../views/user/conferma.html');
 
