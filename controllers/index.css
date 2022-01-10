@@ -277,9 +277,11 @@ section#benvenuto a#link-prenota {
         padding: 0;
         white-space: normal;
     }
+
     table#orari-apertura thead {
         display: none;
     }
+
     table#orari-apertura tr {
         border-top: 1px solid black;
     }
@@ -288,31 +290,11 @@ section#benvenuto a#link-prenota {
         border-bottom: 1px solid black;
         position: relative;
     }
-    table#orari-apertura td:before {
-        display: inline;
+    table#orari-apertura th[data-title]:before, td[data-title]:before {
+        content: attr(data-title) ":\00A0";
         font-weight: bold;
     }
-    table#orari-apertura td:nth-child(1):before {
-        content: "Lunedì: ";
-    }
-    table#orari-apertura td:nth-child(2):before {
-        content: "Martedì: ";
-    }
-    table#orari-apertura td:nth-child(3):before {
-        content: "Mercoledì: ";
-    }
-    table#orari-apertura td:nth-child(4):before {
-        content: "Giovedì: ";
-    }
-    table#orari-apertura td:nth-child(5):before {
-        content: "Venerdì: ";
-    }
-    table#orari-apertura td:nth-child(6):before {
-        content: "Sabato: ";
-    }
-    table#orari-apertura td:nth-child(7):before {
-        content: "Domenica: ";
-    }
+
 }
 
 
