@@ -669,7 +669,7 @@ div.spiegazione-servizi p a {
     flex: 1 0 30%;
     /* 3 per riga */
     margin: 6px;
-    padding-bottom: 8px;
+    padding: 8px;
     text-align: center;
     background-color: #E1E4E4;
     border-radius: 8px;
@@ -677,6 +677,7 @@ div.spiegazione-servizi p a {
 
 .servizio>ul {
     list-style-type: none;
+    padding: 0;
 }
 
 .servizio>ul>li,
