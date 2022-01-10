@@ -7,7 +7,7 @@ require_once __DIR__ . '/../services/public/login.php';
 require_once __DIR__ . '/../services/public/session.php';
 require_once __DIR__ . '/../services/user/change_password.php';
 
-$pagina = page('Area Personale - Scissorhands');
+$pagina = page('Area personale - Scissorhands');
 $path = array(
     "Area Personale" => "/area_personale.php"
 );

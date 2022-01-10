@@ -83,6 +83,10 @@ nav#menu ul li {
     box-sizing: border-box;
 }
 
+nav#menu ul li a {
+    display:block;
+}
+
 nav#menu ul li.current {
     background-color: white;
 }
@@ -97,7 +101,7 @@ nav#menu li.current a {
     color: black;
 }
 
-nav#menu a:hover {
+nav#menu li a:hover {
     color: white;
     background-color: black;
 }
@@ -273,9 +277,11 @@ section#benvenuto a#link-prenota {
         padding: 0;
         white-space: normal;
     }
+
     table#orari-apertura thead {
         display: none;
     }
+
     table#orari-apertura tr {
         border-top: 1px solid black;
     }
@@ -284,53 +290,45 @@ section#benvenuto a#link-prenota {
         border-bottom: 1px solid black;
         position: relative;
     }
-    table#orari-apertura td:before {
-        display: inline;
+    table#orari-apertura th[data-title]:before, td[data-title]:before {
+        content: attr(data-title) ":\00A0";
         font-weight: bold;
     }
-    table#orari-apertura td:nth-child(1):before {
-        content: "Lunedì: ";
-    }
-    table#orari-apertura td:nth-child(2):before {
-        content: "Martedì: ";
-    }
-    table#orari-apertura td:nth-child(3):before {
-        content: "Mercoledì: ";
-    }
-    table#orari-apertura td:nth-child(4):before {
-        content: "Giovedì: ";
-    }
-    table#orari-apertura td:nth-child(5):before {
-        content: "Venerdì: ";
-    }
-    table#orari-apertura td:nth-child(6):before {
-        content: "Sabato: ";
-    }
-    table#orari-apertura td:nth-child(7):before {
-        content: "Domenica: ";
-    }
+
 }
 
 
-/*          FORM LOGIN           */
+/*              FORM                */
+div.form{
+    display: block;
+    text-align: center;
+}
 
-fieldset.dati-login {
+form{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+fieldset {
     display: flex;
     flex-direction: column;
+    border-radius: 6px;
 }
 
-fieldset.dati-login>span {
+fieldset > span{
     flex: 1 1;
     display: flex;
     flex-direction: column;
     margin: 8px 0;
 }
 
-fieldset.dati-login>span>label {
+fieldset > span > label {
     font-weight: bold;
 }
 
-fieldset.dati-login>span>label>span.input-hint {
+fieldset.dati-login > span > label > span.input-hint {
     display: none;
     font-size: .9em;
     font-weight: normal;
@@ -340,7 +338,7 @@ fieldset.dati-login>span>label::after {
     content: ":";
 }
 
-fieldset.dati-login>span>input {
+fieldset>span>input, fieldset>span>select {
     max-width: 300px;
     margin-left: 8px;
     margin-top: 4px;
@@ -357,6 +355,23 @@ fieldset.dati-login>span.error>input {
 fieldset.dati-login>span.error>label>span.input-hint {
     display: block;
 }
+
+input[type=submit]{
+    background-color: #000;
+    color:white;
+    font-weight: bold;
+    padding: 12px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+    float: right;
+  }
+
+  a.registrati{
+      display: block;
+      text-align: center;
+  }
 
 
 /*      PRENOTAZIONI    */
@@ -665,7 +680,7 @@ div.spiegazione-servizi p a {
     flex: 1 0 30%;
     /* 3 per riga */
     margin: 6px;
-    padding-bottom: 8px;
+    padding: 8px;
     text-align: center;
     background-color: #E1E4E4;
     border-radius: 8px;
@@ -673,6 +688,7 @@ div.spiegazione-servizi p a {
 
 .servizio>ul {
     list-style-type: none;
+    padding: 0;
 }
 
 .servizio>ul>li,
