@@ -4,7 +4,7 @@ require_once  __DIR__ . '/../components/header.php';
 require_once  __DIR__ . '/../components/booked_pending_staff.php';
 require_once  __DIR__ . '/../components/breadcrumb.php';
 
-$pagina = page('Prenotazioni');
+$pagina = page('Prenotazioni - Scissorhands');
 $header = _header(array("Staff" => "/staff/", "Prenotazioni" => "/staff/prenotazioni.php", "In Attesa di Conferma" => "/staff/pending.php"));
 $main = file_get_contents( __DIR__ . '/../../views/staff/pending.html');
 
