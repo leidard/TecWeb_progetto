@@ -688,3 +688,7 @@ div#ErroreConnessione > p > span{
 iframe{
     margin:8px;
 }
+
+div#ErroreConnessione > p > ul{
+    list-style-type: none;
+}
