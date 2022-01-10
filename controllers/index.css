@@ -1,28 +1,23 @@
-*{
-    font-family: Helvetica, sans-serif;
-}
-
 body {
     margin: 0;
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 header#page-header {
     display: block;
 }
 
-header#page-header > nav {
+header#page-header>nav {
     display: block;
 }
 
-header h1{
-    background-image: url('img/logo_bscissorhands.png');
+header h1 {
+    background-image: url('/static/img/logo_bscissorhands.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    text-indent: -9999999em; 
+    text-indent: -9999999em;
     font-size: 128px;
     margin: 0;
 }
@@ -31,14 +26,32 @@ h2 {
     text-align: center;
 }
 
+
 /*         MENU            */
 
 nav#menu {
     padding: 8px 16px;
     border-top: 1px solid #000;
-    border-bottom: 1px solid #000; 
-    background-color: #800F0F; 
+    border-bottom: 1px solid #000;
+    background-color: #800F0F;
+    position: relative;
+    min-height: 37px;
+    text-align: center;
+    box-sizing: border-box;
 }
+
+nav#menu.visible {}
+
+nav#menu button#burgher {
+    display: none;
+    visibility: hidden;
+    background: url("static/vector/burgher.svg") no-repeat center center;
+    color: white;
+    height: 40px;
+    width: 40px;
+}
+
+nav#menu.visible button#burgher {}
 
 nav#menu ul {
     padding: 0;
@@ -48,25 +61,50 @@ nav#menu ul {
     flex-flow: row nowrap;
 }
 
-nav#menu ul li {
-    flex: 1 1; 
+@media only screen and (max-width: 768px) {
+    nav#menu button#burgher {
+        display: block;
+        visibility: visible;
+    }
+    nav#menu ul {
+        display: none;
+        flex-direction: column;
+        visibility: hidden;
+    }
+    nav#menu.visible ul {
+        display: flex;
+        visibility: visible;
+    }
 }
 
-nav#menu a{
-    padding: 8px 16px 10px;
-    color:white;
-    text-transform:uppercase;
-} 
+nav#menu ul li {
+    flex: 1 1;
+    padding: 8px 16px;
+    box-sizing: border-box;
+}
 
-nav#menu a.current {
-    color: black;
+nav#menu ul li a {
+    display:block;
+}
+
+nav#menu ul li.current {
     background-color: white;
-} 
+}
 
-nav#menu a:hover{
-    color:white;
+nav#menu a {
+    box-sizing: border-box;
+    color: white;
+    text-transform: uppercase;
+}
+
+nav#menu li.current a {
+    color: black;
+}
+
+nav#menu li a:hover {
+    color: white;
     background-color: black;
-} 
+}
 
 
 /*        BREADCRUMB      */
@@ -75,16 +113,17 @@ nav#breadcrumb {
     padding: 8px 16px;
     border-top: 1px solid #000;
     border-bottom: 1px solid #898988;
-    background:#f3f3f3;
+    background: #f3f3f3;
 }
 
-nav#breadcrumb ol{
+nav#breadcrumb ol {
     display: inline;
     list-style: none;
     padding: 0;
 }
 
-nav#breadcrumb li, a{
+nav#breadcrumb li,
+a {
     display: inline;
 }
 
@@ -105,9 +144,10 @@ nav#breadcrumb ol li {
 
 nav#breadcrumb ol li:not(:first-child) a::before {
     display: inline-block;
-    margin: 0 8px; 
+    margin: 0 8px;
     content: ">";
 }
+
 
 /*         FOOTER         */
 
@@ -118,9 +158,10 @@ footer#page-footer {
     display: inline-block;
 }
 
-footer#page-footer p{
+footer#page-footer p {
     text-align: center;
 }
+
 
 /*     FLOATING BUTTON    */
 
@@ -144,7 +185,8 @@ div#floating-btn a {
 main {
     padding: 8px;
     margin: 0 auto;
-    width: 1200px; /* 1200*/
+    width: 1200px;
+    /* 1200*/
 }
 
 @media only screen and (max-width: 1200px) {
@@ -159,14 +201,13 @@ main {
     }
 }
 
- 
 
 /*       HOME        */
 
 section#benvenuto div.img-wrap {
-    background: url('img/table.jpg');
+    background: url('/static/img/table.jpg');
     background-position: center;
-    background-repeat:no-repeat ;
+    background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -182,10 +223,12 @@ section#benvenuto div.img-wrap div.content {
     border-radius: 12px;
 }
 
-section#misureSicurezza, ul {
+section#misureSicurezza,
+ul {
     text-align: center;
     list-style-position: inside;
 }
+
 
 /*              ORARI               */
 
@@ -194,28 +237,29 @@ table {
     border-collapse: collapse;
 }
 
-table#orari-apertura th, table#orari-apertura td {
+table#orari-apertura th,
+table#orari-apertura td {
     border-right: 1px solid #000;
     padding: 4px 6px;
     text-align: center;
 }
 
-table#orari-apertura th:last-child, table#orari-apertura td:last-child {
+table#orari-apertura th:last-child,
+table#orari-apertura td:last-child {
     border-right: none;
 }
 
-table#orari-apertura caption{
+table#orari-apertura caption {
     font-weight: bold;
     font-size: 20px;
     text-align: center;
-
 }
 
-section#benvenuto div.content >  * {
+section#benvenuto div.content>* {
     box-sizing: border-box;
 }
 
-table#orari-apertura{
+table#orari-apertura {
     margin-left: auto;
     margin-right: auto;
 }
@@ -225,43 +269,50 @@ section#benvenuto a#link-prenota {
     display: block;
 }
 
-
-@media 
-only screen and (max-width: 760px) {
-
-	table#orari-apertura th, td, tr { 
-		display: block; 
-        padding:0;
+@media only screen and (max-width: 760px) {
+    table#orari-apertura th,
+    td,
+    tr {
+        display: block;
+        padding: 0;
         white-space: normal;
-	}
-	
-	table#orari-apertura thead { 
-		display: none;
-	}
-	
-	table#orari-apertura tr { 
-        border-top: 1px solid black; 
     }
-	
-	table#orari-apertura td { 
+    table#orari-apertura thead {
+        display: none;
+    }
+    table#orari-apertura tr {
+        border-top: 1px solid black;
+    }
+    table#orari-apertura td {
         border-right: none;
-		border-bottom: 1px solid black; 
-		position: relative;
-	}
-	
-	table#orari-apertura td:before { 
-		display: inline;
+        border-bottom: 1px solid black;
+        position: relative;
+    }
+    table#orari-apertura td:before {
+        display: inline;
         font-weight: bold;
-	}
-
-    table#orari-apertura td:nth-child(1):before { content: "Lunedì: "; }
-    table#orari-apertura td:nth-child(2):before { content: "Martedì: "; }
-    table#orari-apertura td:nth-child(3):before { content: "Mercoledì: "; }
-    table#orari-apertura td:nth-child(4):before { content: "Giovedì: "; }
-    table#orari-apertura td:nth-child(5):before { content: "Venerdì: "; }
-    table#orari-apertura td:nth-child(6):before { content: "Sabato: "; }
-    table#orari-apertura td:nth-child(7):before { content: "Domenica: "; }
-
+    }
+    table#orari-apertura td:nth-child(1):before {
+        content: "Lunedì: ";
+    }
+    table#orari-apertura td:nth-child(2):before {
+        content: "Martedì: ";
+    }
+    table#orari-apertura td:nth-child(3):before {
+        content: "Mercoledì: ";
+    }
+    table#orari-apertura td:nth-child(4):before {
+        content: "Giovedì: ";
+    }
+    table#orari-apertura td:nth-child(5):before {
+        content: "Venerdì: ";
+    }
+    table#orari-apertura td:nth-child(6):before {
+        content: "Sabato: ";
+    }
+    table#orari-apertura td:nth-child(7):before {
+        content: "Domenica: ";
+    }
 }
 
 
@@ -272,28 +323,28 @@ fieldset.dati-login {
     flex-direction: column;
 }
 
-fieldset.dati-login > span {
+fieldset.dati-login>span {
     flex: 1 1;
     display: flex;
     flex-direction: column;
     margin: 8px 0;
 }
 
-fieldset.dati-login > span > label {
+fieldset.dati-login>span>label {
     font-weight: bold;
 }
 
-fieldset.dati-login > span > label > span.input-hint {
+fieldset.dati-login>span>label>span.input-hint {
     display: none;
     font-size: .9em;
     font-weight: normal;
 }
 
-fieldset.dati-login > span > label::after {
+fieldset.dati-login>span>label::after {
     content: ":";
 }
 
-fieldset.dati-login > span > input {
+fieldset.dati-login>span>input {
     max-width: 300px;
     margin-left: 8px;
     margin-top: 4px;
@@ -303,11 +354,11 @@ fieldset.dati-login > span > input {
     font-size: 16px;
 }
 
-fieldset.dati-login > span.error > input {
+fieldset.dati-login>span.error>input {
     border-color: #f00;
 }
 
-fieldset.dati-login > span.error > label > span.input-hint {
+fieldset.dati-login>span.error>label>span.input-hint {
     display: block;
 }
 
@@ -363,6 +414,7 @@ fieldset.dati-login > span.error > label > span.input-hint {
     align-content: center;
 }
 
+
 /*          FIELDSET               */
 
 form.booking-form {
@@ -373,7 +425,7 @@ form.booking-form {
 
 form.booking-form fieldset {
     display: flex;
-    flex-flow: column ;
+    flex-flow: column;
     align-items: center;
     flex: 1 1;
     border: 1px solid black;
@@ -401,14 +453,14 @@ form.booking-form fieldset legend {
     cursor: pointer;
 }
 
-.booking-radio input + label {
+.booking-radio input+label {
     padding: 0;
     transition: .15s ease-in-out;
     font-size: .95em;
     font-weight: 400;
 }
 
-.booking-radio input + label:hover {
+.booking-radio input+label:hover {
     padding: 6px 0;
     cursor: pointer;
     font-size: 1.05em;
@@ -416,20 +468,19 @@ form.booking-form fieldset legend {
     border: 1px solid #ccc;
 }
 
-.booking-radio input:checked + label {
+.booking-radio input:checked+label {
     padding: 6px 0;
     font-size: 1.05em;
     font-weight: bold;
     border: 1px solid #888;
 }
 
-
-.booking-radio input:disabled + label {
+.booking-radio input:disabled+label {
     color: #555;
     border: 1px solid #ccc0;
 }
 
-.booking-radio input:disabled + label:hover {
+.booking-radio input:disabled+label:hover {
     color: #555;
     padding: 0;
     font-size: .95em;
@@ -448,15 +499,17 @@ form.booking-form fieldset legend {
 form.booking-form input[type="submit"] {
     margin: 8px 0;
 }
+
+
 /*          GALLERY           */
-section#Gallery{
+
+section#Gallery {
     background-color: white;
     padding: 0px;
     margin: 0px;
 }
 
-
-section#Gallery div#img-container>img{
+section#Gallery div#img-container>img {
     width: 100%;
     height: auto;
     display: block;
@@ -466,11 +519,11 @@ section#Gallery div#img-container>img{
     border-radius: 5px;
 }
 
-section#Gallery h2{
+section#Gallery h2 {
     margin-bottom: 10px;
-} 
+}
 
-section#Gallery div#img-container{
+section#Gallery div#img-container {
     column-count: 3;
     margin: 0 auto;
     background: #800F0F;
@@ -480,19 +533,21 @@ section#Gallery div#img-container{
 }
 
 @media only screen and (max-width: 1200px) {
-    section#Gallery div#img-container{
+    section#Gallery div#img-container {
         column-count: 2;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    section#Gallery div#img-container{
+    section#Gallery div#img-container {
         column-count: 1;
     }
 }
 
+
 /*              STAFF             */
-.staff-container{
+
+.staff-container {
     display: grid;
     grid-template-rows: auto auto auto;
     margin: 0 auto;
@@ -506,14 +561,14 @@ article.staff {
     margin: 8px;
 }
 
-article.staff > img{
+article.staff>img {
     margin: 10px;
     border-radius: 6px;
     column-count: 1;
     max-width: 300px;
 }
 
-article.staff > div{
+article.staff>div {
     margin: 0;
     column-count: 1;
 }
@@ -522,173 +577,175 @@ article.staff > div{
     article.staff {
         grid-template-columns: auto;
     }
-
-    article.staff > img{
+    article.staff>img {
         width: 100%;
     }
-
-    article.staff > div{
+    article.staff>div {
         grid-column-start: 1;
         margin: 0 4px 0;
     }
 }
 
+
 /*              SERVIZI             */
+
 div.capelli {
-    width:150px; 
-    height:150px; 
-    background-image:url('img/hair_icon.png');
-    margin:6px; 
-    padding:0; 
- }
+    width: 150px;
+    height: 150px;
+    background-image: url('/static/img/hair_icon.png');
+    margin: 6px;
+    padding: 0;
+}
 
- div.barba {
-    width:150px; 
-    height:150px;
-    background-image:url('img/beard_icon.png');
-    margin:6px; 
-    padding:0;
- }
+div.barba {
+    width: 150px;
+    height: 150px;
+    background-image: url('/static/img/beard_icon.png');
+    margin: 6px;
+    padding: 0;
+}
 
- div.spiegazione-servizi{
+div.spiegazione-servizi {
     display: flex;
     justify-content: center;
     flex-flow: row;
     flex-wrap: wrap;
- }
+}
 
- div.box-capelli{
-     display: block;
-     flex: 1 0 20%;
-     text-align: right;
- }
+div.box-capelli {
+    display: block;
+    flex: 1 0 20%;
+    text-align: right;
+}
 
- div.box-barba{
+div.box-barba {
     display: block;
     flex: 1 0 20%;
 }
 
-div.spiegazione-servizi p a{
+div.spiegazione-servizi p a {
     display: block;
 }
 
 @media only screen and (max-width: 1200px) {
     div.barba {
         background-image: none;
-        width:1px; 
-        height:150px;
+        width: 1px;
+        height: 150px;
         border-left: thick solid #124773;
     }
-
     div.capelli {
-        width:0px; 
-        height:0px;
+        width: 0px;
+        height: 0px;
         background-image: none;
     }
 }
 
 @media only screen and (max-width: 768px) {
     div.barba {
-        width:0px; 
-        height:0px;
+        width: 0px;
+        height: 0px;
     }
-
-    div.box-capelli{
+    div.box-capelli {
         flex: 1 0 50%;
         border-bottom: thick solid #124773;
     }
-
-    div.box-barba{
+    div.box-barba {
         flex: 1 0 50%;
     }
 }
 
- 
-
-
 
 /*              LISTINO             */
-.servizi{
+
+.servizi {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding:0;
+    padding: 0;
 }
 
-.servizio{
-    flex: 1 0 30%; /* 3 per riga */
+.servizio {
+    flex: 1 0 30%;
+    /* 3 per riga */
     margin: 6px;
-    padding-bottom: 8px;
+    padding: 8px;
     text-align: center;
     background-color: #E1E4E4;
     border-radius: 8px;
 }
 
-.servizio > ul{
+.servizio>ul {
     list-style-type: none;
+    padding: 0;
 }
 
-.servizio > ul > li, .servizio{
+.servizio>ul>li,
+.servizio {
     list-style: none;
 }
 
-.servizio > h3{
+.servizio>h3 {
     text-align: center;
-    text-transform:uppercase;
+    text-transform: uppercase;
     padding-bottom: 0;
     margin-bottom: 8px;
 }
 
-.prezzo{
+.prezzo {
     font-size: 36px;
     text-align: center;
 }
 
 @media only screen and (max-width: 768px) {
-    .servizio{
-        flex: 1 0 40%; /* 2 per riga */
+    .servizio {
+        flex: 1 0 40%;
+        /* 2 per riga */
     }
 }
 
 @media only screen and (max-width: 600px) {
-    .servizio{
-        flex: 1 0 100%; /* 1 per riga */
+    .servizio {
+        flex: 1 0 100%;
+        /* 1 per riga */
     }
 }
 
+
 /*              404 ERROR               */
-div.error{
+
+div.error {
     display: flex;
     align-items: center;
 }
 
-div.error img{
+div.error img {
     height: auto;
     max-width: 100%;
 }
 
+
 /*              505 errore_connessione               */
-div#ErroreConnessione > div.ErrConnImg{
-    width:400px; 
-    height:400px; 
-    background-image: url(img/network-error-icon.jpg);
+
+div#ErroreConnessione>div.ErrConnImg {
+    width: 400px;
+    height: 400px;
+    background-image: url('/static/img/network-error-icon.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin:auto;
-    padding:0; 
+    margin: auto;
+    padding: 0;
 }
 
-
-div#ErroreConnessione > p > span{
+div#ErroreConnessione>p>span {
     text-align: center;
     display: block;
 }
-/*              CONTATTI                */
-iframe{
-    margin:8px;
-}
 
-div#ErroreConnessione > p > ul{
-    list-style-type: none;
+
+/*              CONTATTI                */
+
+iframe {
+    margin: 8px;
 }

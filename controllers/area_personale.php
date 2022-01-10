@@ -44,7 +44,6 @@ if(isset($_SESSION["sessionid"]))
 }
 else
 {
-	//echo "non loggato"; #TODO fare redirecta a login
 	header("Location: accedi.php");
 	die();
 }

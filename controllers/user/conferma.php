@@ -6,13 +6,13 @@ require_once '../components/radio_book.php';
 
 $pagina = page('Disponibilita - Scissorhands');
 
-$main = file_get_contents('../../views/user/book_confirm.html');
+$main = file_get_contents('../../views/user/conferma.html');
 
 require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/public/service.php';
 require_once __DIR__ . '/../../services/public/staff.php';
 
-$user_id = 'CCC1CCC1CCC1CCC1';
+$user_id = 1;
 if (!UserBookingService::canBook($user_id)) {
     header("Location: /user/prenotazioni.php");
 }
@@ -34,9 +34,9 @@ if (isset($_GET["staff"]) && preg_match('/^[0-9]+$/', $_GET["staff"])) {
     $selected_staff_name = $barber["name"]." ".$barber["surname"];
 }
 
-$selected_day = "";
+$selected_day = floor(time()/86400);
 if (isset($_GET["day"]) && preg_match('/^[0-9]+$/', $_GET["day"])) {
-    $selected_day = $_GET["day"];
+    $selected_day = (int) $_GET["day"];
     $selected_day_ext = gmdate("M d", $selected_day*86400);
 }
 $query = array(
@@ -44,17 +44,17 @@ $query = array(
     "service" => $selected_service,
     "day" => $selected_day
 );
-$prev_day = "/user/book_confirm.php?" . http_build_query(array(
+$prev_day = "/user/conferma.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => $selected_day-1
 ));
-$next_day = "/user/book_confirm.php?" . http_build_query(array(
+$next_day = "/user/conferma.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => $selected_day+1
 ));
-$today_day = "/user/book_confirm.php?" . http_build_query(array(
+$today_day = "/user/conferma.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => floor(time()/86400)
@@ -65,11 +65,12 @@ $main = str_replace("%NEXT_DAY%", $next_day, $main);
 $main = str_replace("%TODAY_DAY%", $today_day, $main);
 
 
-$backlink = "/user/book_available.php?" . http_build_query(array(
+$backlink = "/user/prenota.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => $selected_day
 ));
+
 
 $radios_slot = "";
 if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day)) {

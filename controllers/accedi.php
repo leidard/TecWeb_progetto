@@ -16,6 +16,9 @@ session_start();
 
 if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno è già loggato
 {
+	//header("Location: accedi.php");
+	//die();
+
 	echo "Gia loggato";
 	$main = file_get_contents('../views/components/logout.html');
 	if(isset($_GET["logout"]))
