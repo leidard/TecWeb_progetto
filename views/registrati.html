@@ -53,11 +53,11 @@
 			<fieldset class="dati-personali ">
 				<span>
 					<label for="name">Nome</label>
-					<input name="name" id="name" minlength="1" maxlength="50" onblur="sanitizeNames();" required>
+					<input name="name" id="name" minlength="1" maxlength="50" onblur="sanitizeField('name');" required>
 				</span>
 				<span>
 					<label for="surname">Cognome</label>
-					<input name="surname" id="surname" minlength="1" maxlength="50" onblur="sanitizeNames();" required>
+					<input name="surname" id="surname" minlength="1" maxlength="50" onblur="sanitizeField('surname');" required>
 				</span>
 				<span>
 				<label for="sex">Sesso</label>
