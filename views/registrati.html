@@ -12,9 +12,15 @@
 		function onPw(evt){
 			// Minimum eight characters, at least one letter and one number:
 			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+			{
 				evt.target.parentElement.classList.add("error") 
+				document.getElementById('Registrati').disabled = true;
+			}
 			else 
+			{
 				evt.target.parentElement.classList.remove("error")
+				document.getElementById('Registrati').disabled = false;
+			}
 		}
 
 		function pwCheck(evt)
@@ -31,6 +37,10 @@
 			}
 		}
 	 
+		function sanitizeNames()
+		{
+			document.getElementById("name").value = document.getElementById("name").value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()]/g, "");
+		}
 	</script>
 
 	<h2>Registrati</h2>
@@ -38,10 +48,10 @@
 		<fieldset>
 
 			<label for="name">Nome</label>
-			<input name="name" id="name" minlength="1" maxlength="50" required>
+			<input name="name" id="name" minlength="1" maxlength="50" onblur="sanitizeNames();" required>
 
 			<label for="surname">Cognome</label>
-			<input name="surname" id="surname" minlength="1" maxlength="50" required>
+			<input name="surname" id="surname" minlength="1" maxlength="50" onblur="sanitizeNames();" required>
 
 			<label for="sex">Sesso</label>
 			<select name="sex" id="sex">
