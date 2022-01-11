@@ -18,9 +18,10 @@
 
 	</script>
 	<div class="form">
-		<form id="login-form" action="accedi.php" method="GET">
+		<form id="login-form" action="accedi.php" method="GET" aria-label="Accesso">
 			<h2>Accedi</h2>
 			<fieldset class="dati-login">
+				<legend>Dati di accesso:</legend>
 				<span>
 					<label for="mail">Mail</label>
 					<input oninput="onEmail(event);" type="email" placeholder="Inserisci l'email" name="mail" id="mail" required>
