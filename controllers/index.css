@@ -390,6 +390,11 @@ input[type=submit]{
 
 /*      PRENOTAZIONI    */
 
+a#effettuaAccesso{
+    display: block;
+    text-align: center;
+}
+
 .reservations {
     display: flex;
     flex-direction: column;
