@@ -48,6 +48,7 @@ nav#menu {
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     background-color: #800F0F;
+    
     position: relative;
     min-height: 37px;
     text-align: center;
@@ -758,8 +759,8 @@ div.error img {
 /*              505 errore_connessione               */
 
 div#ErroreConnessione>div.ErrConnImg {
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     background-image: url('/static/img/network-error-icon.jpg');
     background-size: cover;
     background-position: center;
@@ -771,6 +772,20 @@ div#ErroreConnessione>div.ErrConnImg {
 div#ErroreConnessione>p>span {
     text-align: center;
     display: block;
+}
+
+@media only screen and (max-width: 1200px) {
+    div#ErroreConnessione>div.ErrConnImg{
+        width: 350px;
+        height: 350px;
+    }  
+}
+
+@media only screen and (max-width: 768px) {
+    div#ErroreConnessione>div.ErrConnImg{
+        width: 200px;
+        height: 200px;
+    }  
 }
 
 

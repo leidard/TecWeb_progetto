@@ -15,8 +15,6 @@ $footer = _footer();
 $main = file_get_contents('../views/registrati.html');
 
 
-
-
 if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && isset($_GET["mail"]) && isset($_GET["password"]) && isset($_GET["password_rep"]))
 {
 	//if(filter_var($_GET["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in loicale, mettere in relazione
@@ -33,6 +31,10 @@ if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && iss
 	{
 		$main.="Email non valida."; #TODO Da riempire meglio ofc.
 	}
+}
+else
+{
+	$main.="Campi non compilati.";
 }
 
 $pagina = str_replace('%DESCRIPTION%', "Pagina di registrazione a Scissorhands" ,$pagina);
