@@ -126,9 +126,9 @@ nav#menu li a:hover {
 
 nav#breadcrumb {
     padding: 8px 16px;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #898988;
-    background: #f3f3f3;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background: #F5EEE0;
 }
 
 nav#breadcrumb ol {
@@ -168,7 +168,7 @@ nav#breadcrumb ol li:not(:first-child) a::before {
 
 footer#page-footer {
     border-top: 1px solid #000;
-    background-color: #f3f3f3;
+    background-color: #F5EEE0;
     width: 100%;
     display: inline-block;
 }
@@ -585,7 +585,8 @@ section#Gallery div#img-container {
 }
 
 article.staff {
-    background-color: #E1E4E4;
+    background-color: #E4DACB;
+    border-color: #64491b;
     display: grid;
     grid-template-columns: auto auto;
     border-radius: 6px;
@@ -663,7 +664,7 @@ div.spiegazione-servizi p a {
         background-image: none;
         width: 1px;
         height: 150px;
-        border-left: thick solid #124773;
+        border-left: thick solid #62301b;
     }
     div.capelli {
         width: 0px;
@@ -679,7 +680,7 @@ div.spiegazione-servizi p a {
     }
     div.box-capelli {
         flex: 1 0 50%;
-        border-bottom: thick solid #124773;
+        border-bottom: thick solid #62301b;
     }
     div.box-barba {
         flex: 1 0 50%;
@@ -702,7 +703,7 @@ div.spiegazione-servizi p a {
     margin: 6px;
     padding: 8px;
     text-align: center;
-    background-color: #E1E4E4;
+    background-color: #E4DACB;
     border-radius: 8px;
 }
 
