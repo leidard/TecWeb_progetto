@@ -718,7 +718,6 @@ div.spiegazione-servizi p a {
 }
 
 .servizio>h3 {
-    text-align: center;
     text-transform: uppercase;
     padding-bottom: 0;
     margin-bottom: 8px;
@@ -726,7 +725,6 @@ div.spiegazione-servizi p a {
 
 .prezzo {
     font-size: 36px;
-    text-align: center;
 }
 
 @media only screen and (max-width: 768px) {
