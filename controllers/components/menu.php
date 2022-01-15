@@ -12,20 +12,43 @@ function menulink($name, $ref, $current, $lang) {
     return "<li $current_li><a $current $lang href=\"$ref\">$name</a></li>";
 }
 
-function _menu(){
+function _menu($sess_type = "GUEST"){
     $template = file_get_contents(__DIR__.'/../../views/components/nav_menu.html');
     $out = $template;
 
-    $pagine = array (
-        'Home' => '/',
-        'Servizi' => '/servizi.php',
-        'Staff' => '/staff.php',
-        'Galleria' => '/galleria.php',
-        'Contatti' => '/contatti.php',
-        'Prenota' => '/prenota.php',
-        'Accedi' => '/accedi.php',
-        'Registrati' => '/registrati.php'
+    $pagine = array(
+        "STAFF" => array (
+            'Home' => '/',
+            'Servizi' => '/servizi.php',
+            'Staff' => '/staff.php',
+            'Galleria' => '/galleria.php',
+            'Contatti' => '/contatti.php',
+            'Prenotazioni' => '/staff/prenotazioni.php',
+            'Esci' => '/logout.php'
+        ),
+        "USER" => array (
+            'Home' => '/',
+            'Servizi' => '/servizi.php',
+            'Staff' => '/staff.php',
+            'Galleria' => '/galleria.php',
+            'Contatti' => '/contatti.php',
+            'Prenotazioni' => '/user/prenotazioni.php',
+            'Profilo' => '/user/index.php',
+            'Esci' => '/logout.php',
+        ),
+        "GUEST" => array (
+            'Home' => '/',
+            'Servizi' => '/servizi.php',
+            'Staff' => '/staff.php',
+            'Galleria' => '/galleria.php',
+            'Contatti' => '/contatti.php',
+            'Prenota' => '/prenota.php',
+            'Accedi' => '/accedi.php',
+            'Registrati' => '/registrati.php'
+        )
     );
+
+
     
     $langs = array(
         "Home" => "en",
@@ -35,7 +58,7 @@ function _menu(){
     $current = str_replace("index.php", "", $current);
 
     $str = "";
-    foreach($pagine as $name => $ref){  
+    foreach($pagine[$sess_type] as $name => $ref){  
         $str .= menulink($name, $ref, $current == $ref, $langs[$name] ?? false);
     }
     

@@ -124,7 +124,8 @@ VALUES
 INSERT INTO
   credential(_id, owner_ref, email, password, type)
 VALUES 
-  (1, 1, 'edoardocoppola@email.com', 'supersecure123', 'OWNER');
+  (1, 1, 'admin', 'admin', 'OWNER');
+
 
 INSERT INTO 
   company(_id,name,open_at,close_at,days,book_before,book_after,owner)

@@ -22,7 +22,7 @@ header h1 {
     margin: 0;
 }
 
-h2 {
+h2 { /* NO */
     text-align: center;
 }
 
@@ -55,8 +55,6 @@ nav#menu {
     box-sizing: border-box;
 }
 
-nav#menu.visible {}
-
 nav#menu button#burgher {
     display: none;
     visibility: hidden;
@@ -65,8 +63,6 @@ nav#menu button#burgher {
     height: 40px;
     width: 40px;
 }
-
-nav#menu.visible button#burgher {}
 
 nav#menu ul {
     padding: 0;
@@ -238,8 +234,7 @@ section#benvenuto div.img-wrap div.content {
     border-radius: 12px;
 }
 
-section#misureSicurezza,
-ul {
+section#misureSicurezza, ul { /* NO UL PIU' SPECIFICO */
     text-align: center;
     list-style-position: inside;
 }
@@ -247,7 +242,7 @@ ul {
 
 /*              ORARI               */
 
-table {
+table { /* NO */
     border: none;
     border-collapse: collapse;
 }
@@ -286,8 +281,8 @@ section#benvenuto a#link-prenota {
 
 @media only screen and (max-width: 760px) {
     table#orari-apertura th,
-    td,
-    tr {
+    table#orari-apertura td,
+    table#orari-apertura tr {
         display: block;
         padding: 0;
         white-space: normal;
@@ -314,32 +309,37 @@ section#benvenuto a#link-prenota {
 
 
 /*              FORM                */
+ /* ???????????? */
 div.form{
     display: block;
     text-align: center;
 }
 
-form{
+form{ /* ???????????? */
+
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
 }
 
-fieldset {
+fieldset { /* ???????????? */
+
     display: flex;
     flex-direction: column;
     border-radius: 6px;
 }
 
-fieldset > span{
+fieldset > span{ /* ???????????? */
+
     flex: 1 1;
     display: flex;
     flex-direction: column;
     margin: 8px 0;
 }
 
-fieldset > span > label {
+fieldset > span > label {  /* ???????????? */
+
     font-weight: bold;
 }
 
@@ -371,7 +371,8 @@ fieldset.dati-login>span.error>label>span.input-hint {
     display: block;
 }
 
-input[type=submit]{
+input[type=submit]{ /* ???????????? */
+
     background-color: #000;
     color:white;
     font-weight: bold;
@@ -785,11 +786,4 @@ div#ErroreConnessione>p>span {
         width: 200px;
         height: 200px;
     }  
-}
-
-
-/*              CONTATTI                */
-
-iframe {
-    margin: 8px;
 }
