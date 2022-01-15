@@ -19,16 +19,26 @@ session_start();
 
 if(isset($_SESSION["sessionid"]))
 {
+
+	if(isset($_GET["current_password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["current_password"]))
+		$currentPassword = $_GET["current_password"];
+	if(isset($_GET["new_password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["new_password"]))
+		$newPassword = $_GET["new_password"];
+	
+	if(isset($_GET["confirm_new_password"]) && preg_grep("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["confirm_new_password"]))
+		$confirmnewPassword = $_GET["confirm_new_password"];
+
 	$main = file_get_contents('../views/user/pagina_personale.html');
-	if(isset($_GET["current_password"]) && isset($_GET["new_password"]) && isset($_GET["confirm_new_password"]))
+	if(isset($currentPassword) && isset($newPassword) && isset($confirmnewPassword))
 	{
 		#change password
 		$currentPassword = PublicLoginService::getUserPassword($_SESSION["sessionid"]);
-		if($currentPassword == $_GET["current_password"])
+		//if($currentPassword == $_GET["current_password"])
+		if(PublicLoginService::verifyLogin($_SESSION["sessionid"], $_GET["current_password"]))
 		{
-			if($_GET["new_password"]==$_GET["confirm_new_password"])
+			if($newPassword==$confirmnewPassword)
 			{
-				UserPasswordChangeService::changeUserPassword($_SESSION["sessionid"], $_GET["new_password"]);
+				UserPasswordChangeService::changeUserPassword($_SESSION["sessionid"], $newPassword, $_SESSION["type"]);
 				echo "password cambiata";
 			}
 			else

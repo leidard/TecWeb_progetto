@@ -52,10 +52,11 @@ else
 
 	if(isset($password) && isset($mail))
 	{
-		$password=PublicLoginService::getUserPassword($_GET["mail"]);
-		if($password == $_GET["password"])
+		$password=PublicLoginService::getUserPassword($mail);
+		//if($password == $_GET["password"])
+		if(PublicLoginService::verifyLogin($mail,$_GET["password"]))
 		{
-			$_SESSION["sessionid"] = $_GET["mail"];
+			$_SESSION["sessionid"] = $mail;
 			if(Session::isUser($mail)) 
 				$_SESSION["type"] = "USER";
 			elseif(Session::isOwner($mail))
@@ -84,8 +85,6 @@ else
 		echo  $_GET["password"];
 		// TODO redirect a ???
 	}
-	else
-		echo "Dati non validi";
 }
 
 $header = _header($path);

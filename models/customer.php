@@ -20,27 +20,21 @@ class Customer extends DBHelper {
 		return $res->fetch_assoc();
 	}
 
-	public function create($name, $surname, $sex)
+	public function create($name, $surname, $sex, $email, $password)
 	{
-		$stmt = $this->prepare("INSERT INTO customer(name, surname, sex) VALUES (?,?,?)");
+		$stmt = $this->prepare("INSERT INTO customer(name, surname, sex, email, password) VALUES (?,?,?,?,?)");
 		if($sex == "Uomo")
 			$sex = "M";
 		else
 			$sex = "F";
 		
-		$stmt->bind_param('sss', $name, $surname, $sex);
+		$stmt->bind_param('sssss', $name, $surname, $sex, $email, $password);
 		if(!$stmt->execute())
 		{
 			throw($stmt->error);
 		}	
-
-		$stmt = $this->prepare("SELECT LAST_INSERT_ID()");
-		$stmt->execute();
-		$res = $stmt->get_result();
-		return $res->fetch_array();
-		
+				
 		#$lastid = mysqli_insert_id($this>$conn);
 		#return $lastid;
-
 	}
 }

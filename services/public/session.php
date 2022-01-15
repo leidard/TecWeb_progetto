@@ -42,6 +42,6 @@ class Session {
 
 	public static function isOwner($mail)
 	{
-		return !((new Credential())->isUser($mail));	
+		return (new Credential())->isOwner($mail);	
 	}
 }

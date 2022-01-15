@@ -2,7 +2,6 @@ CREATE DATABASE IF NOT EXISTS `scissorhands`;
 USE `scissorhands`;
 
 -- DROP TABLES
-DROP TABLE IF EXISTS credential CASCADE;
 DROP TABLE IF EXISTS reservation CASCADE;
 DROP TABLE IF EXISTS service CASCADE;
 DROP TABLE IF EXISTS staff CASCADE;
@@ -16,7 +15,9 @@ CREATE TABLE IF NOT EXISTS `owner` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `date_of_birth` date,
+  `sex` ENUM('M', 'F') NOT NULL,
+  `email` varchar(100) NOT NULL UNIQUE,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
@@ -26,22 +27,11 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
   `sex` ENUM('M', 'F') NOT NULL,
-  PRIMARY KEY (`_id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-
-
-CREATE TABLE IF NOT EXISTS `credential` (
-  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL UNIQUE,
   `password` varchar(100) NOT NULL,
-  `type` ENUM('USER', 'OWNER') NOT NULL,
-  `customer_ref` INT UNSIGNED DEFAULT NULL,
-  `owner_ref` INT UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-ALTER TABLE `credential` ADD CONSTRAINT `FK_credential_customer` FOREIGN KEY (`customer_ref`) REFERENCES `customer` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `credential` ADD CONSTRAINT `FK_credential_owner` FOREIGN KEY (`owner_ref`) REFERENCES `owner` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE IF NOT EXISTS `company` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -117,15 +107,9 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- Popolazione database
 
 INSERT INTO
-  owner(_id, name, surname)
+  owner(_id, name, surname, sex, email, password)
 VALUES
-  (1, 'Edoardo', 'Coppola');
-
-INSERT INTO
-  credential(_id, owner_ref, email, password, type)
-VALUES 
-  (1, 1, 'admin', 'admin', 'OWNER');
-
+  (1, 'Edoardo', 'Coppola', 'M', 'admin', 'admin');
 
 INSERT INTO 
   company(_id,name,open_at,close_at,days,book_before,book_after,owner)
@@ -146,20 +130,21 @@ VALUES
   (9, 1200, 15.00, "Modellatura veloce", "barba", "Riassetto di barba e baffi con forbice e tosatrice, seguito dall'applicazione di un balsamo.", 1);
   
 INSERT INTO
-  customer(_id, surname, name, sex) 
+  customer(_id, surname, name, sex, email, password) 
 VALUES 
-  ('1', 'Mori', 'Mario', 'M'),
-  ('2', 'Bianchi', 'Giovanni', 'M'),
-  ('3', 'Fiume', 'Andrea', 'M'),
-  ('4', 'Zoppin', 'Marco', 'M'),
-  ('5', 'Ferri', 'Pietro', 'M'),
-  ('6', 'Galli', 'Davide', 'M'),
-  ('7', 'Trevi', 'Valerio', 'M'),
-  ('8', 'Rizzo', 'Giacomo', 'M'),
-  ('9', 'Muri', 'Tommaso', 'M'),
-  ('10', 'Padovan', 'Luca', 'M'),
-  ('11', 'Nave', 'Paolo', 'M'),
-  ('12', 'Saveri', 'Matteo', 'M');
+  ('1', 'Mori', 'Mario', 'M', 'user', 'user'),
+  ('2', 'Bianchi', 'Giovanni', 'M', 'testBG@veryfakemail.it', 'Prova123'),
+  ('3', 'Fiume', 'Andrea', 'M', 'testFA@veryfakemail.it', 'Prova123'),
+  ('4', 'Zoppin', 'Marco', 'M', 'testZM@veryfakemail.it', 'Prova123'),
+  ('5', 'Ferri', 'Pietro', 'M', 'testFP@veryfakemail.it', 'Prova123'),
+  ('6', 'Galli', 'Davide', 'M', 'testGD@veryfakemail.it', 'Prova123'),
+  ('7', 'Trevi', 'Valerio', 'M', 'testTV@veryfakemail.it', 'Prova123'),
+  ('8', 'Rizzo', 'Giacomo', 'M', 'testRG@veryfakemail.it', 'Prova123'),
+  ('9', 'Muri', 'Tommaso', 'M', 'testMT@veryfakemail.it', 'Prova123'),
+  ('10', 'Padovan', 'Luca', 'M', 'testPL@veryfakemail.it', 'Prova123'),
+  ('11', 'Nave', 'Paolo', 'M', 'testNP@veryfakemail.it', 'Prova123'),
+  ('12', 'Saveri', 'Matteo', 'M', 'testSM@veryfakemail.it', 'Prova123');
+  ('13', 'Brunetti', 'Mario', 'M', 'marco.brun@fasd.it', '$2y$10$FqSjklsD0f32ZsVmy5HoD.jlXPgG3WFXEjr/S62NwEW8BvsM88BUC')
   
 
 INSERT INTO 
