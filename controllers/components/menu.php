@@ -17,7 +17,7 @@ function _menu($sess_type = "GUEST"){
     $out = $template;
 
     $pagine = array(
-        "STAFF" => array (
+        "OWNER" => array (
             'Home' => '/',
             'Servizi' => '/servizi.php',
             'Staff' => '/staff.php',

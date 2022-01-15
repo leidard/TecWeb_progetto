@@ -20,6 +20,7 @@ if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno Ã
 	//die();
 
 	echo "Gia loggato";
+	echo $_SESSION["type"];
 	$main = file_get_contents('../views/components/logout.html');
 	if(isset($_GET["logout"]))
 	{
@@ -30,12 +31,38 @@ else
 {
 	$main = file_get_contents('../views/accedi.html');
 	
-	if(isset($_GET["mail"]) && isset($_GET["password"]))
+	if(isset($_GET["mail"]) && preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]))
+	{
+		$mail = $_GET["mail"];
+	}
+	else
+	{
+		unset($mail);
+	}
+
+	if(isset($_GET["password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]))
+	{
+		$password = $_GET["password"];
+	}
+	else
+	{
+		unset($password);
+	}
+//TODO sistemare meglio sti if else
+
+	if(isset($password) && isset($mail))
 	{
 		$password=PublicLoginService::getUserPassword($_GET["mail"]);
 		if($password == $_GET["password"])
 		{
 			$_SESSION["sessionid"] = $_GET["mail"];
+			if(Session::isUser($mail)) 
+				$_SESSION["type"] = "USER";
+			elseif(Session::isOwner($mail))
+				$_SESSION["type"] = "OWNER";
+			else	#better safe than sorry
+				$_SESSION["type"] = "GUEST";
+
 		}
 		else
 		{
@@ -55,7 +82,10 @@ else
 
 		echo $password;
 		echo  $_GET["password"];
+		// TODO redirect a ???
 	}
+	else
+		echo "Dati non validi";
 }
 
 $header = _header($path);
