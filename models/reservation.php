@@ -90,7 +90,14 @@ class Reservation extends DBHelper {
     }
 
     public function getUnconfirmed($customer) {
-        $stmt = $this->prepare("SELECT * FROM reservation WHERE company = 1 AND confirmed is NULL AND customer = ? LIMIT 1");
+        $stmt = $this->prepare("SELECT R._id as _id, R.start_at as start_at, R.end_at as end_at, R.price as price, S.name as staff, SVC.name as service  
+        FROM 
+            scissorhands.reservation as R
+        INNER JOIN staff as S 
+            ON S._id = R.staff
+        INNER JOIN service as SVC 
+            ON SVC._id = R.service 
+        WHERE R.company = 1 AND R.confirmed is NULL AND R.customer = ? LIMIT 1");
         $stmt->bind_param('s', $customer);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
@@ -105,7 +112,15 @@ class Reservation extends DBHelper {
     }
 
     public function getAllUnconfirmed() {
-        $stmt = $this->prepare("SELECT * FROM reservation WHERE company = 1 AND confirmed is NULL LIMIT 1");
+        $stmt = $this->prepare("SELECT  R._id as _id, R.start_at as start_at, R.end_at as end_at, R.price as price, S.name as staff, SVC.name as service, C.name as customer_name, C.surname as customer_surname  
+        FROM 
+            scissorhands.reservation as R
+        INNER JOIN staff as S 
+            ON S._id = R.staff
+        INNER JOIN service as SVC 
+            ON SVC._id = R.service 
+        INNER JOIN customer as C
+            ON C._id = R.customer  WHERE R.company = 1 AND R.confirmed is NULL LIMIT 1");
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }

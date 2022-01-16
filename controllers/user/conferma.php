@@ -34,11 +34,29 @@ if (isset($_GET["staff"]) && preg_match('/^[0-9]+$/', $_GET["staff"])) {
     $selected_staff_name = $barber["name"]." ".$barber["surname"];
 }
 
-$selected_day = floor(time()/86400);
+$today = floor(time()/86400);
+$selected_day = $today;
 if (isset($_GET["day"]) && preg_match('/^[0-9]+$/', $_GET["day"])) {
     $selected_day = (int) $_GET["day"];
     $selected_day_ext = gmdate("M d", $selected_day*86400);
 }
+$selected_day_ext = gmdate("M d", $selected_day*86400);
+$extended_date = "";
+switch ($selected_day) {
+    case $today:
+        $extended_date = "di Oggi";
+        break;
+    case $today + 1:
+        $extended_date = "di Domani";
+        break;
+    case $today - 1:
+        $extended_date = "di Ieri";
+        break;
+    default:
+        $extended_date = "del " . gmdate("d M", $selected_day * 86400);
+}
+$selected_day_ext = $extended_date;
+
 $query = array(
     "staff" => $selected_staff,
     "service" => $selected_service,
