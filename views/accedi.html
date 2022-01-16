@@ -30,23 +30,21 @@
 		}
 
 	</script>
-	<div class="form">
+	<div class="form-block">
 		<form id="login-form" action="accedi.php" method="GET" aria-label="Accesso">
 			<h2>Accedi</h2>
 			<fieldset class="dati-login">
 				<legend>Dati di accesso:</legend>
 				<span>
-					<label for="mail">Mail</label>
-					<input oninput="onEmail(event);" type="email" placeholder="Inserisci l'email" name="mail" id="mail" >
+					<label for="mail">Email</label>
+					<input oninput="onEmail(event);" type="email" placeholder="Inserisci l'email" name="mail" id="mail" required />
 				</span>
 				<span>
-					<label for="password">Password 
-						<span class="input-hint">(Minimo 8 caratteri, tra cui almeno una lettera e un numero)</span>
-					</label>
-					<input oninput="onPw(event);" type="password" placeholder="Inserisci password" name="password" id="password" >
+					<label for="password">Password</label>
+					<input oninput="onPw(event);" type="password" placeholder="Inserisci la password" name="password" id="password" required />
 				</span>
 			</fieldset>
-			<input type="submit" value="Entra!" id="login" aria-disabled>
+			<input type="submit" value="Entra!" id="login" aria-disabled="true" />
 		</form>
 	</div>
 	<a class="registrati" href="./registrati.php">Non sei ancora registrato? Clicca qui!</a>

@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    letter-spacing: 0.1em;
     position: relative;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -26,7 +27,7 @@ h2 { /* NO */
     text-align: center;
 }
 
-.nonVisibile{
+.per-sr{
     border: 0;
     padding: 0;
     width: 0.1px;
@@ -36,7 +37,7 @@ h2 { /* NO */
 	white-space: nowrap; 
 }
 
-.nonVisibile:focus {
+.per-sr:focus {
     outline: 0;
 }
 
@@ -234,7 +235,7 @@ section#benvenuto div.img-wrap div.content {
     border-radius: 12px;
 }
 
-section#misureSicurezza, ul { /* NO UL PIU' SPECIFICO */
+section#misureSicurezza, section#misureSicurezza>ul { 
     text-align: center;
     list-style-position: inside;
 }
@@ -242,7 +243,7 @@ section#misureSicurezza, ul { /* NO UL PIU' SPECIFICO */
 
 /*              ORARI               */
 
-table { /* NO */
+table#orari-apertura { 
     border: none;
     border-collapse: collapse;
 }
@@ -309,51 +310,58 @@ section#benvenuto a#link-prenota {
 
 
 /*              FORM                */
- /* ???????????? */
-div.form{
+div.form-block{
     display: block;
     text-align: center;
 }
 
-form{ /* ???????????? */
-
+form#registrazione-form, form#login-form{ 
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
 }
 
-fieldset { /* ???????????? */
-
+fieldset.dati-personali, 
+fieldset.dati-login,
+fieldset.dati-registrazione {
     display: flex;
     flex-direction: column;
     border-radius: 6px;
 }
 
-fieldset > span{ /* ???????????? */
-
+fieldset.dati-personali>span, 
+fieldset.dati-registrazione>span,
+fieldset.dati-login>span { 
     flex: 1 1;
     display: flex;
     flex-direction: column;
     margin: 8px 0;
 }
 
-fieldset > span > label {  /* ???????????? */
-
+fieldset.dati-personali>span>label, 
+fieldset.dati-personali>span>span>label,
+fieldset.dati-registrazione>span>label,
+fieldset.dati-login>span>label {  
     font-weight: bold;
 }
 
-fieldset.dati-login > span > label > span.input-hint {
+fieldset.dati-registrazione span.input-hint,
+fieldset.dati-personali span.input-hint{
     display: none;
     font-size: .9em;
     font-weight: normal;
 }
 
+/*
 fieldset.dati-login>span>label::after {
     content: ":";
 }
-
-fieldset>span>input, fieldset>span>select {
+*/
+fieldset.dati-login>span>input, 
+fieldset.dati-registrazione>span>input, 
+fieldset.dati-personali>span>input, 
+fieldset.dati-personali>span>span>select {
     max-width: 300px;
     margin-left: 8px;
     margin-top: 4px;
@@ -363,26 +371,46 @@ fieldset>span>input, fieldset>span>select {
     font-size: 16px;
 }
 
-fieldset.dati-login>span.error>input {
+/*
+fieldset.dati-registrazione>span.error>input,
+fieldset.dati-personali>span.error>input {
     border-color: #f00;
 }
+*/
 
-fieldset.dati-login>span.error>label>span.input-hint {
+fieldset.dati-login span.input-hint,
+fieldset.dati-personali>span.error>input {
     display: block;
 }
 
-input[type=submit]{ /* ???????????? */
-
-    background-color: #000;
+form#registrazione-form input[type=submit],
+form#login-form input[type=submit]{ 
+    background-color: #800F0F;
     color:white;
     font-weight: bold;
     padding: 12px 32px;
-    text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 6px;
     float: right;
   }
+
+form#registrazione-form input[type=submit]:hover,
+form#login-form input[type=submit]:hover{ 
+      background-color: black;      
+}
+
+form#registrazione-form input[type=submit]:active,
+form#login-form input[type=submit]:active{ 
+    background-color: white; 
+    color:black;     
+}
+
+form#registrazione-form input[type=submit]:disabled{
+    background-color: #cccccc;
+    color:black;
+    cursor:not-allowed; 
+}
 
   a.registrati{
       display: block;
@@ -392,9 +420,9 @@ input[type=submit]{ /* ???????????? */
 
 /*      PRENOTAZIONI    */
 
-a#effettuaAccesso{
-    display: block;
+section#prenota-no-accesso{
     text-align: center;
+    padding: 8px;
 }
 
 .reservations {
@@ -638,7 +666,7 @@ div.barba {
     padding: 0;
 }
 
-div.spiegazione-servizi {
+section.spiegazione-servizi {
     display: flex;
     justify-content: center;
     flex-flow: row;
@@ -656,7 +684,7 @@ div.box-barba {
     flex: 1 0 20%;
 }
 
-div.spiegazione-servizi p a {
+section.spiegazione-servizi p a {
     display: block;
 }
 
@@ -745,12 +773,12 @@ div.spiegazione-servizi p a {
 
 /*              404 ERROR               */
 
-div.error {
+section.error {
     display: flex;
     align-items: center;
 }
 
-div.error img {
+section.error img {
     height: auto;
     max-width: 100%;
 }
@@ -786,4 +814,11 @@ div#ErroreConnessione>p>span {
         width: 200px;
         height: 200px;
     }  
+}
+
+
+/*              CONTATTI                */
+section#info-contatti{
+    text-align: center;
+    list-style-position: inside;
 }
