@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS reservation CASCADE;
 DROP TABLE IF EXISTS service CASCADE;
 DROP TABLE IF EXISTS staff CASCADE;
 DROP TABLE IF EXISTS company CASCADE;
+DROP TABLE IF EXISTS credential;
 DROP TABLE IF EXISTS owner CASCADE;
 DROP TABLE IF EXISTS customer CASCADE;
 
@@ -38,8 +39,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `name` varchar(100) NOT NULL,
   `open_at` INT UNSIGNED NOT NULL,
   `close_at` INT UNSIGNED NOT NULL,
-  `days`
-  set(
+  `days` set(
       'MON',
       'TUE',
       'WED',
@@ -48,12 +48,12 @@ CREATE TABLE IF NOT EXISTS `company` (
       'SAT',
       'SUN'
     ) NOT NULL,
-    `book_before` INT UNSIGNED NOT NULL,
-    `book_after` INT UNSIGNED NOT NULL,
-    `owner` INT UNSIGNED NOT NULL,
-    PRIMARY KEY (`_id`),
+  `book_before` INT UNSIGNED NOT NULL,
+  `book_after` INT UNSIGNED NOT NULL,
+  `owner` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`_id`),
     KEY `FK__owner_azienda` (`owner`) USING BTREE,
-    CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`_id`) ON UPDATE CASCADE
+  CONSTRAINT `FK__owner_azienda` FOREIGN KEY (`owner`) REFERENCES `owner` (`_id`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE IF NOT EXISTS `service` (
@@ -143,8 +143,8 @@ VALUES
   ('9', 'Muri', 'Tommaso', 'M', 'testMT@veryfakemail.it', 'Prova123'),
   ('10', 'Padovan', 'Luca', 'M', 'testPL@veryfakemail.it', 'Prova123'),
   ('11', 'Nave', 'Paolo', 'M', 'testNP@veryfakemail.it', 'Prova123'),
-  ('12', 'Saveri', 'Matteo', 'M', 'testSM@veryfakemail.it', 'Prova123');
-  ('13', 'Brunetti', 'Mario', 'M', 'marco.brun@fasd.it', '$2y$10$FqSjklsD0f32ZsVmy5HoD.jlXPgG3WFXEjr/S62NwEW8BvsM88BUC')
+  ('12', 'Saveri', 'Matteo', 'M', 'testSM@veryfakemail.it', 'Prova123'),
+  ('13', 'Brunetti', 'Mario', 'M', 'marco.brun@fasd.it', '$2y$10$FqSjklsD0f32ZsVmy5HoD.jlXPgG3WFXEjr/S62NwEW8BvsM88BUC');
   
 
 INSERT INTO 
