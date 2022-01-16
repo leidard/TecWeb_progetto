@@ -4,9 +4,18 @@
 
 		function onEmail(evt) {
 			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value)) 
-				evt.target.parentElement.classList.add("error") 
+			{
+				evt.target.parentElement.classList.add("error");
+				document.getElementById('Registrati').setAttribute('aria-disabled', true);
+				document.getElementsByClassName('email-error')[0].textContent = "La mail deve essere del formato nomeutente@dominio.it";
+				
+			}
 			else 
-				evt.target.parentElement.classList.remove("error")
+			{
+				evt.target.parentElement.classList.remove("error");
+				document.getElementById('Registrati').setAttribute('aria-disabled', false);
+				document.getElementsByClassName('email-error')[0].textContent = "";
+			}
 		}
 
 		function onPw(evt){
@@ -15,11 +24,15 @@
 			{
 				evt.target.parentElement.classList.add("error") 
 				document.getElementById('Registrati').disabled = true;
+				document.getElementsByClassName('pw-error')[0].innerHTML = "La password deve avere almeno <ul> <li> 8 caratteri</li> <li>una maiuscola</li> <li>una minuscola</li> <li>un numero</li>";
+				
 			}
 			else 
 			{
 				evt.target.parentElement.classList.remove("error")
 				document.getElementById('Registrati').disabled = false;
+				document.getElementsByClassName('pw-error')[0].innerHTML = "";
+				
 			}
 		}
 
@@ -29,21 +42,40 @@
 			{	
 				evt.target.parentElement.classList.add("error");
 				document.getElementById('Registrati').disabled = true;
+				document.getElementsByClassName('pwrep-error')[0].textContent = "Le password non corrispondono";
 			}
 			else
 			{
 				evt.target.parentElement.classList.remove("error");
 				document.getElementById('Registrati').disabled = false;
+				document.getElementsByClassName('pwrep-error')[0].textContent = "";
 			}
 		}
 	 
 		function sanitizeField(fieldname)
 		{
-			document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()1234567890\[\]\\|\{\}\/?]/g, "");
+			//document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()1234567890\[\]\\|\{\}\/?]/g, "");
 			
+			var a = document.getElementById(fieldname).value;
+			
+			if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()1234567890\[\]\\|\{\}\/?]/g, ""))
+			{
+				document.getElementsByClassName(fieldname+"-error")[0].textContent = "Caratteri non validi presenti";
+			}
+			else
+			{
+				document.getElementsByClassName(fieldname+"-error")[0].textContent = "";	
+			}
 		}
 
-		
+		function clearIfError(fieldname)
+		{
+			if(document.getElementsByClassName(fieldname+"-error")[0].textContent === "Caratteri non validi presenti")
+			{
+				document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()1234567890\[\]\\|\{\}\/?]/g, "");
+				document.getElementsByClassName(fieldname+"-error")[0].textContent = "";
+			}
+		}
 
 	</script>
 
@@ -53,12 +85,12 @@
 			<fieldset class="dati-personali">
 				<legend>Dati personali:</legend>
 				<span>
-					<label for="name">Nome</label>
-					<input placeholder="Inserisci il nome" name="name" id="name" minlength="1" maxlength="50" onblur="sanitizeField('name');" required />
+					<label for="name">Nome</label> <span class="name-error"></span>
+					<input placeholder="Inserisci il nome" name="name" id="name" minlength="1" maxlength="50" onkeyup="sanitizeField('name');" onclick="clearIfError('name');" required />
 				</span>
 				<span>
-					<label for="surname">Cognome</label>
-					<input placeholder="Inserisci il cognome" name="surname" id="surname" minlength="1" maxlength="50" onblur="sanitizeField('surname');" required />
+					<label for="surname">Cognome</label> <span class="surname-error"></span>
+					<input placeholder="Inserisci il cognome" name="surname" id="surname" minlength="1" maxlength="50" onkeyup="sanitizeField('surname');" onclick="clearIfError('surname');" required />
 				<span>
 				<label for="sex">Sesso</label>
 				<select name="sex" id="sex">
@@ -70,11 +102,11 @@
 			<fieldset class="dati-registrazione">
 				<legend>Dati di accesso:</legend>
 				<span>
-					<label for="mail">Email</label>
+					<label for="mail">Email</label> <span class="email-error"></span>
 					<input placeholder="Inserisci l'email" oninput="onEmail(event);" name="mail" id="mail" type="email" required/>
 				</span>
 				<span>
-					<label for="password">Password
+					<label for="password">Password <span class="pw-error"></span>
 						<span class="input-hint">(Minimo 8 caratteri, tra cui almeno una lettera e un numero)</span>
 					</label>
 					<input placeholder="Inserisci la password" name="password" id="password" type="password" oninput="onPw(event);" required />
@@ -82,7 +114,7 @@
 				<span>
 					<label for="password_rep">
 						Ripeti la password
-						<span class="input-hint">Le password non corrispondono</span>
+						<span class="pwrep-error"></span>
 					</label>
 					<input placeholder="Ripeti la password" name="password_rep" id="password_rep" type="password" required oninput="pwCheck(event);" />
 				</span>

@@ -4,14 +4,16 @@
 		function onEmail(evt) {
 			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value)) 
 			{
-				evt.target.parentElement.classList.add("error")
+				evt.target.parentElement.classList.add("error");
 				document.getElementById('login').setAttribute('aria-disabled', true);
+				document.getElementsByClassName('email-error')[0].textContent = "La mail deve essere del formato nomeutente@dominio.it";
 				
 			}
 			else 
 			{
-				evt.target.parentElement.classList.remove("error")
+				evt.target.parentElement.classList.remove("error");
 				document.getElementById('login').setAttribute('aria-disabled', false);
+				document.getElementsByClassName('email-error')[0].textContent = "";
 			}
 		}
 
@@ -19,12 +21,12 @@
 			// Minimum eight characters, at least one letter and one number:
 			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
 			{
-				evt.target.parentElement.classList.add("error") 
+				evt.target.parentElement.classList.add("error");
 				document.getElementById('login').setAttribute('aria-disabled', true);
 			}
 			else
 			{ 
-				evt.target.parentElement.classList.remove("error")
+				evt.target.parentElement.classList.remove("error");
 				document.getElementById('login').setAttribute('aria-disabled', false);
 			}
 		}
@@ -36,12 +38,12 @@
 			<fieldset class="dati-login">
 				<legend>Dati di accesso:</legend>
 				<span>
-					<label for="mail">Email</label>
-					<input oninput="onEmail(event);" type="email" placeholder="Inserisci l'email" name="mail" id="mail" required />
+					<label for="mail">Email</label> <span class="email-error"></span>
+					<input oninput="onEmail(event);" type="email" placeholder="Inserisci l'email" name="mail" id="mail"  />
 				</span>
 				<span>
 					<label for="password">Password</label>
-					<input oninput="onPw(event);" type="password" placeholder="Inserisci la password" name="password" id="password" required />
+					<input oninput="onPw(event);" type="password" placeholder="Inserisci la password" name="password" id="password"  />
 				</span>
 			</fieldset>
 			<input type="submit" value="Entra!" id="login" aria-disabled="true" />
