@@ -37,7 +37,7 @@ if (isset($_POST) && !empty($_POST)) {
 $unconf = StaffReservationService::getAllUnconfirmed();
 $strunconf = "";
 foreach($unconf as $r) {
-    $strunconf .= booked_pending_staff($r["_id"], $r["start_at"], $r["end_at"]- $r["start_at"], $r["service"], $r["price"], $r["confirmed"]);
+    $strunconf .= booked_pending_staff($r["_id"], $r["start_at"], $r["end_at"], $r["service"], $r["staff"], $r["price"], $r["customer_name"], $r["customer_surname"]);
 }
 $main = str_replace("%UNCONFIRMED%", $strunconf, $main);
 

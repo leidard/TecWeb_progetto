@@ -48,13 +48,13 @@ if (isset($_POST) && !empty($_POST)) {
 }
 
 
-// STAMPA NON CONFERMATO SE PRESENTE
+// STAMPA NON CONFERMATO SE PRESENTE ALTRIMENTI LINK CREA NUOVA PRENOTAZIONE
 $unc =  UserBookingService::getUnconfirmed($user_id);
 $unc_str = "";
 if (!!$unc) {
     $unc_str = booked_pending($unc["start_at"], $unc["end_at"], $unc["service"], $unc["price"], $unc["staff"]);
 } else {
-    $unc_str = "Nessuna";
+    $unc_str = '<a href="/user/prenota.php">Crea Nuova Prenotazione</a>';
 }
 $main = str_replace("%UNCONFIRMED%", $unc_str, $main);
 
