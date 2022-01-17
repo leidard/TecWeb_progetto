@@ -25,10 +25,12 @@ class Credential extends DBHelper {
 		$stmt->bind_param('s', $mail);
 		$stmt->execute();
 		$res = $stmt->get_result();
-		$var = $res->fetch_array()[0];
-		if(!empty($var))
-			return $var;
-
+		if(mysqli_num_rows($res) != 0)
+		{
+			$var = $res->fetch_array()[0];
+			if(!empty($var))
+				return $var;
+		}
 
 		$stmt = $this->prepare("SELECT password FROM customer where email=?");
 		$stmt->bind_param('s', $mail);
