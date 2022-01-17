@@ -5,13 +5,22 @@ require_once 'components/header.php';
 require_once __DIR__ . '/../services/public/registration.php';
 
 session_start();
+function dontClearFields()
+{
+	if(isset($_GET["name"]))
+		$_SESSION["name"] = $_GET["name"];
+	if(isset($_GET["surname"]))
+		$_SESSION["surname"] = $_GET["surname"];
+	if(isset($_GET["mail"]))
+		$_SESSION["mail"] = $_GET["mail"];
+}
+
+
 if(isset($_SESSION["sessionid"])) #aka uno già loggato va qui #TODO da migliorare la situazione quando uno è già loggato?
 {
 	header("Location: user/prenotazioni.php");
 	die();
 }
-
-
 
 $pagina = page('Registrati - Scissorhands');
 
@@ -23,15 +32,6 @@ $header = _header($path);
 $footer = _footer();
 $main = file_get_contents('../views/registrati.html');
 
-if(isset($_SESSION["error"]))
-{
-	$main = str_replace("%ERRORE%",$_SESSION["error"], $main);
-	unset($_SESSION["error"]);
-}
-else
-{
-	$main = str_replace("%ERRORE%","", $main);
-}
 
 unset($name);
 unset($surname);
@@ -42,43 +42,128 @@ unset($password_rep);
 
 if(isset($_GET["name"]) && !preg_match_all("/[!@#$%^&*()'\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_GET["name"])) #TODO completare l'abominio
 	$name = $_GET["name"];
+else
+{
+	$_SESSION["regerror"] = "Caratteri invalidi nel nome o cognome";
+	dontClearFields();
+}
+
 if(isset($_GET["surname"]) && !preg_match_all("/[!@#$%^&*()'\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_GET["surname"]))
 	$surname = $_GET["surname"];
-if(isset($_GET["sex"]) && ($_GET["sex"] === "Uomo" || $_GET["sex"] === "Donna" ))
+else
+{
+	$_SESSION["regerror"] = "Caratteri invalidi nel nome o cognome";
+	dontClearFields();
+}
+	
+if(isset($_GET["sex"]) && ($_GET["sex"] == "Uomo" || $_GET["sex"] == "Donna" ))
 	$sex = $_GET["sex"];
+else
+{
+	$_SESSION["regerror"] = "Sesso non valido";
+	dontClearFields();
+}
+	
 if(isset($_GET["mail"]) && preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]))
 	$mail = $_GET["mail"];
+else
+{
+	$_SESSION["regerror"] = "Formato mail non valido";
+	dontClearFields();
+}
+	
 if(isset($_GET["password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]))
 	$password = $_GET["password"];
+else
+{
+	$_SESSION["regerror"] = "Formato password non valido";
+	dontClearFields();
+}	
 if(isset($_GET["password_rep"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password_rep"]))
 	$password_rep = $_GET["password_rep"];
+else
+{
+	$_SESSION["regerror"] = "Formato ripeti password non valido";
+	if(isset($_GET["name"]))
+	{
+		$_SESSION["name"] = $_GET["name"];
+		echo $_SESSION["name"];
+		echo $_GET["name"];
+		echo "asdas";
+	}
+	if(isset($_GET["surname"]))
+		$_SESSION["surname"] = $_GET["surname"];
+	if(isset($_GET["mail"]))
+		$_SESSION["mail"] = $_GET["mail"];
+}
+
+
+
+if(isset($_SESSION["regerror"]))
+{
+	$main = str_replace("%ERRORE%",$_SESSION["regerror"], $main);
+	unset($_SESSION["regerror"]);
+
+	//Salvataggio campi in caso JS non vadi
+	if(isset($_SESSION["mail"]))
+		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
+	if(isset($_SESSION["name"]))
+		$main = str_replace("%NOMEP%","value=\"".$_SESSION["name"]."\"",$main);
+	if(isset($_SESSION["surname"]))
+		$main = str_replace("%COGNOMEP%","value=\"".$_SESSION["surname"]."\"",$main);
+
+	unset($mail);
+	unset($name);
+	unset($surname);
+
+}
+else
+{
+	$main = str_replace("%ERRORE%","", $main);
+	$main = str_replace("%MAILP%","", $main);
+	$main = str_replace("%NOMEP%","", $main);
+	$main = str_replace("%COGNOMEP%","", $main);
+}
+
+
+
+
+
 
 
 //if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && isset($_GET["mail"]) && isset($_GET["password"]) && isset($_GET["password_rep"]))
 if(isset($name) && isset($surname) && isset($sex) && isset($mail) && isset($password) && isset($password_rep))
 {
 	//if(filter_var($_GET["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in locale, mettere in relazione
-	if(preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $mail)) #TODO ridondante (vedi regex sopra)
-	{
-		if($password_rep === $password)
-			RegistrationService::RegisterUser($name, $surname, $sex, $mail, $password);
-		else
-		{
-			#$main.="Le password non corrispondono.";
-			#TODO trovare un modo di non resettare i field
-
-			$_SESSION["error"] = "Password non corrispondenti.";
-		}	
-	}
+	if($password_rep === $password)
+		RegistrationService::RegisterUser($name, $surname, $sex, $mail, $password);
 	else
 	{
-		$_SESSION["error"] = "Email non valida."; #TODO Da riempire meglio ofc.
+		#$main.="Le password non corrispondono.";
+		$_SESSION["regerror"] = "Password non corrispondenti.";
+		
+		unset($mail);
+		unset($name);
+		unset($surname);
+	}	
+
+	//Salvataggio campi in caso JS non vadi
+	if(isset($_SESSION["regerror"]))
+	{
+		if(isset($mail))
+			$_SESSION["mail"] = $mail;
+		if(isset($name))
+			$_SESSION["name"] = $name;
+		if(isset($surname))
+			$_SESSION["surname"] = $surname;
+		
 	}
+
 }
 /*
 else
 {
-	$_SESSION["error"] = "Campi non compilati.";
+	$_SESSION["regerror"] = "Campi non compilati.";
 }	
 */
 
