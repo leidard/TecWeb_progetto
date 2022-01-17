@@ -43,81 +43,14 @@ h2 { /* NO */
 
 
 /*         MENU            */
-
-nav#menu {
-    padding: 8px 16px;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    background-color: #800F0F;
-    
-    position: relative;
-    min-height: 37px;
-    text-align: center;
-    box-sizing: border-box;
+nav#menu{
+    padding: 0px;
+    border: 0px;
 }
 
-nav#menu button#burgher {
+nav#menu ul{
     display: none;
-    visibility: hidden;
-    background: url("static/vector/burgher.svg") no-repeat center center;
-    color: white;
-    height: 40px;
-    width: 40px;
 }
-
-nav#menu ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-@media only screen and (max-width: 768px) {
-    nav#menu button#burgher {
-        display: block;
-        visibility: visible;
-    }
-    nav#menu ul {
-        display: none;
-        flex-direction: column;
-        visibility: hidden;
-    }
-    nav#menu.visible ul {
-        display: flex;
-        visibility: visible;
-    }
-}
-
-nav#menu ul li {
-    flex: 1 1;
-    padding: 8px 16px;
-    box-sizing: border-box;
-}
-
-nav#menu ul li a {
-    display:block;
-}
-
-nav#menu ul li.current {
-    background-color: white;
-}
-
-nav#menu a {
-    box-sizing: border-box;
-    color: white;
-    text-transform: uppercase;
-}
-
-nav#menu li.current a {
-    color: black;
-}
-
-nav#menu li a:hover {
-    color: white;
-    background-color: black;
-}
-
 
 /*        BREADCRUMB      */
 
@@ -178,17 +111,7 @@ footer#page-footer p {
 /*     FLOATING BUTTON    */
 
 div#floating-btn {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    padding: 8px;
-}
-
-div#floating-btn a {
-    display: block;
-    border-radius: 8px;
-    text-decoration: none;
-    padding: 8px;
+    display: none;
 }
 
 
@@ -197,7 +120,7 @@ div#floating-btn a {
 main {
     padding: 8px;
     margin: 0 auto;
-    width: 1200px;
+    width: 800px;
     /* 1200*/
 }
 
@@ -808,12 +731,5 @@ div#ErroreConnessione>p>span {
 /*              CONTATTI                */
 section#info-contatti{
     text-align: center;
-    list-style-position:inside;
-}
-
-img#mappa{
-    padding:16px;
-    width: 100%;
-    max-width: 600px;
-    height: auto;
+    list-style-position: inside;
 }
