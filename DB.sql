@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 INSERT INTO
   owner(_id, name, surname, sex, email, password)
 VALUES
-  (1, 'Edoardo', 'Coppola', 'M', 'admin', 'admin');
+  (1, 'Edoardo', 'Coppola', 'M', 'admin', '$2y$10$4YNG0JxCST9yQxoKIhxe4e.xA4xA7Tv.t9/WTZR/qaHWJJAgpzRRK');
 
 INSERT INTO 
   company(_id,name,open_at,close_at,days,book_before,book_after,owner)
@@ -132,7 +132,7 @@ VALUES
 INSERT INTO
   customer(_id, surname, name, sex, email, password) 
 VALUES 
-  ('1', 'Mori', 'Mario', 'M', 'user', 'user'),
+  ('1', 'Mori', 'Mario', 'M', 'user', '$2y$10$Dvq3nV9XJZIK./OaYa3x9O.c5cyQPHGfKKw1InhbVxejt5Te4ug8y'),
   ('2', 'Bianchi', 'Giovanni', 'M', 'testBG@veryfakemail.it', 'Prova123'),
   ('3', 'Fiume', 'Andrea', 'M', 'testFA@veryfakemail.it', 'Prova123'),
   ('4', 'Zoppin', 'Marco', 'M', 'testZM@veryfakemail.it', 'Prova123'),
