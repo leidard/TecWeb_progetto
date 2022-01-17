@@ -2,7 +2,7 @@
 	<script>
 
 		function onEmail(evt) {
-			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value)) 
+			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user") 
 			{
 				evt.target.parentElement.classList.add("error");
 				document.getElementById('login').setAttribute('aria-disabled', 'true');
@@ -19,7 +19,7 @@
 
 		function onPw(evt){
 			// Minimum eight characters, at least one letter and one number:
-			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user")
 			{
 				evt.target.parentElement.classList.add("error");
 				document.getElementById('login').setAttribute('aria-disabled', 'true');
@@ -39,7 +39,7 @@
 				<legend>Dati di accesso:</legend>
 				<span>
 					<label for="mail">Email</label> <span class="email-error"></span>
-					<input oninput="onEmail(event);" type="email" placeholder="Inserisci l'email" %MAILP% name="mail" id="mail"  />
+					<input oninput="onEmail(event);" type="text" placeholder="Inserisci l'email" %MAILP% name="mail" id="mail"  />
 				</span>
 				<span>
 					<label for="password">Password</label>

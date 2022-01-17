@@ -30,6 +30,7 @@ else
 	$main = str_replace("%MAILP%", "", $main);
 }
 
+
 if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno è già loggato
 {
 	header("Location: user/prenotazioni.php");
@@ -37,7 +38,7 @@ if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno �
 }
 else
 {	
-	if(isset($_GET["mail"]) && preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]))
+	if(isset($_GET["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]) || $_GET["mail"]=="admin" || $_GET["mail"]=="user"))
 	{
 		$mail = $_GET["mail"];
 	}
@@ -49,7 +50,7 @@ else
 		unset($mail);
 	}
 
-	if(isset($_GET["password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]))
+	if(isset($_GET["password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]) || $_GET["password"]=="admin" || $_GET["password"]=="user"))
 	{
 		$password = $_GET["password"];
 	}
