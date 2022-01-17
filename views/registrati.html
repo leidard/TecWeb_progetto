@@ -58,7 +58,7 @@
 			
 			var a = document.getElementById(fieldname).value;
 			
-			if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()1234567890\[\]\\|\{\}\/?]/g, ""))
+			if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()'".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
 			{
 				document.getElementsByClassName(fieldname+"-error")[0].textContent = "Caratteri non validi presenti";
 			}
@@ -72,7 +72,7 @@
 		{
 			if(document.getElementsByClassName(fieldname+"-error")[0].textContent === "Caratteri non validi presenti")
 			{
-				document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()1234567890\[\]\\|\{\}\/?]/g, "");
+				document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*().,;:-_+=<>1234567890\[\]\\|\{\}\/?]/g, "");
 				document.getElementsByClassName(fieldname+"-error")[0].textContent = "";
 			}
 		}
@@ -91,13 +91,12 @@
 				<span>
 					<label for="surname">Cognome</label> <span class="surname-error"></span>
 					<input placeholder="Inserisci il cognome" name="surname" id="surname" minlength="1" maxlength="50" onkeyup="sanitizeField('surname');" onclick="clearIfError('surname');" required />
-				<span>
+				</span>
 				<label for="sex">Sesso</label>
 				<select name="sex" id="sex">
 					<option>Uomo</option>
 					<option>Donna</option>
 				</select>
-				</span>
 			</fieldset>
 			<fieldset class="dati-registrazione">
 				<legend>Dati di accesso:</legend>
@@ -119,6 +118,7 @@
 					<input placeholder="Ripeti la password" name="password_rep" id="password_rep" type="password" required oninput="pwCheck(event);" />
 				</span>
 			</fieldset>
+			%ERRORE%
 			<input type="submit" value="Registrati" id="Registrati" disabled />
 		</form>
 	</div>

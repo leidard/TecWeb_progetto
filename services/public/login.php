@@ -12,6 +12,8 @@ class PublicLoginService
 	public static function verifyLogin($email, $userProvidedPassword)
 	{
 		$password = PublicLoginService::getUserPassword($email);
+		if(empty($password))
+			return false;
 		return password_verify($userProvidedPassword,$password);
 	}
 }
