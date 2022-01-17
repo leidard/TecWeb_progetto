@@ -46,7 +46,7 @@ else
 	{
 		$_SESSION["error"]="Email o Password non valide.";
 		if(isset($mail))
-			$_SESSION["mail"] = $mail;
+			$_SESSION["mail"] = $_GET["mail"];
 		unset($mail);
 	}
 

@@ -1,5 +1,27 @@
 <div>
+	
+	<div class="form-block">
+		<form id="login-form" action="accedi.php" method="GET" aria-label="Accesso">
+			<h2>Accedi</h2>
+			<fieldset class="dati-login">
+				<legend>Dati di accesso:</legend>
+				<span>
+					<label for="mail">Email</label> <span class="email-error"></span>
+					<input oninput="onEmail(event);" type="text" placeholder="Inserisci l'email" %MAILP% name="mail" id="mail"  />
+				</span>
+				<span>
+					<label for="password">Password</label>
+					<input oninput="onPw(event);" type="password" placeholder="Inserisci la password" name="password" id="password"  />
+				</span>
+			</fieldset>
+			%ERRORE%
+			<input type="submit" value="Entra!" id="login" />
+		</form>
+	</div>
+	<a class="registrati" href="./registrati.php">Non sei ancora registrato? Clicca qui!</a>
+
 	<script>
+		window.onload = document.getElementById('login').setAttribute('aria-disabled', true); //messo qui perché altri senza JS non può fare submit
 
 		function onEmail(evt) {
 			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user") 
@@ -32,23 +54,5 @@
 		}
 
 	</script>
-	<div class="form-block">
-		<form id="login-form" action="accedi.php" method="GET" aria-label="Accesso">
-			<h2>Accedi</h2>
-			<fieldset class="dati-login">
-				<legend>Dati di accesso:</legend>
-				<span>
-					<label for="mail">Email</label> <span class="email-error"></span>
-					<input oninput="onEmail(event);" type="text" placeholder="Inserisci l'email" %MAILP% name="mail" id="mail"  />
-				</span>
-				<span>
-					<label for="password">Password</label>
-					<input oninput="onPw(event);" type="password" placeholder="Inserisci la password" name="password" id="password"  />
-				</span>
-			</fieldset>
-			%ERRORE%
-			<input type="submit" value="Entra!" id="login" aria-disabled="true" />
-		</form>
-	</div>
-	<a class="registrati" href="./registrati.php">Non sei ancora registrato? Clicca qui!</a>
+
 </div>
