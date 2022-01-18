@@ -17,15 +17,15 @@ $footer = _footer();
 
 session_start();
 
+
 if(isset($_SESSION["sessionid"]))
 {
-
-	if(isset($_GET["current_password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["current_password"]))
+	if(isset($_GET["current_password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["current_password"]) || $_GET["current_password"]=="admin" || $_GET["current_password"]=="user")
 		$currentPassword = $_GET["current_password"];
-	if(isset($_GET["new_password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["new_password"]))
+	if(isset($_GET["new_password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["new_password"]) || $_GET["new_password"]=="admin" || $_GET["new_password"]=="user")
 		$newPassword = $_GET["new_password"];
 	
-	if(isset($_GET["confirm_new_password"]) && preg_grep("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["confirm_new_password"]))
+	if(isset($_GET["confirm_new_password"]) && preg_grep("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["confirm_new_password"]) || $_GET["confirm_new_password"]=="admin" || $_GET["confirm_new_password"]=="user")
 		$confirmnewPassword = $_GET["confirm_new_password"];
 
 	$main = file_get_contents('../views/user/pagina_personale.html');
@@ -39,16 +39,16 @@ if(isset($_SESSION["sessionid"]))
 			if($newPassword==$confirmnewPassword)
 			{
 				UserPasswordChangeService::changeUserPassword($_SESSION["sessionid"], $newPassword, $_SESSION["type"]);
-				echo "password cambiata";
+				$_SESSION["message"] = "Password cambiata!";
 			}
 			else
 			{
-				echo "password nuova non corrispondono";
+				$_SESSION["message"] = "Le password nuove non corrispondono";
 			}
 		}
 		else
 		{
-			echo "Password corrente non corrisponde";
+			$_SESSION["message"] = "Password corrente errata";
 		}
 	}
 }
@@ -57,6 +57,14 @@ else
 	header("Location: accedi.php");
 	die();
 }
+
+if(isset($_SESSION["message"]))
+{
+	$main = str_replace("%MESSAGGIO%",$_SESSION["message"], $main);
+	unset($_SESSION["message"]);
+}
+else
+	$main = str_replace("%MESSAGGIO%", "", $main);
 
 
 #$main = file_get_contents('../views/accedi.html');
