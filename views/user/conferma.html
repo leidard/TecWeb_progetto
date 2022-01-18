@@ -1,15 +1,15 @@
 <h2>Disponibilita del giorno %SELECTED_DAY_EXT%</h2>
 <p>Del barbiere %SELECTED_STAFF_NAME% per %SELECTED_SERVICE_NAME%</p>
 <nav>
-    <a href="%PREV_DAY%">Giorno Precedente</a>
+    <a href="%PREV_DAY%">Giorno precedente</a>
     <a href="%TODAY_DAY%">Oggi</a>
-    <a href="%NEXT_DAY%">Giorno Successivo</a>
+    <a href="%NEXT_DAY%">Giorno successivo</a>
 </nav>
 <form method="POST" action="/user/prenotazioni.php" class="booking-form">
     <input type="number" name="staff" value="%SELECTED_STAFF%" hidden />
     <input type="number" name="service" value="%SELECTED_SERVICE%" hidden />
     <fieldset>
-        <legend>Scelta Orario</legend>
+        <legend>Scelta orario</legend>
         %RADIOS_SLOT%
     </fieldset>
     <input type="submit" value="Conferma" />

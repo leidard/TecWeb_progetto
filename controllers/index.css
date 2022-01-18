@@ -371,20 +371,13 @@ fieldset.dati-personali>span>span>select {
     font-size: 16px;
 }
 
-/*
-fieldset.dati-registrazione>span.error>input,
-fieldset.dati-personali>span.error>input {
-    border-color: #f00;
-}
-*/
 
 fieldset.dati-login span.input-hint,
 fieldset.dati-personali>span.error>input {
     display: block;
 }
 
-form#registrazione-form input[type=submit],
-form#login-form input[type=submit]{ 
+input[type=submit]{ 
     background-color: #800F0F;
     color:white;
     font-weight: bold;
@@ -395,18 +388,16 @@ form#login-form input[type=submit]{
     float: right;
   }
 
-form#registrazione-form input[type=submit]:hover,
-form#login-form input[type=submit]:hover{ 
+input[type=submit]:hover{ 
       background-color: black;      
 }
 
-form#registrazione-form input[type=submit]:active,
-form#login-form input[type=submit]:active{ 
+input[type=submit]:active{ 
     background-color: white; 
     color:black;     
 }
 
-form#registrazione-form input[type=submit]:disabled{
+input[type=submit]:disabled{
     background-color: #cccccc;
     color:black;
     cursor:not-allowed; 
