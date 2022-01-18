@@ -63,7 +63,7 @@ class Credential extends DBHelper {
 		$stmt->bind_param('s', $mail);
 		$stmt->execute();
 		$res = $stmt->get_result();
-		return $res->fetch_assoc();
+		return $res->fetch_array()[0];
 	}
 
 	public function isOwner($mail)
@@ -72,7 +72,7 @@ class Credential extends DBHelper {
 		$stmt->bind_param('s', $mail);
 		$stmt->execute();
 		$res = $stmt->get_result();
-		return $res->fetch_assoc();
+		return $res->fetch_array()[0];
 	}
 }
 
