@@ -28,7 +28,7 @@ if(isset($_SESSION["sessionid"]))
 	if(isset($_POST["new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["new_password"]) || $_POST["new_password"]=="admin" || $_POST["new_password"]=="user"))
 		$newPassword = $_POST["new_password"];
 	
-	if(isset($_POST["confirm_new_password"]) && (preg_grep("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
+	if(isset($_POST["confirm_new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
 		$confirmnewPassword = $_POST["confirm_new_password"];
 
 	$main = file_get_contents('../views/user/pagina_personale.html');
