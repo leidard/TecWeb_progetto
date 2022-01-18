@@ -1,18 +1,28 @@
-<div id="personal_page">
+<div id="profile" class="form-block">
 	Cambio Password:
 	<form action="profilo.php" method="POST">
-		<fieldset>
-			<label for="password corrente">Password corrente</label>
-			<input name="current_password" id="password" type="password" required />
+		<fieldset class="dati-cambio-password">
+			<span>
+				<label for="password corrente">Password corrente</label>
+				<input name="current_password" id="current_password" type="password" required />
+			</span>
 			
-			<label for="nuova password">Nuova password</label>
-			<input name="new_password" id="password" type="password" required />
-			
-			<label for="conferma nuova password">Nuova password</label>
-			<input name="confirm_new_password" id="password" type="password" required />
-			
-			<input type="submit" value="Cambia Password">
+			<span>
+				<label for="nuova password">Nuova password</label>
+					<span class="pw-error"></span>		
+				<input name="new_password" id="new_password" type="password" required oninput="onPw(event);" onkeyup="pwCheck(event);"/>
+			</span>
+
+			<span>
+				<label for="conferma nuova password">Ripeti Nuova password</label>
+					<span class="pwrep-error"></span>
+				<input name="confirm_new_password" id="confirm_new_password" type="password" required onkeyup="pwCheck(event);" />
+			</span>
+			<input type="submit" value="Cambia Password" id="changepw">
 			%MESSAGGIO%
 		</fieldset>
 	</form>
+
+	<script src="profilo.js"></script>
+
 </div>
