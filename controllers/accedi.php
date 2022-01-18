@@ -15,20 +15,7 @@ $path = array(
 $main = file_get_contents('../views/accedi.html');
 
 session_start();
-if(isset($_SESSION["error"]))
-{
-	$main = str_replace("%ERRORE%",$_SESSION["error"], $main);
-	unset($_SESSION["error"]);
-	if(isset($_SESSION["mail"]))
-		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
-	unset($mail);
 
-}
-else
-{
-	$main = str_replace("%ERRORE%", "", $main);
-	$main = str_replace("%MAILP%", "", $main);
-}
 
 
 if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno è già loggato
@@ -38,7 +25,7 @@ if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno �
 }
 else
 {	
-	if(isset($_GET["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]) || $_GET["mail"]=="admin" || $_GET["mail"]=="user"))
+	if(isset($_GET["submit"]) && isset($_GET["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]) || $_GET["mail"]=="admin" || $_GET["mail"]=="user"))
 	{
 		$mail = $_GET["mail"];
 	}
@@ -50,7 +37,7 @@ else
 		unset($mail);
 	}
 
-	if(isset($_GET["password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]) || $_GET["password"]=="admin" || $_GET["password"]=="user"))
+	if(isset($_GET["submit"]) && isset($_GET["password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]) || $_GET["password"]=="admin" || $_GET["password"]=="user"))
 	{
 		$password = $_GET["password"];
 	}
@@ -93,6 +80,23 @@ else
 		}
 	}
 }
+
+
+if(isset($_GET["submit"]) && isset($_SESSION["error"]))
+{
+	$main = str_replace("%ERRORE%",$_SESSION["error"], $main);
+	unset($_SESSION["error"]);
+	if(isset($_SESSION["mail"]))
+		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
+	unset($mail);
+
+}
+else
+{
+	$main = str_replace("%ERRORE%", "", $main);
+	$main = str_replace("%MAILP%", "", $main);
+}
+
 
 $header = _header($path);
 $footer = _footer();
