@@ -23,63 +23,62 @@ if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno Ã
 	header("Location: user/prenotazioni.php");
 	die();
 }
+
+if(isset($_GET["submit"]) && isset($_GET["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]) || $_GET["mail"]=="admin" || $_GET["mail"]=="user"))
+{
+	$mail = $_GET["mail"];
+}
 else
-{	
-	if(isset($_GET["submit"]) && isset($_GET["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]) || $_GET["mail"]=="admin" || $_GET["mail"]=="user"))
+{
+	$_SESSION["error"]="Email o Password non valide.";
+	$_SESSION["mail"] = $_GET["mail"];
+	unset($mail);
+}
+
+if(isset($_GET["submit"]) && isset($_GET["password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]) || $_GET["password"]=="admin" || $_GET["password"]=="user"))
+{
+	$password = $_GET["password"];
+}
+else
+{
+	$_SESSION["error"]="Email o Password non valide.";
+	$_SESSION["mail"] = $_GET["mail"];
+	unset($password);
+}
+
+//TODO sistemare meglio sti if else
+if(isset($password) && isset($mail))
+{
+	//$password=PublicLoginService::getUserPassword($mail);
+	//if($password == $_GET["password"])
+	if(PublicLoginService::verifyLogin($mail,$password))
 	{
-		$mail = $_GET["mail"];
+		$_SESSION["sessionid"] = $mail;
+		if(Session::isUser($mail)) 
+		{
+			$_SESSION["type"] = "USER";
+			header("Location: user/prenotazioni.php");
+			die();
+		}
+		elseif(Session::isOwner($mail))
+		{
+			$_SESSION["type"] = "OWNER";
+			header("Location: staff/prenotazioni.php");
+			die();
+		}	
+		else	#better safe than sorry
+		{
+			$_SESSION["type"] = "GUEST";
+			//header("Location: user/prenotazioni.php"); #TODO che fare?
+		}
 	}
 	else
 	{
-		$_SESSION["error"]="Email o Password non valide.";
-		if(isset($mail))
-			$_SESSION["mail"] = $_GET["mail"];
-		unset($mail);
-	}
-
-	if(isset($_GET["submit"]) && isset($_GET["password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]) || $_GET["password"]=="admin" || $_GET["password"]=="user"))
-	{
-		$password = $_GET["password"];
-	}
-	else
-	{
-		$_SESSION["error"]="Email o Password non valide.";
-		unset($password);
-	}
-	//TODO sistemare meglio sti if else
-
-	if(isset($password) && isset($mail))
-	{
-		//$password=PublicLoginService::getUserPassword($mail);
-		//if($password == $_GET["password"])
-		if(PublicLoginService::verifyLogin($mail,$password))
-		{
-			$_SESSION["sessionid"] = $mail;
-			if(Session::isUser($mail)) 
-			{
-				$_SESSION["type"] = "USER";
-				header("Location: user/prenotazioni.php");
-				die();
-			}
-			elseif(Session::isOwner($mail))
-			{
-				$_SESSION["type"] = "OWNER";
-				header("Location: staff/prenotazioni.php");
-				die();
-			}	
-			else	#better safe than sorry
-			{
-				$_SESSION["type"] = "GUEST";
-				//header("Location: user/prenotazioni.php"); #TODO che fare?
-			}
-		}
-		else
-		{
-			$_SESSION["error"]="Email o Password non corrette.";
-			$_SESSION["mail"] = $mail;
-		}
+		$_SESSION["error"]="Email o Password non corrette.";
+		$_SESSION["mail"] = $mail;
 	}
 }
+
 
 
 if(isset($_GET["submit"]) && isset($_SESSION["error"]))
@@ -88,13 +87,14 @@ if(isset($_GET["submit"]) && isset($_SESSION["error"]))
 	unset($_SESSION["error"]);
 	if(isset($_SESSION["mail"]))
 		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
-	unset($mail);
-
+	#unset($mail);
+	unset($_SESSION["mail"]);
 }
 else
 {
 	$main = str_replace("%ERRORE%", "", $main);
 	$main = str_replace("%MAILP%", "", $main);
+	unset($_SESSION["mail"]);
 }
 
 

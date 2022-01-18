@@ -84,12 +84,7 @@ if(isset($_GET["submit"]) && isset($_GET["password_rep"]) && preg_match("/^(?=.*
 else
 {
 	$_SESSION["regerror"] = "Formato ripeti password non valido";
-	if(isset($_GET["name"]))
-		$_SESSION["name"] = $_GET["name"];
-	if(isset($_GET["surname"]))
-		$_SESSION["surname"] = $_GET["surname"];
-	if(isset($_GET["mail"]))
-		$_SESSION["mail"] = $_GET["mail"];
+	dontClearFields();
 }
 
 
@@ -107,9 +102,13 @@ if(isset($_GET["submit"]) && isset($_SESSION["regerror"]))
 	if(isset($_SESSION["surname"]))
 		$main = str_replace("%COGNOMEP%","value=\"".$_SESSION["surname"]."\"",$main);
 
-	unset($mail);
-	unset($name);
-	unset($surname);
+	#unset($mail);
+	#unset($name);
+	#unset($surname);
+	unset($_SESSION["mail"]);
+	unset($_SESSION["name"]);
+	unset($_SESSION["surname"]);
+
 
 }
 else
@@ -118,6 +117,9 @@ else
 	$main = str_replace("%MAILP%","", $main);
 	$main = str_replace("%NOMEP%","", $main);
 	$main = str_replace("%COGNOMEP%","", $main);
+	unset($_SESSION["mail"]);
+	unset($_SESSION["name"]);
+	unset($_SESSION["surname"]);
 }
 
 
