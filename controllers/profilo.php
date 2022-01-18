@@ -7,25 +7,28 @@ require_once __DIR__ . '/../services/public/login.php';
 require_once __DIR__ . '/../services/public/session.php';
 require_once __DIR__ . '/../services/user/change_password.php';
 
-$pagina = page('Area personale - Scissorhands');
+$pagina = page('Profilo - Scissorhands');
 $path = array(
-    "Area Personale" => "/area_personale.php"
+    "Profilo" => "/profilo.php"
 );
-$header = _header($path);
-$footer = _footer();
 
 
 session_start();
 
+$header = _header($path);
+$footer = _footer();
+
+
+
 
 if(isset($_SESSION["sessionid"]))
 {
-	if(isset($_GET["current_password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["current_password"]) || $_GET["current_password"]=="admin" || $_GET["current_password"]=="user")
+	if(isset($_GET["current_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["current_password"]) || $_GET["current_password"]=="admin" || $_GET["current_password"]=="user"))
 		$currentPassword = $_GET["current_password"];
-	if(isset($_GET["new_password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["new_password"]) || $_GET["new_password"]=="admin" || $_GET["new_password"]=="user")
+	if(isset($_GET["new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["new_password"]) || $_GET["new_password"]=="admin" || $_GET["new_password"]=="user"))
 		$newPassword = $_GET["new_password"];
 	
-	if(isset($_GET["confirm_new_password"]) && preg_grep("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["confirm_new_password"]) || $_GET["confirm_new_password"]=="admin" || $_GET["confirm_new_password"]=="user")
+	if(isset($_GET["confirm_new_password"]) && (preg_grep("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["confirm_new_password"]) || $_GET["confirm_new_password"]=="admin" || $_GET["confirm_new_password"]=="user"))
 		$confirmnewPassword = $_GET["confirm_new_password"];
 
 	$main = file_get_contents('../views/user/pagina_personale.html');
@@ -69,7 +72,7 @@ else
 
 #$main = file_get_contents('../views/accedi.html');
 
-$pagina = str_replace('%DESCRIPTION%', "Area personale" ,$pagina);
+$pagina = str_replace('%DESCRIPTION%', "Profilo" ,$pagina);
 $pagina = str_replace('%KEYWORDS%', "scissorhands, capelli, barba, barbiere",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
