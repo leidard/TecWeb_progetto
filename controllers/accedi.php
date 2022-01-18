@@ -31,7 +31,8 @@ if(isset($_GET["submit"]) && isset($_GET["mail"]) && (preg_match("/^([a-z0-9\+_\
 else
 {
 	$_SESSION["error"]="Email o Password non valide.";
-	$_SESSION["mail"] = $_GET["mail"];
+	if(isset($_GET["mail"]))
+		$_SESSION["mail"] = $_GET["mail"];
 	unset($mail);
 }
 
@@ -42,7 +43,8 @@ if(isset($_GET["submit"]) && isset($_GET["password"]) && (preg_match("/^(?=.*[A-
 else
 {
 	$_SESSION["error"]="Email o Password non valide.";
-	$_SESSION["mail"] = $_GET["mail"];
+	if(isset($_GET["mail"]))
+		$_SESSION["mail"] = $_GET["mail"];
 	unset($password);
 }
 
