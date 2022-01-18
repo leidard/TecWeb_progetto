@@ -40,7 +40,7 @@ unset($mail);
 unset($password);
 unset($password_rep);
 
-if(isset($_GET["name"]) && !preg_match_all("/[!@#$%^&*()'\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_GET["name"])) #TODO completare l'abominio
+if(isset($_GET["submit"]) && isset($_GET["name"]) && !preg_match_all("/[!@#$%^&*()'\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_GET["name"])) #TODO completare l'abominio
 	$name = $_GET["name"];
 else
 {
@@ -48,7 +48,7 @@ else
 	dontClearFields();
 }
 
-if(isset($_GET["surname"]) && !preg_match_all("/[!@#$%^&*()'\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_GET["surname"]))
+if(isset($_GET["submit"]) && isset($_GET["surname"]) && !preg_match_all("/[!@#$%^&*()'\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_GET["surname"]))
 	$surname = $_GET["surname"];
 else
 {
@@ -56,7 +56,7 @@ else
 	dontClearFields();
 }
 	
-if(isset($_GET["sex"]) && ($_GET["sex"] == "Uomo" || $_GET["sex"] == "Donna" ))
+if(isset($_GET["submit"]) && isset($_GET["sex"]) && ($_GET["sex"] == "Uomo" || $_GET["sex"] == "Donna" ))
 	$sex = $_GET["sex"];
 else
 {
@@ -64,7 +64,7 @@ else
 	dontClearFields();
 }
 	
-if(isset($_GET["mail"]) && preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]))
+if(isset($_GET["submit"]) && isset($_GET["mail"]) && preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]))
 	$mail = $_GET["mail"];
 else
 {
@@ -72,25 +72,20 @@ else
 	dontClearFields();
 }
 	
-if(isset($_GET["password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]))
+if(isset($_GET["submit"]) && isset($_GET["password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]))
 	$password = $_GET["password"];
 else
 {
 	$_SESSION["regerror"] = "Formato password non valido";
 	dontClearFields();
 }	
-if(isset($_GET["password_rep"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password_rep"]))
+if(isset($_GET["submit"]) && isset($_GET["password_rep"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password_rep"]))
 	$password_rep = $_GET["password_rep"];
 else
 {
 	$_SESSION["regerror"] = "Formato ripeti password non valido";
 	if(isset($_GET["name"]))
-	{
 		$_SESSION["name"] = $_GET["name"];
-		echo $_SESSION["name"];
-		echo $_GET["name"];
-		echo "asdas";
-	}
 	if(isset($_GET["surname"]))
 		$_SESSION["surname"] = $_GET["surname"];
 	if(isset($_GET["mail"]))
@@ -99,7 +94,7 @@ else
 
 
 
-if(isset($_SESSION["regerror"]))
+if(isset($_GET["submit"]) && isset($_SESSION["regerror"]))
 {
 	$main = str_replace("%ERRORE%",$_SESSION["regerror"], $main);
 	unset($_SESSION["regerror"]);
@@ -132,7 +127,7 @@ else
 
 
 //if(isset($_GET["name"]) && isset($_GET["surname"]) && isset($_GET["sex"]) && isset($_GET["mail"]) && isset($_GET["password"]) && isset($_GET["password_rep"]))
-if(isset($name) && isset($surname) && isset($sex) && isset($mail) && isset($password) && isset($password_rep))
+if(isset($_GET["submit"]) && isset($name) && isset($surname) && isset($sex) && isset($mail) && isset($password) && isset($password_rep))
 {
 	//if(filter_var($_GET["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in locale, mettere in relazione
 	if($password_rep === $password)
