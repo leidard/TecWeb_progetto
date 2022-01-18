@@ -36,8 +36,13 @@ class Credential extends DBHelper {
 		$stmt->bind_param('s', $mail);
 		$stmt->execute();
 		$res = $stmt->get_result();
-		return $res->fetch_assoc()["password"];
-
+		if(mysqli_num_rows($res) != 0)
+		{	
+			$var = $res->fetch_assoc()["password"];
+			if(!empty($var))
+				return $var;
+			return NULL;
+		}
 	}
 
 	public function changeUserPassword($mail, $password, $UserType)
