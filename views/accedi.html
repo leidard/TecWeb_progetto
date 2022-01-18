@@ -1,7 +1,7 @@
 <div>
 	
 	<div class="form-block">
-		<form id="login-form" action="accedi.php" method="GET" aria-label="Accesso">
+		<form id="login-form" action="accedi.php" method="POST" aria-label="Accesso">
 			<h2>Accedi</h2>
 			<fieldset class="dati-login">
 				<legend>Dati di accesso:</legend>
@@ -14,7 +14,7 @@
 					<input oninput="onPw(event);" type="password" placeholder="Inserisci la password" name="password" id="password"  />
 				</span>
 			</fieldset>
-			%ERRORE%
+			<span class="accedi-errore">%ERRORE%</span>
 			<input type="submit" value="Entra!" id="login" name="submit" />
 		</form>
 	</div>

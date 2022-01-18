@@ -24,27 +24,27 @@ if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno Ã
 	die();
 }
 
-if(isset($_GET["submit"]) && isset($_GET["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_GET["mail"]) || $_GET["mail"]=="admin" || $_GET["mail"]=="user"))
+if(isset($_POST["submit"]) && isset($_POST["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_POST["mail"]) || $_POST["mail"]=="admin" || $_POST["mail"]=="user"))
 {
-	$mail = $_GET["mail"];
+	$mail = $_POST["mail"];
 }
 else
 {
 	$_SESSION["error"]="Email o Password non valide.";
-	if(isset($_GET["mail"]))
-		$_SESSION["mail"] = $_GET["mail"];
+	if(isset($_POST["mail"]))
+		$_SESSION["mail"] = $_POST["mail"];
 	unset($mail);
 }
 
-if(isset($_GET["submit"]) && isset($_GET["password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["password"]) || $_GET["password"]=="admin" || $_GET["password"]=="user"))
+if(isset($_POST["submit"]) && isset($_POST["password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["password"]) || $_POST["password"]=="admin" || $_POST["password"]=="user"))
 {
-	$password = $_GET["password"];
+	$password = $_POST["password"];
 }
 else
 {
 	$_SESSION["error"]="Email o Password non valide.";
-	if(isset($_GET["mail"]))
-		$_SESSION["mail"] = $_GET["mail"];
+	if(isset($_POST["mail"]))
+		$_SESSION["mail"] = $_POST["mail"];
 	unset($password);
 }
 
@@ -52,7 +52,7 @@ else
 if(isset($password) && isset($mail))
 {
 	//$password=PublicLoginService::getUserPassword($mail);
-	//if($password == $_GET["password"])
+	//if($password == $_POST["password"])
 	if(PublicLoginService::verifyLogin($mail,$password))
 	{
 		$_SESSION["sessionid"] = $mail;
@@ -83,7 +83,7 @@ if(isset($password) && isset($mail))
 
 
 
-if(isset($_GET["submit"]) && isset($_SESSION["error"]))
+if(isset($_POST["submit"]) && isset($_SESSION["error"]))
 {
 	$main = str_replace("%ERRORE%",$_SESSION["error"], $main);
 	unset($_SESSION["error"]);

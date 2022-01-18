@@ -23,21 +23,21 @@ $footer = _footer();
 
 if(isset($_SESSION["sessionid"]))
 {
-	if(isset($_GET["current_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["current_password"]) || $_GET["current_password"]=="admin" || $_GET["current_password"]=="user"))
-		$currentPassword = $_GET["current_password"];
-	if(isset($_GET["new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["new_password"]) || $_GET["new_password"]=="admin" || $_GET["new_password"]=="user"))
-		$newPassword = $_GET["new_password"];
+	if(isset($_POST["current_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["current_password"]) || $_POST["current_password"]=="admin" || $_POST["current_password"]=="user"))
+		$currentPassword = $_POST["current_password"];
+	if(isset($_POST["new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["new_password"]) || $_POST["new_password"]=="admin" || $_POST["new_password"]=="user"))
+		$newPassword = $_POST["new_password"];
 	
-	if(isset($_GET["confirm_new_password"]) && (preg_grep("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_GET["confirm_new_password"]) || $_GET["confirm_new_password"]=="admin" || $_GET["confirm_new_password"]=="user"))
-		$confirmnewPassword = $_GET["confirm_new_password"];
+	if(isset($_POST["confirm_new_password"]) && (preg_grep("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
+		$confirmnewPassword = $_POST["confirm_new_password"];
 
 	$main = file_get_contents('../views/user/pagina_personale.html');
 	if(isset($currentPassword) && isset($newPassword) && isset($confirmnewPassword))
 	{
 		#change password
 		$currentPassword = PublicLoginService::getUserPassword($_SESSION["sessionid"]);
-		//if($currentPassword == $_GET["current_password"])
-		if(PublicLoginService::verifyLogin($_SESSION["sessionid"], $_GET["current_password"]))
+		//if($currentPassword == $_POST["current_password"])
+		if(PublicLoginService::verifyLogin($_SESSION["sessionid"], $_POST["current_password"]))
 		{
 			if($newPassword==$confirmnewPassword)
 			{
