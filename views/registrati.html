@@ -8,11 +8,11 @@
 			<fieldset class="dati-personali">
 				<legend>Dati personali:</legend>
 				<span>
-					<label for="name">Nome</label> <span class="name-error" class="error"></span>
+					<label for="name">Nome</label> <span class="error" id="name-error"></span>
 					<input placeholder="Inserisci il nome" %NOMEP% name="name" id="name" minlength="1" maxlength="50" onkeyup="sanitizeField('name');" onclick="clearIfError('name');" required />
 				</span>
 				<span>
-					<label for="surname">Cognome</label> <span class="surname-error" class="error"></span>
+					<label for="surname">Cognome</label> <span id="surname-error" class="error"></span>
 					<input placeholder="Inserisci il cognome" %COGNOMEP% name="surname" id="surname" minlength="1" maxlength="50" onkeyup="sanitizeField('surname');" onclick="clearIfError('surname');" required />
 				</span>
 				<label for="sex">Sesso</label>
@@ -28,15 +28,14 @@
 					<input placeholder="Inserisci l'email" %MAILP% oninput="onEmail(event);" name="mail" id="mail" type="email" required/>
 				</span>
 				<span>
-					<label for="password">Password <span class="pw-error" class="error"></span>
-						<span class="input-hint">(Minimo 8 caratteri, tra cui almeno una lettera e un numero)</span>
+					<label for="password">Password <span id="pw-error" class="error"></span>
 					</label>
 					<input placeholder="Inserisci la password" name="password" id="password" type="password" oninput="onPw(event);" required />
 				</span>
 				<span>
 					<label for="password_rep">
 						Ripeti la password
-						<span class="pwrep-error" class="error"></span>
+						<span id="pwrep-error" class="error"></span>
 					</label>
 					<input placeholder="Ripeti la password" name="password_rep" id="password_rep" type="password" required oninput="pwCheck(event);" />
 				</span>

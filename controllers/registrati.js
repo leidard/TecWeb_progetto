@@ -1,11 +1,20 @@
-window.onload = document.getElementById('Registrati').setAttribute('disabled', true); //messo qui perché altrimenti senza JS non può fare submit
-
+window.onload = document.getElementById('Registrati').setAttribute('disabled', true); //messo qui perchï¿½ altrimenti senza JS non puï¿½ fare submit
+		
+		function clearIfError(fieldname)
+		{
+			if(document.getElementById(fieldname+"-error").textContent === "Caratteri non validi presenti")
+			{
+				document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*().,;:-_+=<>1234567890\[\]\\|\{\}\/?]/g, "");
+				document.getElementById(fieldname+"-error").textContent = "";
+			}
+		}
+		
 		function onEmail(evt) {
 			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value)) 
 			{
 				evt.target.parentElement.classList.add("error");
 				document.getElementById('Registrati').setAttribute('aria-disabled', true);
-				document.getElementsByClassName('email-error')[0].textContent = "La mail deve essere del formato nomeutente@dominio.it";
+				document.getElementsByClassName('email-error').textContent = "La mail deve essere del formato nomeutente@dominio.it";
 				
 			}
 			else 
@@ -22,14 +31,14 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			{
 				evt.target.parentElement.classList.add("error") 
 				document.getElementById('Registrati').disabled = true;
-				document.getElementsByClassName('pw-error')[0].innerHTML = "La password deve avere almeno <ul> <li> 8 caratteri</li> <li>una maiuscola</li> <li>una minuscola</li> <li>un numero</li>";
+				document.getElementById('pw-error').innerHTML = "La password deve avere almeno <ul> <li> 8 caratteri</li> <li>una maiuscola</li> <li>una minuscola</li> <li>un numero</li>";
 				
 			}
 			else 
 			{
 				evt.target.parentElement.classList.remove("error")
 				document.getElementById('Registrati').disabled = false;
-				document.getElementsByClassName('pw-error')[0].innerHTML = "";
+				document.getElementById('pw-error').innerHTML = "";
 				
 			}
 		}
@@ -40,13 +49,13 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			{	
 				evt.target.parentElement.classList.add("error");
 				document.getElementById('Registrati').disabled = true;
-				document.getElementsByClassName('pwrep-error')[0].textContent = "Le password non corrispondono";
+				document.getElementById('pwrep-error').textContent = "Le password non corrispondono";
 			}
 			else
 			{
 				evt.target.parentElement.classList.remove("error");
 				document.getElementById('Registrati').disabled = false;
-				document.getElementsByClassName('pwrep-error')[0].textContent = "";
+				document.getElementsById('pwrep-error').textContent = "";
 			}
 		}
 	 
@@ -58,19 +67,12 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			
 			if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()'".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
 			{
-				document.getElementsByClassName(fieldname+"-error")[0].textContent = "Caratteri non validi presenti";
+				document.getElementById(fieldname+"-error").textContent = "Caratteri non validi presenti";
 			}
 			else
 			{
-				document.getElementsByClassName(fieldname+"-error")[0].textContent = "";	
+				document.getElementById(fieldname+"-error").textContent = "";	
 			}
 		}
 
-		function clearIfError(fieldname)
-		{
-			if(document.getElementsByClassName(fieldname+"-error")[0].textContent === "Caratteri non validi presenti")
-			{
-				document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*().,;:-_+=<>1234567890\[\]\\|\{\}\/?]/g, "");
-				document.getElementsByClassName(fieldname+"-error")[0].textContent = "";
-			}
-		}
+		
