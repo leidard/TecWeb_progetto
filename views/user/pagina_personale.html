@@ -1,6 +1,6 @@
-<div id="profile" class="form-block">
-	Cambio Password:
-	<form action="profilo.php" method="POST">
+<div class="form-block">
+	<form id="profile" action="profilo.php" method="POST">
+		<h2>Cambio Password:</h2>
 		<fieldset class="dati-cambio-password">
 			<span>
 				<label for="password corrente">Password corrente</label>
@@ -9,13 +9,13 @@
 			
 			<span>
 				<label for="nuova password">Nuova password</label>
-					<span class="pw-error"></span>		
+					<span class="pw-error" class="error"></span>		
 				<input name="new_password" id="new_password" type="password" required oninput="onPw(event);" onkeyup="pwCheck(event);"/>
 			</span>
 
 			<span>
 				<label for="conferma nuova password">Ripeti Nuova password</label>
-					<span class="pwrep-error"></span>
+					<span class="pwrep-error" class="error"></span>
 				<input name="confirm_new_password" id="confirm_new_password" type="password" required onkeyup="pwCheck(event);" />
 			</span>
 			<input type="submit" value="Cambia Password" id="changepw">

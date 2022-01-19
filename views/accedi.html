@@ -7,11 +7,11 @@
 				<legend>Dati di accesso:</legend>
 				<span>
 					<label for="mail">Email</label> <span class="email-error"></span>
-					<input oninput="onEmail(event);" type="text" placeholder="Inserisci l'email" %MAILP% name="mail" id="mail"  />
+					<input oninput="onEmail(event);" type="text" placeholder="Inserisci l'email" %MAILP% name="mail" id="mail"  required />
 				</span>
 				<span>
 					<label for="password">Password</label>
-					<input oninput="onPw(event);" type="password" placeholder="Inserisci la password" name="password" id="password"  />
+					<input oninput="onPw(event);" type="password" placeholder="Inserisci la password" name="password" id="password" required  />
 				</span>
 			</fieldset>
 			<span class="accedi-errore">%ERRORE%</span>

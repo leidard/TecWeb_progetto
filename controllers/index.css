@@ -315,13 +315,14 @@ div.form-block{
     text-align: center;
 }
 
-form#registrazione-form, form#login-form{ 
+form#registrazione-form, form#login-form, form#profile{ 
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
 }
 
+fieldset.dati-cambio-password,
 fieldset.dati-personali, 
 fieldset.dati-login,
 fieldset.dati-registrazione {
@@ -330,6 +331,7 @@ fieldset.dati-registrazione {
     border-radius: 6px;
 }
 
+fieldset.dati-cambio-password>span,
 fieldset.dati-personali>span, 
 fieldset.dati-registrazione>span,
 fieldset.dati-login>span { 
@@ -339,6 +341,7 @@ fieldset.dati-login>span {
     margin: 8px 0;
 }
 
+fieldset.dati-cambio-password>span>label,
 fieldset.dati-personali>span>label, 
 fieldset.dati-personali>span>span>label,
 fieldset.dati-registrazione>span>label,
@@ -346,6 +349,8 @@ fieldset.dati-login>span>label {
     font-weight: bold;
 }
 
+fieldset.dati-cambio-password span.input-hint,
+fieldset.dati-login span.input-hint,
 fieldset.dati-registrazione span.input-hint,
 fieldset.dati-personali span.input-hint{
     display: none;
@@ -358,6 +363,8 @@ fieldset.dati-login>span>label::after {
     content: ":";
 }
 */
+fieldset.dati-cambio-password>input,
+fieldset.dati-cambio-password>span>input,
 fieldset.dati-login>span>input, 
 fieldset.dati-registrazione>span>input, 
 fieldset.dati-personali>span>input, 
@@ -375,6 +382,15 @@ fieldset.dati-personali>span>span>select {
 fieldset.dati-login span.input-hint,
 fieldset.dati-personali>span.error>input {
     display: block;
+}
+
+
+fieldset.dati-registrazione span.error,
+fieldset.dati-login span.error,
+fieldset.dati-personali span.error,
+fieldset.dati-cambio-password span.error{
+	background-color: #FF0000;
+	color : #FFFFFF;
 }
 
 input[type=submit]{ 
