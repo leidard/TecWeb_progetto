@@ -4,7 +4,7 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 		{
 			if(document.getElementById(fieldname+"-error").textContent === "Caratteri non validi presenti")
 			{
-				document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*().,;:-_+=<>1234567890\[\]\\|\{\}\/?]/g, "");
+				document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, "");
 				document.getElementById(fieldname+"-error").textContent = "";
 			}
 		}
@@ -61,11 +61,9 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 	 
 		function sanitizeField(fieldname)
 		{
-			//document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()1234567890\[\]\\|\{\}\/?]/g, "");
-			
 			var a = document.getElementById(fieldname).value;
 			
-			if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()'".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
+			if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
 			{
 				document.getElementById(fieldname+"-error").textContent = "Caratteri non validi presenti";
 			}
