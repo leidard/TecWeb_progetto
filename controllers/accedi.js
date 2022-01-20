@@ -1,7 +1,7 @@
-window.onload = document.getElementById('login').setAttribute('aria-disabled', true); //messo qui perché altri senza JS non può fare submit
+window.onload = document.getElementById('login').setAttribute('aria-disabled', true); //messo qui perchï¿½ altri senza JS non puï¿½ fare submit
 
 		function onEmail(evt) {
-			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user") 
+			if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user") 
 			{
 				evt.target.parentElement.classList.add("error");
 				document.getElementById('login').setAttribute('aria-disabled', 'true');

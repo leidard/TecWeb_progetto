@@ -10,7 +10,7 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 		}
 		
 		function onEmail(evt) {
-			if (!/^([\w-+.]+)@([\w-+.]+).([\w-+.]+)$/.test(evt.target.value)) 
+			if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value)) 
 			{
 				evt.target.parentElement.classList.add("error");
 				document.getElementById('Registrati').setAttribute('aria-disabled', true);
