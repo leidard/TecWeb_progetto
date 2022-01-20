@@ -20,6 +20,15 @@ class Customer extends DBHelper {
 		return $res->fetch_assoc();
 	}
 
+	public function mailExists($mail)
+	{
+		$stmt = $this->prepare("SELECT EXISTS(select * FROM customer where email=?)");
+		$stmt->bind_param('s', $mail);
+		$stmt->execute();
+		$res = $stmt->get_result();
+		return $res->fetch_array()[0];
+	}
+
 	public function create($name, $surname, $sex, $email, $password)
 	{
 		$stmt = $this->prepare("INSERT INTO customer(name, surname, sex, email, password) VALUES (?,?,?,?,?)");

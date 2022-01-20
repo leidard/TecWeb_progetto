@@ -4,7 +4,10 @@ require_once 'components/header.php';
 
 require_once __DIR__ . '/../services/public/registration.php';
 
-session_start();
+
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
+
 function dontClearFields()
 {
 	if(isset($_POST["name"]))
@@ -42,7 +45,7 @@ unset($password_rep);
 
 if(isset($_POST["submit"]) && isset($_POST["name"]) && !preg_match_all("/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_POST["name"])) #TODO completare l'abominio
 	$name = $_POST["name"];
-else
+elseif(isset($_POST["submit"]))
 {
 	$_SESSION["regerror"] = "Caratteri invalidi nel nome o cognome";
 	dontClearFields();
@@ -50,7 +53,7 @@ else
 
 if(isset($_POST["submit"]) && isset($_POST["surname"]) && !preg_match_all("/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_POST["surname"]))
 	$surname = $_POST["surname"];
-else
+elseif(isset($_POST["submit"]))
 {
 	$_SESSION["regerror"] = "Caratteri invalidi nel nome o cognome";
 	dontClearFields();
@@ -58,7 +61,7 @@ else
 	
 if(isset($_POST["submit"]) && isset($_POST["sex"]) && ($_POST["sex"] == "Uomo" || $_POST["sex"] == "Donna" ))
 	$sex = $_POST["sex"];
-else
+elseif(isset($_POST["submit"]))
 {
 	$_SESSION["regerror"] = "Sesso non valido";
 	dontClearFields();
@@ -66,7 +69,7 @@ else
 	
 if(isset($_POST["submit"]) && isset($_POST["mail"]) && preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_POST["mail"]))
 	$mail = $_POST["mail"];
-else
+elseif(isset($_POST["submit"]))
 {
 	$_SESSION["regerror"] = "Formato mail non valido";
 	dontClearFields();
@@ -74,57 +77,19 @@ else
 	
 if(isset($_POST["submit"]) && isset($_POST["password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["password"]))
 	$password = $_POST["password"];
-else
+elseif(isset($_POST["submit"]))
 {
 	$_SESSION["regerror"] = "Formato password non valido";
 	dontClearFields();
-}	
+}
+
 if(isset($_POST["submit"]) && isset($_POST["password_rep"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["password_rep"]))
 	$password_rep = $_POST["password_rep"];
-else
+elseif(isset($_POST["submit"]))
 {
 	$_SESSION["regerror"] = "Formato ripeti password non valido";
 	dontClearFields();
 }
-
-
-
-if(isset($_POST["submit"]) && isset($_SESSION["regerror"]))
-{
-	$main = str_replace("%ERRORE%",$_SESSION["regerror"], $main);
-	unset($_SESSION["regerror"]);
-
-	//Salvataggio campi in caso JS non vadi
-	if(isset($_SESSION["mail"]))
-		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
-	if(isset($_SESSION["name"]))
-		$main = str_replace("%NOMEP%","value=\"".$_SESSION["name"]."\"",$main);
-	if(isset($_SESSION["surname"]))
-		$main = str_replace("%COGNOMEP%","value=\"".$_SESSION["surname"]."\"",$main);
-
-	#unset($mail);
-	#unset($name);
-	#unset($surname);
-	unset($_SESSION["mail"]);
-	unset($_SESSION["name"]);
-	unset($_SESSION["surname"]);
-
-
-}
-else
-{
-	$main = str_replace("%ERRORE%","", $main);
-	$main = str_replace("%MAILP%","", $main);
-	$main = str_replace("%NOMEP%","", $main);
-	$main = str_replace("%COGNOMEP%","", $main);
-	unset($_SESSION["mail"]);
-	unset($_SESSION["name"]);
-	unset($_SESSION["surname"]);
-}
-
-
-
-
 
 
 
@@ -133,7 +98,18 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($sex) && 
 {
 	//if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in locale, mettere in relazione
 	if($password_rep === $password)
-		RegistrationService::RegisterUser($name, $surname, $sex, $mail, $password);
+	{
+		$ex = RegistrationService::RegisterUser($name, $surname, $sex, $mail, $password);
+		if($ex)
+		{
+			$_SESSION["regcomplete"] = "Registrazione completata! clicca qui per blah blah.";
+			#unset everything??????????????
+		}
+		else
+		{
+			$_SESSION["regerror"] = "Mail già utilizzata";
+		}
+	}
 	else
 	{
 		#$main.="Le password non corrispondono.";
@@ -157,6 +133,46 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($sex) && 
 	}
 
 }
+
+
+if(isset($_POST["submit"]) && isset($_SESSION["regerror"]))
+{
+	$main = str_replace("%MESSAGGIO%",$_SESSION["regerror"], $main);
+	unset($_SESSION["regerror"]);
+
+	//Salvataggio campi in caso JS non vadi
+	if(isset($_SESSION["mail"]))
+		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
+	if(isset($_SESSION["name"]))
+		$main = str_replace("%NOMEP%","value=\"".$_SESSION["name"]."\"",$main);
+	if(isset($_SESSION["surname"]))
+		$main = str_replace("%COGNOMEP%","value=\"".$_SESSION["surname"]."\"",$main);
+
+	#unset($mail);
+	#unset($name);
+	#unset($surname);
+	unset($_SESSION["mail"]);
+	unset($_SESSION["name"]);
+	unset($_SESSION["surname"]);
+
+
+}
+else
+{
+	
+	if(isset($_POST["submit"]) && isset($_SESSION["regcomplete"]))
+		$main = str_replace("%MESSAGGIO%",$_SESSION["regcomplete"], $main);
+	else
+		$main = str_replace("%MESSAGGIO%","", $main);
+	$main = str_replace("%MAILP%","", $main);
+	$main = str_replace("%NOMEP%","", $main);
+	$main = str_replace("%COGNOMEP%","", $main);
+	unset($_SESSION["mail"]);
+	unset($_SESSION["name"]);
+	unset($_SESSION["surname"]);
+}
+
+
 /*
 else
 {

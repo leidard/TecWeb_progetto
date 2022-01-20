@@ -8,7 +8,15 @@ class RegistrationService
 {
 	public static function RegisterUser($name, $surname, $sex, $email, $password)
 	{
+		
 		$ex = new Customer();
-		$ex->create($name, $surname,  $sex, $email, password_hash($password,PASSWORD_BCRYPT)); #TESTARE
+		if(!($ex->mailExists($email)))
+		{
+			$ex->create($name, $surname,  $sex, $email, password_hash($password,PASSWORD_BCRYPT)); #TESTARE
+			return true;
+		}
+		else
+			return false;
+
 	}
 }
