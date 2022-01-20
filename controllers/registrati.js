@@ -55,7 +55,7 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			{
 				evt.target.parentElement.classList.remove("error");
 				document.getElementById('Registrati').disabled = false;
-				document.getElementsById('pwrep-error').textContent = "";
+				document.getElementById('pwrep-error').textContent = "";
 			}
 		}
 	 
