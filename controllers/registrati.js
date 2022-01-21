@@ -122,7 +122,7 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			}
 		}
 
-		function aria_pwCheck(evt)
+		function aria_pwCheck()
 		{
 			if(document.getElementById("password").value !== document.getElementById("password_rep").value)
 			{	
