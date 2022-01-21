@@ -69,11 +69,6 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			}
 		}
 
-		function ariaPwCheck()
-		{
-
-		}
-
 		function pwCheck(evt)
 		{
 			if(document.getElementById("password").value !== document.getElementById("password_rep").value)
@@ -104,4 +99,51 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			}
 		}
 
-		
+		//ARIA STUFF
+		function aria_onEmail(evt) {
+			if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value)) 
+			{
+				document.getElementById('Registrati').setAttribute('aria-invalid', true);
+			}
+			else 
+			{
+				document.getElementById('Registrati').setAttribute('aria-invalid', false);
+			}
+		}
+
+		function aria_onPw(evt){
+			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+			{
+				document.getElementById('password').setAttribute('aria-invalid', true);
+			}	
+			else 
+			{
+				document.getElementById('password').setAttribute('aria-invalid', false);
+			}
+		}
+
+		function aria_pwCheck(evt)
+		{
+			if(document.getElementById("password").value !== document.getElementById("password_rep").value)
+			{	
+				document.getElementById('password_rep').setAttribute('aria-invalid', true);
+			}
+			else
+			{
+				document.getElementById('password_rep').setAttribute('aria-invalid', false);
+			}
+		}
+	 
+		function aria_sanitizeField(fieldname)
+		{
+			var a = document.getElementById(fieldname).value;
+			
+			if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
+			{
+				document.getElementById(fieldname).setAttribute('aria-invalid', true);
+			}
+			else
+			{
+				document.getElementById(fieldname).setAttribute('aria-invalid', false);
+			}
+		}
