@@ -14,7 +14,7 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			{
 				evt.target.parentElement.classList.add("error");
 				document.getElementById('Registrati').setAttribute('aria-disabled', true);
-				document.getElementsByClassName('email-error').textContent = "La mail deve essere del formato nomeutente@dominio.it";
+				document.getElementsByClassName('email-error')[0].textContent = "La mail deve essere del formato nomeutente@dominio.it";
 				
 			}
 			else 

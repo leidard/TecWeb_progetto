@@ -99,7 +99,7 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($sex) && 
 	//if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in locale, mettere in relazione
 	if($password_rep === $password)
 	{
-		$ex = RegistrationService::RegisterUser($name, $surname, $sex, $mail, $password);
+		$ex = RegistrationService::RegisterUser($name, $surname, $sex, strtolower($mail), $password);
 		if($ex)
 		{
 			$_SESSION["regcomplete"] = "Registrazione completata! clicca qui per blah blah.";
