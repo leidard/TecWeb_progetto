@@ -2,7 +2,8 @@ body {
     margin: 0;
     letter-spacing: 0.075em;
     position: relative;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
 }
 
 header#page-header {
@@ -14,12 +15,9 @@ header#page-header>nav {
 }
 
 header h1 {
-    background-image: url('/static/img/logo_bscissorhands.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    text-indent: -9999999em;
-    font-size: 128px;
+    display: block;
+    text-align: center;
+    content: url('/static/img/logo_bscissorhands.png');
     margin: 0;
 }
 
@@ -121,42 +119,11 @@ main {
     padding: 8px;
     margin: 0 auto;
     width: 800px;
-    /* 1200*/
 }
-
-@media only screen and (max-width: 1200px) {
-    main {
-        width: 768px;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    main {
-        width: 100%;
-    }
-}
-
 
 /*       HOME        */
 
-section#benvenuto div.img-wrap {
-    background: url('/static/img/table.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 56px 8px;
-    border-radius: 12px;
-}
 
-section#benvenuto div.img-wrap div.content {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 12px;
-    text-align: center;
-    border-radius: 12px;
-}
 
 section#misureSicurezza, section#misureSicurezza>ul { 
     text-align: center;
@@ -308,7 +275,6 @@ fieldset.dati-personali>span.error>input {
 
 form#registrazione-form input[type=submit],
 form#login-form input[type=submit]{ 
-    background-color: #800F0F;
     color:white;
     font-weight: bold;
     padding: 12px 32px;
@@ -475,7 +441,6 @@ form.booking-form input[type="submit"] {
 /*          GALLERY           */
 
 section#Gallery {
-    background-color: white;
     padding: 0px;
     margin: 0px;
 }
@@ -484,8 +449,8 @@ section#Gallery div#img-container>img {
     width: 100%;
     height: auto;
     display: block;
-    margin-bottom: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    margin-bottom: 10px;
+    box-shadow: none;
     box-sizing: border-box;
     border-radius: 5px;
 }
@@ -497,24 +462,9 @@ section#Gallery h2 {
 section#Gallery div#img-container {
     column-count: 3;
     margin: 0 auto;
-    background: #800F0F;
     padding: 30px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, .25);
-    border-radius: 5px;
+    box-shadow: none;
 }
-
-@media only screen and (max-width: 1200px) {
-    section#Gallery div#img-container {
-        column-count: 2;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    section#Gallery div#img-container {
-        column-count: 1;
-    }
-}
-
 
 /*              STAFF             */
 
@@ -537,7 +487,7 @@ article.staff>img {
     margin: 10px;
     border-radius: 6px;
     column-count: 1;
-    max-width: 300px;
+    width: 250px;
 }
 
 article.staff>div {
@@ -545,18 +495,6 @@ article.staff>div {
     column-count: 1;
 }
 
-@media only screen and (max-width: 600px) {
-    article.staff {
-        grid-template-columns: auto;
-    }
-    article.staff>img {
-        width: 100%;
-    }
-    article.staff>div {
-        grid-column-start: 1;
-        margin: 0 4px 0;
-    }
-}
 
 
 /*              SERVIZI             */
@@ -564,7 +502,7 @@ article.staff>div {
 div.capelli {
     width: 150px;
     height: 150px;
-    background-image: url('/static/img/hair_icon.png');
+    content: url('/static/img/hair_icon.png');
     margin: 6px;
     padding: 0;
 }
@@ -572,7 +510,7 @@ div.capelli {
 div.barba {
     width: 150px;
     height: 150px;
-    background-image: url('/static/img/beard_icon.png');
+    content: url('/static/img/beard_icon.png');
     margin: 6px;
     padding: 0;
 }
@@ -599,33 +537,6 @@ section.spiegazione-servizi p a {
     display: block;
 }
 
-@media only screen and (max-width: 1200px) {
-    div.barba {
-        background-image: none;
-        width: 1px;
-        height: 150px;
-        border-left: thick solid #62301b;
-    }
-    div.capelli {
-        width: 0px;
-        height: 0px;
-        background-image: none;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    div.barba {
-        width: 0px;
-        height: 0px;
-    }
-    div.box-capelli {
-        flex: 1 0 50%;
-        border-bottom: thick solid #62301b;
-    }
-    div.box-barba {
-        flex: 1 0 50%;
-    }
-}
 
 
 /*              LISTINO             */
