@@ -31,9 +31,34 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			{
 				evt.target.parentElement.classList.add("error") 
 				document.getElementById('Registrati').disabled = true;
-				document.getElementById('pw-error').innerHTML = "La password deve avere almeno <ul> <li> 8 caratteri</li> <li>una maiuscola</li> <li>una minuscola</li> <li>un numero</li>";
+				var str=""	;
+				if(evt.target.value.length < 8)
+				{
+					//non lunga abbastanza
+					str+="<li>Otto caratteri</li>";
+				}
+	
+				if(evt.target.value.toUpperCase() == evt.target.value)
+				{
+					//non ha minuscole
+					str+="<li>una minuscola</li> "
+				}
+	
+				if(evt.target.value.toLowerCase() == evt.target.value)
+				{
+					//non ha maiuscole
+					str+="<li>una maiuscola</li>"
+				}
+	
+				if(!/[0-9]/g.test(evt.target.value))
+				{
+					//non ha numeri
+					str+="<li>un numero</li>"
+				}
+
+				document.getElementById('pw-error').innerHTML = "deve avere almeno <ul>"+str+"</ul>";
 				
-			}
+			}	
 			else 
 			{
 				evt.target.parentElement.classList.remove("error")
