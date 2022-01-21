@@ -1,5 +1,5 @@
 window.onload = document.getElementById('Registrati').setAttribute('disabled', true); //messo qui perch� altrimenti senza JS non pu� fare submit
-		
+		var ariapwtest=false;
 		function clearIfError(fieldname)
 		{
 			if(document.getElementById(fieldname+"-error").textContent === "Caratteri non validi presenti")
@@ -31,7 +31,7 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			{
 				evt.target.parentElement.classList.add("error") 
 				document.getElementById('Registrati').disabled = true;
-				var str=""	;
+				var str="";
 				if(evt.target.value.length < 8)
 				{
 					//non lunga abbastanza
@@ -57,15 +57,21 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 				}
 
 				document.getElementById('pw-error').innerHTML = "deve avere almeno <ul>"+str+"</ul>";
-				
+				ariapwtest = true;
 			}	
 			else 
 			{
 				evt.target.parentElement.classList.remove("error")
 				document.getElementById('Registrati').disabled = false;
 				document.getElementById('pw-error').innerHTML = "";
+				ariapwtest = false;
 				
 			}
+		}
+
+		function ariaPwCheck()
+		{
+
 		}
 
 		function pwCheck(evt)

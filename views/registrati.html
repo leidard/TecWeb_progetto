@@ -6,6 +6,7 @@
 	<div class="form-block">
 		<form id="registrazione-form" action="registrati.php" method="POST" aria-label="Registrazione">
 			<fieldset class="dati-personali">
+				Tutti i campi sono necessari.
 				<legend>Dati personali:</legend>
 				<span>
 					<label for="name">Nome</label> <span class="error" id="name-error"></span>
@@ -28,7 +29,7 @@
 					<input placeholder="Inserisci l'email" %MAILP% oninput="onEmail(event);" name="mail" id="mail" type="email" required/>
 				</span>
 				<span>
-					<label for="password">Password <span id="pw-error" class="error"></span>
+					<label for="password">Password<span id="pw-error" class="error"></span>
 					</label>
 					<input placeholder="Inserisci la password" name="password" id="password" type="password" oninput="onPw(event);" required />
 				</span>
