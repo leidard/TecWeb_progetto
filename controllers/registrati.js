@@ -1,5 +1,5 @@
-window.onload = document.getElementById('Registrati').setAttribute('disabled', true); //messo qui perch� altrimenti senza JS non pu� fare submit
-		var ariapwtest=false;
+window.onload = document.getElementById('Registrati').setAttribute('aria-disabled', true); //messo qui perch� altrimenti senza JS non pu� fare submit
+		
 		function clearIfError(fieldname)
 		{
 			if(document.getElementById(fieldname+"-error").textContent === "Caratteri non validi presenti")
@@ -30,7 +30,7 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
 			{
 				evt.target.parentElement.classList.add("error") 
-				document.getElementById('Registrati').disabled = true;
+				document.getElementById('Registrati').setAttribute('aria-disabled', true);
 				var str="";
 				if(evt.target.value.length < 8)
 				{
@@ -57,14 +57,12 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 				}
 
 				document.getElementById('pw-error').innerHTML = "deve avere almeno <ul>"+str+"</ul>";
-				ariapwtest = true;
 			}	
 			else 
 			{
 				evt.target.parentElement.classList.remove("error")
-				document.getElementById('Registrati').disabled = false;
+				document.getElementById('Registrati').setAttribute('aria-disabled', false);
 				document.getElementById('pw-error').innerHTML = "";
-				ariapwtest = false;
 				
 			}
 		}
@@ -74,13 +72,13 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			if(document.getElementById("password").value !== document.getElementById("password_rep").value)
 			{	
 				evt.target.parentElement.classList.add("error");
-				document.getElementById('Registrati').disabled = true;
+				document.getElementById('Registrati').setAttribute('aria-disabled', true);
 				document.getElementById('pwrep-error').textContent = "Le password non corrispondono";
 			}
 			else
 			{
 				evt.target.parentElement.classList.remove("error");
-				document.getElementById('Registrati').disabled = false;
+				document.getElementById('Registrati').setAttribute('aria-disabled', false);
 				document.getElementById('pwrep-error').textContent = "";
 			}
 		}
@@ -92,10 +90,12 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
 			{
 				document.getElementById(fieldname+"-error").textContent = "Caratteri non validi presenti";
+				document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			}
 			else
 			{
 				document.getElementById(fieldname+"-error").textContent = "";	
+				document.getElementById('Registrati').setAttribute('aria-disabled', false);
 			}
 		}
 
@@ -146,4 +146,21 @@ window.onload = document.getElementById('Registrati').setAttribute('disabled', t
 			{
 				document.getElementById(fieldname).setAttribute('aria-invalid', false);
 			}
+		}
+
+		function preventSubmit(event)
+		{
+			arr = document.getElementsByTagName('input');
+			for(let a=0; a<arr.length; a++)
+			{
+				if(arr[a].getAttribute('aria-invalid')=="true")
+				{
+					event.preventDefault();
+					arr[a].focus();
+					break;
+				}
+				}
+
+
+
 		}

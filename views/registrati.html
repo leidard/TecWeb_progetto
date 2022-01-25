@@ -5,16 +5,16 @@
 	<h2>Registrati</h2>
 	<div class="form-block">
 		<form id="registrazione-form" action="registrati.php" method="POST" aria-label="Registrazione">
+			Tutti i campi sono necessari.
 			<fieldset class="dati-personali">
-				Tutti i campi sono necessari.
 				<legend>Dati personali:</legend>
 				<span>
 					<label for="name">Nome</label> <span class="error" id="name-error"></span>
-					<input placeholder="Inserisci il nome" %NOMEP% name="name" id="name" minlength="1" maxlength="50" onkeyup="sanitizeField('name');" onclick="clearIfError('name');" onblur="aria_sanitizeField('name');" required />
+					<input placeholder="Inserisci il nome" %NOMEP% name="name" id="name" minlength="1" maxlength="50" onkeyup="sanitizeField('name');" onfocus="clearIfError('name');" onblur="aria_sanitizeField('name');" required />
 				</span>
 				<span>
 					<label for="surname">Cognome</label> <span id="surname-error" class="error"></span>
-					<input placeholder="Inserisci il cognome" %COGNOMEP% name="surname" id="surname" minlength="1" maxlength="50" onkeyup="sanitizeField('surname');" onclick="clearIfError('surname');" onblur="aria_sanitizeField('surname');" required />
+					<input placeholder="Inserisci il cognome" %COGNOMEP% name="surname" id="surname" minlength="1" maxlength="50" onkeyup="sanitizeField('surname');" onfocus="clearIfError('surname');" onblur="aria_sanitizeField('surname');" required />
 				</span>
 				<label for="sex">Sesso</label>
 				<select name="sex" id="sex">
@@ -31,7 +31,7 @@
 				<span>
 					<label for="password">Password<span id="pw-error" class="error"></span>
 					</label>
-					<input placeholder="Inserisci la password" name="password" id="password" type="password" oninput="onPw(event);" onblur="aria_onPw(evt);" required />
+					<input placeholder="Inserisci la password" name="password" id="password" type="password" oninput="onPw(event);" onblur="aria_onPw(event);" required />
 				</span>
 				<span>
 					<label for="password_rep">
@@ -42,7 +42,7 @@
 				</span>
 			</fieldset>
 			%MESSAGGIO%
-			<input type="submit" value="Registrati" id="Registrati" name="submit"/>
+			<input type="submit" value="Registrati" id="Registrati" name="submit" onclick="preventSubmit(event);"/>
 		</form>
 	</div>
 
