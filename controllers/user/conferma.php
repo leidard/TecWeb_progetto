@@ -38,9 +38,9 @@ $today = floor(time()/86400);
 $selected_day = $today;
 if (isset($_GET["day"]) && preg_match('/^[0-9]+$/', $_GET["day"])) {
     $selected_day = (int) $_GET["day"];
-    $selected_day_ext = gmdate("M d", $selected_day*86400);
+    $selected_day_ext = date("M d", $selected_day*86400);
 }
-$selected_day_ext = gmdate("M d", $selected_day*86400);
+$selected_day_ext = date("M d", $selected_day*86400);
 $extended_date = "";
 switch ($selected_day) {
     case $today:
@@ -53,7 +53,7 @@ switch ($selected_day) {
         $extended_date = "di Ieri";
         break;
     default:
-        $extended_date = "del " . gmdate("d M", $selected_day * 86400);
+        $extended_date = "del " . date("d M", $selected_day * 86400);
 }
 $selected_day_ext = $extended_date;
 
@@ -101,7 +101,7 @@ if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day
     header("Location: $backlink");
 }
 
-$header = _header(array("Utente" => "/user/", "Prenotazioni" => "/user/prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));
+$header = _header(array("Prenotazioni" => "/user/prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));
 
 $main = str_replace("%RADIOS_SLOT%", $radios_slot, $main);
 $main = str_replace("%SELECTED_SERVICE%", $selected_service, $main);

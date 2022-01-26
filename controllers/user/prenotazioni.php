@@ -7,7 +7,7 @@ require_once '../components/booked_row.php';
 require_once '../components/breadcrumb.php';
 
 $pagina = page('Prenotazioni utente - Scissorhands');
-$header = _header(array("Utente" => "/user/", "Prenotazioni" => "/user/prenotazioni.php"));
+$header = _header(array("Prenotazioni" => "/user/prenotazioni.php"));
 $main = file_get_contents('../../views/user/prenotazioni.html');
 
 require_once __DIR__ . '/../../services/user/book.php';

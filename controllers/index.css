@@ -3,6 +3,12 @@ body {
     letter-spacing: 0.075em;
     position: relative;
     font-family: Helvetica, Arial, sans-serif;
+    background: url('/static/img/pattern.jpg') repeat;
+    background-size: 250px;
+}
+
+p {
+    line-height: 1.5em;
 }
 
 header#page-header {
@@ -134,8 +140,7 @@ nav#breadcrumb ol {
     padding: 0;
 }
 
-nav#breadcrumb li,
-a {
+nav#breadcrumb li a {
     display: inline;
 }
 
@@ -198,6 +203,7 @@ main {
     padding: 8px;
     margin: 0 auto;
     width: 1200px;
+    background-color: white;
     /* 1200*/
 }
 
@@ -439,6 +445,14 @@ section#prenota-no-accesso{
     align-items: center;
 }
 
+.reservations nav a{
+    margin: 0 6px;
+}
+
+.reservations nav {
+    margin-bottom: 12px;
+}
+
 .resrv {
     flex: 1 1;
     display: flex;
@@ -462,6 +476,11 @@ section#prenota-no-accesso{
     margin-left: 16px;
     margin-top: 8px;
     font-size: 1em;
+}
+
+.resrv-desc .resrv-desc-line {
+    display: block;
+    margin: 4px 0;
 }
 
 .resrv .resrv-desc p {

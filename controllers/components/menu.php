@@ -33,7 +33,7 @@ function _menu($sess_type = "GUEST"){
             'Galleria' => '/galleria.php',
             'Contatti' => '/contatti.php',
             'Prenotazioni' => '/user/prenotazioni.php',
-            'Profilo' => '/profilo.php',
+            'Profilo' => '/user/profilo.php',
             'Esci' => '/logout.php',
         ),
         "GUEST" => array (

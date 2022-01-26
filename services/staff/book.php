@@ -28,7 +28,8 @@ class StaffReservationService {
     }
 
     public static function unconfirmedCount() {
-        return (new Reservation())->unconfirmedCount()["count"];
+        $res = (new Reservation())->unconfirmedCount();
+        if ($res) return $res["count"]; else return 0;
     }
 
     public static function getAllUnconfirmed() {
