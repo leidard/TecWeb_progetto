@@ -1,43 +1,15 @@
 body {
-    margin: 0;
     letter-spacing: 0.075em;
-    position: relative;
     font-family: 'Times New Roman', Times, serif;
     font-size: 12pt;
-}
-
-header#page-header {
-    display: block;
-}
-
-header#page-header>nav {
-    display: block;
 }
 
 header h1 {
     display: block;
     text-align: center;
     content: url('/static/img/logo_bscissorhands.png');
-    margin: 0;
 }
 
-h2 { /* NO */
-    text-align: center;
-}
-
-.per-sr{
-    border: 0;
-    padding: 0;
-    width: 0.1px;
-	height: 0.1px;
-	overflow: hidden;
-	position: absolute;
-	white-space: nowrap; 
-}
-
-.per-sr:focus {
-    outline: 0;
-}
 
 
 /*         MENU            */
@@ -52,58 +24,9 @@ nav#menu ul{
 
 /*        BREADCRUMB      */
 
-nav#breadcrumb {
-    padding: 8px 16px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    background: #F5EEE0;
-}
-
-nav#breadcrumb ol {
-    display: inline;
-    list-style: none;
-    padding: 0;
-}
-
-nav#breadcrumb li,
-a {
-    display: inline;
-}
-
-nav#breadcrumb span {
-    margin: 0;
-}
-
-nav#breadcrumb ol {
-    list-style: none;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-}
-
-nav#breadcrumb ol li {
-    display: inline-block;
-}
-
-nav#breadcrumb ol li:not(:first-child) a::before {
-    display: inline-block;
-    margin: 0 8px;
-    content: ">";
-}
-
 
 /*         FOOTER         */
 
-footer#page-footer {
-    border-top: 1px solid #000;
-    background-color: #F5EEE0;
-    width: 100%;
-    display: inline-block;
-}
-
-footer#page-footer p {
-    text-align: center;
-}
 
 
 /*     FLOATING BUTTON    */
@@ -116,531 +39,66 @@ div#floating-btn {
 /*       MAIN              */
 
 main {
-    padding: 8px;
-    margin: 0 auto;
     width: 800px;
 }
 
 /*       HOME        */
 
 
-
-section#misureSicurezza, section#misureSicurezza>ul { 
-    text-align: center;
-    list-style-position: inside;
-}
-
-
 /*              ORARI               */
-
-table#orari-apertura { 
-    border: none;
-    border-collapse: collapse;
-}
-
-table#orari-apertura th,
-table#orari-apertura td {
-    border-right: 1px solid #000;
-    padding: 4px 6px;
-    text-align: center;
-}
-
-table#orari-apertura th:last-child,
-table#orari-apertura td:last-child {
-    border-right: none;
-}
-
-table#orari-apertura caption {
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-}
-
-section#benvenuto div.content>* {
-    box-sizing: border-box;
-}
-
-table#orari-apertura {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-section#benvenuto a#link-prenota {
-    margin: 16px 0 8px;
-    display: block;
-}
-
-@media only screen and (max-width: 760px) {
-    table#orari-apertura th,
-    table#orari-apertura td,
-    table#orari-apertura tr {
-        display: block;
-        padding: 0;
-        white-space: normal;
-    }
-
-    table#orari-apertura thead {
-        display: none;
-    }
-
-    table#orari-apertura tr {
-        border-top: 1px solid black;
-    }
-    table#orari-apertura td {
-        border-right: none;
-        border-bottom: 1px solid black;
-        position: relative;
-    }
-    table#orari-apertura th[data-title]:before, td[data-title]:before {
-        content: attr(data-title) ":\00A0";
-        font-weight: bold;
-    }
-
-}
 
 
 /*              FORM                */
-div.form-block{
-    display: block;
-    text-align: center;
-}
-
-form#registrazione-form, form#login-form{ 
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-}
-
-fieldset.dati-personali, 
-fieldset.dati-login,
-fieldset.dati-registrazione {
-    display: flex;
-    flex-direction: column;
-    border-radius: 6px;
-}
-
-fieldset.dati-personali>span, 
-fieldset.dati-registrazione>span,
-fieldset.dati-login>span { 
-    flex: 1 1;
-    display: flex;
-    flex-direction: column;
-    margin: 8px 0;
-}
-
-fieldset.dati-personali>span>label, 
-fieldset.dati-personali>span>span>label,
-fieldset.dati-registrazione>span>label,
-fieldset.dati-login>span>label {  
-    font-weight: bold;
-}
-
-fieldset.dati-registrazione span.input-hint,
-fieldset.dati-personali span.input-hint{
-    display: none;
-    font-size: .9em;
-    font-weight: normal;
-}
-
-/*
-fieldset.dati-login>span>label::after {
-    content: ":";
-}
-*/
-fieldset.dati-login>span>input, 
-fieldset.dati-registrazione>span>input, 
-fieldset.dati-personali>span>input, 
-fieldset.dati-personali>span>span>select {
-    max-width: 300px;
-    margin-left: 8px;
-    margin-top: 4px;
-    border-radius: 6px;
-    border: 2px solid #ccc;
-    padding: 6px 8px;
-    font-size: 16px;
-}
-
-/*
-fieldset.dati-registrazione>span.error>input,
-fieldset.dati-personali>span.error>input {
-    border-color: #f00;
-}
-*/
-
-fieldset.dati-login span.input-hint,
-fieldset.dati-personali>span.error>input {
-    display: block;
-}
-
-form#registrazione-form input[type=submit],
-form#login-form input[type=submit]{ 
-    color:white;
-    font-weight: bold;
-    padding: 12px 32px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 6px;
-    float: right;
-  }
-
-form#registrazione-form input[type=submit]:hover,
-form#login-form input[type=submit]:hover{ 
-      background-color: black;      
-}
-
-form#registrazione-form input[type=submit]:active,
-form#login-form input[type=submit]:active{ 
-    background-color: white; 
-    color:black;     
-}
-
-form#registrazione-form input[type=submit]:disabled{
-    background-color: #cccccc;
+input[type=submit]{
     color:black;
-    cursor:not-allowed; 
 }
-
-  a.registrati{
-      display: block;
-      text-align: center;
-  }
-
 
 /*      PRENOTAZIONI    */
-
-section#prenota-no-accesso{
-    text-align: center;
-    padding: 8px;
-}
-
-.reservations {
-    display: flex;
-    flex-direction: column;
-    padding: 8px;
-    align-items: center;
-}
-
 .resrv {
-    flex: 1 1;
-    display: flex;
-    flex-direction: column;
-    border-radius: 16px;
-    padding: 12px 16px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    margin: 8px 0;
-    min-width: 400px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+    box-shadow: none;
+    border: 1px solid black;
 }
-
-.resrv .resrv-name {
-    font-weight: bolder;
-    font-size: 1.2em;
-    margin: 0;
-}
-
-.resrv .resrv-desc {
-    margin-left: 16px;
-    margin-top: 8px;
-    font-size: 1em;
-}
-
-.resrv .resrv-desc p {
-    flex-grow: 1;
-    margin: 0;
-    margin-bottom: 4px;
-}
-
-.resrv .resrv-price {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.resrv .resrv-desc .resrv-conf {
-    display: flex;
-    margin-top: 4px;
-    align-content: center;
-}
-
 
 /*          FIELDSET               */
 
-form.booking-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-form.booking-form fieldset {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    flex: 1 1;
-    border: 1px solid black;
-    min-width: 260px;
-    margin: 8px 0;
-    padding: 8px 16px;
-    box-sizing: border-box;
-    border-radius: 12px;
-}
-
-form.booking-form fieldset legend {
-    display: block;
-    font-size: 1.1em;
-    font-weight: bold;
-    margin: 0;
-    padding: 0 8px;
-}
-
-.booking-radio {
-    display: flex;
-    justify-content: center;
-    flex: 1 1;
-    width: 100%;
-    padding: 1px 0;
-    cursor: pointer;
-}
-
-.booking-radio input+label {
-    padding: 0;
-    transition: .15s ease-in-out;
-    font-size: .95em;
-    font-weight: 400;
-}
-
-.booking-radio input+label:hover {
-    cursor: pointer;
-    border: 1px solid #ccc;
-}
-
-.booking-radio input:checked+label {
-    padding: 6px 0;
-    font-size: 1.05em;
-    font-weight: bold;
-    border: 1px solid #888;
-}
-
-.booking-radio input:disabled+label {
-    color: #555;
-    border: 1px solid #ccc0;
-}
-
-.booking-radio label {
-    flex-grow: 1;
-    text-align: center;
-    border-radius: 12px;
-    border: 1px solid #ccc0;
-}
-
-form.booking-form input[type="submit"] {
-    margin: 8px 0;
-}
-
-
 /*          GALLERY           */
 
-section#Gallery {
-    padding: 0px;
-    margin: 0px;
-}
-
 section#Gallery div#img-container>img {
-    width: 100%;
-    height: auto;
-    display: block;
     margin-bottom: 10px;
     box-shadow: none;
-    box-sizing: border-box;
-    border-radius: 5px;
-}
-
-section#Gallery h2 {
-    margin-bottom: 10px;
 }
 
 section#Gallery div#img-container {
-    column-count: 3;
-    margin: 0 auto;
-    padding: 30px;
     box-shadow: none;
 }
 
 /*              STAFF             */
 
-.staff-container {
-    display: grid;
-    grid-template-rows: auto auto auto;
-    margin: 0 auto;
-}
-
-article.staff {
-    background-color: #E4DACB;
-    border-color: #64491b;
-    display: grid;
-    grid-template-columns: auto auto;
-    border-radius: 6px;
-    margin: 8px;
-}
 
 article.staff>img {
-    margin: 10px;
-    border-radius: 6px;
-    column-count: 1;
     width: 250px;
 }
-
-article.staff>div {
-    margin: 0;
-    column-count: 1;
-}
-
-
 
 /*              SERVIZI             */
 
 div.capelli {
-    width: 150px;
-    height: 150px;
     content: url('/static/img/hair_icon.png');
-    margin: 6px;
-    padding: 0;
 }
 
 div.barba {
-    width: 150px;
-    height: 150px;
     content: url('/static/img/beard_icon.png');
-    margin: 6px;
-    padding: 0;
 }
-
-section.spiegazione-servizi {
-    display: flex;
-    justify-content: center;
-    flex-flow: row;
-    flex-wrap: wrap;
-}
-
-div.box-capelli {
-    display: block;
-    flex: 1 0 20%;
-    text-align: right;
-}
-
-div.box-barba {
-    display: block;
-    flex: 1 0 20%;
-}
-
-section.spiegazione-servizi p a {
-    display: block;
-}
-
-
 
 /*              LISTINO             */
 
-.servizi {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0;
-}
-
-.servizio {
-    flex: 1 0 30%;
-    /* 3 per riga */
-    margin: 6px;
-    padding: 8px;
-    text-align: center;
-    background-color: #E4DACB;
-    border-radius: 8px;
-}
-
-.servizio>ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.servizio>ul>li,
-.servizio {
-    list-style: none;
-}
-
-.servizio>h3 {
-    text-transform: uppercase;
-    padding-bottom: 0;
-    margin-bottom: 8px;
-}
-
-.prezzo {
-    font-size: 36px;
-}
-
-@media only screen and (max-width: 768px) {
-    .servizio {
-        flex: 1 0 40%;
-        /* 2 per riga */
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .servizio {
-        flex: 1 0 100%;
-        /* 1 per riga */
-    }
-}
-
 
 /*              404 ERROR               */
-
-section.error {
-    display: flex;
-    align-items: center;
-}
-
-section.error img {
-    height: auto;
-    max-width: 100%;
-}
 
 
 /*              505 errore_connessione               */
 
 div#ErroreConnessione>div.ErrConnImg {
-    width: 500px;
-    height: 500px;
-    background-image: url('/static/img/network-error-icon.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: auto;
-    padding: 0;
+    content: url('/static/img/network-error-icon.jpg');
 }
-
-div#ErroreConnessione>p>span {
-    text-align: center;
-    display: block;
-}
-
-@media only screen and (max-width: 1200px) {
-    div#ErroreConnessione>div.ErrConnImg{
-        width: 350px;
-        height: 350px;
-    }  
-}
-
-@media only screen and (max-width: 768px) {
-    div#ErroreConnessione>div.ErrConnImg{
-        width: 200px;
-        height: 200px;
-    }  
-}
-
 
 /*              CONTATTI                */
-section#info-contatti{
-    text-align: center;
-    list-style-position: inside;
-}
