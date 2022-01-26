@@ -4,8 +4,8 @@
 function booked_row_staff($id, $start_at, $end_at, $service, $staff, $customer) {
     $out = file_get_contents(__DIR__ . '/../../views/components/booked_row_staff.html');
 
-    $from = gmdate('G:i', $start_at);
-    $to = gmdate("G:i", $end_at);
+    $from = date('G:i', $start_at);
+    $to = date("G:i", $end_at);
     $duration = floor(($end_at-$start_at) / 60);
 
     $out = str_replace("%ID%", $id, $out);

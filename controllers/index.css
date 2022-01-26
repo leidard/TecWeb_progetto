@@ -5,6 +5,10 @@ body {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+p {
+    line-height: 1.5em;
+}
+
 header#page-header {
     display: block;
 }
@@ -134,8 +138,7 @@ nav#breadcrumb ol {
     padding: 0;
 }
 
-nav#breadcrumb li,
-a {
+nav#breadcrumb li a {
     display: inline;
 }
 
@@ -439,6 +442,14 @@ section#prenota-no-accesso{
     align-items: center;
 }
 
+.reservations nav a{
+    margin: 0 6px;
+}
+
+.reservations nav {
+    margin-bottom: 12px;
+}
+
 .resrv {
     flex: 1 1;
     display: flex;
@@ -462,6 +473,11 @@ section#prenota-no-accesso{
     margin-left: 16px;
     margin-top: 8px;
     font-size: 1em;
+}
+
+.resrv-desc .resrv-desc-line {
+    display: block;
+    margin: 4px 0;
 }
 
 .resrv .resrv-desc p {
