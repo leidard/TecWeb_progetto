@@ -3,9 +3,9 @@ require_once __DIR__ . "/helper.php";
 
 class Staff extends DBHelper {
 
-    public function create($name, $surname, $DoB, $sex) {
-        $stmt = $this->prepare("INSERT INTO staff(name, surname, date_of_birth, sex, company) VALUES (?,?,?,?,1)");
-        $stmt->bind_param("ssss", $name, $surname, $DoB, $sex);
+    public function create($name, $surname) {
+        $stmt = $this->prepare("INSERT INTO staff(name, surname, company) VALUES (?,?,1)");
+        $stmt->bind_param("ss", $name, $surname);
         $stmt->execute();
     }
 
@@ -24,10 +24,10 @@ class Staff extends DBHelper {
         return $res->fetch_assoc();
     }
 
-    public function update($id, $name, $surname, $DoB, $sex) {
-        $stmt = $this->prepare("UPDATE staff SET name=?, surname = ?, date_of_birth = ?, sex = ? WHERE _id = ?");
+    public function update($id, $name, $surname) {
+        $stmt = $this->prepare("UPDATE staff SET name=?, surname = ?WHERE _id = ?");
 
-        $stmt->bind_param("ssss", $name, $surname, $DoB, $sex);
+        $stmt->bind_param("ss", $name, $surname);
 
         $stmt->bind_param("i", $id);
         $stmt->execute();

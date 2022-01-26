@@ -29,15 +29,12 @@ class Customer extends DBHelper {
 		return $res->fetch_array()[0];
 	}
 
-	public function create($name, $surname, $sex, $email, $password)
+	public function create($name, $surname, $email, $password)
 	{
-		$stmt = $this->prepare("INSERT INTO customer(name, surname, sex, email, password) VALUES (?,?,?,?,?)");
-		if($sex == "Uomo")
-			$sex = "M";
-		else
-			$sex = "F";
+		$stmt = $this->prepare("INSERT INTO customer(name, surname, email, password) VALUES (?,?,?,?)");
 		
-		$stmt->bind_param('sssss', $name, $surname, $sex, $email, $password);
+		
+		$stmt->bind_param('sssss', $name, $surname, $email, $password);
 		if(!$stmt->execute())
 		{
 			throw($stmt->error);

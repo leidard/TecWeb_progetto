@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS `owner` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `sex` ENUM('M', 'F') NOT NULL,
   `email` varchar(100) NOT NULL UNIQUE,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`_id`)
@@ -27,7 +26,6 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `sex` ENUM('M', 'F') NOT NULL,
   `email` varchar(100) NOT NULL UNIQUE,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`_id`)
@@ -73,7 +71,6 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `surname` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `sex` enum('M', 'F') NOT NULL,
   `company` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`_id`),
   KEY `FK__azienda` (`company`) USING BTREE,
@@ -107,9 +104,9 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- Popolazione database
 
 INSERT INTO
-  owner(_id, name, surname, sex, email, password)
+  owner(_id, name, surname, email, password)
 VALUES
-  (1, 'Edoardo', 'Coppola', 'M', 'admin', '$2y$10$4YNG0JxCST9yQxoKIhxe4e.xA4xA7Tv.t9/WTZR/qaHWJJAgpzRRK');
+  (1, 'Edoardo', 'Coppola', 'admin', '$2y$10$4YNG0JxCST9yQxoKIhxe4e.xA4xA7Tv.t9/WTZR/qaHWJJAgpzRRK');
 
 INSERT INTO 
   company(_id,name,open_at,close_at,days,book_before,book_after,owner)
@@ -130,25 +127,25 @@ VALUES
   (9, 1200, 15.00, "Modellatura veloce", "barba", "Riassetto di barba e baffi con forbice e tosatrice, seguito dall'applicazione di un balsamo.", 1);
   
 INSERT INTO
-  customer(_id, surname, name, sex, email, password) 
+  customer(_id, surname, name, email, password) 
 VALUES 
-  ('1', 'Mori', 'Mario', 'M', 'user', '$2y$10$Dvq3nV9XJZIK./OaYa3x9O.c5cyQPHGfKKw1InhbVxejt5Te4ug8y'),
-  ('2', 'Bianchi', 'Giovanni', 'M', 'testBG@veryfakemail.it', 'Prova123'),
-  ('3', 'Fiume', 'Andrea', 'M', 'testFA@veryfakemail.it', 'Prova123'),
-  ('4', 'Zoppin', 'Marco', 'M', 'testZM@veryfakemail.it', 'Prova123'),
-  ('5', 'Ferri', 'Pietro', 'M', 'testFP@veryfakemail.it', 'Prova123'),
-  ('6', 'Galli', 'Davide', 'M', 'testGD@veryfakemail.it', 'Prova123'),
-  ('7', 'Trevi', 'Valerio', 'M', 'testTV@veryfakemail.it', 'Prova123'),
-  ('8', 'Rizzo', 'Giacomo', 'M', 'testRG@veryfakemail.it', 'Prova123'),
-  ('9', 'Muri', 'Tommaso', 'M', 'testMT@veryfakemail.it', 'Prova123'),
-  ('10', 'Padovan', 'Luca', 'M', 'testPL@veryfakemail.it', 'Prova123'),
-  ('11', 'Nave', 'Paolo', 'M', 'testNP@veryfakemail.it', 'Prova123'),
-  ('12', 'Saveri', 'Matteo', 'M', 'testSM@veryfakemail.it', 'Prova123'),
-  ('13', 'Brunetti', 'Mario', 'M', 'marco.brun@fasd.it', '$2y$10$FqSjklsD0f32ZsVmy5HoD.jlXPgG3WFXEjr/S62NwEW8BvsM88BUC');
+  ('1', 'Mori', 'Mario', 'user', '$2y$10$Dvq3nV9XJZIK./OaYa3x9O.c5cyQPHGfKKw1InhbVxejt5Te4ug8y'),
+  ('2', 'Bianchi', 'Giovanni', 'testBG@veryfakemail.it', 'Prova123'),
+  ('3', 'Fiume', 'Andrea', 'testFA@veryfakemail.it', 'Prova123'),
+  ('4', 'Zoppin', 'Marco', 'testZM@veryfakemail.it', 'Prova123'),
+  ('5', 'Ferri', 'Pietro', 'testFP@veryfakemail.it', 'Prova123'),
+  ('6', 'Galli', 'Davide', 'testGD@veryfakemail.it', 'Prova123'),
+  ('7', 'Trevi', 'Valerio', 'testTV@veryfakemail.it', 'Prova123'),
+  ('8', 'Rizzo', 'Giacomo', 'testRG@veryfakemail.it', 'Prova123'),
+  ('9', 'Muri', 'Tommaso', 'testMT@veryfakemail.it', 'Prova123'),
+  ('10', 'Padovan', 'Luca', 'testPL@veryfakemail.it', 'Prova123'),
+  ('11', 'Nave', 'Paolo', 'testNP@veryfakemail.it', 'Prova123'),
+  ('12', 'Saveri', 'Matteo', 'testSM@veryfakemail.it', 'Prova123'),
+  ('13', 'Brunetti', 'Mario', 'marco.brun@fasd.it', '$2y$10$FqSjklsD0f32ZsVmy5HoD.jlXPgG3WFXEjr/S62NwEW8BvsM88BUC');
   
 
 INSERT INTO 
-  staff(_id, surname, name, sex, company)
+  staff(_id, surname, name, company)
 VALUES
-  (1, 'Fortuna','Roberto','M',1),
-  (2, 'Valli','Alice','F',1);
+  (1, 'Fortuna','Roberto',1),
+  (2, 'Valli','Alice',1);

@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../../models/staff.php';
 
 class StaffStaffService {
-    public static function create($name, $surname, $date_of_birth, $sex) {
-        return (new Staff())->create($name, $surname, $date_of_birth, $sex);
+    public static function create($name, $surname) {
+        return (new Staff())->create($name, $surname);
     }
 
     public static function getAll() {
@@ -19,7 +19,7 @@ class StaffStaffService {
         return (new Staff())->delete($id);
     }
 
-    public static function update($id, $name, $surname, $date_of_birth, $sex) {
-        return (new Staff())->update($id, $name, $surname, $date_of_birth, $sex);
+    public static function update($id, $name, $surname) {
+        return (new Staff())->update($id, $name, $surname);
     }
 }

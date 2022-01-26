@@ -38,7 +38,6 @@ $main = file_get_contents('../views/registrati.html');
 
 unset($name);
 unset($surname);
-unset($sex);
 unset($mail);
 unset($password);
 unset($password_rep);
@@ -56,14 +55,6 @@ if(isset($_POST["submit"]) && isset($_POST["surname"]) && !preg_match_all("/[!@#
 elseif(isset($_POST["submit"]))
 {
 	$_SESSION["regerror"] = "Caratteri invalidi nel nome o cognome";
-	dontClearFields();
-}
-	
-if(isset($_POST["submit"]) && isset($_POST["sex"]) && ($_POST["sex"] == "Uomo" || $_POST["sex"] == "Donna" ))
-	$sex = $_POST["sex"];
-elseif(isset($_POST["submit"]))
-{
-	$_SESSION["regerror"] = "Sesso non valido";
 	dontClearFields();
 }
 	
@@ -93,13 +84,13 @@ elseif(isset($_POST["submit"]))
 
 
 
-//if(isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["sex"]) && isset($_POST["mail"]) && isset($_POST["password"]) && isset($_POST["password_rep"]))
-if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($sex) && isset($mail) && isset($password) && isset($password_rep))
+//if(isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["mail"]) && isset($_POST["password"]) && isset($_POST["password_rep"]))
+if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) && isset($password) && isset($password_rep))
 {
 	//if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in locale, mettere in relazione
 	if($password_rep === $password)
 	{
-		$ex = RegistrationService::RegisterUser($name, $surname, $sex, strtolower($mail), $password);
+		$ex = RegistrationService::RegisterUser($name, $surname, strtolower($mail), $password);
 		if($ex)
 		{
 			$_SESSION["regcomplete"] = "Registrazione completata! clicca qui per blah blah.";
