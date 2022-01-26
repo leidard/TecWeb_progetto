@@ -101,7 +101,7 @@ if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day
     header("Location: $backlink");
 }
 
-$header = _header(array("Utente" => "/user/", "Prenotazioni" => "/user/prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));
+$header = _header(array("Prenotazioni" => "/user/prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));
 
 $main = str_replace("%RADIOS_SLOT%", $radios_slot, $main);
 $main = str_replace("%SELECTED_SERVICE%", $selected_service, $main);

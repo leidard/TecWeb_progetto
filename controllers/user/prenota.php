@@ -4,7 +4,7 @@ require_once '../components/header.php';
 require_once '../components/radio_book.php';
 
 $pagina = page('Prenota - Scissorhands');
-$header = _header(array("Utente" => "/user/", "Prenotazioni" => "/user/prenotazioni.php", "Nuova Prenotazione" => "/user/prenota.php"));
+$header = _header(array("Prenotazioni" => "/user/prenotazioni.php", "Nuova Prenotazione" => "/user/prenota.php"));
 
 $main = file_get_contents('../../views/user/prenota.html');
 

@@ -30,7 +30,7 @@ if(isset($_POST["submit"]) && isset($_POST["mail"]) && (preg_match("/^([a-z0-9\+
 }
 else
 {
-	$_SESSION["error"]="Email o Password non valide.";
+	$_SESSION["error"]="Email o password non valide.";
 	if(isset($_POST["mail"]))
 		$_SESSION["mail"] = $_POST["mail"];
 	unset($mail);
@@ -42,7 +42,7 @@ if(isset($_POST["submit"]) && isset($_POST["password"]) && (preg_match("/^(?=.*[
 }
 else
 {
-	$_SESSION["error"]="Email o Password non valide.";
+	$_SESSION["error"]="Email o password non valide.";
 	if(isset($_POST["mail"]))
 		$_SESSION["mail"] = $_POST["mail"];
 	unset($password);
@@ -110,5 +110,3 @@ $pagina = str_replace('%MAIN%', $main, $pagina);
 
 
 echo $pagina;
-
-?>
