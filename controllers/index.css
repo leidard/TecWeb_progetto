@@ -3,6 +3,8 @@ body {
     letter-spacing: 0.075em;
     position: relative;
     font-family: Helvetica, Arial, sans-serif;
+    background: url('/static/img/pattern.jpg') repeat;
+    background-size: 250px;
 }
 
 p {
@@ -201,6 +203,7 @@ main {
     padding: 8px;
     margin: 0 auto;
     width: 1200px;
+    background-color: white;
     /* 1200*/
 }
 
