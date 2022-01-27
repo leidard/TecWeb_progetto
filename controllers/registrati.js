@@ -32,29 +32,39 @@ window.onload = document.getElementById('Registrati').setAttribute('aria-disable
 			evt.target.parentElement.classList.add("error") 
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			var str="";
+			var ok=true;
 			if(evt.target.value.length < 8)
 			{
 				//non lunga abbastanza
+				ok = false;
 				str+="<li>Otto caratteri</li>";
 			}
 
 			if(evt.target.value.toUpperCase() == evt.target.value)
 			{
 				//non ha minuscole
+				ok = false;
 				str+="<li>una minuscola</li> "
 			}
 
 			if(evt.target.value.toLowerCase() == evt.target.value)
 			{
 				//non ha maiuscole
+				ok = false;
 				str+="<li>una maiuscola</li>"
 			}
 
 			if(!/[0-9]/g.test(evt.target.value))
 			{
 				//non ha numeri
+				ok = false;
 				str+="<li>un numero</li>"
 			}
+
+			//if(str=="")
+			if(ok == true)
+				str+="<li>carattere non valido presente</li>";
+
 
 			document.getElementById('pw-error').innerHTML = "deve avere almeno <ul>"+str+"</ul>";
 			
@@ -64,7 +74,6 @@ window.onload = document.getElementById('Registrati').setAttribute('aria-disable
 			evt.target.parentElement.classList.remove("error")
 			document.getElementById('Registrati').setAttribute('aria-disabled', false);
 			document.getElementById('pw-error').innerHTML = "";
-			
 		}
 	}
 
@@ -108,12 +117,12 @@ window.onload = document.getElementById('Registrati').setAttribute('aria-disable
 		if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value)) 
 		{
 			document.getElementById('mail').setAttribute('aria-invalid', true);
-			document.getElementById('mail').setAttribute('aria-describedby');
+			document.getElementById('mail').setAttribute('aria-describedby', 'mail-error');
 		}
 		else 
 		{
 			document.getElementById('mail').setAttribute('aria-invalid', false);
-			document.getElementById('mail').removeAttribute('aria-describedby', 'mail-error');
+			document.getElementById('mail').removeAttribute('aria-describedby');
 		}
 	}
 

@@ -351,6 +351,7 @@ fieldset.dati-cambio-password>span>label,
 fieldset.dati-personali>span>label, 
 fieldset.dati-personali>span>span>label,
 fieldset.dati-registrazione>span>label,
+fieldset.dati-registrazione>span>span>label,
 fieldset.dati-login>span>label {  
     font-weight: bold;
 }
@@ -386,6 +387,8 @@ fieldset.dati-personali>span>span>select {
 
 
 fieldset.dati-login span.input-hint,
+fieldset.dati-registrazione>span.error>input,
+fieldset.dati-cambio-password>span.error>input,
 fieldset.dati-personali>span.error>input {
     display: block;
 }
