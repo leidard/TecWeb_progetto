@@ -171,8 +171,8 @@ else
 }	
 */
 
-$pagina = str_replace('%DESCRIPTION%', "Pagina di registrazione a Scissorhands" ,$pagina);
-$pagina = str_replace('%KEYWORDS%', "registrati, registrazione, iscrizione, scissorhands, barbiere, parrucchiere, barba, capelli, barbieria",$pagina);
+$pagina = str_replace('%DESCRIPTION%', "Registrati subito a Scissorhands per prenotare!" ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "registrati, registrazione, iscrizione, scissorhands, barbiere, parrucchiere, barba, capelli, barbieria, Padova",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

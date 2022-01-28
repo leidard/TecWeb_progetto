@@ -1,6 +1,8 @@
 body {
     margin: 0;
-    letter-spacing: 0.075em;
+    letter-spacing: 0.12em;
+    line-height: 1.5em;
+    word-spacing: 0.16em;
     position: relative;
     font-family: Helvetica, Arial, sans-serif;
     background: url('/static/img/pattern.jpg') repeat;
@@ -21,15 +23,17 @@ header#page-header>nav {
 
 header h1 {
     background-image: url('/static/img/logo_bscissorhands.png');
+    background-color: white;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     text-indent: -9999999em;
     font-size: 128px;
     margin: 0;
+    line-height: normal;
 }
 
-h2 { /* NO */
+h2 { 
     text-align: center;
 }
 
@@ -103,27 +107,29 @@ nav#menu ul li {
 
 nav#menu ul li a {
     display:block;
+    background-color: white;
+    padding: 4px;
 }
 
 nav#menu ul li.current {
     background-color: white;
 }
 
+nav#menu ul li.current a {
+    border-color: #800F0F;
+}
+
 nav#menu a {
+    border: 4px solid;
+    border-color: white;
     box-sizing: border-box;
-    color: white;
     text-transform: uppercase;
 }
 
-nav#menu li.current a {
-    color: black;
-}
-
 nav#menu li a:hover {
-    color: white;
-    background-color: black;
+    border: 4px solid;
+    border-color: black;
 }
-
 
 /*        BREADCRUMB      */
 
@@ -200,7 +206,7 @@ div#floating-btn a {
 /*       MAIN              */
 
 main {
-    padding: 8px;
+    padding: 16px;
     margin: 0 auto;
     width: 1200px;
     background-color: white;
@@ -639,11 +645,29 @@ article.staff {
     margin: 8px;
 }
 
-article.staff>img {
+article.staff p {
+    padding: 4px;
+}
+
+
+article.staff>div.foto-staff {
     margin: 10px;
     border-radius: 6px;
-    column-count: 1;
-    max-width: 300px;
+    min-width: 300px;
+    min-height: 300px;
+    background-repeat: no-repeat;
+}
+
+#imgEdoardoCoppola {
+    background-image: url('/static/img/edoardo.jpg');
+}
+
+#imgRobertoFortuna {
+    background-image: url('/static/img/roberto.jpg');
+}
+
+#imgAliceValli {
+    background-image: url('/static/img/alice.jpg');
 }
 
 article.staff>div {
@@ -655,13 +679,12 @@ article.staff>div {
     article.staff {
         grid-template-columns: auto;
     }
-    article.staff>img {
-        width: 100%;
-    }
-    article.staff>div {
+
+    article.staff div.info-staff {
         grid-column-start: 1;
         margin: 0 4px 0;
     }
+
 }
 
 
@@ -802,15 +825,20 @@ section.error img {
 
 
 /*              505 errore_connessione               */
+div#ErroreConnessione{
+    display: flex;
+    flex-direction: column;
+
+}
 
 div#ErroreConnessione>div.ErrConnImg {
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    min-height: 200px;
+    height: auto;
     background-image: url('/static/img/network-error-icon.jpg');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;
-    margin: auto;
+    background-repeat: no-repeat; 
     padding: 0;
 }
 
@@ -821,18 +849,9 @@ div#ErroreConnessione>p>span {
 
 @media only screen and (max-width: 1200px) {
     div#ErroreConnessione>div.ErrConnImg{
-        width: 350px;
-        height: 350px;
-    }  
-}
-
-@media only screen and (max-width: 768px) {
-    div#ErroreConnessione>div.ErrConnImg{
-        width: 200px;
         height: 200px;
     }  
 }
-
 
 /*              CONTATTI                */
 section#info-contatti{

@@ -6,7 +6,10 @@ body {
 
 header h1 {
     display: block;
-    text-align: center;
+    margin: auto;
+    padding: 0px;
+    border: 0px;
+    margin-bottom: 0px;
     content: url('/static/img/logo_bscissorhands.png');
 }
 
@@ -16,6 +19,8 @@ header h1 {
 nav#menu{
     padding: 0px;
     border: 0px;
+    height: 0px;
+    min-height: 0px;
 }
 
 nav#menu ul{
@@ -90,7 +95,9 @@ div.barba {
 }
 
 /*              LISTINO             */
-
+.servizio {
+    border: 1px black solid;
+}
 
 /*              404 ERROR               */
 
@@ -99,6 +106,12 @@ div.barba {
 
 div#ErroreConnessione>div.ErrConnImg {
     content: url('/static/img/network-error-icon.jpg');
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: auto;
 }
+
+
 
 /*              CONTATTI                */

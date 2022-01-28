@@ -14,8 +14,8 @@ $main = file_get_contents('../views/contatti.html');
 
 $orariApertura = orariApertura();
 $main = str_replace('%ORARIAPERTURA%' , $orariApertura, $main);
-$pagina = str_replace('%DESCRIPTION%', "I contatti e gli orari di Scissorhands" ,$pagina);
-$pagina = str_replace('%KEYWORDS%', "contatti, indirizzo, telefono, orari, scissorhands, barbieria",$pagina);
+$pagina = str_replace('%DESCRIPTION%', "Come contattarci e come raggiungerci." ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "contatti, indirizzo, mappa, telefono, orari, mail, scissorhands, barbieria, Padova, centro Padova",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

@@ -11,8 +11,8 @@ $header = _header($path);
 
 $main = file_get_contents('../views/staff.html');
 
-$pagina = str_replace('%DESCRIPTION%', "Lo staff di Scissorhands" ,$pagina);
-$pagina = str_replace('%KEYWORDS%', "staff, Edoardo Coppola, Roberto Fortuna, Alice Valli, barbieria, barbiere, parrucchiere, scissorhands",$pagina);
+$pagina = str_replace('%DESCRIPTION%', "Lo staff è composto da barbieri e parrucchieri, che sapranno soddisfare le vostre richieste nei tagli e colori, grazie alla loro lunga esperienza." ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "staff, Edoardo Coppola, Padova, barbieria, barbiere, parrucchiere, tagli, colori",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
