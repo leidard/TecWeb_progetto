@@ -5,6 +5,8 @@ require_once  __DIR__ . '/../components/booked_pending_staff.php';
 require_once  __DIR__ . '/../components/breadcrumb.php';
 require_once __DIR__ . '/../services/public/session.php';
 
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
 
 if(!isset($_SESSION["sessionid"]))
 {

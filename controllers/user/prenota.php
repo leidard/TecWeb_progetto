@@ -16,6 +16,10 @@ require_once __DIR__ . '/../../services/helpers.php';
 
 // TODO CHANGE USER_ID
 //$user_id = 1;
+
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
+
 if(!isset($_SESSION["sessionid"]))
 {
 	header("Location: /accedi.php");

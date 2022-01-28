@@ -15,6 +15,10 @@ require_once __DIR__ . '/../../services/errors.php';
 
 // TODO CHANGE USER_ID
 //$user_id = 1;
+
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
+
 if(!isset($_SESSION["sessionid"]))
 {
 	header("Location: /accedi.php");
@@ -25,6 +29,7 @@ $user_id = $_SESSION["sessionid"];
 
 // RICEZIONE DI NUOVA PRENOTAZIONE
 if (isset($_POST) && !empty($_POST)) {
+	
     $book = array(
         "staff" => NULL,
         "service" => NULL,

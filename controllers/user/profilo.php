@@ -13,7 +13,8 @@ $path = array(
 );
 
 
-session_start();
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
 
 if(!isset($_SESSION["sessionid"])) {
 	header("Location: /accedi.php");
@@ -22,8 +23,6 @@ if(!isset($_SESSION["sessionid"])) {
 
 $header = _header($path);
 $footer = _footer();
-
-
 
 
 if(isset($_POST["current_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["current_password"]) || $_POST["current_password"]=="admin" || $_POST["current_password"]=="user"))

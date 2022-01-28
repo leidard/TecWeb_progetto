@@ -34,7 +34,7 @@ class Customer extends DBHelper {
 		$stmt = $this->prepare("INSERT INTO customer(name, surname, email, password) VALUES (?,?,?,?)");
 		
 		
-		$stmt->bind_param('sssss', $name, $surname, $email, $password);
+		$stmt->bind_param('ssss', $name, $surname, $email, $password);
 		if(!$stmt->execute())
 		{
 			throw($stmt->error);

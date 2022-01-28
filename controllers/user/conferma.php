@@ -12,6 +12,9 @@ require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/public/service.php';
 require_once __DIR__ . '/../../services/public/staff.php';
 
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
+
 if(!isset($_SESSION["sessionid"]))
 {
 	header("Location: /accedi.php"); #TODO path assoluta può dare problemi?
