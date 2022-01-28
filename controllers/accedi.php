@@ -103,8 +103,8 @@ else
 $header = _header($path);
 $footer = _footer();
 
-$pagina = str_replace('%DESCRIPTION%', "Pagina di accesso a Scissorhands" ,$pagina);
-$pagina = str_replace('%KEYWORDS%', "accedi, accesso, login, scissorhands, capelli, barba, barbiere",$pagina);
+$pagina = str_replace('%DESCRIPTION%', "Accedi per prenotare subito il tuo prossimo taglio o sistemazione della barba." ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "accedi, accesso, login, scissorhands, prenota, capelli, barba, barbiere, Padova",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

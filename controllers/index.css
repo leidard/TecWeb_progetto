@@ -1,6 +1,8 @@
 body {
     margin: 0;
-    letter-spacing: 0.075em;
+    letter-spacing: 0.12em;
+    line-height: 1.5em;
+    word-spacing: 0.16em;
     position: relative;
     font-family: Helvetica, Arial, sans-serif;
     background: url('/static/img/pattern.jpg') repeat;
@@ -28,9 +30,10 @@ header h1 {
     text-indent: -9999999em;
     font-size: 128px;
     margin: 0;
+    line-height: normal;
 }
 
-h2 { /* NO */
+h2 { 
     text-align: center;
 }
 
@@ -105,17 +108,20 @@ nav#menu ul li {
 nav#menu ul li a {
     display:block;
     background-color: white;
-    padding: 6px;
+    padding: 4px;
 }
 
 nav#menu ul li.current {
     background-color: white;
 }
 
+nav#menu ul li.current a {
+    border-color: #800F0F;
+}
+
 nav#menu a {
     border: 4px solid;
     border-color: white;
-
     box-sizing: border-box;
     text-transform: uppercase;
 }
