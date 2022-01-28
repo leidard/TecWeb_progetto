@@ -9,6 +9,11 @@ class PublicLoginService
 		return (new Credential())->getUserPassword($mail);
 	}
 
+	public static function getUserId($mail)
+	{
+		return (new Credential())->getUserId($mail);
+	}
+
 	public static function verifyLogin($email, $userProvidedPassword)
 	{
 		$password = PublicLoginService::getUserPassword($email);

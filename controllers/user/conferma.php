@@ -12,9 +12,16 @@ require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/public/service.php';
 require_once __DIR__ . '/../../services/public/staff.php';
 
-$user_id = 1;
+if(!isset($_SESSION["sessionid"]))
+{
+	header("Location: /accedi.php"); #TODO path assoluta può dare problemi?
+	die();
+}
+	
+$user_id = $_SESSION["sessionid"];
+
 if (!UserBookingService::canBook($user_id)) {
-    header("Location: /user/prenotazioni.php");
+    header("Location: /user/prenotazioni.php"); #TODO aggiungere die()?
 }
 
 

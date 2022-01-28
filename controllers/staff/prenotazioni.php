@@ -3,6 +3,21 @@ require_once  __DIR__ . '/../components/page.php';
 require_once  __DIR__ . '/../components/header.php';
 require_once  __DIR__ . '/../components/booked_row_staff.php';
 require_once  __DIR__ . '/../components/breadcrumb.php';
+require_once __DIR__ . '/../services/public/session.php';
+
+if(!isset($_SESSION["sessionid"]))
+{
+	header("Location: accedi.php");
+	die();
+}
+if(!Session::isOwner($_SESSION["sessionmail"])) #TODO dove mandarlo?
+{
+	header("Location: user/prenotazioni.php");
+	die();
+}
+	
+$user_id = $_SESSION["sessionid"];
+
 
 $pagina = page('Prenotazioni staff - Scissorhands');
 $header = _header(array("Staff" => "/staff/", "Prenotazioni" => "/staff/prenotazioni.php",));

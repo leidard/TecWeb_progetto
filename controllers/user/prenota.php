@@ -15,8 +15,13 @@ require_once __DIR__ . '/../../services/public/staff.php';
 require_once __DIR__ . '/../../services/helpers.php';
 
 // TODO CHANGE USER_ID
-$user_id = 1;
-
+//$user_id = 1;
+if(!isset($_SESSION["sessionid"]))
+{
+	header("Location: /accedi.php");
+	die();
+}
+$user_id = $_SESSION["sessionid"];
 
 if (!UserBookingService::canBook($user_id)) {
     header("Location: /user/prenotazioni.php");

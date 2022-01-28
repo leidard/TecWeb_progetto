@@ -55,7 +55,8 @@ if(isset($password) && isset($mail))
 	//if($password == $_POST["password"])
 	if(PublicLoginService::verifyLogin($mail,$password))
 	{
-		$_SESSION["sessionid"] = $mail;
+		$_SESSION["sessionid"] = PublicLoginService::getUserId($mail);
+		$_SESSION["sessionmail"] = $mail;
 		if(Session::isUser($mail)) 
 		{
 			$_SESSION["type"] = "USER";

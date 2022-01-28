@@ -41,8 +41,34 @@ class Credential extends DBHelper {
 			$var = $res->fetch_assoc()["password"];
 			if(!empty($var))
 				return $var;
-			return NULL;
 		}
+		return NULL;
+	}
+
+	public function getUserId($mail)
+	{
+		$stmt = $this->prepare("SELECT _id FROM owner where email=?");
+		$stmt->bind_param('s', $mail);
+		$stmt->execute();
+		$res = $stmt->get_result();
+		if(mysqli_num_rows($res) != 0)
+		{
+			$var = $res->fetch_array()[0];
+			if(!empty($var))
+				return $var;
+		}
+
+		$stmt = $this->prepare("SELECT _id FROM customer where email=?");
+		$stmt->bind_param('s', $mail);
+		$stmt->execute();
+		$res = $stmt->get_result();
+		if(mysqli_num_rows($res) != 0)
+		{	
+			$var = $res->fetch_array()[0];
+			if(!empty($var))
+				return $var;
+		}
+		return NULL;
 	}
 
 	public function changeUserPassword($mail, $password, $UserType)

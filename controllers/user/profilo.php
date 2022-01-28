@@ -15,14 +15,16 @@ $path = array(
 
 session_start();
 
-$header = _header($path);
-$footer = _footer();
-
-
 if(!isset($_SESSION["sessionid"])) {
 	header("Location: /accedi.php");
 	die();
 }
+
+$header = _header($path);
+$footer = _footer();
+
+
+
 
 if(isset($_POST["current_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["current_password"]) || $_POST["current_password"]=="admin" || $_POST["current_password"]=="user"))
 	$currentPassword = $_POST["current_password"];
@@ -36,13 +38,13 @@ $main = file_get_contents('../../views/user/pagina_personale.html');
 if(isset($currentPassword) && isset($newPassword) && isset($confirmnewPassword))
 {
 	#change password
-	$currentPassword = PublicLoginService::getUserPassword($_SESSION["sessionid"]);
+	$currentPassword = PublicLoginService::getUserPassword($_SESSION["sessionmail"]);
 	//if($currentPassword == $_POST["current_password"])
-	if(PublicLoginService::verifyLogin($_SESSION["sessionid"], $_POST["current_password"]))
+	if(PublicLoginService::verifyLogin($_SESSION["sessionmail"], $_POST["current_password"]))
 	{
 		if($newPassword==$confirmnewPassword)
 		{
-			UserPasswordChangeService::changeUserPassword($_SESSION["sessionid"], $newPassword, $_SESSION["type"]);
+			UserPasswordChangeService::changeUserPassword($_SESSION["sessionmail"], $newPassword, $_SESSION["type"]);
 			$_SESSION["message"] = "Password cambiata!";
 		}
 		else
