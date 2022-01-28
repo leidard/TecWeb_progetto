@@ -3,7 +3,6 @@ require_once  __DIR__ . '/../components/page.php';
 require_once  __DIR__ . '/../components/header.php';
 require_once  __DIR__ . '/../components/booked_pending_staff.php';
 require_once  __DIR__ . '/../components/breadcrumb.php';
-require_once __DIR__ . '/../services/public/session.php';
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
@@ -13,7 +12,7 @@ if(!isset($_SESSION["sessionid"]))
 	header("Location: accedi.php");
 	die();
 }
-if(!Session::isOwner($_SESSION["sessionmail"])) #TODO dove mandarlo?
+if($_SESSION["type"] != "OWNER") #TODO dove mandarlo?
 {
 	header("Location: user/prenotazioni.php");
 	die();
