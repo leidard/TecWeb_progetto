@@ -406,6 +406,10 @@ fieldset.dati-personali span.error,
 fieldset.dati-cambio-password span.error{
 	background-color: #800F0F;
 	color : #FFFFFF;
+	text-align: center;
+	border-radius: 7px;
+    max-width: 250px;
+
 }
 
 input[type=submit]{ 

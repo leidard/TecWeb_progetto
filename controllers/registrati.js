@@ -3,7 +3,7 @@ var item = document.getElementById('noscript');
 item.parentNode.removeChild(item);
 	function clearIfError(fieldname)
 	{
-		if(document.getElementById(fieldname+"-error").textContent === "Caratteri non validi presenti")
+		if(document.getElementById(fieldname+"-error").textContent != "")
 		{
 			document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, "");
 			document.getElementById(fieldname+"-error").textContent = "";
@@ -15,7 +15,7 @@ item.parentNode.removeChild(item);
 		{
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			document.getElementById('Registrati').classList.add('disabled');
-			document.getElementById('mail-error').textContent = "La mail deve essere del formato nomeutente@dominio.it";
+			document.getElementById('mail-error').textContent = "Formato mail errato";
 			
 		}
 		else 
@@ -64,7 +64,7 @@ item.parentNode.removeChild(item);
 
 			//if(str=="")
 			if(ok == true)
-				str+="<li>carattere non valido presente</li>";
+				str+="<li>Carattere non valido presente</li>";
 
 
 			document.getElementById('pw-error').innerHTML = "deve avere almeno <ul>"+str+"</ul>";
@@ -101,7 +101,7 @@ item.parentNode.removeChild(item);
 		
 		if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
 		{
-			document.getElementById(fieldname+"-error").textContent = "Caratteri non validi presenti";
+			document.getElementById(fieldname+"-error").textContent = "Carattere non valido presente";
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			document.getElementById('Registrati').classList.add('disabled');
 		}
