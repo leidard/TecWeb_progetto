@@ -404,7 +404,7 @@ fieldset.dati-registrazione span.error,
 fieldset.dati-login span.error,
 fieldset.dati-personali span.error,
 fieldset.dati-cambio-password span.error{
-	background-color: #FF0000;
+	background-color: #800F0F;
 	color : #FFFFFF;
 }
 
@@ -428,7 +428,7 @@ input[type=submit]:active{
     color:black;     
 }
 
-input[type=submit]:disabled{
+input[type=submit].disabled{
     background-color: #cccccc;
     color:black;
     cursor:not-allowed; 

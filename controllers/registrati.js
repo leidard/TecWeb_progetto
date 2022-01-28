@@ -1,5 +1,6 @@
 window.onload = document.getElementById('Registrati').setAttribute('aria-disabled', true); //messo qui perch� altrimenti senza JS non pu� fare submit
-		
+var item = document.getElementById('noscript');
+item.parentNode.removeChild(item);
 	function clearIfError(fieldname)
 	{
 		if(document.getElementById(fieldname+"-error").textContent === "Caratteri non validi presenti")
@@ -12,15 +13,15 @@ window.onload = document.getElementById('Registrati').setAttribute('aria-disable
 	function onEmail(evt) {
 		if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value)) 
 		{
-			evt.target.parentElement.classList.add("error");
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
+			document.getElementById('Registrati').classList.add('disabled');
 			document.getElementById('mail-error').textContent = "La mail deve essere del formato nomeutente@dominio.it";
 			
 		}
 		else 
 		{
-			evt.target.parentElement.classList.remove("error");
 			document.getElementById('Registrati').setAttribute('aria-disabled', false);
+			document.getElementById('Registrati').classList.remove('disabled');
 			document.getElementById('mail-error').textContent = "";
 		}
 	}
@@ -29,8 +30,8 @@ window.onload = document.getElementById('Registrati').setAttribute('aria-disable
 		// Minimum eight characters, at least one letter and one number:
 		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
 		{
-			evt.target.parentElement.classList.add("error") 
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
+			document.getElementById('Registrati').classList.add('disabled');
 			var str="";
 			var ok=true;
 			if(evt.target.value.length < 8)
@@ -71,25 +72,25 @@ window.onload = document.getElementById('Registrati').setAttribute('aria-disable
 		}	
 		else 
 		{
-			evt.target.parentElement.classList.remove("error")
 			document.getElementById('Registrati').setAttribute('aria-disabled', false);
+			document.getElementById('Registrati').classList.remove('disabled');
 			document.getElementById('pw-error').innerHTML = "";
 		}
 	}
 
-	function pwCheck(evt)
+	function pwCheck()
 	{
 		if(document.getElementById("password").value !== document.getElementById("password_rep").value)
 		{	
-			evt.target.parentElement.classList.add("error");
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
+			document.getElementById('Registrati').classList.add('disabled');
 			document.getElementById('pwrep-error').textContent = "Le password non corrispondono";
 			
 		}
 		else
 		{
-			evt.target.parentElement.classList.remove("error");
 			document.getElementById('Registrati').setAttribute('aria-disabled', false);
+			document.getElementById('Registrati').classList.remove('disabled');
 			document.getElementById('pwrep-error').textContent = "";
 		}
 	}
@@ -102,17 +103,19 @@ window.onload = document.getElementById('Registrati').setAttribute('aria-disable
 		{
 			document.getElementById(fieldname+"-error").textContent = "Caratteri non validi presenti";
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
+			document.getElementById('Registrati').classList.add('disabled');
 		}
 		else
 		{
 			document.getElementById(fieldname+"-error").textContent = "";	
 			document.getElementById('Registrati').setAttribute('aria-disabled', false);
+			document.getElementById('Registrati').classList.remove('disabled');
 		}
 	}
 
 
 
-	//FUNZIONI AIUTO ARIA 
+	//FUNZIONI AIUTO ARIA
 	function aria_onEmail(evt) {
 		if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value)) 
 		{
@@ -130,7 +133,7 @@ window.onload = document.getElementById('Registrati').setAttribute('aria-disable
 		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
 		{
 			document.getElementById('password').setAttribute('aria-invalid', true);
-			document.getElementById('password_rep').setAttribute('aria-describedby', 'pw-error');
+			document.getElementById('password').setAttribute('aria-describedby', 'pw-error');
 		}	
 		else 
 		{

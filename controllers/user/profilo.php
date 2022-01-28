@@ -25,16 +25,32 @@ $header = _header($path);
 $footer = _footer();
 
 
-if(isset($_POST["current_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["current_password"]) || $_POST["current_password"]=="admin" || $_POST["current_password"]=="user"))
-	$currentPassword = $_POST["current_password"];
-if(isset($_POST["new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["new_password"]) || $_POST["new_password"]=="admin" || $_POST["new_password"]=="user"))
-	$newPassword = $_POST["new_password"];
 
-if(isset($_POST["confirm_new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
+if(isset($_POST["submit"]) && isset($_POST["new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["new_password"]) || $_POST["new_password"]=="admin" || $_POST["new_password"]=="user"))
+	$newPassword = $_POST["new_password"];
+else
+{
+	$_SESSION["message"] = "Caratteri non validi nella nuova password";
+}
+
+if(isset($_POST["submit"]) && isset($_POST["confirm_new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
 	$confirmnewPassword = $_POST["confirm_new_password"];
+else
+{
+	$_SESSION["message"] = "Caratteri non validi nella Conferma della nuova password";
+}
+	
+
+if(isset($_POST["submit"]) && isset($_POST["current_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["current_password"]) || $_POST["current_password"]=="admin" || $_POST["current_password"]=="user"))
+	$currentPassword = $_POST["current_password"];
+else
+{
+	$_SESSION["message"] = "Caratteri non validi nella password corrente";
+}
+	
 
 $main = file_get_contents('../../views/user/pagina_personale.html');
-if(isset($currentPassword) && isset($newPassword) && isset($confirmnewPassword))
+if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && isset($confirmnewPassword))
 {
 	#change password
 	$currentPassword = PublicLoginService::getUserPassword($_SESSION["sessionmail"]);
