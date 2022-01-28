@@ -7,8 +7,8 @@ $main = file_get_contents('../views/errore_connessione.html');
 
 // Questa pagina non deve essere indicizzata
 
-$path = array(); //Non si vogliono visualizzare le breadcrumb in questa pagina
-$header = _header($path);
+
+$header = _header([], true);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%DESCRIPTION%', '' ,$pagina);

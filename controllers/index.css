@@ -802,15 +802,20 @@ section.error img {
 
 
 /*              505 errore_connessione               */
+div#ErroreConnessione{
+    display: flex;
+    flex-direction: column;
+
+}
 
 div#ErroreConnessione>div.ErrConnImg {
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    min-height: 200px;
+    height: auto;
     background-image: url('/static/img/network-error-icon.jpg');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;
-    margin: auto;
+    background-repeat: no-repeat; 
     padding: 0;
 }
 
@@ -821,18 +826,9 @@ div#ErroreConnessione>p>span {
 
 @media only screen and (max-width: 1200px) {
     div#ErroreConnessione>div.ErrConnImg{
-        width: 350px;
-        height: 350px;
-    }  
-}
-
-@media only screen and (max-width: 768px) {
-    div#ErroreConnessione>div.ErrConnImg{
-        width: 200px;
         height: 200px;
     }  
 }
-
 
 /*              CONTATTI                */
 section#info-contatti{
