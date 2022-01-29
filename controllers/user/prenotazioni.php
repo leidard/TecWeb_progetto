@@ -24,7 +24,11 @@ if(!isset($_SESSION["sessionid"]))
 	header("Location: /accedi.php");
 	die();
 }
-	
+if($_SESSION["type"] != "USER")
+{
+	header("Location: /staff/prenotazioni.php"); 
+	die();
+}	
 $user_id = $_SESSION["sessionid"];
 
 // RICEZIONE DI NUOVA PRENOTAZIONE

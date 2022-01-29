@@ -20,11 +20,18 @@ if(!isset($_SESSION["sessionid"]))
 	header("Location: /accedi.php"); #TODO path assoluta può dare problemi?
 	die();
 }
-	
+
+if($_SESSION["type"] != "USER")
+{
+	header("Location: /staff/prenotazioni.php"); 
+	die();
+}
+
 $user_id = $_SESSION["sessionid"];
 
 if (!UserBookingService::canBook($user_id)) {
-    header("Location: /user/prenotazioni.php"); #TODO aggiungere die()?
+    header("Location: /user/prenotazioni.php");
+	die();
 }
 
 
@@ -109,6 +116,7 @@ if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day
     }
 } else {
     header("Location: $backlink");
+	die();
 }
 
 $header = _header(array("Prenotazioni" => "/user/prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));
