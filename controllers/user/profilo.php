@@ -73,7 +73,7 @@ if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && 
 	}
 }
 
-if(isset($_SESSION["message"]))
+if(isset($_POST["submit"]) && isset($_SESSION["message"]))
 {
 	$main = str_replace("%MESSAGGIO%",$_SESSION["message"], $main);
 	unset($_SESSION["message"]);

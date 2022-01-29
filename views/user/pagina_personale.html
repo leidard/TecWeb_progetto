@@ -8,19 +8,20 @@
 	<form id="profile" action="profilo.php" method="POST">
 		<h2>Cambio Password:</h2>
 		<fieldset class="dati-cambio-password">
+			<legend>Dati per cambio password</legend>
 			<span>
-				<label for="password corrente">Password corrente</label>
+				<label for="current_password">Password corrente</label>
 				<input name="current_password" id="current_password" type="password" required />
 			</span>
 			
 			<span>
-				<label for="nuova password">Nuova password</label>
+				<label for="new_password">Nuova password</label>
 					<span id="pw-error" class="error"></span>		
 				<input name="new_password" id="new_password" type="password" required oninput="onPw(event);" onblur="aria_onPw(event);"/>
 			</span>
 
 			<span>
-				<label for="conferma nuova password">Ripeti nuova password</label>
+				<label for="confirm_new_password">Ripeti nuova password</label>
 					<span id="pwrep-error" class="error"></span>
 				<input name="confirm_new_password" id="confirm_new_password" type="password" required onkeyup="pwCheck();" onblur="aria_pwCheck();"/>
 			</span>
