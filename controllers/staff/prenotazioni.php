@@ -35,6 +35,7 @@ if (isset($_GET["day"]) && preg_match('/^[0-9]+$/', $_GET["day"])) {
     $selected_day = $_GET["day"];
 } else {
     header("Location: /staff/prenotazioni.php?day=$selected_day");
+	die();
 }
 
 $prev_day = $selected_day - 1;

@@ -25,10 +25,17 @@ if(!isset($_SESSION["sessionid"]))
 	header("Location: /accedi.php");
 	die();
 }
+if($_SESSION["type"] != "USER")
+{
+	header("Location: /staff/prenotazioni.php"); 
+	die();
+}
+
 $user_id = $_SESSION["sessionid"];
 
 if (!UserBookingService::canBook($user_id)) {
     header("Location: /user/prenotazioni.php");
+	die();
 }
 
 $services = PublicServiceService::getAll();
