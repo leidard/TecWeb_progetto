@@ -703,7 +703,7 @@ div.capelli {
     width: 150px;
     height: 150px;
     background-image: url('/static/img/hair_icon.png');
-    margin: 6px;
+    margin: 20px 6px 6px;
     padding: 0;
 }
 
@@ -711,7 +711,7 @@ div.barba {
     width: 150px;
     height: 150px;
     background-image: url('/static/img/beard_icon.png');
-    margin: 6px;
+    margin: 20px 6px 6px;
     padding: 0;
 }
 
@@ -741,7 +741,7 @@ section.spiegazione-servizi p a {
     div.barba {
         background-image: none;
         width: 1px;
-        height: 150px;
+        height: 250px;
         border-left: thick solid #62301b;
     }
     div.capelli {
