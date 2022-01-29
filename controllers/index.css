@@ -1,10 +1,34 @@
+@font-face { 
+    font-family: AtkinsonHyperlegible; 
+    src: url('static/font/AtkinsonHyperlegible-Regular.ttf'); 
+}
+
+ @font-face { 
+     font-family: AtkinsonHyperlegible; 
+     font-weight: bold; 
+     src: url('static/font/AtkinsonHyperlegible-Bold.ttf');
+}
+
+@font-face { 
+    font-family: AtkinsonHyperlegible; 
+    font-style: italic;
+    src: url('static/font/AtkinsonHyperlegible-Italic.ttf');
+}
+
+@font-face { 
+    font-family: AtkinsonHyperlegible; 
+    font-weight: bold;
+    font-style: italic;
+    src: url('static/font/AtkinsonHyperlegible-BoldItalic.ttf');
+}
+
 body {
     margin: 0;
     letter-spacing: 0.12em;
     line-height: 1.5em;
     word-spacing: 0.16em;
     position: relative;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: AtkinsonHyperlegible, Helvetica, Arial, sans-serif;
     background: url('/static/img/pattern.jpg') repeat;
     background-size: 250px;
 }
@@ -197,11 +221,11 @@ main {
 
 @media only screen and (max-width: 1200px) {
     main {
-        width: 768px;
+        width: 1200px;
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
     main {
         width: 100%;
     }
@@ -755,7 +779,7 @@ section.spiegazione-servizi p a {
 .servizio {
     flex: 1 0 30%;
     /* 3 per riga */
-    margin: 6px 0;
+    margin: 6px;
     padding: 8px;
     text-align: center;
     background-color: #E4DACB;
@@ -794,7 +818,7 @@ section.spiegazione-servizi p a {
 @media only screen and (max-width: 600px) {
     .servizio {
         flex: 1 0 100%;
-        /* 1 per riga */
+        margin: 6px 0 0;
     }
 }
 
