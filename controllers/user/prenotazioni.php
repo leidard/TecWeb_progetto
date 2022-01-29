@@ -69,7 +69,7 @@ $unc_str = "";
 if (!!$unc) {
     $unc_str = booked_pending($unc["start_at"], $unc["end_at"], $unc["service"], $unc["price"], $unc["staff"]);
 } else {
-    $unc_str = '<a href="/user/prenota.php">Crea Nuova Prenotazione</a>';
+    $unc_str = '<p>Non c\'è nessuna prenotazione in attesa, <a href="/user/prenota.php">clicca qui per crearne una nuova</a>.</p>';
 }
 $main = str_replace("%UNCONFIRMED%", $unc_str, $main);
 

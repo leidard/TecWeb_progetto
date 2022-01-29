@@ -38,7 +38,7 @@ item.parentNode.removeChild(item);
 			{
 				//non lunga abbastanza
 				ok = false;
-				str+="<li>Otto caratteri</li>";
+				str+="<li>otto caratteri</li>";
 			}
 
 			if(evt.target.value.toUpperCase() == evt.target.value)
@@ -67,7 +67,7 @@ item.parentNode.removeChild(item);
 				str+="<li>Carattere non valido presente</li>";
 
 
-			document.getElementById('pw-error').innerHTML = "deve avere almeno <ul>"+str+"</ul>";
+			document.getElementById('pw-error').innerHTML = "Deve avere almeno: <ul>"+str+"</ul>";
 			
 		}	
 		else 

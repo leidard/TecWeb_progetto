@@ -216,7 +216,6 @@ main {
     width: 1200px;
     box-sizing: border-box;
     background-color: rgba(255,255,255,.95);
-    /* 1200*/
 }
 
 @media only screen and (max-width: 1200px) {
@@ -377,11 +376,6 @@ fieldset.dati-personali span.input-hint{
     font-weight: normal;
 }
 
-/*
-fieldset.dati-login>span>label::after {
-    content: ":";
-}
-*/
 fieldset.dati-cambio-password>input,
 fieldset.dati-cambio-password>span>input,
 fieldset.dati-login>span>input, 
@@ -389,6 +383,7 @@ fieldset.dati-registrazione>span>input,
 fieldset.dati-personali>span>input, 
 fieldset.dati-personali>span>span>select {
     max-width: 300px;
+    min-width: 200px;
     margin-left: 8px;
     margin-top: 4px;
     border-radius: 6px;
