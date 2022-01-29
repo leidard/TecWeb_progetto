@@ -23,7 +23,7 @@ $user_id = $_SESSION["sessionid"];
 
 
 $pagina = page('Prenotazioni staff - Scissorhands');
-$header = _header(array("Staff" => "/staff/", "Prenotazioni" => "/staff/prenotazioni.php",));
+$header = _header(array("Prenotazioni" => "/staff/prenotazioni.php",));
 $main = file_get_contents(__DIR__ . '/../../views/staff/prenotazioni.html');
 
 require_once __DIR__ . '/../../services/staff/book.php';

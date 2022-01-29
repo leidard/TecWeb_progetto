@@ -304,7 +304,7 @@ section#benvenuto a#link-prenota {
 
 
 /*              FORM                */
-section.form-block{
+.form-block{
     display: block;
     text-align: center;
 }
