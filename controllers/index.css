@@ -246,7 +246,7 @@ section#benvenuto div.img-wrap {
 }
 
 section#benvenuto div.img-wrap div.content {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.97);
     padding: 12px;
     text-align: center;
     border-radius: 12px;
@@ -293,8 +293,12 @@ table#orari-apertura {
 }
 
 section#benvenuto a#link-prenota {
-    margin: 16px 0 8px;
-    display: block;
+    display: inline-block;
+    margin: 20px 0 20px;
+    padding: 6px;
+    border: solid;
+    border-color: #800F0F;
+    max-width: 150px;
 }
 
 @media only screen and (max-width: 760px) {
