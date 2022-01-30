@@ -19,7 +19,7 @@ function dontClearFields()
 }
 
 
-if(isset($_SESSION["sessionid"])) #aka uno già loggato va qui #TODO da migliorare la situazione quando uno è già loggato?
+if(isset($_SESSION["sessionid"])) #aka uno già loggato va qui 
 {
 	header("Location: user/prenotazioni.php");
 	die();
@@ -93,7 +93,7 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) &&
 		$ex = RegistrationService::RegisterUser($name, $surname, strtolower($mail), $password);
 		if($ex)
 		{
-			$_SESSION["regcomplete"] = "Registrazione completata! clicca qui per blah blah.";
+			$_SESSION["regcomplete"] = "Registrazione completata! <a href=\"/accedi.php\">clicca qui per effettuare l'accesso<a>.";
 			#unset everything??????????????
 		}
 		else

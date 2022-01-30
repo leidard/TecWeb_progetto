@@ -18,9 +18,9 @@ session_start();
 
 
 
-if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno è già loggato
+if(isset($_SESSION["sessionid"])) 
 {
-	header("Location: user/prenotazioni.php");
+	header("Location: /user/prenotazioni.php");
 	die();
 }
 
@@ -60,19 +60,19 @@ if(isset($password) && isset($mail))
 		if(Session::isUser($mail)) 
 		{
 			$_SESSION["type"] = "USER";
-			header("Location: user/prenotazioni.php");
+			header("Location: /user/prenotazioni.php");
 			die();
 		}
 		elseif(Session::isOwner($mail))
 		{
 			$_SESSION["type"] = "OWNER";
-			header("Location: staff/prenotazioni.php");
+			header("Location: /staff/prenotazioni.php");
 			die();
 		}	
 		else	#better safe than sorry
 		{
 			$_SESSION["type"] = "GUEST";
-			//header("Location: user/prenotazioni.php"); #TODO che fare?
+			header("Location: /logout.php"); 
 		}
 	}
 	else

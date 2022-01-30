@@ -9,12 +9,12 @@ if (session_status() === PHP_SESSION_NONE)
 
 if(!isset($_SESSION["sessionid"]))
 {
-	header("Location: accedi.php");
+	header("Location: /accedi.php");
 	die();
 }
 if($_SESSION["type"] != "OWNER") #TODO dove mandarlo?
 {
-	header("Location: user/prenotazioni.php");
+	header("Location: /user/prenotazioni.php");
 	die();
 }
 	
