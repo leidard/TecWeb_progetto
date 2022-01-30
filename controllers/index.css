@@ -851,9 +851,9 @@ div#ErroreConnessione p span {
     display: block;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 500px) {
     div#ErroreConnessione div.ErrConnImg{
-        height: 12em;
+        min-height: 6em;
     }  
 }
 
