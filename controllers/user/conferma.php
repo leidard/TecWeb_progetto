@@ -17,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE)
 
 if(!isset($_SESSION["sessionid"]))
 {
-	header("Location: /accedi.php"); #TODO path assoluta può dare problemi?
+	header("Location: /accedi.php");
 	die();
 }
 
