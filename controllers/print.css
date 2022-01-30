@@ -75,7 +75,7 @@ fieldset.dati-cambio-password span.error{
 
 /*          GALLERY           */
 
-section#Gallery div#img-container img { 
+section#Gallery div#img-container>img { 
     margin-bottom: 0.6em;
     box-shadow: none;
 }
@@ -111,7 +111,7 @@ div.capelli{
 
 
 /*              505 errore_connessione               */
-div#ErroreConnessione>div.ErrConnImg {
+div#ErroreConnessione div.ErrConnImg {
     display: none;
 }
 /*              CONTATTI                */

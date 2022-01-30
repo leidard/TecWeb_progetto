@@ -14,9 +14,6 @@ require_once __DIR__ . '/../../services/public/service.php';
 require_once __DIR__ . '/../../services/public/staff.php';
 require_once __DIR__ . '/../../services/helpers.php';
 
-// TODO CHANGE USER_ID
-//$user_id = 1;
-
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
