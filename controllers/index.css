@@ -322,6 +322,29 @@ section#benvenuto a#link-prenota {
     }
 }
 
+/*             PROFILO              */
+section.dati-personali{
+    display: block;
+    text-align: center;
+}
+section.dati-personali div{
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.4em;
+    border: 0.075em solid black;
+	max-width: 15em;
+    min-width: 12.5em;
+	margin: 0 auto;
+    padding: 0.37em 0.5em;
+    font-size: 1em;
+
+}
+section.dati-personali span#nome,
+section.dati-personali span#cognome,
+section.dati-personali span#mail{
+    font-weight: bold;
+	
+}
 
 /*              FORM                */
 .form-block{
