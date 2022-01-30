@@ -6,6 +6,9 @@ require_once '../components/footer.php';
 require_once __DIR__ . '/../../services/public/login.php';
 require_once __DIR__ . '/../../services/public/session.php';
 require_once __DIR__ . '/../../services/user/change_password.php';
+require_once __DIR__ . '/../../services/user/customer.php';
+require_once __DIR__ . '/../../services/staff/owner.php';
+
 
 $pagina = page('Profilo - Scissorhands');
 $path = array(
@@ -81,6 +84,16 @@ if(isset($_POST["submit"]) && isset($_SESSION["message"]))
 else
 	$main = str_replace("%MESSAGGIO%", "", $main);
 
+if($_SESSION["type"] == "OWNER")
+{
+	$main = str_replace("%NOME%", OwnerService::get($_SESSION["sessionid"])["name"], $main);
+	$main = str_replace("%COGNOME%", OwnerService::get($_SESSION["sessionid"])["surname"], $main);
+}
+else
+{
+	$main = str_replace("%NOME%", CustomerService::get($_SESSION["sessionid"])["name"], $main);
+	$main = str_replace("%COGNOME%", CustomerService::get($_SESSION["sessionid"])["surname"], $main);
+}
 
 $pagina = str_replace('%DESCRIPTION%', "Profilo" ,$pagina);
 $pagina = str_replace('%KEYWORDS%', "scissorhands, capelli, barba, barbiere",$pagina);

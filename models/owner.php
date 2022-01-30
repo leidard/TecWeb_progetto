@@ -1,15 +1,25 @@
 <?php
 
-class Azienda {
+class Owner extends DBHelper{
 
-    public static function get() {
-        return array(
-            "email" => "admin",
-            "password" => "admin",
-        );
-    }
+	public function get($_id)
+	{
+		$stmt = $this->prepare("SELECT * FROM owner where _id = ? LIMIT 1");
+		$stmt->bind_param('s', $_id);
+		$stmt->execute();
+		$res = $stmt->get_result();
+		return $res->fetch_assoc();
+	}
 
-    public static function update($obj) {
+    public function getAll()
+	{
+		$stmt = $this->prepare("SELECT * FROM owner");
+		$stmt->execute();
+		$res = $stmt->get_result();
+		return $res->fetch_assoc();
+	}
+
+    public static function update($obj) { #TODO remove?
         if (isset($obj->open_at)) {
 
         }
