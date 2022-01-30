@@ -88,11 +88,13 @@ if($_SESSION["type"] == "OWNER")
 {
 	$main = str_replace("%NOME%", OwnerService::get($_SESSION["sessionid"])["name"], $main);
 	$main = str_replace("%COGNOME%", OwnerService::get($_SESSION["sessionid"])["surname"], $main);
+	$main = str_replace("%MAIL%", OwnerService::get($_SESSION["sessionid"])["email"], $main);
 }
 else
 {
 	$main = str_replace("%NOME%", CustomerService::get($_SESSION["sessionid"])["name"], $main);
 	$main = str_replace("%COGNOME%", CustomerService::get($_SESSION["sessionid"])["surname"], $main);
+	$main = str_replace("%MAIL%", CustomerService::get($_SESSION["sessionid"])["email"], $main);
 }
 
 $pagina = str_replace('%DESCRIPTION%', "Profilo" ,$pagina);
