@@ -87,8 +87,12 @@ section#Gallery div#img-container {
 /*              STAFF             */
 article.staff>div.foto-staff {
     display: none;
-
 }
+
+.staff{
+    font-size: 12.5pt;
+}
+
 
 /*              SERVIZI             */
 div.barba{

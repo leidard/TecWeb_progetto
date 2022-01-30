@@ -9,9 +9,6 @@ $header = _header();
 
 $main = file_get_contents('../views/index.html');
 
-/**
- * Vari str_replace nella vista main
- */
 $orariApertura = orariApertura();
 $main = str_replace('%ORARIAPERTURA%' , $orariApertura, $main);
 
