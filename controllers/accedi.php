@@ -52,11 +52,9 @@ else
 	unset($password);
 }
 
-//TODO sistemare meglio sti if else
+
 if(isset($password) && isset($mail))
 {
-	//$password=PublicLoginService::getUserPassword($mail);
-	//if($password == $_POST["password"])
 	if(PublicLoginService::verifyLogin($mail,$password))
 	{
 		$_SESSION["sessionid"] = PublicLoginService::getUserId($mail);
@@ -94,7 +92,6 @@ if(isset($_POST["submit"]) && isset($_SESSION["error"]))
 	unset($_SESSION["error"]);
 	if(isset($_SESSION["mail"]))
 		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
-	#unset($mail);
 	unset($_SESSION["mail"]);
 }
 else

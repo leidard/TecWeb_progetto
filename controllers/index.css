@@ -120,6 +120,12 @@ nav#menu ul li a {
     }
 }
 
+@media only screen and (max-width: 480px) {
+    nav#menu ul li {
+        flex: 1 1 100%;
+    }
+}
+
 nav#menu ul li.current {
     background-color: white;
 }
@@ -355,6 +361,32 @@ section.dati-personali span#mail{
     display: block;
     text-align: center;
 }
+
+div.form-block em>span#reg-error
+{
+	font-weight: bold;
+    border: 0.125em solid #B30000;
+    border-radius: 0.4em;
+	padding-top: 0.25em;
+	padding-right: 0.25em;
+	padding-bottom: 0.25em;
+	padding-left: 0.25em;
+}
+
+div.form-block em>span#reg-complete	
+{
+	font-weight: bold;
+    border: 0.125em solid #006118;
+    border-radius: 0.4em;
+	padding-top: 0.25em;
+	padding-right: 0.25em;
+	padding-bottom: 0.25em;
+	padding-left: 0.25em;
+}
+
+/*span#reg-message{
+
+}*/
 
 form#registrazione-form, 
 form#login-form, 

@@ -50,7 +50,7 @@ if(isset($_POST["submit"]) && isset($_POST["name"]) && !preg_match_all("/[!@#$%^
 	$name = $_POST["name"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "Caratteri invalidi nel nome o cognome";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Caratteri invalidi nel nome o cognome</span>";
 	dontClearFields();
 }
 
@@ -58,7 +58,7 @@ if(isset($_POST["submit"]) && isset($_POST["surname"]) && !preg_match_all("/[!@#
 	$surname = $_POST["surname"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "Caratteri invalidi nel nome o cognome";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Caratteri invalidi nel nome o cognome</span>";
 	dontClearFields();
 }
 	
@@ -66,7 +66,7 @@ if(isset($_POST["submit"]) && isset($_POST["mail"]) && preg_match("/^([a-z0-9\+_
 	$mail = $_POST["mail"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "Formato email non valido";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato email non valido</span>";
 	dontClearFields();
 }
 	
@@ -74,7 +74,7 @@ if(isset($_POST["submit"]) && isset($_POST["password"]) && preg_match("/^(?=.*[A
 	$password = $_POST["password"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "Formato password non valido";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato password non valido</span>";
 	dontClearFields();
 }
 
@@ -82,33 +82,32 @@ if(isset($_POST["submit"]) && isset($_POST["password_rep"]) && preg_match("/^(?=
 	$password_rep = $_POST["password_rep"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "Formato ripeti password non valido";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato ripeti password non valido</span>";
 	dontClearFields();
 }
 
 
 
-//if(isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["mail"]) && isset($_POST["password"]) && isset($_POST["password_rep"]))
+#if(isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["mail"]) && isset($_POST["password"]) && isset($_POST["password_rep"]))
 if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) && isset($password) && isset($password_rep))
 {
-	//if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in locale, mettere in relazione
+	#if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in locale, mettere in relazione
 	if($password_rep === $password)
 	{
 		$ex = RegistrationService::RegisterUser($name, $surname, strtolower($mail), $password);
 		if($ex)
 		{
-			$_SESSION["regcomplete"] = "Registrazione completata! <a href=\"/accedi.php\">clicca qui per effettuare l'accesso<a>.";
+			$_SESSION["regcomplete"] = "<span id=\"reg-complete\">Registrazione completata! <a href=\"/accedi.php\">Clicca qui per effettuare l'accesso<a></span>.";
 			#unset everything??????????????
 		}
 		else
 		{
-			$_SESSION["regerror"] = "Email già utilizzata";
+			$_SESSION["regerror"] = "<span id=\"reg-error\">Email già utilizzata</span>";
 		}
 	}
 	else
 	{
-		#$main.="Le password non corrispondono.";
-		$_SESSION["regerror"] = "Password non corrispondenti.";
+		$_SESSION["regerror"] = "<span id=\"reg-error\">Password non corrispondenti.</span>";
 		
 		unset($mail);
 		unset($name);

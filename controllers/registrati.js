@@ -62,7 +62,6 @@ item.parentNode.removeChild(item);
 				str+="<li>un numero</li>"
 			}
 
-			//if(str=="")
 			if(ok == true)
 				str+="<li>Carattere non valido presente</li>";
 
@@ -115,7 +114,7 @@ item.parentNode.removeChild(item);
 
 
 
-	//FUNZIONI AIUTO ARIA
+	//FUNZIONI PER ARIA
 	function aria_onEmail(evt) {
 		if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value)) 
 		{
