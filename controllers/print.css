@@ -58,6 +58,13 @@ input[type=submit]{
     color:black;
 }
 
+fieldset.dati-registrazione span.error,
+fieldset.dati-login span.error,
+fieldset.dati-personali span.error,
+fieldset.dati-cambio-password span.error{
+	color : red;
+}
+
 /*      PRENOTAZIONI    */
 .resrv {
     box-shadow: none;
@@ -78,22 +85,23 @@ section#Gallery div#img-container {
 }
 
 /*              STAFF             */
-
-
-article.staff>img { /*?????? non c'è un tag img*/
-    width: 16em;
+article.staff>div.foto-staff {
+    display: none;
 }
+
+.staff{
+    font-size: 12.5pt;
+}
+
 
 /*              SERVIZI             */
-
-div.capelli {
-    content: url('/static/img/hair_icon.png');
+div.barba{
+    display: none;
 }
 
-div.barba {
-    content: url('/static/img/beard_icon.png');
+div.capelli{
+    width: 2cm;
 }
-
 /*              LISTINO             */
 .servizio {
     border: 0.01em black solid;
@@ -103,15 +111,7 @@ div.barba {
 
 
 /*              505 errore_connessione               */
-
-div#ErroreConnessione div.ErrConnImg {
-    content: url('/static/img/network-error-icon.jpg');
-    width: 16em;
-    height: 16em;
-    display: block;
-    margin: auto;
+div#ErroreConnessione>div.ErrConnImg {
+    display: none;
 }
-
-
-
 /*              CONTATTI                */

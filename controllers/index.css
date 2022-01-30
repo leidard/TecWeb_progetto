@@ -840,9 +840,14 @@ section.error {
     align-items: center;
 }
 
-section.error img {
-    height: auto;
-    max-width: 100%;
+#errore404 {
+    background-image: url('static/img/404.png');
+    display: flex;
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-width: 300px;
+    min-height: 300px;
+
 }
 
 
