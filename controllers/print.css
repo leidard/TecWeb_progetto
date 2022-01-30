@@ -7,9 +7,9 @@ body {
 header h1 {
     display: block;
     margin: auto;
-    padding: 0px;
-    border: 0px;
-    margin-bottom: 0px;
+    padding: 0em;
+    border: 0em;
+    margin-bottom: 0em;
     content: url('/static/img/logo_bscissorhands.png');
 }
 
@@ -17,10 +17,10 @@ header h1 {
 
 /*         MENU            */
 nav#menu{
-    padding: 0px;
-    border: 0px;
-    height: 0px;
-    min-height: 0px;
+    padding: 0em;
+    border: 0em;
+    height: 0em;
+    min-height: 0em;
 }
 
 nav#menu ul{
@@ -44,7 +44,7 @@ div#floating-btn {
 /*       MAIN              */
 
 main {
-    width: 800px;
+    width: 50em;
 }
 
 /*       HOME        */
@@ -61,15 +61,15 @@ input[type=submit]{
 /*      PRENOTAZIONI    */
 .resrv {
     box-shadow: none;
-    border: 1px solid black;
+    border: 0.01em solid black;
 }
 
 /*          FIELDSET               */
 
 /*          GALLERY           */
 
-section#Gallery div#img-container>img {
-    margin-bottom: 10px;
+section#Gallery div#img-container img { 
+    margin-bottom: 0.6em;
     box-shadow: none;
 }
 
@@ -80,8 +80,8 @@ section#Gallery div#img-container {
 /*              STAFF             */
 
 
-article.staff>img {
-    width: 250px;
+article.staff>img { /*?????? non c'è un tag img*/
+    width: 16em;
 }
 
 /*              SERVIZI             */
@@ -96,7 +96,7 @@ div.barba {
 
 /*              LISTINO             */
 .servizio {
-    border: 1px black solid;
+    border: 0.01em black solid;
 }
 
 /*              404 ERROR               */
@@ -104,10 +104,10 @@ div.barba {
 
 /*              505 errore_connessione               */
 
-div#ErroreConnessione>div.ErrConnImg {
+div#ErroreConnessione div.ErrConnImg {
     content: url('/static/img/network-error-icon.jpg');
-    width: 250px;
-    height: 250px;
+    width: 16em;
+    height: 16em;
     display: block;
     margin: auto;
 }
