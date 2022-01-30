@@ -12,9 +12,26 @@ require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/public/service.php';
 require_once __DIR__ . '/../../services/public/staff.php';
 
-$user_id = 1;
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
+
+if(!isset($_SESSION["sessionid"]))
+{
+	header("Location: /accedi.php"); #TODO path assoluta può dare problemi?
+	die();
+}
+
+if($_SESSION["type"] != "USER")
+{
+	header("Location: /staff/prenotazioni.php"); 
+	die();
+}
+
+$user_id = $_SESSION["sessionid"];
+
 if (!UserBookingService::canBook($user_id)) {
     header("Location: /user/prenotazioni.php");
+	die();
 }
 
 
@@ -99,6 +116,7 @@ if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day
     }
 } else {
     header("Location: $backlink");
+	die();
 }
 
 $header = _header(array("Prenotazioni" => "/user/prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));

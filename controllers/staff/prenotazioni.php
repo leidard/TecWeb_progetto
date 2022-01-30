@@ -4,8 +4,26 @@ require_once  __DIR__ . '/../components/header.php';
 require_once  __DIR__ . '/../components/booked_row_staff.php';
 require_once  __DIR__ . '/../components/breadcrumb.php';
 
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
+
+if(!isset($_SESSION["sessionid"]))
+{
+	header("Location: /accedi.php");
+	die();
+}
+if($_SESSION["type"] != "OWNER") #TODO dove mandarlo?
+{
+	
+	header("Location: user/prenotazioni.php");
+	die();
+}
+	
+$user_id = $_SESSION["sessionid"];
+
+
 $pagina = page('Prenotazioni staff - Scissorhands');
-$header = _header(array("Staff" => "/staff/", "Prenotazioni" => "/staff/prenotazioni.php",));
+$header = _header(array("Prenotazioni" => "/staff/prenotazioni.php",));
 $main = file_get_contents(__DIR__ . '/../../views/staff/prenotazioni.html');
 
 require_once __DIR__ . '/../../services/staff/book.php';
@@ -17,6 +35,7 @@ if (isset($_GET["day"]) && preg_match('/^[0-9]+$/', $_GET["day"])) {
     $selected_day = $_GET["day"];
 } else {
     header("Location: /staff/prenotazioni.php?day=$selected_day");
+	die();
 }
 
 $prev_day = $selected_day - 1;

@@ -15,11 +15,27 @@ require_once __DIR__ . '/../../services/public/staff.php';
 require_once __DIR__ . '/../../services/helpers.php';
 
 // TODO CHANGE USER_ID
-$user_id = 1;
+//$user_id = 1;
 
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
+
+if(!isset($_SESSION["sessionid"]))
+{
+	header("Location: /accedi.php");
+	die();
+}
+if($_SESSION["type"] != "USER")
+{
+	header("Location: /staff/prenotazioni.php"); 
+	die();
+}
+
+$user_id = $_SESSION["sessionid"];
 
 if (!UserBookingService::canBook($user_id)) {
     header("Location: /user/prenotazioni.php");
+	die();
 }
 
 $services = PublicServiceService::getAll();

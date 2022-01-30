@@ -7,9 +7,9 @@ body {
 header h1 {
     display: block;
     margin: auto;
-    padding: 0px;
-    border: 0px;
-    margin-bottom: 0px;
+    padding: 0em;
+    border: 0em;
+    margin-bottom: 0em;
     content: url('/static/img/logo_bscissorhands.png');
 }
 
@@ -17,10 +17,10 @@ header h1 {
 
 /*         MENU            */
 nav#menu{
-    padding: 0px;
-    border: 0px;
-    height: 0px;
-    min-height: 0px;
+    padding: 0em;
+    border: 0em;
+    height: 0em;
+    min-height: 0em;
 }
 
 nav#menu ul{
@@ -44,7 +44,7 @@ div#floating-btn {
 /*       MAIN              */
 
 main {
-    width: 800px;
+    width: 50em;
 }
 
 /*       HOME        */
@@ -68,15 +68,15 @@ fieldset.dati-cambio-password span.error{
 /*      PRENOTAZIONI    */
 .resrv {
     box-shadow: none;
-    border: 1px solid black;
+    border: 0.01em solid black;
 }
 
 /*          FIELDSET               */
 
 /*          GALLERY           */
 
-section#Gallery div#img-container>img {
-    margin-bottom: 10px;
+section#Gallery div#img-container img { 
+    margin-bottom: 0.6em;
     box-shadow: none;
 }
 
@@ -87,6 +87,7 @@ section#Gallery div#img-container {
 /*              STAFF             */
 article.staff>div.foto-staff {
     display: none;
+
 }
 
 /*              SERVIZI             */
@@ -99,7 +100,7 @@ div.capelli{
 }
 /*              LISTINO             */
 .servizio {
-    border: 1px black solid;
+    border: 0.01em black solid;
 }
 
 /*              404 ERROR               */
@@ -109,7 +110,4 @@ div.capelli{
 div#ErroreConnessione>div.ErrConnImg {
     display: none;
 }
-
-
-
 /*              CONTATTI                */

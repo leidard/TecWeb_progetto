@@ -15,8 +15,8 @@ $main = file_get_contents('../views/index.html');
 $orariApertura = orariApertura();
 $main = str_replace('%ORARIAPERTURA%' , $orariApertura, $main);
 
-$pagina = str_replace('%DESCRIPTION%', "Barbieria a Padova e servizi di taglio per curare il proprio look e rilassarsi" ,$pagina);
-$pagina = str_replace('%KEYWORDS%', "scissorhands, barbiere, parrucchiere, barba, capelli, barbieria, orari",$pagina); // norme covid?
+$pagina = str_replace('%DESCRIPTION%', "Barbieria in centro a Padova e servizi di taglio per curare il proprio aspetto e rilassarsi." ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "scissorhands, Padova, centro, barbiere, barbieria, parrucchiere, barba, capelli, orari, prenota",$pagina); 
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

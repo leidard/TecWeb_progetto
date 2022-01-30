@@ -1,11 +1,17 @@
 <div>
-
-	
-
 	<h2>Registrati</h2>
 	<div class="form-block">
+		<p>Tutti i campi sono obbligatori.</p>
 		<form id="registrazione-form" action="registrati.php" method="POST" aria-label="Registrazione">
-			Tutti i campi sono necessari.
+			<div id="noscript">
+				Requisiti password:
+				<ul>
+					<li>Otto caratteri</li>
+					<li>Una maiuscola</li>
+					<li>Una minuscola</li>
+					<li>Un numero</li>
+				</ul>
+			</div>
 			<fieldset class="dati-personali">
 				<legend>Dati personali:</legend>
 				<span>
@@ -29,7 +35,7 @@
 				</span>
 				<span>
 					<label for="password_rep">Ripeti la password</label> <span id="pwrep-error" class="error"></span>
-					<input placeholder="Ripeti la password" name="password_rep" id="password_rep" type="password" required oninput="pwCheck(event);" onblur="aria_pwCheck();"/>
+					<input placeholder="Ripeti la password" name="password_rep" id="password_rep" type="password" required oninput="pwCheck();" onblur="aria_pwCheck();"/>
 				</span>
 			</fieldset>
 			%MESSAGGIO%

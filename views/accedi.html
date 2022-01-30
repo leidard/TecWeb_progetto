@@ -6,7 +6,7 @@
 			<fieldset class="dati-login">
 				<legend>Dati di accesso:</legend>
 				<span>
-					<label for="mail">Email</label> <span class="email-error"></span>
+					<label for="mail">Email</label> <span id="email-error" class="error"></span>
 					<input oninput="onEmail(event);" type="text" placeholder="Inserisci l'email" %MAILP% name="mail" id="mail"  required />
 				</span>
 				<span>
@@ -15,11 +15,10 @@
 				</span>
 			</fieldset>
 			<span class="accedi-errore">%ERRORE%</span>
-			<input type="submit" value="Entra!" id="login" name="submit" />
+			<input type="submit" value="Entra!" id="login" name="submit" onclick="preventSubmit(event);"/>
 		</form>
 	</div>
 	<a class="registrati" href="./registrati.php">Non sei ancora registrato? Clicca qui!</a>
 
-	<script src="accedi.js"></script>
-
+	
 </div>

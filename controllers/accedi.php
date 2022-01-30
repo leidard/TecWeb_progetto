@@ -55,7 +55,8 @@ if(isset($password) && isset($mail))
 	//if($password == $_POST["password"])
 	if(PublicLoginService::verifyLogin($mail,$password))
 	{
-		$_SESSION["sessionid"] = $mail;
+		$_SESSION["sessionid"] = PublicLoginService::getUserId($mail);
+		$_SESSION["sessionmail"] = $mail;
 		if(Session::isUser($mail)) 
 		{
 			$_SESSION["type"] = "USER";
@@ -103,8 +104,8 @@ else
 $header = _header($path);
 $footer = _footer();
 
-$pagina = str_replace('%DESCRIPTION%', "Pagina di accesso a Scissorhands" ,$pagina);
-$pagina = str_replace('%KEYWORDS%', "accedi, accesso, login, scissorhands, capelli, barba, barbiere",$pagina);
+$pagina = str_replace('%DESCRIPTION%', "Accedi per prenotare subito il tuo prossimo taglio o sistemazione della barba." ,$pagina);
+$pagina = str_replace('%KEYWORDS%', "accedi, accesso, login, scissorhands, prenota, capelli, barba, barbiere, Padova",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

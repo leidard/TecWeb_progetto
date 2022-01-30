@@ -14,11 +14,26 @@ require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/errors.php';
 
 // TODO CHANGE USER_ID
-$user_id = 1;
+//$user_id = 1;
 
+if (session_status() === PHP_SESSION_NONE)
+	session_start();
+
+if(!isset($_SESSION["sessionid"]))
+{
+	header("Location: /accedi.php");
+	die();
+}
+if($_SESSION["type"] != "USER")
+{
+	header("Location: /staff/prenotazioni.php"); 
+	die();
+}	
+$user_id = $_SESSION["sessionid"];
 
 // RICEZIONE DI NUOVA PRENOTAZIONE
 if (isset($_POST) && !empty($_POST)) {
+	
     $book = array(
         "staff" => NULL,
         "service" => NULL,
@@ -54,7 +69,7 @@ $unc_str = "";
 if (!!$unc) {
     $unc_str = booked_pending($unc["start_at"], $unc["end_at"], $unc["service"], $unc["price"], $unc["staff"]);
 } else {
-    $unc_str = '<a href="/user/prenota.php">Crea Nuova Prenotazione</a>';
+    $unc_str = '<p>Non c\'è nessuna prenotazione in attesa, <a href="/user/prenota.php">clicca qui per crearne una nuova</a>.</p>';
 }
 $main = str_replace("%UNCONFIRMED%", $unc_str, $main);
 
