@@ -59,7 +59,6 @@ input[type=submit]{
 }
 
 fieldset.dati-registrazione span.error,
-fieldset.dati-login span.error,
 fieldset.dati-personali span.error,
 fieldset.dati-cambio-password span.error{
 	color : red;
