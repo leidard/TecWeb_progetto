@@ -93,7 +93,7 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) &&
 		$ex = RegistrationService::RegisterUser($name, $surname, strtolower($mail), $password);
 		if($ex)
 		{
-			$_SESSION["regcomplete"] = "Registrazione completata! <a href=\"/accedi.php\">clicca qui per effettuare l'accesso<a>.";
+			$_SESSION["regcomplete"] = "Registrazione completata! <a href=\"/accedi.php\">Clicca qui per effettuare l'accesso<a>.";
 			#unset everything??????????????
 		}
 		else
