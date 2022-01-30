@@ -62,7 +62,7 @@ if(isset($_POST["submit"]) && isset($_POST["mail"]) && preg_match("/^([a-z0-9\+_
 	$mail = $_POST["mail"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "Formato mail non valido";
+	$_SESSION["regerror"] = "Formato email non valido";
 	dontClearFields();
 }
 	
@@ -98,7 +98,7 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) &&
 		}
 		else
 		{
-			$_SESSION["regerror"] = "Mail già utilizzata";
+			$_SESSION["regerror"] = "Email già utilizzata";
 		}
 	}
 	else
