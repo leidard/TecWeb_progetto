@@ -3,8 +3,12 @@
 require_once '../components/page.php';
 require_once '../components/header.php';
 require_once '../components/radio_book.php';
+require_once '../components/meta_index.php';
 
 $pagina = page('Disponibilità - Scissorhands');
+
+$meta_index = _meta_index(false);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $main = file_get_contents('../../views/user/conferma.html');
 
@@ -130,8 +134,6 @@ $main = str_replace("%SELECTED_DAY_EXT%", $selected_day_ext, $main);
 $main = str_replace("%SELECTED_SERVICE_NAME%", $selected_service_name, $main);
 $main = str_replace("%SELECTED_STAFF_NAME%", $selected_staff_name, $main);
 
-$pagina = str_replace('%DESCRIPTION%', "Barbieria a Padova e servizi di taglio per curare il proprio look e rilassarsi", $pagina);
-$pagina = str_replace('%KEYWORDS%', "scissorhands, barbiere, parrucchiere, barba, capelli, barbieria, orari", $pagina); // norme covid?
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

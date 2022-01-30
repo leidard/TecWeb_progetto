@@ -2,11 +2,15 @@
 require_once 'components/page.php';
 require_once 'components/header.php';
 require_once 'components/footer.php';
+require_once 'components/meta_index.php';
 
 require_once __DIR__ . '/../services/public/login.php';
 require_once __DIR__ . '/../services/public/session.php';
 
 $pagina = page('Accedi - Scissorhands');
+
+$meta_index = _meta_index(true);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
     "Accedi" => "/accedi.php"

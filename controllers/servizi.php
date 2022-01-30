@@ -1,8 +1,12 @@
 <?php
 require_once 'components/page.php';
 require_once 'components/header.php';
+require_once 'components/meta_index.php';
 
 $pagina = page('Servizi - Scissorhands');
+
+$meta_index = _meta_index(true);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $paths = array(
     "Servizi" => "/servizi.php"

@@ -1,6 +1,7 @@
 <?php
 require_once 'components/page.php';
 require_once 'components/header.php';
+require_once 'components/meta_index.php';
 
 require_once __DIR__ . '/../services/public/registration.php';
 
@@ -26,6 +27,9 @@ if(isset($_SESSION["sessionid"])) #aka uno già loggato va qui
 }
 
 $pagina = page('Registrati - Scissorhands');
+
+$meta_index = _meta_index(true);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
     "Registrati" => "/registrati.php"
