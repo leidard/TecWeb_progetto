@@ -23,7 +23,7 @@ $user_id = $_SESSION["sessionid"];
 
 
 $pagina = page('Prenotazioni - Scissorhands');
-$header = _header(array("Staff" => "/staff/", "Prenotazioni" => "/staff/prenotazioni.php", "In Attesa di Conferma" => "/staff/pending.php"));
+$header = _header(array("Prenotazioni" => "/staff/prenotazioni.php", "In Attesa di Conferma" => "/staff/pending.php"));
 $main = file_get_contents( __DIR__ . '/../../views/staff/pending.html');
 
 require_once __DIR__ . '/../../services/staff/book.php';

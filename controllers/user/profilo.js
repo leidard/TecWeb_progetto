@@ -11,7 +11,7 @@
 			{
 				//non lunga abbastanza
 				ok = false;
-				str+="<li>Otto caratteri</li>";
+				str+="<li>otto caratteri</li>";
 			}
 
 			if(evt.target.value.toUpperCase() == evt.target.value)
@@ -40,7 +40,7 @@
 				str+="<li>carattere non valido presente</li>";
 
 
-			document.getElementById('pw-error').innerHTML = "deve avere almeno <ul>"+str+"</ul>";
+			document.getElementById('pw-error').innerHTML = "Deve avere almeno: <ul>"+str+"</ul>";
 			
 		}	
 		else 
