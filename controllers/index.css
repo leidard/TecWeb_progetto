@@ -501,6 +501,12 @@ input[type=submit].disabled{
     cursor:not-allowed; 
 }
 
+input[type=submit][aria-disabled=true]{
+    background-color: #cccccc;
+    color:black;
+    cursor:not-allowed; 
+}
+
   a.registrati{
       display: block;
       text-align: center;
