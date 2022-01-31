@@ -2,12 +2,23 @@
 require_once '../components/page.php';
 require_once '../components/header.php';
 require_once '../components/footer.php';
+require_once '../components/meta_index.php';
 
 require_once __DIR__ . '/../../services/public/login.php';
 require_once __DIR__ . '/../../services/public/session.php';
 require_once __DIR__ . '/../../services/user/change_password.php';
+require_once __DIR__ . '/../../services/user/customer.php';
+require_once __DIR__ . '/../../services/staff/owner.php';
+
 
 $pagina = page('Profilo - Scissorhands');
+
+$meta_index = _meta_index(false);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
+
+$meta_index = _meta_index(false);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
+
 $path = array(
     "Profilo" => "/user/profilo.php"
 );
@@ -81,9 +92,19 @@ if(isset($_POST["submit"]) && isset($_SESSION["message"]))
 else
 	$main = str_replace("%MESSAGGIO%", "", $main);
 
+if($_SESSION["type"] == "OWNER")
+{
+	$main = str_replace("%NOME%", OwnerService::get($_SESSION["sessionid"])["name"], $main);
+	$main = str_replace("%COGNOME%", OwnerService::get($_SESSION["sessionid"])["surname"], $main);
+	$main = str_replace("%MAIL%", OwnerService::get($_SESSION["sessionid"])["email"], $main);
+}
+else
+{
+	$main = str_replace("%NOME%", CustomerService::get($_SESSION["sessionid"])["name"], $main);
+	$main = str_replace("%COGNOME%", CustomerService::get($_SESSION["sessionid"])["surname"], $main);
+	$main = str_replace("%MAIL%", CustomerService::get($_SESSION["sessionid"])["email"], $main);
+}
 
-$pagina = str_replace('%DESCRIPTION%', "Profilo" ,$pagina);
-$pagina = str_replace('%KEYWORDS%', "scissorhands, capelli, barba, barbiere",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 

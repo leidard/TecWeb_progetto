@@ -3,8 +3,13 @@ require_once 'components/page.php';
 require_once 'components/header.php';
 require_once 'components/servizio.php';
 require_once '../services/public/service.php';
+require_once 'components/meta_index.php';
 
 $pagina = page('Listino capelli - Scissorhands');
+
+$meta_index = _meta_index(true);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
+
 $path = array(
     "Servizi" => "/servizi.php",
     "Listino per i capelli" => "/listino_capelli.php",

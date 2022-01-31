@@ -1,7 +1,8 @@
 <div>
 	<h2>Registrati</h2>
 	<div class="form-block">
-		<p>Tutti i campi sono necessari.</p>
+		<em>%MESSAGGIO%</em>
+		<p>Tutti i campi sono obbligatori.</p>
 		<form id="registrazione-form" action="registrati.php" method="POST" aria-label="Registrazione">
 			<div id="noscript">
 				Requisiti password:
@@ -31,14 +32,13 @@
 				</span>
 				<span>
 					<label for="password">Password</label> <span id="pw-error" class="error"></span>
-					<input placeholder="Inserisci la password" name="password" id="password" type="password" oninput="onPw(event);" onblur="aria_onPw(event);" required />
+					<input placeholder="Inserisci la password" name="password" id="password" type="password" oninput="onPw();" onblur="aria_onPw(event);" required />
 				</span>
 				<span>
 					<label for="password_rep">Ripeti la password</label> <span id="pwrep-error" class="error"></span>
 					<input placeholder="Ripeti la password" name="password_rep" id="password_rep" type="password" required oninput="pwCheck();" onblur="aria_pwCheck();"/>
 				</span>
 			</fieldset>
-			%MESSAGGIO%
 			<input type="submit" value="Registrati" id="Registrati" name="submit" onclick="preventSubmit(event);"/>
 		</form>
 	</div>

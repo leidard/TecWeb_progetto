@@ -5,7 +5,7 @@ class Customer extends DBHelper {
 	
 	public function get($_id)
 	{
-		$stmt = $this->prepare("SELECT * FROM customer where _id = $_id LIMIT 1");
+		$stmt = $this->prepare("SELECT * FROM customer where _id = ? LIMIT 1");
 		$stmt->bind_param('s', $_id);
 		$stmt->execute();
 		$res = $stmt->get_result();

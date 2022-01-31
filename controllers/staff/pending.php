@@ -3,18 +3,19 @@ require_once  __DIR__ . '/../components/page.php';
 require_once  __DIR__ . '/../components/header.php';
 require_once  __DIR__ . '/../components/booked_pending_staff.php';
 require_once  __DIR__ . '/../components/breadcrumb.php';
+require_once __DIR__ . '/../components/meta_index.php';
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
 if(!isset($_SESSION["sessionid"]))
 {
-	header("Location: accedi.php");
+	header("Location: /accedi.php");
 	die();
 }
 if($_SESSION["type"] != "OWNER") #TODO dove mandarlo?
 {
-	header("Location: user/prenotazioni.php");
+	header("Location: /user/prenotazioni.php");
 	die();
 }
 	
@@ -23,6 +24,10 @@ $user_id = $_SESSION["sessionid"];
 
 
 $pagina = page('Prenotazioni - Scissorhands');
+
+$meta_index = _meta_index(false);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
+
 $header = _header(array("Prenotazioni" => "/staff/prenotazioni.php", "In Attesa di Conferma" => "/staff/pending.php"));
 $main = file_get_contents( __DIR__ . '/../../views/staff/pending.html');
 

@@ -2,11 +2,15 @@
 require_once 'components/page.php';
 require_once 'components/header.php';
 require_once 'components/footer.php';
+require_once 'components/meta_index.php';
 
 require_once __DIR__ . '/../services/public/login.php';
 require_once __DIR__ . '/../services/public/session.php';
 
 $pagina = page('Accedi - Scissorhands');
+
+$meta_index = _meta_index(true);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
     "Accedi" => "/accedi.php"
@@ -18,13 +22,13 @@ session_start();
 
 
 
-if(isset($_SESSION["sessionid"])) #TODO da migliorare la situazione quando uno è già loggato
+if(isset($_SESSION["sessionid"])) 
 {
-	header("Location: user/prenotazioni.php");
+	header("Location: /user/prenotazioni.php");
 	die();
 }
 
-if(isset($_POST["submit"]) && isset($_POST["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_POST["mail"]) || $_POST["mail"]=="admin" || $_POST["mail"]=="user"))
+if(isset($_POST["submit"]) && isset($_POST["mail"]) && (preg_match("/^([a-z0-9\+_\-]{3,})(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]{3,}\.)[a-z]{2,6}$/ix", $_POST["mail"]) || $_POST["mail"]=="admin" || $_POST["mail"]=="user"))
 {
 	$mail = $_POST["mail"];
 }
@@ -48,11 +52,9 @@ else
 	unset($password);
 }
 
-//TODO sistemare meglio sti if else
+
 if(isset($password) && isset($mail))
 {
-	//$password=PublicLoginService::getUserPassword($mail);
-	//if($password == $_POST["password"])
 	if(PublicLoginService::verifyLogin($mail,$password))
 	{
 		$_SESSION["sessionid"] = PublicLoginService::getUserId($mail);
@@ -60,19 +62,19 @@ if(isset($password) && isset($mail))
 		if(Session::isUser($mail)) 
 		{
 			$_SESSION["type"] = "USER";
-			header("Location: user/prenotazioni.php");
+			header("Location: /user/prenotazioni.php");
 			die();
 		}
 		elseif(Session::isOwner($mail))
 		{
 			$_SESSION["type"] = "OWNER";
-			header("Location: staff/prenotazioni.php");
+			header("Location: /staff/prenotazioni.php");
 			die();
 		}	
 		else	#better safe than sorry
 		{
 			$_SESSION["type"] = "GUEST";
-			//header("Location: user/prenotazioni.php"); #TODO che fare?
+			header("Location: /logout.php"); 
 		}
 	}
 	else
@@ -90,7 +92,6 @@ if(isset($_POST["submit"]) && isset($_SESSION["error"]))
 	unset($_SESSION["error"]);
 	if(isset($_SESSION["mail"]))
 		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
-	#unset($mail);
 	unset($_SESSION["mail"]);
 }
 else

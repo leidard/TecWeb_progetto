@@ -2,7 +2,7 @@
 
 function menulink($name, $ref, $current, $lang) {
     if (!$lang) $lang="";
-    else $lang = 'lang="el"';
+    else $lang = 'lang="en"';
     $current_li = 'class=""';
     if ($current) {
         $current = 'aria-current="page"';

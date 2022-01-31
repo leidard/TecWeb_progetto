@@ -2,8 +2,13 @@
 require_once '../components/page.php';
 require_once '../components/header.php';
 require_once '../components/radio_book.php';
+require_once '../components/meta_index.php';
 
 $pagina = page('Prenota - Scissorhands');
+
+$meta_index = _meta_index(false);
+$pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
+
 $header = _header(array("Prenotazioni" => "/user/prenotazioni.php", "Nuova Prenotazione" => "/user/prenota.php"));
 
 $main = file_get_contents('../../views/user/prenota.html');
@@ -13,9 +18,6 @@ require_once __DIR__ . '/../../services/public/company.php';
 require_once __DIR__ . '/../../services/public/service.php';
 require_once __DIR__ . '/../../services/public/staff.php';
 require_once __DIR__ . '/../../services/helpers.php';
-
-// TODO CHANGE USER_ID
-//$user_id = 1;
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
