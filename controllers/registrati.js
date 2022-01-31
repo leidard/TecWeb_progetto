@@ -1,6 +1,9 @@
-window.onload = document.getElementById('Registrati').setAttribute('aria-disabled', true); //messo qui perch� altrimenti senza JS non pu� fare submit
-var item = document.getElementById('noscript');
-item.parentNode.removeChild(item);
+window.onload = () => document.getElementById('Registrati').setAttribute('aria-disabled', true); //messo qui e non sull'html perché altrimenti senza JS resterebbe sembre true. 
+(function () {
+	var item = document.getElementById('noscript');
+	item.parentNode.removeChild(item);
+
+})();
 	function clearIfError(fieldname)
 	{
 		if(document.getElementById(fieldname+"-error").textContent != "")
@@ -20,8 +23,12 @@ item.parentNode.removeChild(item);
 		}
 		else 
 		{
-			document.getElementById('Registrati').setAttribute('aria-disabled', false);
-			document.getElementById('Registrati').classList.remove('disabled');
+			if(document.getElementById("password").value === document.getElementById("password_rep").value 
+				&& /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(document.getElementById("password").value))
+			{
+				document.getElementById('Registrati').setAttribute('aria-disabled', false);
+				document.getElementById('Registrati').classList.remove('disabled');
+			}
 			document.getElementById('mail-error').textContent = "";
 		}
 	}
@@ -72,7 +79,8 @@ item.parentNode.removeChild(item);
 		}	
 		else 
 		{
-			if(document.getElementById("password").value === document.getElementById("password_rep").value)
+			if(document.getElementById("password").value === document.getElementById("password_rep").value 
+				&& document.getElementById('mail').getAttribute('aria-invalid') != true)
 			{
 				document.getElementById('Registrati').setAttribute('aria-disabled', false);
 				document.getElementById('Registrati').classList.remove('disabled');
@@ -92,7 +100,8 @@ item.parentNode.removeChild(item);
 		}
 		else 
 		{
-			if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(document.getElementById("password").value))
+			if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(document.getElementById("password").value) 
+			&& document.getElementById('mail').getAttribute('aria-invalid') != true)
 			{	
 				document.getElementById('Registrati').setAttribute('aria-disabled', false);
 				document.getElementById('Registrati').classList.remove('disabled');
