@@ -5,8 +5,8 @@
 		{
 			document.getElementById('changepw').classList.add('disabled');
 			document.getElementById('changepw').setAttribute('aria-disabled', true);
-			var str="";
-			var ok=true;
+			let str="";
+			let ok=true;
 			if(evt.target.value.length < 8)
 			{
 				//non lunga abbastanza
