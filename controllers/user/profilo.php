@@ -41,14 +41,14 @@ if(isset($_POST["submit"]) && isset($_POST["new_password"]) && (preg_match("/^(?
 	$newPassword = $_POST["new_password"];
 else
 {
-	$_SESSION["message"] = "Caratteri non validi nella nuova password";
+	$_SESSION["message"] = "Caratteri non validi nella nuova password.";
 }
 
 if(isset($_POST["submit"]) && isset($_POST["confirm_new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
 	$confirmnewPassword = $_POST["confirm_new_password"];
 else
 {
-	$_SESSION["message"] = "Caratteri non validi nella Conferma della nuova password";
+	$_SESSION["message"] = "Caratteri non validi nella conferma della nuova password.";
 }
 	
 
@@ -56,7 +56,7 @@ if(isset($_POST["submit"]) && isset($_POST["current_password"]) && (preg_match("
 	$currentPassword = $_POST["current_password"];
 else
 {
-	$_SESSION["message"] = "Caratteri non validi nella password corrente";
+	$_SESSION["message"] = "Caratteri non validi nella password corrente.";
 }
 	
 
@@ -75,12 +75,12 @@ if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && 
 		}
 		else
 		{
-			$_SESSION["message"] = "Le password nuove non corrispondono";
+			$_SESSION["message"] = "Le password nuove non corrispondono.";
 		}
 	}
 	else
 	{
-		$_SESSION["message"] = "Password corrente errata";
+		$_SESSION["message"] = "Password corrente errata.";
 	}
 }
 
