@@ -39,7 +39,7 @@ if (isset($_POST) && !empty($_POST)) {
         isset($_POST['day-3']),
         isset($_POST['day-4']),
         isset($_POST['day-5']),
-        isset($_POST['day-6']),
+        isset($_POST['day-6'])
     ];
     $open_at = null;
     if (isset($_POST["open_at"]) && preg_match('/^[0-9]{1,2}$/', $_POST["open_at"]) && $_POST["open_at"] >= 0 && $_POST["open_at"] <= 23) {
