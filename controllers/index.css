@@ -402,6 +402,11 @@ form#profile {
     text-align: left;
 }
 
+fieldset#modifica-ora>label{
+	display: block;
+	text-align: center;
+}
+
 fieldset.dati-cambio-password,
 fieldset.dati-personali, 
 fieldset.dati-login,
@@ -456,6 +461,7 @@ fieldset.dati-personali>span>span>select {
 }
 
 
+fieldset#modifica-ora span.error,
 fieldset.dati-login span.input-hint,
 fieldset.dati-registrazione>span.error>input,
 fieldset.dati-cambio-password>span.error>input,
@@ -463,7 +469,7 @@ fieldset.dati-personali>span.error>input {
     display: block;
 }
 
-
+fieldset#modifica-ora span.error,
 fieldset.dati-registrazione span.error,
 fieldset.dati-login span.error,
 fieldset.dati-personali span.error,
