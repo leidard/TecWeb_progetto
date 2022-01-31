@@ -366,6 +366,7 @@ section.dati-personali span#mail{
     text-align: center;
 }
 
+div.form-block em>span#accedi-errore,
 div.form-block em>span#reg-error
 {
 	font-weight: bold;
