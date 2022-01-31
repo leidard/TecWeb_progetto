@@ -1,11 +1,59 @@
-<form method="GET" action="/user/conferma.php" class="booking-form">
-    <fieldset>
-        <legend>Scegli il servizio</legend>
-        %RADIOS_SERVICE%
-    </fieldset>
-    <fieldset>
-        <legend>Scegli il barbiere</legend>
-        %RADIOS_STAFF%
-    </fieldset>
-    <input type="submit" value="Conferma">
-</form>
+<section class="reservations">
+    <h2>Nuova Prenotazione</h2>
+    <p>Tutti i campi sono necessari</p>
+    <form method="GET" action="/user/conferma.php" class="booking-form" id="new-book">
+        <fieldset id="fieldset-service" aria-required="true">
+            <legend>Scegli il servizio*</legend>
+            %RADIOS_SERVICE%
+        </fieldset>
+        <fieldset id="fieldset-barber" aria-required="true">
+            <legend>Scegli il barbiere*</legend>
+            %RADIOS_STAFF%
+        </fieldset>
+        <input type="submit" id="conferma" value="Conferma" aria-disabled="true">
+    </form>
+    <script>
+        (function init() {
+            let radios_service = document.getElementById('fieldset-service').getElementsByTagName("input");
+            let radios_barber = document.getElementById('fieldset-barber').getElementsByTagName("input");
+            let selected_svc = undefined;
+            let selected_barbr = undefined;
+            let confirm_btn_el = document.getElementById('conferma');
+
+            function updateBTN() {
+                let disabled = selected_svc === undefined || selected_barbr === undefined;
+                confirm_btn_el.setAttribute("aria-disabled", disabled ? "true" : "false");
+            }
+
+            function setSelectedService(val) {
+                selected_svc = val;
+                updateBTN();
+            }
+
+            function setSelectedBarber(val) {
+                selected_barbr = val;
+                updateBTN();
+            }
+
+            Array.from(radios_service).forEach(el => {
+                if (el.checked) setSelectedService(el.value);
+                el.onclick = (e) => setSelectedService(e.target.value)
+            });
+            Array.from(radios_barber).forEach(el => {
+                if (el.checked) setSelectedBarber(el.value);
+                el.onclick = (e) => setSelectedBarber(e.target.value)
+            });
+
+            updateBTN();
+
+            document.getElementById('new-book').onsubmit = (e) => {
+                console.log(confirm_btn_el.ariaDisabled);
+                if (confirm_btn_el.ariaDisabled === "true") {
+                    e.preventDefault();
+                    return false;
+                }
+                return true;
+            }
+        })();
+    </script>
+</section>
