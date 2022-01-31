@@ -1,0 +1,10 @@
+<form method="POST" action="/user/prenotazioni.php" class="booking-form" id="confirm-book">
+    <input type="number" name="staff" value="%SELECTED_STAFF%" hidden />
+    <input type="number" name="service" value="%SELECTED_SERVICE%" hidden />
+    <fieldset id="fieldset-hour" aria-required="true">
+        <legend>Scelta orario</legend>
+        %RADIOS_SLOT%
+    </fieldset>
+    <input type="submit" value="Conferma" id="conferma" aria-disabled="true"/>
+    <script src="./conferma.js"></script>
+</form>
