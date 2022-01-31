@@ -69,14 +69,15 @@ item.parentNode.removeChild(item);
 
 
 			document.getElementById('pw-error').innerHTML = "Deve avere almeno: <ul>"+str+"</ul>";
-			return false;
 		}	
 		else 
 		{
-			document.getElementById('Registrati').setAttribute('aria-disabled', false);
-			document.getElementById('Registrati').classList.remove('disabled');
+			if(document.getElementById("password").value === document.getElementById("password_rep").value)
+			{
+				document.getElementById('Registrati').setAttribute('aria-disabled', false);
+				document.getElementById('Registrati').classList.remove('disabled');
+			}
 			document.getElementById('pw-error').innerHTML = "";
-			return true;
 		}
 	}
 
@@ -89,10 +90,13 @@ item.parentNode.removeChild(item);
 			document.getElementById('pwrep-error').textContent = "Le password non corrispondono";
 			
 		}
-		else if(onPw())
+		else 
 		{
-			document.getElementById('Registrati').setAttribute('aria-disabled', false);
-			document.getElementById('Registrati').classList.remove('disabled');
+			if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(document.getElementById("password").value))
+			{	
+				document.getElementById('Registrati').setAttribute('aria-disabled', false);
+				document.getElementById('Registrati').classList.remove('disabled');
+			}
 			document.getElementById('pwrep-error').textContent = "";
 		}
 	}
