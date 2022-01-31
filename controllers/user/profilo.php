@@ -32,6 +32,12 @@ if(!isset($_SESSION["sessionid"])) {
 	die();
 }
 
+if($_SESSION["type"] == "OWNER")
+{
+	header("Location /staff/orari.php");
+	die();
+}
+
 $header = _header($path);
 $footer = _footer();
 
