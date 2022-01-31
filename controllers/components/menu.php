@@ -24,6 +24,7 @@ function _menu($sess_type = "GUEST"){
             'Galleria' => '/galleria.php',
             'Contatti' => '/contatti.php',
             'Prenotazioni' => '/staff/prenotazioni.php',
+            'Orari' => '/staff/orari.php',
             'Esci' => '/logout.php'
         ),
         "USER" => array (

@@ -9,9 +9,10 @@ class Company extends DBHelper {
         return $res->fetch_assoc();
     }
 
-    public function update($open_at, $close_at) {
-        $stmt = $this->prepare("UPDATE company SET open_at = ?, close_at = ? WHERE _id = 1");
-        $stmt->bind_param("ii", $open_at, $close_at);
+    public function update($open_at, $close_at, $days) {
+        $stmt = $this->prepare("UPDATE company SET open_at = ?, close_at = ?, days = ? WHERE _id = 1");
+        $days = "$days";
+        $stmt->bind_param("iis", $open_at, $close_at, $days);
         $stmt->execute();
     }
 }
