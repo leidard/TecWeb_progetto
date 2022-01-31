@@ -28,7 +28,7 @@ if(isset($_SESSION["sessionid"]))
 	die();
 }
 
-if(isset($_POST["submit"]) && isset($_POST["mail"]) && (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_POST["mail"]) || $_POST["mail"]=="admin" || $_POST["mail"]=="user"))
+if(isset($_POST["submit"]) && isset($_POST["mail"]) && (preg_match("/^([a-z0-9\+_\-]{3,})(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]{3,}\.)[a-z]{2,6}$/ix", $_POST["mail"]) || $_POST["mail"]=="admin" || $_POST["mail"]=="user"))
 {
 	$mail = $_POST["mail"];
 }

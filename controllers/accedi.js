@@ -1,7 +1,7 @@
 window.onload = document.getElementById('login').setAttribute('aria-disabled', true); //messo qui e non sull'html perché altrimenti senza JS resterebbe sembre true. 
 
 	function onEmail(evt) {
-		if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user") 
+		if (!/^([a-z0-9\+_\-]{3,})(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]{3,}\.)[a-z]{2,6}$/i.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user") 
 		{
 			document.getElementById('login').setAttribute('aria-disabled', true);
 			document.getElementById('login').classList.add('disabled');

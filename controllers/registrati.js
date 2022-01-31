@@ -11,7 +11,7 @@ item.parentNode.removeChild(item);
 	}
 	
 	function onEmail(evt) {
-		if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value)) 
+		if (!/^([a-z0-9\+_\-]{3,})(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]{3,}\.)[a-z]{2,6}$/i.test(evt.target.value)) 
 		{
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			document.getElementById('Registrati').classList.add('disabled');
@@ -26,36 +26,38 @@ item.parentNode.removeChild(item);
 		}
 	}
 
-	function onPw(evt){
+	function onPw(){
 		// Minimum eight characters, at least one letter and one number:
-		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+		//if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+		var pw = document.getElementById("password").value;
+		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(pw))
 		{
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			document.getElementById('Registrati').classList.add('disabled');
 			var str="";
 			var ok=true;
-			if(evt.target.value.length < 8)
+			if(pw.length < 8)
 			{
 				//non lunga abbastanza
 				ok = false;
 				str+="<li>otto caratteri</li>";
 			}
 
-			if(evt.target.value.toUpperCase() == evt.target.value)
+			if(pw.toUpperCase() == pw)
 			{
 				//non ha minuscole
 				ok = false;
 				str+="<li>una minuscola</li> "
 			}
 
-			if(evt.target.value.toLowerCase() == evt.target.value)
+			if(pw.toLowerCase() == pw)
 			{
 				//non ha maiuscole
 				ok = false;
 				str+="<li>una maiuscola</li>"
 			}
 
-			if(!/[0-9]/g.test(evt.target.value))
+			if(!/[0-9]/g.test(pw))
 			{
 				//non ha numeri
 				ok = false;
@@ -67,13 +69,14 @@ item.parentNode.removeChild(item);
 
 
 			document.getElementById('pw-error').innerHTML = "Deve avere almeno: <ul>"+str+"</ul>";
-			
+			return false;
 		}	
 		else 
 		{
 			document.getElementById('Registrati').setAttribute('aria-disabled', false);
 			document.getElementById('Registrati').classList.remove('disabled');
 			document.getElementById('pw-error').innerHTML = "";
+			return true;
 		}
 	}
 
@@ -86,7 +89,7 @@ item.parentNode.removeChild(item);
 			document.getElementById('pwrep-error').textContent = "Le password non corrispondono";
 			
 		}
-		else
+		else if(onPw())
 		{
 			document.getElementById('Registrati').setAttribute('aria-disabled', false);
 			document.getElementById('Registrati').classList.remove('disabled');
@@ -116,7 +119,7 @@ item.parentNode.removeChild(item);
 
 	//FUNZIONI PER ARIA
 	function aria_onEmail(evt) {
-		if (!/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i.test(evt.target.value)) 
+		if (!/^([a-z0-9\+_\-]{3,})(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]{3,}\.)[a-z]{2,6}$/i.test(evt.target.value)) 
 		{
 			document.getElementById('mail').setAttribute('aria-invalid', true);
 			document.getElementById('mail').setAttribute('aria-describedby', 'mail-error');
