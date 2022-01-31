@@ -114,7 +114,7 @@ $confirm_form = "";
 if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day)) {
     $slots = UserBookingService::getAvailableOfDay($selected_service, $selected_staff, $selected_day * 86400);
     if (!$slots || count($slots) === 0) {
-        $confirm_form = "<p>Nessun Orario Disponibila</p>";
+        $confirm_form = "<p>Nessun orario disponibile.</p>";
     } else {
         $confirm_form = confirm_form($selected_service, $selected_staff, $selected_day, $slots);
     }
