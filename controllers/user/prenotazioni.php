@@ -88,7 +88,11 @@ $unc_str = "";
 if (!!$unc) {
     $unc_str = booked_pending($unc["start_at"], $unc["end_at"], $unc["service"], $unc["price"], $unc["staff"]);
 } else if ($err !== "") {
-    $unc_str = '<p>' . $err . '<a href="/user/prenota.php">clicca qui per ritentare una nuova prenotazione</a>.</p>';
+    $unc_str = '<p>
+    <span class="line">' . $err . '</span>
+    <span class="line">Sembra che tu non debba essere qua🤔. Ritenta, sarai più forunato 😉!</span>
+    <span class="line"><a href="/user/prenota.php">Clicca qui per ritentare la prenotazione</a>.</span>
+    </p>';
 } else {
     $unc_str = '<p>Non c\'è nessuna prenotazione in attesa, <a href="/user/prenota.php">clicca qui per crearne una nuova</a>.</p>';
 }

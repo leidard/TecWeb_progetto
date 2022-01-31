@@ -560,6 +560,10 @@ section#prenota-no-accesso{
     font-size: 1em;
 }
 
+p span.line {
+    display: block;
+}
+
 .resrv-desc .resrv-desc-line {
     display: block;
     margin: 0.25em 0;
