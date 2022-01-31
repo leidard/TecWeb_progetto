@@ -1,13 +1,13 @@
 <section class="reservations">
     <h2>Nuova Prenotazione</h2>
-    <p>Tutti i campi sono necessari</p>
+    <p>Tutti i campi sono obbligatori.</p>
     <form method="GET" action="/user/conferma.php" class="booking-form" id="new-book">
         <fieldset id="fieldset-service" aria-required="true">
-            <legend>Scegli il servizio*</legend>
+            <legend>Scegli il servizio</legend>
             %RADIOS_SERVICE%
         </fieldset>
         <fieldset id="fieldset-barber" aria-required="true">
-            <legend>Scegli il barbiere*</legend>
+            <legend>Scegli il barbiere</legend>
             %RADIOS_STAFF%
         </fieldset>
         <input type="submit" id="conferma" value="Conferma" aria-disabled="true">

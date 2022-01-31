@@ -90,7 +90,7 @@ if (!!$unc) {
 } else if ($err !== "") {
     $unc_str = '<p>
     <span class="line">' . $err . '</span>
-    <span class="line">Sembra che tu non debba essere qua🤔. Ritenta, sarai più fortunato 😉!</span>
+    <span class="line">Sembra che tu non debba essere qua. 🤔 Ritenta, sarai più fortunato! 😉</span>
     <span class="line"><a href="/user/prenota.php">Clicca qui per ritentare la prenotazione</a>.</span>
     </p>';
 } else {

@@ -50,7 +50,7 @@ if(isset($_POST["submit"]) && isset($_POST["name"]) && !preg_match_all("/[!@#$%^
 	$name = $_POST["name"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "<span id=\"reg-error\">Caratteri invalidi nel nome o cognome</span>";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Caratteri invalidi nel nome o cognome.</span>";
 	dontClearFields();
 }
 
@@ -58,7 +58,7 @@ if(isset($_POST["submit"]) && isset($_POST["surname"]) && !preg_match_all("/[!@#
 	$surname = $_POST["surname"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "<span id=\"reg-error\">Caratteri invalidi nel nome o cognome</span>";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Caratteri invalidi nel nome o cognome.</span>";
 	dontClearFields();
 }
 	
@@ -66,7 +66,7 @@ if(isset($_POST["submit"]) && isset($_POST["mail"]) && preg_match("/^([a-z0-9\+_
 	$mail = $_POST["mail"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato email non valido</span>";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato email non valido.</span>";
 	dontClearFields();
 }
 	
@@ -74,7 +74,7 @@ if(isset($_POST["submit"]) && isset($_POST["password"]) && preg_match("/^(?=.*[A
 	$password = $_POST["password"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato password non valido</span>";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato password non valido.</span>";
 	dontClearFields();
 }
 
@@ -82,7 +82,7 @@ if(isset($_POST["submit"]) && isset($_POST["password_rep"]) && preg_match("/^(?=
 	$password_rep = $_POST["password_rep"];
 elseif(isset($_POST["submit"]))
 {
-	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato ripeti password non valido</span>";
+	$_SESSION["regerror"] = "<span id=\"reg-error\">Formato ripeti password non valido.</span>";
 	dontClearFields();
 }
 
@@ -102,7 +102,7 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) &&
 		}
 		else
 		{
-			$_SESSION["regerror"] = "<span id=\"reg-error\">Email già utilizzata</span>";
+			$_SESSION["regerror"] = "<span id=\"reg-error\">Email già utilizzata.</span>";
 		}
 	}
 	else
