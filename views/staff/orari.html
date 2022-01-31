@@ -1,0 +1,46 @@
+<section class="reservations">
+    <h2>Modifica Apertura/Chiusura</h2>
+    <form action="/staff/orari.php" method="POST">
+        <fieldset>
+            <legend>Giorni di Apertura</legend>
+            <div>
+                <input type="checkbox" id="day-0" name="day-0" %DAY_0% />
+                <label for="day-0">Lunedì</label>
+            </div>
+            <div>
+                <input type="checkbox" id="day-1" name="day-1" %DAY_1% />
+                <label for="day-1">Martedì</label>
+            </div>
+            <div>
+                <input type="checkbox" id="day-2" name="day-2" %DAY_2% />
+                <label for="day-2">Mercoledì</label>
+            </div>
+            <div>
+                <input type="checkbox" id="day-3" name="day-3" %DAY_3% />
+                <label for="day-3">Giovedì</label>
+            </div>
+            <div>
+                <input type="checkbox" id="day-4" name="day-4" %DAY_4% />
+                <label for="day-4">Venerdì</label>
+            </div>
+            <div>
+                <input type="checkbox" id="day-5" name="day-5" %DAY_5% />
+                <label for="day-5">Sabato</label>
+            </div>
+            <div>
+                <input type="checkbox" id="day-6" name="day-6" %DAY_6% />
+                <label for="day-6">Domenica</label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Modifica Ora</legend>
+
+            <label for="open_at">Apertura</label>
+            <input type="text" id="open_at" name="open_at" value="%OPEN_HOUR%" />
+
+            <label for="close_at">Chiusura</label>
+            <input type="text" id="close_at" name="close_at" value="%CLOSE_HOUR%" />
+        </fieldset>
+        <input type="submit" value="Salva Cambiamenti" aria-disabled="true" />
+    </form>
+</section>

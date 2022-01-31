@@ -76,9 +76,17 @@ function handleBook($user) {
     }
 }
 
+function handleDel($user) {
+    UserBookingService::deletePendingReservation($user);
+}
+
 $err = "";
 if (isset($_POST) && !empty($_POST)) {
-    $err = handleBook($user_id);
+    if (isset($_POST["action"]) && $_POST["action"] === "create") {
+        $err = handleBook($user_id);
+    } else if  (isset($_POST["action"]) && $_POST["action"] === "delete") {
+        handleDel($user_id);
+    }
 }
 
 
@@ -86,7 +94,7 @@ if (isset($_POST) && !empty($_POST)) {
 $unc =  UserBookingService::getUnconfirmed($user_id);
 $unc_str = "";
 if (!!$unc) {
-    $unc_str = booked_pending($unc["start_at"], $unc["end_at"], $unc["service"], $unc["price"], $unc["staff"]);
+    $unc_str = booked_pending($unc["start_at"], $unc["end_at"], $unc["service"], $unc["price"], $unc["staff"], $unc["_id"]);
 } else if ($err !== "") {
     $unc_str = '<p>
     <span class="line">' . $err . '</span>

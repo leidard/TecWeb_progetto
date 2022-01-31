@@ -127,7 +127,7 @@ class Reservation extends DBHelper {
 
     public function deleteOfCustomer($customer, $id) {
         $stmt = $this->prepare("DELETE FROM reservation WHERE company = 1 AND customer = ? AND _id = ? AND confirmed IS NULL ");
-        $stmt->bind_param('s', $customer, $id);
+        $stmt->bind_param('si', $customer, $id);
         $stmt->execute();
     }
 }

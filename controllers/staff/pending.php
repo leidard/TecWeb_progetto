@@ -3,7 +3,7 @@ require_once  __DIR__ . '/../components/page.php';
 require_once  __DIR__ . '/../components/header.php';
 require_once  __DIR__ . '/../components/booked_pending_staff.php';
 require_once  __DIR__ . '/../components/breadcrumb.php';
-require_once __DIR__ . '/../components/meta_index.php';
+require_once  __DIR__ . '/../components/meta_index.php';
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();

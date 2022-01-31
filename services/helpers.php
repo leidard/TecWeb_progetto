@@ -19,7 +19,20 @@ function parseDaysSet(string $days) {
     date("H:i", time());
 }
 
- function getDayOfWeekSTR(int $time) {
+function encodeDayArray(array $days) {
+    $str = [];
+    if ($days[0]) array_push($str, "MON");
+    if ($days[1]) array_push($str, "TUE");
+    if ($days[2]) array_push($str, "WED");
+    if ($days[3]) array_push($str, "THU");
+    if ($days[4]) array_push($str, "FRI");
+    if ($days[5]) array_push($str, "SAT");
+    if ($days[6]) array_push($str, "SUN");
+
+    return implode(",", $str);
+}
+
+function getDayOfWeekSTR(int $time) {
     switch (getDayOfWeek($time)) {
         case 0:
             return "Lunedì";

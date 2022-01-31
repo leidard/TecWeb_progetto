@@ -6,4 +6,10 @@
             <span class="resrv-desc-line">Prezzo: <span class="resrv-price">%PRICE%€</span></span>
         </p>
     </div>
+    <div>
+        <form action="/user/prenotazioni.php" method="POST">
+            <input type="hidden" name="action" value="delete" />
+            <input type="submit" value="Elimina Prenotazione" />
+        </form>
+    </div>
 </article>
