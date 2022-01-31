@@ -1,4 +1,4 @@
-(function init() {
+(function () {
     let radios_service = document.getElementById('fieldset-service').getElementsByTagName("input");
     let radios_barber = document.getElementById('fieldset-barber').getElementsByTagName("input");
     let selected_svc = undefined;

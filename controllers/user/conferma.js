@@ -1,4 +1,4 @@
-(function init() {
+(function () {
     let radios_service = document.getElementById('fieldset-hour').getElementsByTagName("input");
     let selected_hour = undefined;
     let confirm_btn_el = document.getElementById('conferma');
