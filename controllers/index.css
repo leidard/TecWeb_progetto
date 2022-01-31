@@ -39,6 +39,7 @@ p {
 
 header#page-header {
     display: block;
+    position: relative;
 }
 
 header#page-header>nav {
@@ -143,6 +144,7 @@ nav#breadcrumb {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     background: #F5EEE0;
+    position: relative;
 }
 
 nav#breadcrumb ol {
@@ -183,6 +185,7 @@ footer#page-footer {
     border-top: 1px solid #000;
     background-color: #F5EEE0;
     width: 100%;
+    position: relative;
     display: inline-block;
 }
 
@@ -214,6 +217,7 @@ main {
     padding: 16px;
     margin: 0 auto;
     width: 1200px;
+    position: relative;
     box-sizing: border-box;
     background-color: rgba(255,255,255,.95);
     /* 1200*/
