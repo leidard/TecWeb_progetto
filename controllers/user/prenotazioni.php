@@ -18,53 +18,67 @@ $main = file_get_contents('../../views/user/prenotazioni.html');
 require_once __DIR__ . '/../../services/user/book.php';
 require_once __DIR__ . '/../../services/errors.php';
 
-// TODO CHANGE USER_ID
-//$user_id = 1;
-
 if (session_status() === PHP_SESSION_NONE)
-	session_start();
+    session_start();
 
-if(!isset($_SESSION["sessionid"]))
-{
-	header("Location: /accedi.php");
-	die();
+if (!isset($_SESSION["sessionid"])) {
+    header("Location: /accedi.php");
+    die();
 }
-if($_SESSION["type"] != "USER")
-{
-	header("Location: /staff/prenotazioni.php"); 
-	die();
-}	
+if ($_SESSION["type"] != "USER") {
+    header("Location: /staff/prenotazioni.php");
+    die();
+}
 $user_id = $_SESSION["sessionid"];
 
 // RICEZIONE DI NUOVA PRENOTAZIONE
-if (isset($_POST) && !empty($_POST)) {
-	
+function handleBook($user) {
     $book = array(
         "staff" => NULL,
         "service" => NULL,
         "time" => NULL,
     );
+    $error = "";
     if (isset($_POST["staff"]) && preg_match('/^[0-9]+$/', $_POST["staff"])) {
         $book["staff"] = $_POST["staff"];
-    } else return;
+    } else {
+        $error .= "Barbiere mancante, ";
+    }
     if (isset($_POST["service"]) && preg_match('/^[0-9]+$/', $_POST["service"])) {
         $book["service"] = $_POST["service"];
-    } else return;
+    } else {
+        $error .= "Servizio mancante, ";
+    }
     if (isset($_POST["time"]) && preg_match('/^[0-9]+$/', $_POST["time"])) {
         $book["time"] = $_POST["time"];
-    } else return;
+    } else {
+        $error .= "Orario di inizio prenotazione mancante";
+    }
+
+    if ($error !== "") {
+        // errore per gestire i furbetti che aggirano il sistema
+        return "Errore Nella Prenotazione: $error";
+    }
 
 
     if ($book["staff"] !== NULL && $book["service"] !== NULL && $book["time"] !== NULL) {
-
         try {
-            UserBookingService::createReservation($user_id, $book["service"], $book["staff"], $book["time"]);
-        } catch (ReservationPendingError $error) {
-            echo $error->getMessage() . "";
-        } catch (ReservationSlotsError $error) {
-            echo $error->getMessage() . "";
+            UserBookingService::createReservation($user, $book["service"], $book["staff"], $book["time"]);
+            return;
+        } catch (ReservationPendingError $err) {
+            $error = $err->getMessage();
+        } catch (ReservationSlotsError $err) {
+            $error = $err->getMessage();
         }
     }
+    if ($error !== "") {
+        return $error;
+    }
+}
+
+$err = "";
+if (isset($_POST) && !empty($_POST)) {
+    $err = handleBook($user_id);
 }
 
 
@@ -73,6 +87,8 @@ $unc =  UserBookingService::getUnconfirmed($user_id);
 $unc_str = "";
 if (!!$unc) {
     $unc_str = booked_pending($unc["start_at"], $unc["end_at"], $unc["service"], $unc["price"], $unc["staff"]);
+} else if ($err !== "") {
+    $unc_str = '<p>' . $err . '<a href="/user/prenota.php">clicca qui per ritentare una nuova prenotazione</a>.</p>';
 } else {
     $unc_str = '<p>Non c\'è nessuna prenotazione in attesa, <a href="/user/prenota.php">clicca qui per crearne una nuova</a>.</p>';
 }

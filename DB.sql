@@ -147,5 +147,6 @@ VALUES
 INSERT INTO 
   staff(_id, surname, name, company)
 VALUES
-  (1, 'Fortuna','Roberto',1),
-  (2, 'Valli','Alice',1);
+  (1, 'Fortuna', 'Roberto',1),
+  (2, 'Valli', 'Alice', 1),
+  (3, 'Coppola', 'Edoardo', 1);

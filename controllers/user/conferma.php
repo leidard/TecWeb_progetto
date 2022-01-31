@@ -4,6 +4,7 @@ require_once '../components/page.php';
 require_once '../components/header.php';
 require_once '../components/radio_book.php';
 require_once '../components/meta_index.php';
+require_once '../components/confirm_form.php';
 
 $pagina = page('Disponibilità - Scissorhands');
 
@@ -19,14 +20,12 @@ require_once __DIR__ . '/../../services/public/staff.php';
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
-if(!isset($_SESSION["sessionid"]))
-{
+if(!isset($_SESSION["sessionid"])) {
 	header("Location: /accedi.php");
 	die();
 }
 
-if($_SESSION["type"] != "USER")
-{
+if($_SESSION["type"] != "USER") {
 	header("Location: /staff/prenotazioni.php"); 
 	die();
 }
@@ -111,12 +110,13 @@ $backlink = "/user/prenota.php?" . http_build_query(array(
 ));
 
 
-$radios_slot = "";
+$confirm_form = "";
 if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day)) {
     $slots = UserBookingService::getAvailableOfDay($selected_service, $selected_staff, $selected_day * 86400);
-    foreach ($slots as $slot) {
-        $s = $slot["start"];
-        $radios_slot .= radio_book(date("H:i", $s) . "-" . date("H:i", $slot["end"]), "time", $s, $s, false, false);
+    if (!$slots || count($slots) === 0) {
+        $confirm_form = "<p>Nessun Orario Disponibila</p>";
+    } else {
+        $confirm_form = confirm_form($selected_service, $selected_staff, $selected_day, $slots);
     }
 } else {
     header("Location: $backlink");
@@ -125,11 +125,7 @@ if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day
 
 $header = _header(array("Prenotazioni" => "/user/prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));
 
-$main = str_replace("%RADIOS_SLOT%", $radios_slot, $main);
-$main = str_replace("%SELECTED_SERVICE%", $selected_service, $main);
-$main = str_replace("%SELECTED_STAFF%", $selected_staff, $main);
-$main = str_replace("%SELECTED_DAY%", $selected_day, $main);
-
+$main = str_replace("%CONFIRM_FORM%", $confirm_form, $main);
 $main = str_replace("%SELECTED_DAY_EXT%", $selected_day_ext, $main);
 $main = str_replace("%SELECTED_SERVICE_NAME%", $selected_service_name, $main);
 $main = str_replace("%SELECTED_STAFF_NAME%", $selected_staff_name, $main);
