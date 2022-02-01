@@ -19,7 +19,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 		{
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			document.getElementById('Registrati').classList.add('disabled');
-			document.getElementById('mail-error').textContent = "Formato mail errato.";
+			document.getElementById('mail-error').textContent = "Formato email non valido.";
 			
 		}
 		else 
