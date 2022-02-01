@@ -1,7 +1,7 @@
 	function onPw(evt)
 	{
 		// Minimum eight characters, at least one letter and one number:
-		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+		if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(evt.target.value))
 		{
 			document.getElementById('changepw').classList.add('disabled');
 			document.getElementById('changepw').setAttribute('aria-disabled', true);
@@ -69,7 +69,7 @@
 
 	//ARIA
 	function aria_onPw(evt){
-		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+		if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(evt.target.value))
 		{
 			document.getElementById('new_password').setAttribute('aria-invalid', true);
 			document.getElementById('new_password').setAttribute('aria-describedby', 'pw-error');

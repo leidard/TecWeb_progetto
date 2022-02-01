@@ -46,7 +46,7 @@ unset($mail);
 unset($password);
 unset($password_rep);
 
-if(isset($_POST["submit"]) && isset($_POST["name"]) && !preg_match_all("/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_POST["name"])) #TODO completare l'abominio
+if(isset($_POST["submit"]) && isset($_POST["name"]) && !preg_match_all("/[£€§!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_POST["name"])) #TODO completare l'abominio
 	$name = $_POST["name"];
 elseif(isset($_POST["submit"]))
 {
@@ -54,7 +54,7 @@ elseif(isset($_POST["submit"]))
 	dontClearFields();
 }
 
-if(isset($_POST["submit"]) && isset($_POST["surname"]) && !preg_match_all("/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_POST["surname"]))
+if(isset($_POST["submit"]) && isset($_POST["surname"]) && !preg_match_all("/[£€§!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_POST["surname"]))
 	$surname = $_POST["surname"];
 elseif(isset($_POST["submit"]))
 {
@@ -69,8 +69,8 @@ elseif(isset($_POST["submit"]))
 	$_SESSION["regerror"] = "<span role=alert id=\"reg-error\">Formato email non valido.</span>";
 	dontClearFields();
 }
-	
-if(isset($_POST["submit"]) && isset($_POST["password"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["password"]))
+
+if(isset($_POST["submit"]) && isset($_POST["password"]) && preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["password"]))
 	$password = $_POST["password"];
 elseif(isset($_POST["submit"]))
 {
@@ -78,7 +78,7 @@ elseif(isset($_POST["submit"]))
 	dontClearFields();
 }
 
-if(isset($_POST["submit"]) && isset($_POST["password_rep"]) && preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["password_rep"]))
+if(isset($_POST["submit"]) && isset($_POST["password_rep"]) && preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["password_rep"]))
 	$password_rep = $_POST["password_rep"];
 elseif(isset($_POST["submit"]))
 {

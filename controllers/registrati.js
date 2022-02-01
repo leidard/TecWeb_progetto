@@ -8,7 +8,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 	{
 		if(document.getElementById(fieldname+"-error").textContent != "")
 		{
-			document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, "");
+			document.getElementById(fieldname).value = document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!£€§@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, "");
 			document.getElementById(fieldname+"-error").textContent = "";
 		}
 	}
@@ -24,7 +24,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 		else 
 		{
 			if(document.getElementById("password").value === document.getElementById("password_rep").value 
-				&& /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(document.getElementById("password").value))
+				&& /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(document.getElementById("password").value))
 			{
 				document.getElementById('Registrati').setAttribute('aria-disabled', false);
 				document.getElementById('Registrati').classList.remove('disabled');
@@ -37,7 +37,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 		// Minimum eight characters, at least one letter and one number:
 		//if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
 		let pw = document.getElementById("password").value;
-		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(pw))
+		if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(pw))
 		{
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			document.getElementById('Registrati').classList.add('disabled');
@@ -100,7 +100,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 		}
 		else 
 		{
-			if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(document.getElementById("password").value) 
+			if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(document.getElementById("password").value) 
 			&& document.getElementById('mail').getAttribute('aria-invalid') != true)
 			{	
 				document.getElementById('Registrati').setAttribute('aria-disabled', false);
@@ -114,7 +114,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 	{
 		let a = document.getElementById(fieldname).value;
 		
-		if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
+		if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[£€§!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
 		{
 			document.getElementById(fieldname+"-error").textContent = "Carattere non valido presente.";
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
@@ -145,7 +145,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 	}
 
 	function aria_onPw(evt){
-		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
+		if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(evt.target.value))
 		{
 			document.getElementById('password').setAttribute('aria-invalid', true);
 			document.getElementById('password').setAttribute('aria-describedby', 'pw-error');
@@ -175,7 +175,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 	{
 		let a = document.getElementById(fieldname).value;
 		
-		if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
+		if(a !== document.getElementById(fieldname).value.replace(/^\s+/, "").replace(/\s+$/, "").replace(/\s+/g, " ").replace(/[!£€§@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/g, ""))
 		{
 			document.getElementById(fieldname).setAttribute('aria-invalid', true);
 			document.getElementById(fieldname).setAttribute('aria-describedby', fieldname+'-error');

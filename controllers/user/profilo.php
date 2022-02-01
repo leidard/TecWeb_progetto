@@ -43,15 +43,14 @@ $footer = _footer();
 
 $submit = isset($_POST["submit"]);
 
-
-if($submit && isset($_POST["new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["new_password"]) || $_POST["new_password"]=="admin" || $_POST["new_password"]=="user"))
+if($submit && isset($_POST["new_password"]) && (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["new_password"]) || $_POST["new_password"]=="admin" || $_POST["new_password"]=="user"))
 	$newPassword = $_POST["new_password"];
 else
 {
 	$_SESSION["message"] = "Caratteri non validi nella nuova password.";
 }
 
-if($submit && isset($_POST["confirm_new_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
+if($submit && isset($_POST["confirm_new_password"]) && (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
 	$confirmnewPassword = $_POST["confirm_new_password"];
 else
 {
@@ -59,7 +58,7 @@ else
 }
 	
 
-if($submit && isset($_POST["current_password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["current_password"]) || $_POST["current_password"]=="admin" || $_POST["current_password"]=="user"))
+if($submit && isset($_POST["current_password"]) && (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["current_password"]) || $_POST["current_password"]=="admin" || $_POST["current_password"]=="user"))
 	$currentPassword = $_POST["current_password"];
 else
 {

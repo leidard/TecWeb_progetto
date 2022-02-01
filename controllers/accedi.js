@@ -17,7 +17,7 @@ function onEmail(evt) {
 
 function onPw(evt) {
 	// Almeno 8 caratteri, di cui almeno un numero, almeno una maiusc e una minusc 
-	if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user") {
+	if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(evt.target.value) && evt.target.value !== "admin" && evt.target.value !== "user") {
 		document.getElementById('login').setAttribute('aria-disabled', true);
 		document.getElementById('login').classList.add('disabled');
 		document.getElementById('password').setAttribute('aria-invalid', true);

@@ -40,7 +40,7 @@ else
 	unset($mail);
 }
 
-if(isset($_POST["submit"]) && isset($_POST["password"]) && (preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/", $_POST["password"]) || $_POST["password"]=="admin" || $_POST["password"]=="user"))
+if(isset($_POST["submit"]) && isset($_POST["password"]) && (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["password"]) || $_POST["password"]=="admin" || $_POST["password"]=="user"))
 {
 	$password = $_POST["password"];
 }
