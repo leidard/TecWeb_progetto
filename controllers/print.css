@@ -57,7 +57,7 @@ main {
 input[type=submit]{
     color:black;
 }
-
+fieldset#modifica-ora span.error,
 fieldset.dati-registrazione span.error,
 fieldset.dati-personali span.error,
 fieldset.dati-cambio-password span.error{
