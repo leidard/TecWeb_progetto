@@ -88,17 +88,15 @@ elseif(isset($_POST["submit"]))
 
 
 
-#if(isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["mail"]) && isset($_POST["password"]) && isset($_POST["password_rep"]))
 if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) && isset($password) && isset($password_rep))
 {
-	#if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) # TODO Cambiare con una regex semplice, filter poterebbe dare problemi in locale, mettere in relazione
+	#if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) #filter poterebbe dare problemi in locale, mettere in relazione
 	if($password_rep === $password)
 	{
 		$ex = RegistrationService::RegisterUser($name, $surname, strtolower($mail), $password);
 		if($ex)
 		{
 			$_SESSION["regcomplete"] = "<span role=alert id=\"reg-complete\">Registrazione completata! <a href=\"/accedi.php\">Clicca qui per effettuare l'accesso</a>.</span>";
-			#unset everything??????????????
 		}
 		else
 		{
@@ -142,9 +140,6 @@ if(isset($_POST["submit"]) && isset($_SESSION["regerror"]))
 	if(isset($_SESSION["surname"]))
 		$main = str_replace("%COGNOMEP%","value=\"".$_SESSION["surname"]."\"",$main);
 
-	#unset($mail);
-	#unset($name);
-	#unset($surname);
 	unset($_SESSION["mail"]);
 	unset($_SESSION["name"]);
 	unset($_SESSION["surname"]);
@@ -165,14 +160,6 @@ else
 	unset($_SESSION["name"]);
 	unset($_SESSION["surname"]);
 }
-
-
-/*
-else
-{
-	$_SESSION["regerror"] = "Campi non compilati.";
-}	
-*/
 
 $pagina = str_replace('%DESCRIPTION%', "Registrati subito a Scissorhands per prenotare!" ,$pagina);
 $pagina = str_replace('%KEYWORDS%', "registrati, registrazione, iscrizione, scissorhands, barbiere, parrucchiere, barba, capelli, barbieria, Padova",$pagina);

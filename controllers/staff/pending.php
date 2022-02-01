@@ -13,7 +13,7 @@ if(!isset($_SESSION["sessionid"]))
 	header("Location: /accedi.php");
 	die();
 }
-if($_SESSION["type"] != "OWNER") #TODO dove mandarlo?
+if($_SESSION["type"] != "OWNER")
 {
 	header("Location: /user/prenotazioni.php");
 	die();

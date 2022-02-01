@@ -39,8 +39,5 @@ class Customer extends DBHelper {
 		{
 			throw($stmt->error);
 		}	
-				
-		#$lastid = mysqli_insert_id($this>$conn);
-		#return $lastid;
 	}
 }
