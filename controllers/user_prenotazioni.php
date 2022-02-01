@@ -12,7 +12,7 @@ $pagina = page('Prenotazioni utente - Scissorhands');
 $meta_index = _meta_index(false);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
-$header = _header(array("Prenotazioni" => "/user/prenotazioni.php"));
+$header = _header(array("Prenotazioni" => "user_prenotazioni.php"));
 $main = file_get_contents('../views/user/prenotazioni.html');
 
 require_once __DIR__ . '/../services/user/book.php';
@@ -26,7 +26,7 @@ if (!isset($_SESSION["sessionid"])) {
     die();
 }
 if ($_SESSION["type"] != "USER") {
-    header("Location: prenotazioni.php");
+    header("Location: staff_prenotazioni.php");
     die();
 }
 $user_id = $_SESSION["sessionid"];

@@ -15,7 +15,7 @@ if(!isset($_SESSION["sessionid"]))
 }
 if($_SESSION["type"] != "OWNER")
 {
-	header("Location: /user/prenotazioni.php");
+	header("Location: user_prenotazioni.php");
 	die();
 }
 	

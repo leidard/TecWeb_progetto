@@ -23,7 +23,7 @@ function _menu($sess_type = "GUEST"){
             'Staff' => 'staff.php',
             'Galleria' => 'galleria.php',
             'Contatti' => 'contatti.php',
-            'Prenotazioni' => 'prenotazioni.php',
+            'Prenotazioni' => 'staff_prenotazioni.php',
             'Orari' => 'orari.php',
             'Esci' => 'logout.php'
         ),
@@ -33,7 +33,7 @@ function _menu($sess_type = "GUEST"){
             'Staff' => 'staff.php',
             'Galleria' => 'galleria.php',
             'Contatti' => 'contatti.php',
-            'Prenotazioni' => 'prenotazioni.php',
+            'Prenotazioni' => 'user_prenotazioni.php',
             'Profilo' => 'profilo.php',
             'Esci' => 'logout.php',
         ),
@@ -43,7 +43,7 @@ function _menu($sess_type = "GUEST"){
             'Staff' => 'staff.php',
             'Galleria' => 'galleria.php',
             'Contatti' => 'contatti.php',
-            'Prenota' => 'prenota.php',
+            'Prenota' => 'guest_prenota.php',
             'Accedi' => 'accedi.php',
             'Registrati' => 'registrati.php'
         )
