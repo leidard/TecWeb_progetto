@@ -74,7 +74,7 @@ if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && 
 		if($newPassword==$confirmnewPassword)
 		{
 			UserPasswordChangeService::changeUserPassword($_SESSION["sessionmail"], $newPassword, $_SESSION["type"]);
-			$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-success\">Password aggiornata!.</span></em>";
+			$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-success\">Password aggiornata!</span></em>";
 		}
 		else
 		{
