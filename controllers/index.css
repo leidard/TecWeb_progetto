@@ -362,12 +362,12 @@ section.dati-personali span#mail{
 
 /*              FORM                */
 
+
+
 div#noscript{
 	text-align: center;
 }
 div#noscript>ul{
-}
-div#noscript>span{
 	text-align: center;
 }
 
@@ -390,6 +390,7 @@ div.form-block em>span#reg-error
     display: inline-block;
 }
 
+section.reservations>form>em>span#orari-changed,
 em>span#cpw-success,
 div.form-block em>span#reg-complete	
 {
