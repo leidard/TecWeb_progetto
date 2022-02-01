@@ -59,16 +59,14 @@ if(isset($_POST["submit"]) && isset($_POST["current_password"]) && (preg_match("
 	$currentPassword = $_POST["current_password"];
 else
 {
-	$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">Caratteri non validi in password corrente.</span></em>";
+	$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">La password attuale non è corretta.</span></em>";
 }
 	
 
 $main = file_get_contents('../../views/user/pagina_personale.html');
 if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && isset($confirmnewPassword))
 {
-	#change password
 	$currentPassword = PublicLoginService::getUserPassword($_SESSION["sessionmail"]);
-	//if($currentPassword == $_POST["current_password"])
 	if(PublicLoginService::verifyLogin($_SESSION["sessionmail"], $_POST["current_password"]))
 	{
 		if($newPassword==$confirmnewPassword)
