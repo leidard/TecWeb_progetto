@@ -24,7 +24,7 @@ $patternPassword = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/";
 
 if(isset($_SESSION["sessionid"])) 
 {
-	header("Location: /user/prenotazioni.php");
+	header("Location: user_prenotazioni.php");
 	die();
 }
 
@@ -61,7 +61,7 @@ if(isset($password) && isset($mail))
 		if(Session::isUser($mail)) 
 		{
 			$_SESSION["type"] = "USER";
-			header("Location: /user/prenotazioni.php");
+			header("Location: user_prenotazioni.php");
 			die();
 		}
 		elseif(Session::isOwner($mail))

@@ -10,7 +10,7 @@ $meta_index = _meta_index(true);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
-    "Contatti" => "/contatti.php"
+    "Contatti" => "contatti.php"
 );
 $header = _header($path);
 

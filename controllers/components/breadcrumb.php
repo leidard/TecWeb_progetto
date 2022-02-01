@@ -6,7 +6,7 @@ function _breadcrumb(array $paths) {
     if (empty($paths))
         return str_replace("%BREADCRUMBS%", '<li><a class="current" lang="en" aria-current="location">Home</a></li>', $out);
     
-    $str = '<li><a href="/" lang="en">Home</a></li>';
+    $str = '<li><a href="index.php" lang="en">Home</a></li>';
     $current = strtok($_SERVER["REQUEST_URI"], '?');
     foreach ($paths as $name => $ref) {
         if ($ref === $current) {

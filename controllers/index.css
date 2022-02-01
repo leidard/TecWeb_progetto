@@ -29,7 +29,7 @@ body {
     word-spacing: 0.16em;
     position: relative;
     font-family: AtkinsonHyperlegible, Helvetica, Arial, sans-serif;
-    background: url('/static/img/pattern.jpg') repeat;
+    background: url('static/img/pattern.jpg') repeat;
     background-size: 15em;
 }
 
@@ -47,7 +47,7 @@ header#page-header>nav {
 }
 
 header h1 {
-    background-image: url('/static/img/logo_bscissorhands.png');
+    background-image: url('static/img/logo_bscissorhands.png');
     background-color: rgba(255,255,255,.95);
     background-position: center;
     background-size: contain;
@@ -225,7 +225,7 @@ main {
 }
 
 section#benvenuto div.img-wrap {
-    background: url('/static/img/table.jpg');
+    background: url('static/img/table.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -717,15 +717,15 @@ article.staff>div.foto-staff {
 }
 
 #imgEdoardoCoppola {
-    background-image: url('/static/img/edoardo.jpg');
+    background-image: url('static/img/edoardo.jpg');
 }
 
 #imgRobertoFortuna {
-    background-image: url('/static/img/roberto.jpg');
+    background-image: url('static/img/roberto.jpg');
 }
 
 #imgAliceValli {
-    background-image: url('/static/img/alice.jpg');
+    background-image: url('static/img/alice.jpg');
 }
 
 article.staff>div {
@@ -748,7 +748,7 @@ article.staff>div {
 div.capelli {
     width: 9.375em;
     height: 9.375em;
-    background-image: url('/static/img/hair_icon.png');
+    background-image: url('static/img/hair_icon.png');
     margin: 1.25em 0.5em 0.5em;
     padding: 0;
 }
@@ -756,7 +756,7 @@ div.capelli {
 div.barba {
     width: 9.375em;
     height: 9.375em;
-    background-image: url('/static/img/beard_icon.png');
+    background-image: url('static/img/beard_icon.png');
     margin: 1.25em 0.5em 0.5em;
     padding: 0;
 }
@@ -892,7 +892,7 @@ div#ErroreConnessione div.ErrConnImg {
     width: 100%;
     min-height: 12em;
     height: auto;
-    background-image: url('/static/img/network-error-icon.jpg');
+    background-image: url('static/img/network-error-icon.jpg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat; 

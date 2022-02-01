@@ -20,7 +20,7 @@ function dontClearFields()
 
 if(isset($_SESSION["sessionid"]))
 {
-	header("Location: user/prenotazioni.php");
+	header("Location: user_prenotazioni.php");
 	die();
 }
 
@@ -30,7 +30,7 @@ $meta_index = _meta_index(true);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
-    "Registrati" => "/registrati.php"
+    "Registrati" => "registrati.php"
 );
 
 $header = _header($path);
