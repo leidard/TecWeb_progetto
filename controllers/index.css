@@ -387,7 +387,10 @@ div.form-block em>span#reg-error
 	padding-right: 0.25em;
 	padding-bottom: 0.25em;
 	padding-left: 0.25em;
-    display: inline-block;
+    display: block;
+    max-width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 section.reservations>em>span#orari-changed,
@@ -401,7 +404,10 @@ div.form-block em>span#reg-complete
 	padding-right: 0.25em;
 	padding-bottom: 0.25em;
 	padding-left: 0.25em;
-    display: inline-block;
+    display: block;
+    max-width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /*span#reg-message{
