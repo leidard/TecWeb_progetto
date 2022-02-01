@@ -7,14 +7,6 @@
 	function refresh() {
 		closeEl.setAttribute('min', openEl.valueAsNumber+1 || 0);
 		openEl.setAttribute('max', closeEl.valueAsNumber-1 || 23);
-		if(closeEl.valueAsNumber === openEl.valueAsNumber)
-		{
-			//error.innerText="Gli orari non possono essere uguali.";
-		}
-		else
-		{
-			//error.innerText="";
-		}
 	}
 	refresh();
 
@@ -45,8 +37,6 @@
 	}
 
 	change.onclick = check;
-	///openEl.onkeydown = check;
-	//closeEl.onkeydown = check;
 
 	openEl.oninput = refresh;
 	closeEl.oninput = refresh;

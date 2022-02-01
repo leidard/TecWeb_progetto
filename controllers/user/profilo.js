@@ -41,7 +41,6 @@ window.onload = () => document.getElementById('changepw').setAttribute('aria-dis
 				str+="<li>un numero</li>"
 			}
 
-			//if(str=="")
 			if(ok == true)
 				str+="<li>carattere non valido presente</li>";
 

@@ -78,7 +78,7 @@ class Credential extends DBHelper {
 		elseif($UserType == "USER")
 			$stmt = $this->prepare("UPDATE customer SET password=? where email=?");
 		else
-			return; //TODO migliorare?
+			return; //non dovrebbe essere possibile arrivare qui
 		$stmt->bind_param('ss', $password, $mail);
 		$stmt->execute();
 	}
