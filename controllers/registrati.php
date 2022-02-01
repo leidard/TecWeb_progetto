@@ -47,7 +47,7 @@ unset($mail);
 unset($password);
 unset($password_rep);
 
-if(isset($_POST["submit"]) && isset($_POST["name"]) && !preg_match_all("/[£€§!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_POST["name"])) #TODO completare l'abominio
+if(isset($_POST["submit"]) && isset($_POST["name"]) && !preg_match_all("/[£€§!@#$%^&*()\".,;:\-_+=<>1234567890\[\]\\|\{\}\/?]/",$_POST["name"]))
 	$name = $_POST["name"];
 elseif(isset($_POST["submit"]))
 {
