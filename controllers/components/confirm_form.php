@@ -1,7 +1,7 @@
 <?php
 
 function confirm_form($selected_service, $selected_staff, $selected_day, $slots) {
-    $main = file_get_contents('../../views/components/confirm_form.html');
+    $main = file_get_contents(__DIR__.'/../../views/components/confirm_form.html');
     
     $radios_slot = "";
     foreach ($slots as $slot) {

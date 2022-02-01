@@ -67,7 +67,7 @@ if(isset($password) && isset($mail))
 		elseif(Session::isOwner($mail))
 		{
 			$_SESSION["type"] = "OWNER";
-			header("Location: /staff/prenotazioni.php");
+			header("Location: staff_prenotazioni.php");
 			die();
 		}	
 		else
