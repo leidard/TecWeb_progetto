@@ -40,7 +40,7 @@ if($_SESSION["type"] == "OWNER")
 
 $header = _header($path);
 $footer = _footer();
-$patternPassword = "/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/";
+$patternPassword = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/";
 
 if(isset($_POST["submit"]) && isset($_POST["confirm_new_password"]) && (preg_match($patternPassword, $_POST["confirm_new_password"]) || $_POST["confirm_new_password"]=="admin" || $_POST["confirm_new_password"]=="user"))
 	$confirmnewPassword = $_POST["confirm_new_password"];

@@ -3,7 +3,6 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 	let item = document.getElementById('noscript');
 	item.parentNode.removeChild(item);
 
-	//document.getElementById('pwhint').innerText ="caratteri speciali ammessi:!@#$%";
 
 })();
 	function clearIfError(fieldname)
@@ -26,7 +25,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 		else 
 		{
 			if(document.getElementById("password").value === document.getElementById("password_rep").value 
-				&& /^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/.test(document.getElementById("password").value))
+				&& /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/.test(document.getElementById("password").value))
 			{
 				document.getElementById('Registrati').setAttribute('aria-disabled', false);
 				document.getElementById('Registrati').classList.remove('disabled');
@@ -36,9 +35,8 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 	}
 
 	function onPw(){
-		// Minimum eight characters, at least one letter and one number:
 		let pw = document.getElementById("password").value;
-		if (!/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/.test(pw))
+		if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/.test(pw))
 		{
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			document.getElementById('Registrati').classList.add('disabled');
@@ -73,10 +71,9 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 			}
 
 			if(ok == true)
-				str+="<li>Carattere non valido presente</li>";
-
-
-			document.getElementById('pw-error').innerHTML = "La password deve avere almeno: <ul>"+str+"</ul>";
+				document.getElementById('pw-error').innerHTML ="Carattere non valido presente";
+			else
+				document.getElementById('pw-error').innerHTML = "La password deve avere: <ul>"+str+"</ul>";
 		}	
 		else 
 		{
@@ -101,7 +98,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 		}
 		else 
 		{
-			if(/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/.test(document.getElementById("password").value) 
+			if(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/.test(document.getElementById("password").value) 
 			&& document.getElementById('mail').getAttribute('aria-invalid') != true)
 			{	
 				document.getElementById('Registrati').setAttribute('aria-disabled', false);
@@ -146,7 +143,7 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 	}
 
 	function aria_onPw(evt){
-		if (!/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/.test(evt.target.value))
+		if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/.test(evt.target.value))
 		{
 			document.getElementById('password').setAttribute('aria-invalid', true);
 			document.getElementById('password').setAttribute('aria-describedby', 'pw-error');

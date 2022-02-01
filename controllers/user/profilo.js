@@ -7,7 +7,7 @@ window.onload = () => document.getElementById('changepw').setAttribute('aria-dis
 	function onPw(evt)
 	{
 		// Minimum eight characters, at least one letter and one number:
-		if (!/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/.test(evt.target.value))
+		if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/.test(evt.target.value))
 		{
 			document.getElementById('changepw').classList.add('disabled');
 			document.getElementById('changepw').setAttribute('aria-disabled', true);
@@ -44,7 +44,7 @@ window.onload = () => document.getElementById('changepw').setAttribute('aria-dis
 			if(ok == true)
 				document.getElementById('pw-error').innerHTML+="carattere non valido presente";
 			else
-				document.getElementById('pw-error').innerHTML = "Deve avere almeno: <ul>"+str+"</ul>";
+				document.getElementById('pw-error').innerHTML = "La password deve avere: <ul>"+str+"</ul>";
 			
 		}	
 		else 
@@ -73,7 +73,7 @@ window.onload = () => document.getElementById('changepw').setAttribute('aria-dis
 
 	//ARIA
 	function aria_onPw(evt){
-		if (!/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/.test(evt.target.value))
+		if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/.test(evt.target.value))
 		{
 			document.getElementById('new_password').setAttribute('aria-invalid', true);
 			document.getElementById('new_password').setAttribute('aria-describedby', 'pw-error');
