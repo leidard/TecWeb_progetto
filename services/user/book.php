@@ -125,6 +125,7 @@ class UserBookingService {
     public static function deletePendingReservation(string $user) {
 
         $pending = (new Reservation())->getUnconfirmed($user);
+        if (!$pending) return;
 
         return (new Reservation())->deleteOfCustomer($user,  $pending["_id"]);
     }
