@@ -67,13 +67,13 @@ if(isset($password) && isset($mail))
 		elseif(Session::isOwner($mail))
 		{
 			$_SESSION["type"] = "OWNER";
-			header("Location: /staff/prenotazioni.php");
+			header("Location: staff_prenotazioni.php");
 			die();
 		}	
 		else
 		{
 			$_SESSION["type"] = "GUEST";
-			header("Location: /logout.php"); 
+			header("Location: logout.php"); 
 		}
 	}
 	else
