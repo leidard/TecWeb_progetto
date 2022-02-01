@@ -18,10 +18,4 @@ class Owner extends DBHelper{
 		$res = $stmt->get_result();
 		return $res->fetch_assoc();
 	}
-
-    public static function update($obj) { #TODO remove?
-        if (isset($obj->open_at)) {
-
-        }
-    }
 }
