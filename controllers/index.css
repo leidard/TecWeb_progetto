@@ -376,6 +376,7 @@ div.form-block em>span#reg-error
 	padding-right: 0.25em;
 	padding-bottom: 0.25em;
 	padding-left: 0.25em;
+    display: inline-block;
 }
 
 div.form-block em>span#reg-complete	
@@ -387,6 +388,7 @@ div.form-block em>span#reg-complete
 	padding-right: 0.25em;
 	padding-bottom: 0.25em;
 	padding-left: 0.25em;
+    display: inline-block;
 }
 
 /*span#reg-message{
@@ -667,6 +669,12 @@ form.booking-form input[type="submit"] {
     margin: 0.5em 0;
 }
 
+
+/*          MODIFICA ORARI          */
+fieldset#modifica-giorni,
+fieldset#modifica-ora{
+    border-radius: 0.4em;
+}
 
 /*          GALLERY           */
 
