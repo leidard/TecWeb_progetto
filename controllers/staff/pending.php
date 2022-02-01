@@ -21,8 +21,6 @@ if($_SESSION["type"] != "OWNER")
 	
 $user_id = $_SESSION["sessionid"];
 
-
-
 $pagina = page('Prenotazioni - Scissorhands');
 
 $meta_index = _meta_index(false);
@@ -47,7 +45,6 @@ if (isset($_POST) && !empty($_POST)) {
         $book["action"] = $_POST["action"];
     } else return;
 
-
     if ($book["reservation"] !== NULL && $book["action"] !== NULL) {
         if ($book["action"] === "ACCEPT") {
             StaffReservationService::confirm($book["reservation"]);
@@ -63,7 +60,6 @@ foreach($unconf as $r) {
     $strunconf .= booked_pending_staff($r["_id"], $r["start_at"], $r["end_at"], $r["service"], $r["staff"], $r["price"], $r["customer_name"], $r["customer_surname"]);
 }
 $main = str_replace("%UNCONFIRMED%", $strunconf, $main);
-
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);

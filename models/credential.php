@@ -85,5 +85,3 @@ class Credential extends DBHelper {
 		return $res->fetch_array()[0];
 	}
 }
-
- 

@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `scissorhands`;
 USE `scissorhands`;
 
--- DROP TABLES
 DROP TABLE IF EXISTS reservation CASCADE;
 DROP TABLE IF EXISTS service CASCADE;
 DROP TABLE IF EXISTS staff CASCADE;
@@ -9,8 +8,6 @@ DROP TABLE IF EXISTS company CASCADE;
 DROP TABLE IF EXISTS owner CASCADE;
 DROP TABLE IF EXISTS customer CASCADE;
 
-
--- CREATE TABLES
 CREATE TABLE IF NOT EXISTS `owner` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -20,7 +17,6 @@ CREATE TABLE IF NOT EXISTS `owner` (
   PRIMARY KEY (`_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-
 CREATE TABLE IF NOT EXISTS `customer` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -29,7 +25,6 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-
 
 CREATE TABLE IF NOT EXISTS `company` (
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -97,10 +92,6 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   CONSTRAINT `FK_reservation_service` FOREIGN KEY (`service`) REFERENCES `service` (`_id`) ON UPDATE CASCADE,
   CONSTRAINT `FK__azienda_reservation` FOREIGN KEY (`company`) REFERENCES `company` (`_id`) ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-
-
-
--- Popolazione database
 
 INSERT INTO
   owner(_id, name, surname, email, password)

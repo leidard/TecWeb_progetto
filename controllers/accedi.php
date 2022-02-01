@@ -52,7 +52,6 @@ else
 	unset($password);
 }
 
-
 if(isset($password) && isset($mail))
 {
 	if(PublicLoginService::verifyLogin($mail,$password))
@@ -71,7 +70,7 @@ if(isset($password) && isset($mail))
 			header("Location: /staff/prenotazioni.php");
 			die();
 		}	
-		else	#better safe than sorry
+		else
 		{
 			$_SESSION["type"] = "GUEST";
 			header("Location: /logout.php"); 
@@ -83,8 +82,6 @@ if(isset($password) && isset($mail))
 		$_SESSION["mail"] = $mail;
 	}
 }
-
-
 
 if(isset($_POST["submit"]) && isset($_SESSION["error"]))
 {
@@ -101,7 +98,6 @@ else
 	unset($_SESSION["mail"]);
 }
 
-
 $header = _header($path);
 $footer = _footer();
 
@@ -109,6 +105,5 @@ $pagina = str_replace('%DESCRIPTION%', "Accedi per prenotare subito il tuo pross
 $pagina = str_replace('%KEYWORDS%', "accedi, accesso, login, scissorhands, prenota, capelli, barba, barbiere, Padova",$pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
-
 
 echo $pagina;

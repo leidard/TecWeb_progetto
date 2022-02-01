@@ -9,4 +9,3 @@ function _servizio($nome, $prezzo, $durata = '', $descrizione = '') {
 
     return $out;
 }
-

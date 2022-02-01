@@ -31,7 +31,6 @@ if ($_SESSION["type"] != "USER") {
 }
 $user_id = $_SESSION["sessionid"];
 
-// RICEZIONE DI NUOVA PRENOTAZIONE
 function handleBook($user) {
     $book = array(
         "staff" => NULL,
@@ -56,10 +55,8 @@ function handleBook($user) {
     }
 
     if ($error !== "") {
-        // errore per gestire i furbetti che aggirano il sistema
         return "Errore Nella Prenotazione: $error";
     }
-
 
     if ($book["staff"] !== NULL && $book["service"] !== NULL && $book["time"] !== NULL) {
         try {
@@ -89,8 +86,6 @@ if (isset($_POST) && !empty($_POST)) {
     }
 }
 
-
-// STAMPA NON CONFERMATO SE PRESENTE ALTRIMENTI LINK CREA NUOVA PRENOTAZIONE
 $unc =  UserBookingService::getUnconfirmed($user_id);
 $unc_str = "";
 if (!!$unc) {
@@ -106,15 +101,12 @@ if (!!$unc) {
 }
 $main = str_replace("%UNCONFIRMED%", $unc_str, $main);
 
-
-// STAMPA TUTTE LE PRENOTAZIONI PASSATE
 $resv =  UserBookingService::getAll($user_id);
 $str = "";
 foreach ($resv as $r) {
     $str .= booked_row($r["start_at"], $r["end_at"], $r["service"], $r["price"], $r["staff"]);
 }
 $main = str_replace("%BOOKINGS%", $str, $main);
-
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);

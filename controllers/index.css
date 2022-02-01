@@ -76,9 +76,6 @@ h2 {
     outline: 0;
 }
 
-
-/*         MENU            */
-
 nav#menu {
     padding: 0.5em;
     border-top: 0.01em solid #000;
@@ -147,8 +144,6 @@ nav#menu li a:hover {
     border-color: black;
 }
 
-/*        BREADCRUMB      */
-
 nav#breadcrumb {
     padding: 0.4em 0.8em;
     border-top: 0.01em solid black;
@@ -188,9 +183,6 @@ nav#breadcrumb ol li:not(:first-child) a::before {
     content: ">";
 }
 
-
-/*         FOOTER         */
-
 footer#page-footer {
     border-top: 0.05em solid #000;
     background-color: #F5EEE0;
@@ -202,9 +194,6 @@ footer#page-footer {
 footer#page-footer p {
     text-align: center;
 }
-
-
-/*     FLOATING BUTTON    */
 
 div#floating-btn {
     position: fixed;
@@ -220,9 +209,6 @@ div#floating-btn a {
     padding: 0.5em;
 }
 
-
-/*       MAIN              */
-
 main {
     padding: 1em;
     margin: 0 auto;
@@ -237,9 +223,6 @@ main {
         width: 100%;
     }
 }
-
-
-/*       HOME        */
 
 section#benvenuto div.img-wrap {
     background: url('/static/img/table.jpg');
@@ -264,9 +247,6 @@ section#misureSicurezza {
     text-align: center;
     list-style-position: inside;
 }
-
-
-/*              ORARI               */
 
 table#orari-apertura { 
     border: none;
@@ -336,7 +316,6 @@ section#benvenuto a#link-prenota {
     }
 }
 
-/*             PROFILO              */
 section.dati-personali{
     display: block;
     text-align: center;
@@ -359,10 +338,6 @@ section.dati-personali span#mail{
     font-weight: bold;
 	
 }
-
-/*              FORM                */
-
-
 
 div#noscript{
 	text-align: center;
@@ -401,10 +376,6 @@ div.form-block em>span#reg-complete
     max-width: fit-content;
     margin: 0 auto 1em;
 }
-
-/*span#reg-message{
-
-}*/
 
 form#registrazione-form, 
 form#login-form, 
@@ -473,7 +444,6 @@ fieldset.dati-personali>span>span>select {
     font-size: 1em;
 }
 
-
 fieldset#modifica-ora span.error,
 fieldset.dati-login span.input-hint,
 fieldset.dati-registrazione>span.error>input,
@@ -527,13 +497,10 @@ input[type=submit][aria-disabled=true]{
     cursor:not-allowed; 
 }
 
-  a.registrati{
-      display: block;
-      text-align: center;
-  }
-
-
-/*      PRENOTAZIONI    */
+ a.registrati{
+    display: block;
+    text-align: center;  
+}
 
 section#prenota-no-accesso{
     text-align: center;
@@ -606,9 +573,6 @@ p span.line {
     align-content: center;
 }
 
-
-/*          FIELDSET               */
-
 form.booking-form {
     display: flex;
     flex-direction: column;
@@ -680,14 +644,10 @@ form.booking-form input[type="submit"] {
     margin: 0.5em 0;
 }
 
-
-/*          MODIFICA ORARI          */
 fieldset#modifica-giorni,
 fieldset#modifica-ora{
     border-radius: 0.4em;
 }
-
-/*          GALLERY           */
 
 section#Gallery {
     padding: 0em;
@@ -729,9 +689,6 @@ section#Gallery div#img-container {
     }
 }
 
-
-/*              STAFF             */
-
 .staff-container {
     display: grid;
     grid-template-rows: auto auto auto;
@@ -750,7 +707,6 @@ article.staff {
 article.staff p {
     padding: 0.25em;
 }
-
 
 article.staff>div.foto-staff {
     margin: 0.6em;
@@ -788,9 +744,6 @@ article.staff>div {
     }
 
 }
-
-
-/*              SERVIZI             */
 
 div.capelli {
     width: 9.375em;
@@ -858,9 +811,6 @@ section.spiegazione-servizi p a {
     }
 }
 
-
-/*              LISTINO             */
-
 .servizi {
     display: flex;
     flex-wrap: wrap;
@@ -917,9 +867,6 @@ section.spiegazione-servizi p a {
     }
 }
 
-
-/*              404 ERROR               */
-
 section.error {
     display: flex;
     align-items: center;
@@ -935,8 +882,6 @@ section.error {
 
 }
 
-
-/*              505 errore_connessione               */
 div#ErroreConnessione{
     display: flex;
     flex-direction: column;
@@ -965,7 +910,6 @@ div#ErroreConnessione p span {
     }  
 }
 
-/*              CONTATTI                */
 section#info-contatti{
     text-align: center;
     list-style-position:inside;

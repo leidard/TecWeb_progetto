@@ -16,6 +16,5 @@ class RegistrationService
 		}
 		else
 			return false;
-
 	}
 }

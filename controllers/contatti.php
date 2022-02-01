@@ -23,5 +23,4 @@ $pagina = str_replace('%KEYWORDS%', "contatti, indirizzo, mappa, telefono, orari
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
-
 echo $pagina;

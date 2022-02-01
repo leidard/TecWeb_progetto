@@ -10,7 +10,6 @@ $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $main = file_get_contents('../views/404.html');
 
-
 $header = _header([], true);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 $pagina = str_replace('%HEADER%', $header, $pagina);

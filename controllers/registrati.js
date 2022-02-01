@@ -1,9 +1,7 @@
-window.onload = () => document.getElementById('Registrati').setAttribute('aria-disabled', true); //messo qui e non sull'html perché altrimenti senza JS resterebbe sembre true. 
+window.onload = () => document.getElementById('Registrati').setAttribute('aria-disabled', true);
 (function () {
 	let item = document.getElementById('noscript');
 	item.parentNode.removeChild(item);
-
-
 })();
 	function clearIfError(fieldname)
 	{
@@ -20,7 +18,6 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 			document.getElementById('Registrati').setAttribute('aria-disabled', true);
 			document.getElementById('Registrati').classList.add('disabled');
 			document.getElementById('mail-error').textContent = "Formato email non valido.";
-			
 		}
 		else 
 		{
@@ -44,28 +41,24 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 			let ok=true;
 			if(pw.length < 9)
 			{
-				//non lunga abbastanza
 				ok = false;
 				str+="<li>nove caratteri</li>";
 			}
 
 			if(pw.toUpperCase() == pw)
 			{
-				//non ha minuscole
 				ok = false;
 				str+="<li>una minuscola</li> "
 			}
 
 			if(pw.toLowerCase() == pw)
 			{
-				//non ha maiuscole
 				ok = false;
 				str+="<li>una maiuscola</li>"
 			}
 
 			if(!/[0-9]/g.test(pw))
 			{
-				//non ha numeri
 				ok = false;
 				str+="<li>un numero</li>"
 			}
@@ -126,9 +119,6 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 		}
 	}
 
-
-
-	//FUNZIONI PER ARIA
 	function aria_onEmail(evt) {
 		if (!/^([a-z0-9\+_\-]{3,})(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]{3,}\.)[a-z]{2,6}$/i.test(evt.target.value)) 
 		{
@@ -182,7 +172,6 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 		{
 			document.getElementById(fieldname).setAttribute('aria-invalid', false);
 			document.getElementById(fieldname).removeAttribute('aria-describedby');
-
 		}
 	}
 

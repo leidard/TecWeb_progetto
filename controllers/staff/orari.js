@@ -41,6 +41,4 @@
 	openEl.oninput = refresh;
 	closeEl.oninput = refresh;
 
-
-
 })();

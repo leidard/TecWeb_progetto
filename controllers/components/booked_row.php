@@ -1,6 +1,5 @@
 <?php
 
-
 function booked_row($start_at, $end_at, $service, $price, $staff) {
     $out = file_get_contents(__DIR__ . '/../../views/components/booked_row.html');
 
@@ -14,7 +13,6 @@ function booked_row($start_at, $end_at, $service, $price, $staff) {
     $out = str_replace("%SERVICE%", $service, $out);
     $out = str_replace("%PRICE%", number_format($price, 2, ",", " "), $out);
     $out = str_replace("%STAFF%", $staff, $out);
-
 
     return $out;
 }

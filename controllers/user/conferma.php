@@ -37,7 +37,6 @@ if (!UserBookingService::canBook($user_id)) {
 	die();
 }
 
-
 $services = PublicServiceService::getAll();
 $staff = PublicStaffService::getAll();
 
@@ -109,7 +108,6 @@ $backlink = "/user/prenota.php?" . http_build_query(array(
     "day" => $selected_day
 ));
 
-
 $confirm_form = "";
 if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day)) {
     $slots = UserBookingService::getAvailableOfDay($selected_service, $selected_staff, $selected_day * 86400);
@@ -132,6 +130,5 @@ $main = str_replace("%SELECTED_STAFF_NAME%", $selected_staff_name, $main);
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
-
 
 echo $pagina;

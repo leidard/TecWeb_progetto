@@ -5,7 +5,6 @@ require_once 'components/meta_index.php';
 
 require_once __DIR__ . '/../services/public/registration.php';
 
-
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
@@ -19,8 +18,7 @@ function dontClearFields()
 		$_SESSION["mail"] = $_POST["mail"];
 }
 
-
-if(isset($_SESSION["sessionid"])) #aka uno già loggato va qui 
+if(isset($_SESSION["sessionid"]))
 {
 	header("Location: user/prenotazioni.php");
 	die();
@@ -87,11 +85,8 @@ elseif(isset($_POST["submit"]))
 	dontClearFields();
 }
 
-
-
 if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) && isset($password) && isset($password_rep))
 {
-	#if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) #filter poterebbe dare problemi in locale, mettere in relazione
 	if($password_rep === $password)
 	{
 		$ex = RegistrationService::RegisterUser($name, $surname, strtolower($mail), $password);
@@ -113,7 +108,6 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) &&
 		unset($surname);
 	}	
 
-	//Salvataggio campi in caso JS non vadi
 	if(isset($_SESSION["regerror"]))
 	{
 		if(isset($mail))
@@ -122,18 +116,14 @@ if(isset($_POST["submit"]) && isset($name) && isset($surname) && isset($mail) &&
 			$_SESSION["name"] = $name;
 		if(isset($surname))
 			$_SESSION["surname"] = $surname;
-		
 	}
-
 }
-
 
 if(isset($_POST["submit"]) && isset($_SESSION["regerror"]))
 {
 	$main = str_replace("%MESSAGGIO%",$_SESSION["regerror"], $main);
 	unset($_SESSION["regerror"]);
 
-	//Salvataggio campi in caso JS non vadi
 	if(isset($_SESSION["mail"]))
 		$main = str_replace("%MAILP%","value=\"".$_SESSION["mail"]."\"", $main);
 	if(isset($_SESSION["name"]))
@@ -144,12 +134,9 @@ if(isset($_POST["submit"]) && isset($_SESSION["regerror"]))
 	unset($_SESSION["mail"]);
 	unset($_SESSION["name"]);
 	unset($_SESSION["surname"]);
-
-
 }
 else
 {
-	
 	if(isset($_POST["submit"]) && isset($_SESSION["regcomplete"]))
 		$main = str_replace("%MESSAGGIO%",$_SESSION["regcomplete"], $main);
 	else
@@ -170,4 +157,3 @@ $pagina = str_replace('%MAIN%', $main, $pagina);
 echo $pagina;
 
 ?>
-

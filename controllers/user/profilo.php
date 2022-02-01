@@ -10,7 +10,6 @@ require_once __DIR__ . '/../../services/user/change_password.php';
 require_once __DIR__ . '/../../services/user/customer.php';
 require_once __DIR__ . '/../../services/staff/owner.php';
 
-
 $pagina = page('Profilo - Scissorhands');
 
 $meta_index = _meta_index(false);
@@ -22,7 +21,6 @@ $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 $path = array(
     "Profilo" => "/user/profilo.php"
 );
-
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
@@ -63,7 +61,6 @@ else
 	$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">La password attuale non è corretta.</span></em>";
 }
 	
-
 $main = file_get_contents('../../views/user/pagina_personale.html');
 if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && isset($confirmnewPassword))
 {
@@ -111,6 +108,5 @@ else
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
-
 
 echo $pagina;

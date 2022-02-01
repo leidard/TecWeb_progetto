@@ -22,7 +22,6 @@ if ($_SESSION["type"] != "OWNER")
 
 $user_id = $_SESSION["sessionid"];
 
-
 $pagina = page('Orari - Scissorhands');
 
 $meta_index = _meta_index(false);

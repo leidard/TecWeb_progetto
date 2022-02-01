@@ -12,10 +12,6 @@ class Reservation extends DBHelper {
         } 
     }
 
-    /**
-     * @param int $id identifier
-     * @param bool $confirm 
-     */
     public function confirm($id, $confirm) {
         $stmt = $this->prepare("UPDATE reservation SET confirmed = ? WHERE _id = ? AND confirmed IS NULL");
         $stmt->bind_param("ii", $confirm, $id);

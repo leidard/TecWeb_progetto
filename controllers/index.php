@@ -21,6 +21,5 @@ $pagina = str_replace('%KEYWORDS%', "scissorhands, Padova, centro, barbiere, bar
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
-
 echo $pagina;
 ?>

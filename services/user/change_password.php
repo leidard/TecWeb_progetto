@@ -7,5 +7,4 @@ class UserPasswordChangeService
 	{
 		(new Credential())->changeUserPassword($mail, password_hash($password, PASSWORD_BCRYPT), $UserType);
 	}
-    
 }

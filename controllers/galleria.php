@@ -20,5 +20,4 @@ $pagina = str_replace('%KEYWORDS%', "galleria, foto, tagli, capelli, barba, acco
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
 
-
 echo $pagina;

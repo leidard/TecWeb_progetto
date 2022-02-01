@@ -49,8 +49,6 @@ function _menu($sess_type = "GUEST"){
         )
     );
 
-
-    
     $langs = array(
         "Home" => "en",
     );

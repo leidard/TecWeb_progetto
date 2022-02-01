@@ -21,7 +21,6 @@ if($_SESSION["type"] != "OWNER")
 	
 $user_id = $_SESSION["sessionid"];
 
-
 $pagina = page('Prenotazioni staff - Scissorhands');
 
 $meta_index = _meta_index(false);
@@ -68,7 +67,6 @@ $main = str_replace("%NEXT_DAY%", $next_day, $main);
 $main = str_replace("%PREV_WEEK%", $prev_week, $main);
 $main = str_replace("%NEXT_WEEK%", $next_week, $main);
 
-// link prenotazioni in attesa di conferma
 $count = StaffReservationService::unconfirmedCount();
 $str_pend_link = "";
 if ($count>0) {
@@ -76,15 +74,12 @@ if ($count>0) {
 }
 $main = str_replace("%PENDING_REQ_LINK%", $str_pend_link, $main);
 
-
-// prenotazioni confermate
 $resv = StaffReservationService::getPlannedForDay($selected_day);
 $str = "";
 foreach ($resv as $r) {
     $str .= booked_row_staff($r["_id"], $r["start_at"], $r["end_at"], $r["service"], $r["staff"], $r["customer_name"] . " " . $r["customer_surname"]);
 }
 $main = str_replace("%CONFIRMED%", $str, $main);
-
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);

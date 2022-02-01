@@ -30,7 +30,6 @@ function listaServizi() {
                 $out .= _servizio($service["name"],$service["price"],$service["duration"],$service["description"]);  
         }    
     }    
-    
     return $out;
 }
 
