@@ -45,21 +45,21 @@ if(isset($_POST["submit"]) && isset($_POST["confirm_new_password"]) && (preg_mat
 	$confirmnewPassword = $_POST["confirm_new_password"];
 else
 {
-	$_SESSION["message"] = "<em><span aria-live=\"polite\" id=\"cpw-error\">Caratteri non validi in conferma nuova password.</span></em>";
+	$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">Caratteri non validi in conferma nuova password.</span></em>";
 }
 
 if(isset($_POST["submit"]) && isset($_POST["new_password"]) && (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["new_password"]) || $_POST["new_password"]=="admin" || $_POST["new_password"]=="user"))
 	$newPassword = $_POST["new_password"];
 else
 {
-	$_SESSION["message"] = "<em><span aria-live=\"polite\" id=\"cpw-error\">Caratteri non validi in nuova password o requisiti non rispettati.</span></em>";
+	$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">Caratteri non validi in nuova password o requisiti non rispettati.</span></em>";
 }	
 
 if(isset($_POST["submit"]) && isset($_POST["current_password"]) && (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["current_password"]) || $_POST["current_password"]=="admin" || $_POST["current_password"]=="user"))
 	$currentPassword = $_POST["current_password"];
 else
 {
-	$_SESSION["message"] = "<em><span aria-live=\"polite\" id=\"cpw-error\">Caratteri non validi in password corrente.</span></em>";
+	$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">Caratteri non validi in password corrente.</span></em>";
 }
 	
 
@@ -74,16 +74,16 @@ if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && 
 		if($newPassword==$confirmnewPassword)
 		{
 			UserPasswordChangeService::changeUserPassword($_SESSION["sessionmail"], $newPassword, $_SESSION["type"]);
-			$_SESSION["message"] = "<em><span aria-live=\"polite\" id=\"cpw-success\">Password aggiornata!.</span></em>";
+			$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-success\">Password aggiornata!.</span></em>";
 		}
 		else
 		{
-			$_SESSION["message"] = "<em><span aria-live=\"polite\" id=\"cpw-error\">Password nuove non corrispondenti.</span></em>";
+			$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">Password nuove non corrispondenti.</span></em>";
 		}
 	}
 	else
 	{
-		$_SESSION["message"] = "<em><span aria-live=\"polite\" id=\"cpw-error\">Password corrente errata.</span></em>";
+		$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">Password corrente errata.</span></em>";
 	}
 }
 
