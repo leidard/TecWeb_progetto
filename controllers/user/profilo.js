@@ -1,3 +1,9 @@
+window.onload = () => document.getElementById('changepw').setAttribute('aria-disabled', true); //messo qui e non sull'html perché altrimenti senza JS resterebbe sembre true. 
+(function () {
+	let item = document.getElementById('noscript');
+	item.parentNode.removeChild(item);
+
+})();
 	function onPw(evt)
 	{
 		// Minimum eight characters, at least one letter and one number:

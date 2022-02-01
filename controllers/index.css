@@ -361,6 +361,16 @@ section.dati-personali span#mail{
 }
 
 /*              FORM                */
+
+div#noscript{
+	text-align: center;
+}
+div#noscript>ul{
+}
+div#noscript>span{
+	text-align: center;
+}
+
 .form-block{
     display: block;
     text-align: center;
