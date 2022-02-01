@@ -10,7 +10,7 @@ $meta_index = _meta_index(true);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
-    "Prenota" => "prenota.php"
+    "Prenota" => "guest_prenota.php"
 );
 $header = _header($path);
 $main = file_get_contents('../views/prenota.html');

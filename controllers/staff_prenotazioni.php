@@ -76,9 +76,12 @@ $main = str_replace("%PENDING_REQ_LINK%", $str_pend_link, $main);
 
 $resv = StaffReservationService::getPlannedForDay($selected_day);
 $str = "";
-foreach ($resv as $r) {
-    $str .= booked_row_staff($r["_id"], $r["start_at"], $r["end_at"], $r["service"], $r["staff"], $r["customer_name"] . " " . $r["customer_surname"]);
-}
+if (!$resv || count($resv) === 0) {
+    $str = "<p>Nessuna prenotazione presente per questo giorno</p>";
+} else 
+    foreach ($resv as $r) {
+        $str .= booked_row_staff($r["_id"], $r["start_at"], $r["end_at"], $r["service"], $r["staff"], $r["customer_name"] . " " . $r["customer_surname"]);
+    }
 $main = str_replace("%CONFIRMED%", $str, $main);
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
