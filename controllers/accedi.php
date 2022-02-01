@@ -34,7 +34,7 @@ if(isset($_POST["submit"]) && isset($_POST["mail"]) && (preg_match("/^([a-z0-9\+
 }
 else
 {
-	$_SESSION["error"] = "<em><span role=alert id=\"accedi-errore\"> Email o Password non corrette.</span></em>";
+	$_SESSION["error"] = "<em><span role=alert id=\"accedi-errore\"> Email o password non corrette.</span></em>";
 	if(isset($_POST["mail"]))
 		$_SESSION["mail"] = $_POST["mail"];
 	unset($mail);
@@ -46,7 +46,7 @@ if(isset($_POST["submit"]) && isset($_POST["password"]) && (preg_match("/^(?=.*[
 }
 else
 {
-	$_SESSION["error"] = "<em><span role=alert id=\"accedi-errore\"> Email o Password non corrette.</span></em>";
+	$_SESSION["error"] = "<em><span role=alert id=\"accedi-errore\"> Email o password non corrette.</span></em>";
 	if(isset($_POST["mail"]))
 		$_SESSION["mail"] = $_POST["mail"];
 	unset($password);
@@ -79,7 +79,7 @@ if(isset($password) && isset($mail))
 	}
 	else
 	{
-		$_SESSION["error"]= "<em><span role=alert id=\"accedi-errore\"> Email o Password non corrette.</span></em>";
+		$_SESSION["error"]= "<em><span role=alert id=\"accedi-errore\"> Email o password non corrette.</span></em>";
 		$_SESSION["mail"] = $mail;
 	}
 }

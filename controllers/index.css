@@ -383,11 +383,10 @@ div.form-block em>span#reg-error
 	font-weight: bold;
     border: 0.125em solid #B30000;
     border-radius: 0.4em;
-	padding-top: 0.25em;
-	padding-right: 0.25em;
-	padding-bottom: 0.25em;
-	padding-left: 0.25em;
-    display: inline-block;
+	padding: 0.25em;
+    display: block;
+    max-width: fit-content;
+    margin: 0 auto 1em;
 }
 
 section.reservations>em>span#orari-changed,
@@ -397,11 +396,10 @@ div.form-block em>span#reg-complete
 	font-weight: bold;
     border: 0.125em solid #006118;
     border-radius: 0.4em;
-	padding-top: 0.25em;
-	padding-right: 0.25em;
-	padding-bottom: 0.25em;
-	padding-left: 0.25em;
-    display: inline-block;
+	padding: 0.25em;
+    display: block;
+    max-width: fit-content;
+    margin: 0 auto 1em;
 }
 
 /*span#reg-message{
