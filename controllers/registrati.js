@@ -35,7 +35,6 @@ window.onload = () => document.getElementById('Registrati').setAttribute('aria-d
 
 	function onPw(){
 		// Minimum eight characters, at least one letter and one number:
-		//if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(evt.target.value))
 		let pw = document.getElementById("password").value;
 		if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(pw))
 		{
