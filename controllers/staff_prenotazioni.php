@@ -1,16 +1,16 @@
 <?php
-require_once  __DIR__ . '/../components/page.php';
-require_once  __DIR__ . '/../components/header.php';
-require_once  __DIR__ . '/../components/booked_row_staff.php';
-require_once  __DIR__ . '/../components/breadcrumb.php';
-require_once __DIR__ . '/../components/meta_index.php';
+require_once  __DIR__ . '/components/page.php';
+require_once  __DIR__ . '/components/header.php';
+require_once  __DIR__ . '/components/booked_row_staff.php';
+require_once  __DIR__ . '/components/breadcrumb.php';
+require_once __DIR__ . '/components/meta_index.php';
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
 if(!isset($_SESSION["sessionid"]))
 {
-	header("Location: /accedi.php");
+	header("Location: accedi.php");
 	die();
 }
 if($_SESSION["type"] != "OWNER")
@@ -26,18 +26,18 @@ $pagina = page('Prenotazioni staff - Scissorhands');
 $meta_index = _meta_index(false);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
-$header = _header(array("Prenotazioni" => "/staff/prenotazioni.php",));
-$main = file_get_contents(__DIR__ . '/../../views/staff/prenotazioni.html');
+$header = _header(array("Prenotazioni" => "staff_prenotazioni.php",));
+$main = file_get_contents(__DIR__ . '/../views/staff/prenotazioni.html');
 
-require_once __DIR__ . '/../../services/staff/book.php';
-require_once __DIR__ . '/../../services/helpers.php';
+require_once __DIR__ . '/../services/staff/book.php';
+require_once __DIR__ . '/../services/helpers.php';
 
 $today = floorDay(time()) / 86400;
 $selected_day = $today;
 if (isset($_GET["day"]) && preg_match('/^[0-9]+$/', $_GET["day"])) {
     $selected_day = $_GET["day"];
 } else {
-    header("Location: /staff/prenotazioni.php?day=$selected_day");
+    header("Location: staff_prenotazioni.php?day=$selected_day");
 	die();
 }
 
@@ -70,7 +70,7 @@ $main = str_replace("%NEXT_WEEK%", $next_week, $main);
 $count = StaffReservationService::unconfirmedCount();
 $str_pend_link = "";
 if ($count>0) {
-    $str_pend_link = '<a href="/staff/pending.php">Visualizza '.$count.' prenotazioni in attesa</a>';
+    $str_pend_link = '<a href="pending.php">Visualizza '.$count.' prenotazioni in attesa</a>';
 }
 $main = str_replace("%PENDING_REQ_LINK%", $str_pend_link, $main);
 

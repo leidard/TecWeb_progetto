@@ -1,17 +1,17 @@
 <?php
-require_once  __DIR__ . '/../components/page.php';
-require_once  __DIR__ . '/../components/header.php';
-require_once  __DIR__ . '/../components/booked_row_staff.php';
-require_once  __DIR__ . '/../components/breadcrumb.php';
-require_once __DIR__ . '/../components/meta_index.php';
-require_once __DIR__ . '/../../services/staff/company.php';
-require_once __DIR__ . '/../../services/helpers.php';
+require_once  __DIR__ . '/components/page.php';
+require_once  __DIR__ . '/components/header.php';
+require_once  __DIR__ . '/components/booked_row_staff.php';
+require_once  __DIR__ . '/components/breadcrumb.php';
+require_once __DIR__ . '/components/meta_index.php';
+require_once __DIR__ . '/../services/staff/company.php';
+require_once __DIR__ . '/../services/helpers.php';
 
 if (session_status() === PHP_SESSION_NONE)
     session_start();
 
 if (!isset($_SESSION["sessionid"])) {
-    header("Location: /accedi.php");
+    header("Location: accedi.php");
     die();
 }
 if ($_SESSION["type"] != "OWNER") 
@@ -27,8 +27,8 @@ $pagina = page('Orari - Scissorhands');
 $meta_index = _meta_index(false);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
-$header = _header(array("Orari" => "/staff/orari.php",));
-$main = file_get_contents(__DIR__ . '/../../views/staff/orari.html');
+$header = _header(array("Orari" => "orari.php",));
+$main = file_get_contents(__DIR__ . '/../views/staff/orari.html');
 
 if (isset($_POST) && !empty($_POST)) {
     $days = [

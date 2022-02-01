@@ -8,6 +8,9 @@ function _breadcrumb(array $paths) {
     
     $str = '<li><a href="index.php" lang="en">Home</a></li>';
     $current = strtok($_SERVER["REQUEST_URI"], '?');
+    $url_els = explode("/",$current);
+    $current = $url_els[count($url_els)-1];
+
     foreach ($paths as $name => $ref) {
         if ($ref === $current) {
             $str .= "<li><a class=\"current\" aria-current=\"location\">$name</a></li>";
