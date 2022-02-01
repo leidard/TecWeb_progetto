@@ -6,7 +6,6 @@ window.onload = () => document.getElementById('changepw').setAttribute('aria-dis
 })();
 	function onPw(evt)
 	{
-		// Minimum eight characters, at least one letter and one number:
 		if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}/.test(evt.target.value))
 		{
 			document.getElementById('changepw').classList.add('disabled');

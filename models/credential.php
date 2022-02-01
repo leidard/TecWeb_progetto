@@ -3,22 +3,6 @@ require_once __DIR__ . "/helper.php";
 
 class Credential extends DBHelper {
 
-#    public static function get() {
-#        return array(
-#            "email" => "admin",
-#            "password" => "admin",
-#        );
-#    }
-
-	/*public function get($mail)
-	{
-		$stmt = $this->prepare("SELECT * FROM credential where email=? LIMIT 1");
-		$stmt->bind_param('s', $mail);
-		$stmt->execute();
-		$res = $stmt->get_result();
-		return $res->fetch_assoc();
-	}*/
-
 	public function getUserPassword($mail)
 	{
 		$stmt = $this->prepare("SELECT password FROM owner where email=?");
@@ -78,7 +62,7 @@ class Credential extends DBHelper {
 		elseif($UserType == "USER")
 			$stmt = $this->prepare("UPDATE customer SET password=? where email=?");
 		else
-			return; //non dovrebbe essere possibile arrivare qui
+			return;
 		$stmt->bind_param('ss', $password, $mail);
 		$stmt->execute();
 	}
