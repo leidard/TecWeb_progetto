@@ -5,7 +5,7 @@ function onEmail(evt) {
 		document.getElementById('login').setAttribute('aria-disabled', true);
 		document.getElementById('login').classList.add('disabled');
 		document.getElementById('mail').setAttribute('aria-invalid', true);
-		document.getElementById('email-error').textContent = "Formato mail non valido";
+		document.getElementById('email-error').textContent = "Formato email non valido";
 	}
 	else {
 		document.getElementById('login').setAttribute('aria-disabled', false);

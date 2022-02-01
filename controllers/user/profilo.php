@@ -82,7 +82,7 @@ if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && 
 	}
 	else
 	{
-		$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">Password corrente errata.</span></em>";
+		$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">Password attuale errata.</span></em>";
 	}
 }
 
