@@ -13,7 +13,7 @@ $meta_index = _meta_index(true);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
-    "Accedi" => "/accedi.php"
+    "Accedi" => "accedi.php"
 );
 
 $main = file_get_contents('../views/accedi.html');

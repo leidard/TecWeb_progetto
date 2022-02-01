@@ -9,7 +9,7 @@ $meta_index = _meta_index(true);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
-    "Galleria" => "/galleria.php"
+    "Galleria" => "galleria.php"
 );
 $header = _header($path);
 
