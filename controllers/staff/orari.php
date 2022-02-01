@@ -52,6 +52,7 @@ if (isset($_POST) && !empty($_POST)) {
     }
 
     StaffCompanyService::update($open_at*3600, $close_at*3600, $days);
+	$_SESSION["omessage"] = "<em><span role=\"alert\" id=\"orari-changed\">Orario aggiornato</span></em>";
 }
 
 $company = StaffCompanyService::get();
@@ -69,6 +70,13 @@ $main = str_replace("%DAY_6%", $days[6] ? "checked" : "", $main);
 $main = str_replace("%OPEN_HOUR%", floor($company["open_at"] / 3600), $main);
 $main = str_replace("%CLOSE_HOUR%", floor($company["close_at"] / 3600), $main);
 
+if (isset($_POST) && !empty($_POST) && isset($_SESSION["omessage"])) {
+	$main = str_replace("%MESSAGGIO%", $_SESSION["omessage"], $main);	
+}
+else
+{
+	$main = str_replace("%MESSAGGIO%","", $main);
+}
 
 $pagina = str_replace('%HEADER%', $header, $pagina);
 $pagina = str_replace('%MAIN%', $main, $pagina);
