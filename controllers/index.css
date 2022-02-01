@@ -390,7 +390,7 @@ div.form-block em>span#reg-error
     display: inline-block;
 }
 
-section.reservations>form>em>span#orari-changed,
+section.reservations>em>span#orari-changed,
 em>span#cpw-success,
 div.form-block em>span#reg-complete	
 {
