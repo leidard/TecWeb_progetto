@@ -129,19 +129,8 @@ VALUES
 INSERT INTO
   customer(_id, surname, name, email, password) 
 VALUES 
-  ('1', 'Mori', 'Mario', 'user', '$2y$10$Dvq3nV9XJZIK./OaYa3x9O.c5cyQPHGfKKw1InhbVxejt5Te4ug8y'),
-  ('2', 'Bianchi', 'Giovanni', 'testBG@veryfakemail.it', 'Prova123'),
-  ('3', 'Fiume', 'Andrea', 'testFA@veryfakemail.it', 'Prova123'),
-  ('4', 'Zoppin', 'Marco', 'testZM@veryfakemail.it', 'Prova123'),
-  ('5', 'Ferri', 'Pietro', 'testFP@veryfakemail.it', 'Prova123'),
-  ('6', 'Galli', 'Davide', 'testGD@veryfakemail.it', 'Prova123'),
-  ('7', 'Trevi', 'Valerio', 'testTV@veryfakemail.it', 'Prova123'),
-  ('8', 'Rizzo', 'Giacomo', 'testRG@veryfakemail.it', 'Prova123'),
-  ('9', 'Muri', 'Tommaso', 'testMT@veryfakemail.it', 'Prova123'),
-  ('10', 'Padovan', 'Luca', 'testPL@veryfakemail.it', 'Prova123'),
-  ('11', 'Nave', 'Paolo', 'testNP@veryfakemail.it', 'Prova123'),
-  ('12', 'Saveri', 'Matteo', 'testSM@veryfakemail.it', 'Prova123'),
-  ('13', 'Brunetti', 'Mario', 'marco.brun@fasd.it', '$2y$10$FqSjklsD0f32ZsVmy5HoD.jlXPgG3WFXEjr/S62NwEW8BvsM88BUC');
+  ('1', 'Marucci', 'Mario', 'user', '$2y$10$Dvq3nV9XJZIK./OaYa3x9O.c5cyQPHGfKKw1InhbVxejt5Te4ug8y'),
+  ('2', 'Brunetti', 'Mario', 'marco.brun@fasd.it', '$2y$10$FqSjklsD0f32ZsVmy5HoD.jlXPgG3WFXEjr/S62NwEW8BvsM88BUC');
   
 
 INSERT INTO 
