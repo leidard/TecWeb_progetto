@@ -1,39 +1,39 @@
 <?php
 
-require_once '../components/page.php';
-require_once '../components/header.php';
-require_once '../components/radio_book.php';
-require_once '../components/meta_index.php';
-require_once '../components/confirm_form.php';
+require_once 'components/page.php';
+require_once 'components/header.php';
+require_once 'components/radio_book.php';
+require_once 'components/meta_index.php';
+require_once 'components/confirm_form.php';
 
 $pagina = page('Disponibilità - Scissorhands');
 
 $meta_index = _meta_index(false);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
-$main = file_get_contents('../../views/user/conferma.html');
+$main = file_get_contents('../views/user/conferma.html');
 
-require_once __DIR__ . '/../../services/user/book.php';
-require_once __DIR__ . '/../../services/public/service.php';
-require_once __DIR__ . '/../../services/public/staff.php';
+require_once __DIR__ . '/../services/user/book.php';
+require_once __DIR__ . '/../services/public/service.php';
+require_once __DIR__ . '/../services/public/staff.php';
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
 if(!isset($_SESSION["sessionid"])) {
-	header("Location: /accedi.php");
+	header("Location: accedi.php");
 	die();
 }
 
 if($_SESSION["type"] != "USER") {
-	header("Location: /staff/prenotazioni.php"); 
+	header("Location: prenotazioni.php"); 
 	die();
 }
 
 $user_id = $_SESSION["sessionid"];
 
 if (!UserBookingService::canBook($user_id)) {
-    header("Location: /user/prenotazioni.php");
+    header("Location: prenotazioni.php");
 	die();
 }
 
@@ -81,17 +81,17 @@ $query = array(
     "service" => $selected_service,
     "day" => $selected_day
 );
-$prev_day = "/user/conferma.php?" . http_build_query(array(
+$prev_day = "conferma.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => $selected_day-1
 ));
-$next_day = "/user/conferma.php?" . http_build_query(array(
+$next_day = "conferma.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => $selected_day+1
 ));
-$today_day = "/user/conferma.php?" . http_build_query(array(
+$today_day = "conferma.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => floor(time()/86400)
@@ -102,7 +102,7 @@ $main = str_replace("%NEXT_DAY%", $next_day, $main);
 $main = str_replace("%TODAY_DAY%", $today_day, $main);
 
 
-$backlink = "/user/prenota.php?" . http_build_query(array(
+$backlink = "prenota.php?" . http_build_query(array(
     "staff" => $selected_staff,
     "service" => $selected_service,
     "day" => $selected_day
@@ -121,7 +121,7 @@ if (!empty($selected_service) && !empty($selected_staff) && !empty($selected_day
 	die();
 }
 
-$header = _header(array("Prenotazioni" => "/user/prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));
+$header = _header(array("Prenotazioni" => "prenotazioni.php",  "Nuova Prenotazione" => $backlink, "Orario" => $_SERVER["REQUEST_URI"]));
 
 $main = str_replace("%CONFIRM_FORM%", $confirm_form, $main);
 $main = str_replace("%SELECTED_DAY_EXT%", $selected_day_ext, $main);

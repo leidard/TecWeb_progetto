@@ -18,34 +18,34 @@ function _menu($sess_type = "GUEST"){
 
     $pagine = array(
         "OWNER" => array (
-            'Home' => '/',
-            'Servizi' => '/servizi.php',
-            'Staff' => '/staff.php',
-            'Galleria' => '/galleria.php',
-            'Contatti' => '/contatti.php',
-            'Prenotazioni' => '/staff/prenotazioni.php',
-            'Orari' => '/staff/orari.php',
-            'Esci' => '/logout.php'
+            'Home' => 'index.php',
+            'Servizi' => 'servizi.php',
+            'Staff' => 'staff.php',
+            'Galleria' => 'galleria.php',
+            'Contatti' => 'contatti.php',
+            'Prenotazioni' => 'prenotazioni.php',
+            'Orari' => 'orari.php',
+            'Esci' => 'logout.php'
         ),
         "USER" => array (
-            'Home' => '/',
-            'Servizi' => '/servizi.php',
-            'Staff' => '/staff.php',
-            'Galleria' => '/galleria.php',
-            'Contatti' => '/contatti.php',
-            'Prenotazioni' => '/user/prenotazioni.php',
-            'Profilo' => '/user/profilo.php',
-            'Esci' => '/logout.php',
+            'Home' => 'index.php',
+            'Servizi' => 'servizi.php',
+            'Staff' => 'staff.php',
+            'Galleria' => 'galleria.php',
+            'Contatti' => 'contatti.php',
+            'Prenotazioni' => 'prenotazioni.php',
+            'Profilo' => 'profilo.php',
+            'Esci' => 'logout.php',
         ),
         "GUEST" => array (
-            'Home' => '/',
-            'Servizi' => '/servizi.php',
-            'Staff' => '/staff.php',
-            'Galleria' => '/galleria.php',
-            'Contatti' => '/contatti.php',
-            'Prenota' => '/prenota.php',
-            'Accedi' => '/accedi.php',
-            'Registrati' => '/registrati.php'
+            'Home' => 'index.php',
+            'Servizi' => 'servizi.php',
+            'Staff' => 'staff.php',
+            'Galleria' => 'galleria.php',
+            'Contatti' => 'contatti.php',
+            'Prenota' => 'prenota.php',
+            'Accedi' => 'accedi.php',
+            'Registrati' => 'registrati.php'
         )
     );
 

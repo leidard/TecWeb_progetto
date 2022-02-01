@@ -1,11 +1,11 @@
 <?php
 
-require_once '../components/page.php';
-require_once '../components/header.php';
-require_once '../components/booked_pending.php';
-require_once '../components/booked_row.php';
-require_once '../components/breadcrumb.php';
-require_once '../components/meta_index.php';
+require_once 'components/page.php';
+require_once 'components/header.php';
+require_once 'components/booked_pending.php';
+require_once 'components/booked_row.php';
+require_once 'components/breadcrumb.php';
+require_once 'components/meta_index.php';
 
 $pagina = page('Prenotazioni utente - Scissorhands');
 
@@ -13,20 +13,20 @@ $meta_index = _meta_index(false);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $header = _header(array("Prenotazioni" => "/user/prenotazioni.php"));
-$main = file_get_contents('../../views/user/prenotazioni.html');
+$main = file_get_contents('../views/user/prenotazioni.html');
 
-require_once __DIR__ . '/../../services/user/book.php';
-require_once __DIR__ . '/../../services/errors.php';
+require_once __DIR__ . '/../services/user/book.php';
+require_once __DIR__ . '/../services/errors.php';
 
 if (session_status() === PHP_SESSION_NONE)
     session_start();
 
 if (!isset($_SESSION["sessionid"])) {
-    header("Location: /accedi.php");
+    header("Location: accedi.php");
     die();
 }
 if ($_SESSION["type"] != "USER") {
-    header("Location: /staff/prenotazioni.php");
+    header("Location: prenotazioni.php");
     die();
 }
 $user_id = $_SESSION["sessionid"];
@@ -94,10 +94,10 @@ if (!!$unc) {
     $unc_str = '<p>
     <span class="line">' . $err . '</span>
     <span class="line">Sembra che tu non debba essere qua. 🤔 Ritenta, sarai più fortunato! 😉</span>
-    <span class="line"><a href="/user/prenota.php">Clicca qui per ritentare la prenotazione</a>.</span>
+    <span class="line"><a href="prenota.php">Clicca qui per ritentare la prenotazione</a>.</span>
     </p>';
 } else {
-    $unc_str = '<p>Non c\'è nessuna prenotazione in attesa, <a href="/user/prenota.php">clicca qui per crearne una nuova</a>.</p>';
+    $unc_str = '<p>Non c\'è nessuna prenotazione in attesa, <a href="prenota.php">clicca qui per crearne una nuova</a>.</p>';
 }
 $main = str_replace("%UNCONFIRMED%", $unc_str, $main);
 

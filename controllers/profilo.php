@@ -1,14 +1,14 @@
 <?php
-require_once '../components/page.php';
-require_once '../components/header.php';
-require_once '../components/footer.php';
-require_once '../components/meta_index.php';
+require_once 'components/page.php';
+require_once 'components/header.php';
+require_once 'components/footer.php';
+require_once 'components/meta_index.php';
 
-require_once __DIR__ . '/../../services/public/login.php';
-require_once __DIR__ . '/../../services/public/session.php';
-require_once __DIR__ . '/../../services/user/change_password.php';
-require_once __DIR__ . '/../../services/user/customer.php';
-require_once __DIR__ . '/../../services/staff/owner.php';
+require_once __DIR__ . '/../services/public/login.php';
+require_once __DIR__ . '/../services/public/session.php';
+require_once __DIR__ . '/../services/user/change_password.php';
+require_once __DIR__ . '/../services/user/customer.php';
+require_once __DIR__ . '/../services/staff/owner.php';
 
 $pagina = page('Profilo - Scissorhands');
 
@@ -19,20 +19,20 @@ $meta_index = _meta_index(false);
 $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $path = array(
-    "Profilo" => "/user/profilo.php"
+    "Profilo" => "profilo.php"
 );
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
 if(!isset($_SESSION["sessionid"])) {
-	header("Location: /accedi.php");
+	header("Location: accedi.php");
 	die();
 }
 
 if($_SESSION["type"] == "OWNER")
 {
-	header("Location /staff/orari.php");
+	header("Location orari.php");
 	die();
 }
 
@@ -61,7 +61,7 @@ else
 	$_SESSION["message"] = "<em><span role=\"alert\" id=\"cpw-error\">La password attuale non è corretta.</span></em>";
 }
 	
-$main = file_get_contents('../../views/user/pagina_personale.html');
+$main = file_get_contents('../views/user/pagina_personale.html');
 if(isset($_POST["submit"]) && isset($currentPassword) && isset($newPassword) && isset($confirmnewPassword))
 {
 	$currentPassword = PublicLoginService::getUserPassword($_SESSION["sessionmail"]);

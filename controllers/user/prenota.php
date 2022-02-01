@@ -1,8 +1,8 @@
 <?php
-require_once '../components/page.php';
-require_once '../components/header.php';
-require_once '../components/radio_book.php';
-require_once '../components/meta_index.php';
+require_once 'components/page.php';
+require_once 'components/header.php';
+require_once 'components/radio_book.php';
+require_once 'components/meta_index.php';
 
 $pagina = page('Prenota - Scissorhands');
 
@@ -11,32 +11,30 @@ $pagina = str_replace('%META_INDEX%', $meta_index, $pagina);
 
 $header = _header(array("Prenotazioni" => "/user/prenotazioni.php", "Nuova Prenotazione" => "/user/prenota.php"));
 
-$main = file_get_contents('../../views/user/prenota.html');
+$main = file_get_contents('../views/user/prenota.html');
 
-require_once __DIR__ . '/../../services/user/book.php';
-require_once __DIR__ . '/../../services/public/company.php';
-require_once __DIR__ . '/../../services/public/service.php';
-require_once __DIR__ . '/../../services/public/staff.php';
-require_once __DIR__ . '/../../services/helpers.php';
+require_once __DIR__ . '/../services/user/book.php';
+require_once __DIR__ . '/../services/public/company.php';
+require_once __DIR__ . '/../services/public/service.php';
+require_once __DIR__ . '/../services/public/staff.php';
+require_once __DIR__ . '/../services/helpers.php';
 
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
-if(!isset($_SESSION["sessionid"]))
-{
-	header("Location: /accedi.php");
+if(!isset($_SESSION["sessionid"])) {
+	header("Location: accedi.php");
 	die();
 }
-if($_SESSION["type"] != "USER")
-{
-	header("Location: /staff/prenotazioni.php"); 
+if($_SESSION["type"] != "USER") {
+	header("Location: staff_prenotazioni.php"); 
 	die();
 }
 
 $user_id = $_SESSION["sessionid"];
 
 if (!UserBookingService::canBook($user_id)) {
-    header("Location: /user/prenotazioni.php");
+    header("Location: user_prenotazioni.php");
 	die();
 }
 
