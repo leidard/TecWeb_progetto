@@ -56,6 +56,7 @@ function _menu($sess_type = "GUEST"){
     $current = strtok($_SERVER["REQUEST_URI"], '?');
     $url_els = explode("/",$current);
     $current = $url_els[count($url_els)-1];
+    if ($current === "") $current = "index.php";
 
     $str = "";
     foreach($pagine[$sess_type] as $name => $ref){  

@@ -57,7 +57,7 @@ switch ($selected_day) {
         $extended_date = "di Ieri";
         break;
     default:
-        $extended_date = "del " . date("d M", $selected_day * 86400);
+        $extended_date = "del " . date("d/m", $selected_day * 86400);
 }
 
 $main = str_replace("%EXTENDED_DATE%", $extended_date, $main);

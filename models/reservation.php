@@ -38,7 +38,7 @@ class Reservation extends DBHelper {
     }
 
     public function getAllOfCustomer($customer) {
-        $stmt = $this->prepare("SELECT start_at, end_at, confirmed, R.price as price, S.name as staff, SVC.name as service FROM scissorhands.reservation as R
+        $stmt = $this->prepare("SELECT start_at, end_at, confirmed, R.price as price, S.name as staff, SVC.name as service FROM reservation as R
             INNER JOIN staff as S ON S._id = R.staff
             INNER JOIN service as SVC ON SVC._id = R.service
             WHERE R.company = 1 AND R.confirmed = TRUE AND R.customer = ? ORDER BY start_at DESC");
@@ -65,7 +65,7 @@ class Reservation extends DBHelper {
         $stmt = $this->prepare("SELECT 
             R._id as _id, R.start_at as start_at, R.end_at as end_at, R.price as price, S.name as staff, SVC.name as service, C.name as customer_name, C.surname as customer_surname  
         FROM 
-            scissorhands.reservation as R
+            reservation as R
         INNER JOIN staff as S 
             ON S._id = R.staff
         INNER JOIN service as SVC 
@@ -88,7 +88,7 @@ class Reservation extends DBHelper {
     public function getUnconfirmed($customer) {
         $stmt = $this->prepare("SELECT R._id as _id, R.start_at as start_at, R.end_at as end_at, R.price as price, S.name as staff, SVC.name as service  
         FROM 
-            scissorhands.reservation as R
+            reservation as R
         INNER JOIN staff as S 
             ON S._id = R.staff
         INNER JOIN service as SVC 
@@ -110,7 +110,7 @@ class Reservation extends DBHelper {
     public function getAllUnconfirmed() {
         $stmt = $this->prepare("SELECT  R._id as _id, R.start_at as start_at, R.end_at as end_at, R.price as price, S.name as staff, SVC.name as service, C.name as customer_name, C.surname as customer_surname  
         FROM 
-            scissorhands.reservation as R
+            reservation as R
         INNER JOIN staff as S 
             ON S._id = R.staff
         INNER JOIN service as SVC 

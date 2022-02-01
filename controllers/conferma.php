@@ -57,9 +57,9 @@ $today = floor(time()/86400);
 $selected_day = $today;
 if (isset($_GET["day"]) && preg_match('/^[0-9]+$/', $_GET["day"])) {
     $selected_day = (int) $_GET["day"];
-    $selected_day_ext = date("M d", $selected_day*86400);
+    $selected_day_ext = date("d/m", $selected_day*86400);
 }
-$selected_day_ext = date("M d", $selected_day*86400);
+$selected_day_ext = date("d/m", $selected_day*86400);
 $extended_date = "";
 switch ($selected_day) {
     case $today:
@@ -72,7 +72,7 @@ switch ($selected_day) {
         $extended_date = "di Ieri";
         break;
     default:
-        $extended_date = "del " . date("d M", $selected_day * 86400);
+        $extended_date = "del " . date("d/m", $selected_day * 86400);
 }
 $selected_day_ext = $extended_date;
 

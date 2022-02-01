@@ -5,7 +5,7 @@ setlocale(LC_TIME, 'it_IT');
 function booked_pending_staff($_id, $start_at, $end_at, $service, $staff, $price, $c_name, $c_surname) {
     $out = file_get_contents(__DIR__ . '/../../views/components/booked_pending_staff.html');
 
-    $day = date('d F Y', $start_at);
+    $day = date('d/m/Y', $start_at);
     $from = date('G:i', $start_at);
     $to = date("G:i", $end_at);
     $duration = floor(($end_at - $start_at) / 60);
