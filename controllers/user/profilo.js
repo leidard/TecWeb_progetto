@@ -7,17 +7,17 @@ window.onload = () => document.getElementById('changepw').setAttribute('aria-dis
 	function onPw(evt)
 	{
 		// Minimum eight characters, at least one letter and one number:
-		if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(evt.target.value))
+		if (!/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/.test(evt.target.value))
 		{
 			document.getElementById('changepw').classList.add('disabled');
 			document.getElementById('changepw').setAttribute('aria-disabled', true);
 			let str="";
 			let ok=true;
-			if(evt.target.value.length < 8)
+			if(evt.target.value.length < 9)
 			{
 				//non lunga abbastanza
 				ok = false;
-				str+="<li>otto caratteri</li>";
+				str+="<li>nove caratteri</li>";
 			}
 
 			if(evt.target.value.toUpperCase() == evt.target.value)
@@ -42,10 +42,9 @@ window.onload = () => document.getElementById('changepw').setAttribute('aria-dis
 			}
 
 			if(ok == true)
-				str+="<li>carattere non valido presente</li>";
-
-
-			document.getElementById('pw-error').innerHTML = "Deve avere almeno: <ul>"+str+"</ul>";
+				document.getElementById('pw-error').innerHTML+="carattere non valido presente";
+			else
+				document.getElementById('pw-error').innerHTML = "Deve avere almeno: <ul>"+str+"</ul>";
 			
 		}	
 		else 
@@ -74,7 +73,7 @@ window.onload = () => document.getElementById('changepw').setAttribute('aria-dis
 
 	//ARIA
 	function aria_onPw(evt){
-		if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(evt.target.value))
+		if (!/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/.test(evt.target.value))
 		{
 			document.getElementById('new_password').setAttribute('aria-invalid', true);
 			document.getElementById('new_password').setAttribute('aria-describedby', 'pw-error');

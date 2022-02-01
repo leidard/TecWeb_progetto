@@ -20,7 +20,7 @@ $main = file_get_contents('../views/accedi.html');
 
 session_start();
 
-
+$patternPassword = "/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/";
 
 if(isset($_SESSION["sessionid"])) 
 {
@@ -40,7 +40,7 @@ else
 	unset($mail);
 }
 
-if(isset($_POST["submit"]) && isset($_POST["password"]) && (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["password"]) || $_POST["password"]=="admin" || $_POST["password"]=="user"))
+if(isset($_POST["submit"]) && isset($_POST["password"]) && (preg_match($patternPassword, $_POST["password"]) || $_POST["password"]=="admin" || $_POST["password"]=="user"))
 {
 	$password = $_POST["password"];
 }

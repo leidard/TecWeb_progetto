@@ -39,6 +39,7 @@ $header = _header($path);
 $footer = _footer();
 $main = file_get_contents('../views/registrati.html');
 
+$patternPassword = "/^(?:(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\]{},.<>+=])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\]{},.<>+=-]{9,50}$/";
 
 unset($name);
 unset($surname);
@@ -70,7 +71,7 @@ elseif(isset($_POST["submit"]))
 	dontClearFields();
 }
 
-if(isset($_POST["submit"]) && isset($_POST["password"]) && preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["password"]))
+if(isset($_POST["submit"]) && isset($_POST["password"]) && preg_match($patternPassword, $_POST["password"]))
 	$password = $_POST["password"];
 elseif(isset($_POST["submit"]))
 {
@@ -78,7 +79,7 @@ elseif(isset($_POST["submit"]))
 	dontClearFields();
 }
 
-if(isset($_POST["submit"]) && isset($_POST["password_rep"]) && preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $_POST["password_rep"]))
+if(isset($_POST["submit"]) && isset($_POST["password_rep"]) && preg_match($patternPassword, $_POST["password_rep"]))
 	$password_rep = $_POST["password_rep"];
 elseif(isset($_POST["submit"]))
 {
