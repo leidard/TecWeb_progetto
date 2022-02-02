@@ -75,7 +75,3 @@ div.capelli{
 .servizio {
     border: 0.01em black solid;
 }
-
-div#ErroreConnessione div.ErrConnImg {
-    display: none;
-}

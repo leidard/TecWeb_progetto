@@ -882,12 +882,6 @@ section.error {
 
 }
 
-@media only screen and (max-width: 500px) {
-    div#ErroreConnessione div.ErrConnImg{
-        min-height: 6em;
-    }  
-}
-
 section#info-contatti{
     text-align: center;
     list-style-position:inside;
