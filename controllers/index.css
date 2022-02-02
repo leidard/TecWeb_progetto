@@ -882,28 +882,6 @@ section.error {
 
 }
 
-div#ErroreConnessione{
-    display: flex;
-    flex-direction: column;
-
-}
-
-div#ErroreConnessione div.ErrConnImg {
-    width: 100%;
-    min-height: 12em;
-    height: auto;
-    background-image: url('static/img/network-error-icon.jpg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat; 
-    padding: 0;
-}
-
-div#ErroreConnessione p span {
-    text-align: center;
-    display: block;
-}
-
 @media only screen and (max-width: 500px) {
     div#ErroreConnessione div.ErrConnImg{
         min-height: 6em;
