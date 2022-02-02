@@ -42,12 +42,12 @@ if (isset($_POST) && !empty($_POST)) {
     ];
     $open_at = null;
     if (isset($_POST["open_at"]) && preg_match('/^[0-9]{1,2}$/', $_POST["open_at"]) && $_POST["open_at"] >= 0 && $_POST["open_at"] <= 23) {
-        $open_at = $_POST["open_at"];
+        $open_at = $_POST["open_at"] -1;
     }
 
     $close_at = null;
     if (isset($_POST["close_at"]) && preg_match('/^[0-9]{1,2}$/', $_POST["close_at"]) && $_POST["close_at"] >= 0 && $_POST["close_at"] <= 23 && $_POST["close_at"] > $_POST["open_at"]) {
-        $close_at = $_POST["close_at"];
+        $close_at = $_POST["close_at"] -1;
     }
 
     StaffCompanyService::update($open_at*3600, $close_at*3600, $days);
@@ -66,8 +66,8 @@ $main = str_replace("%DAY_4%", $days[4] ? "checked" : "", $main);
 $main = str_replace("%DAY_5%", $days[5] ? "checked" : "", $main);
 $main = str_replace("%DAY_6%", $days[6] ? "checked" : "", $main);
 
-$main = str_replace("%OPEN_HOUR%", floor($company["open_at"] / 3600), $main);
-$main = str_replace("%CLOSE_HOUR%", floor($company["close_at"] / 3600), $main);
+$main = str_replace("%OPEN_HOUR%", date('H', $company["open_at"]), $main);
+$main = str_replace("%CLOSE_HOUR%", date('H', $company["close_at"]), $main);
 
 if (isset($_POST) && !empty($_POST) && isset($_SESSION["omessage"])) {
 	$main = str_replace("%MESSAGGIO%", $_SESSION["omessage"], $main);	
