@@ -27,12 +27,12 @@
 				<input placeholder="Inserisci la password attuale" name="current_password" id="current_password" type="password" required />
 			</span>
 
-			<span>
+			<div>
 				<label for="new_password">Nuova password</label>
-				<span id="pw-error" class="error"></span>
+				<div id="pw-error" class="error"></div>
 				<input placeholder="Inserisci la nuova password" name="new_password" id="new_password" type="password" required oninput="onPw(event);"
 					onblur="aria_onPw(event);" />
-			</span>
+			</div>
 
 			<span>
 				<label for="confirm_new_password">Ripeti nuova password</label>
