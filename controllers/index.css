@@ -448,15 +448,18 @@ fieldset#modifica-ora span.error,
 fieldset.dati-login span.input-hint,
 fieldset.dati-registrazione>span.error>input,
 fieldset.dati-cambio-password>span.error>input,
+fieldset.dati-cambio-password>div.error>input,
 fieldset.dati-personali>span.error>input {
     display: block;
 }
 
 fieldset#modifica-ora span.error,
 fieldset.dati-registrazione span.error,
+fieldset.dati-registrazione div.error,
 fieldset.dati-login span.error,
 fieldset.dati-personali span.error,
-fieldset.dati-cambio-password span.error{
+fieldset.dati-cambio-password span.error,
+fieldset.dati-cambio-password div.error{
 	background-color: #800F0F;
 	color : #FFFFFF;
 	text-align: center;
