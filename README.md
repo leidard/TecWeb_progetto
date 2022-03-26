@@ -12,7 +12,14 @@
 - i dati inseriti dagli utenti devono essere salvati in un database;
 - è preferibile che il database sia in forma normale.
 
+## Note aggiuntive
+Non possono essere usate librerie o framework.
 
+
+Devono essere rispettate le regole di accessibilità ufficiali del W3: [W3.org](https://www.w3.org/standards/webdesign/accessibility)
+
+
+Test per valutare l'accessibilità: [WCAG Tester](https://web.math.unipd.it/accessibility/index.html)
 ## Dev Server
 
 per fare girare un dev server
